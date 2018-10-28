@@ -5,6 +5,7 @@ import LoginPage from '@/views/Login'
 import ProfileComponent from '@/components/Profile'
 import TableComponent from '@/components/Table'
 import EditNote from '@/components/note_components/EditNote'
+import DashBoard from '@/components/DashBoard'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
           path: '/edit',
           name: 'edit',
           component: EditNote
+        },
+        {
+          path: '/dashboard',
+          name: 'dashboard',
+          component: DashBoard
         }
       ]
     }

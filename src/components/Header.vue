@@ -6,7 +6,7 @@
     </div>
     <div class="center">
       <input type="text" placeholder="Search">
-      <button class="btn btn-block" type="button">Search</button>
+      <button class="btn btn-block" type="button">Load</button>
     </div>
     <div class="right">
       <i class="fa fa-search"></i>

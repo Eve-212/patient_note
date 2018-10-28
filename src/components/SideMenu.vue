@@ -2,6 +2,13 @@
   <div class="side-menu" :class="{expanded: isExpanded}">
     <ul>
       <li>
+        <router-link :to="{ name: 'dashboard' }">
+          <i class="fa fa-home fa-2x"></i>
+          <span class="nav-text">DashBoard</span>
+        </router-link>
+      </li>
+     <li>
+      <li>
         <router-link :to="{ name: 'incompletedTable' }">
           <i class="fa fa-home fa-2x"></i>
           <span class="nav-text">My Profile</span>

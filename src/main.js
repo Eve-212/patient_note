@@ -5,9 +5,13 @@ import App from './App'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios'
-
+import APIClient from 'moleculer-openapi-client'
+import OneAPI from './lib/oneapi'
 Vue.prototype.$http = axios
-
+Vue.prototype.$wf =  OneAPI({
+  spec_url:"http://127.0.0.1:3000/api/spec.get",
+  server_url:"http://127.0.0.1:3000/api"
+})
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
