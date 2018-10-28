@@ -30,10 +30,12 @@ export default {
   methods:{
       load(){
          this.status="Loading..."
-         this.$wf.note.list().then(($raw)=>{
-            this.list=$raw.data
-            this.status=""
-        });
+         this.$wf.ready().then($api=>{
+            return $api.note.list().then(($raw)=>{
+                this.list=$raw.data
+                this.status=""
+            })
+         });
       }
   },
   mounted(){

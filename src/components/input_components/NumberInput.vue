@@ -1,21 +1,48 @@
 
 <template>
-	<div class="display-inline" v-if="showInputField">
-		<label
-			:for="currentKey">
-			{{ schema.title }}
-		</label>
-		<input
-			id="number-input"
-			type="number"
-			:name="currentKey" 
-			v-model="value[currentKey]">
-	</div>
+		<div  :class="[bsColSize]" v-if="showInputField">
+      <div v-if="schema.attrs.inputGroup">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" >{{ schema.title}}</span>
+          </div>
+                    <input 
+            id="text-input" 
+
+            type="number" 
+            :name="currentKey" 
+            v-model="value[currentKey]"
+            class="form-control"
+            >
+        </div>
+      </div>
+      <div class="form-group row" v-if="!schema.attrs.inputGroup">
+      
+        <label 
+          class="col-md-2 col-form-label"
+          :for="currentKey">
+          {{ schema.title }}
+        </label>
+        <div class="col-md-10">
+          <input 
+            id="text-input" 
+
+            type="number" 
+            :name="currentKey" 
+            v-model="value[currentKey]"
+            class="form-control"
+            >
+        </div>
+      </div>
+		</div>	
 </template>
 
 <script>
+import Proto from './Proto'
 export default {
   name: 'NumberInput',
+  mixins:[Proto],
+  /*
   props: {
     schema: {
       type: Object,
@@ -35,12 +62,13 @@ export default {
         return ""
       }
     }
-  },
+  },*/
   data() {
     return {
       
     }
-  },
+  }/*,
+  
   methods: {
     clearInput() {
       // this.value[this.currentKey] = null
@@ -119,7 +147,7 @@ export default {
       }
       return true
     }
-  }
+  }*/
 }
 </script>
 

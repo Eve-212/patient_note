@@ -13,8 +13,11 @@
 </template>
 
 <script>
+import Proto from './Proto'
 export default {
   name: 'SelectDate',
+  mixins:[Proto],
+  /*
   props: {
     schema: {
       type: Object,
@@ -35,11 +38,13 @@ export default {
       }
     }
   },
+  */
   data() {
     return {
       
     }
   },
+  /*
   methods: {
     clearInput() {
       // this.value[this.currentKey] = null
@@ -108,7 +113,7 @@ export default {
       }
       return true
     }
-  }
+  }*/
 }
 </script>
 

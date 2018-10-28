@@ -12,14 +12,20 @@
 
 		</div> -->
 
-		<h2>{{ jsonSchema.title }}</h2>   		   
-		<div v-for="(field, key) in jsonSchema.properties" :key="key">           
-      <component 
+		<h2>{{ schema.title }}</h2>   		   
+		<div  class="container-fluid"> 
+			<div class="row">        
+			<component 
+				class="col-md-12"
+				v-for="(field, key) in jsonSchema.properties" :key="key"
 				:is="getComponentName(field)"
 				:schema="field" 
+				:path="path.concat(key)"
 				:currentKey="key"
-				v-model="jsonSchemaData"></component>
-    </div>
+				v-model="jsonSchemaData">
+			</component>
+			</div>
+		</div>
 
 		<!-- {{ jsonSchema }} -->
 		{{ jsonSchemaData }}
@@ -64,12 +70,19 @@ export default {
 				return {}
 			}
 		},
+		
+		path:{
+			type:Array,
+			default(){
+				return [];
+		}
+		},
 		currentKey: {
-      type: String,
-      default() {
-        return ""
-      }
-    }
+			type: String,
+			default() {
+				return ""
+			}
+    	}
 	},
 	data() {
 		return {
@@ -79,9 +92,51 @@ export default {
 	},
 	created() {
 	},
-	methods: {        
+	watch:{
+		schemaData($data){
+			this.jsonSchemaData=this.schemaData
+		},
+		schema($schema){
+			this.jsonSchema=this.schema.properties.content
+		}
+	},
+	methods: {   
+
 		// TODO: should be able to default to JSON type (string, int, array etc.) if no custom fieldType given
 		getComponentName(field) {
+			let $com="TextInput"
+			let $type_field={
+				"object":"object",
+				"string":"text",
+				"number":"number",
+				"integer":"number",
+				"array":"checklist",
+				"boolean":"radio"
+
+			};
+			let $field_com={
+				"text":"TextInput",
+				"checklistwithother":"CheckListWithOther",
+				"radio":"RadioInput",
+				"checkbox":"Checkbox",
+				"checklist":"CheckList",
+				"selectList":"SelectList",
+				"object": "ObjectComponent",
+				"number": "NumberInput",
+				"date": "SelectDate"
+			}
+			if (!field.attrs){
+				field.attrs={}
+			}
+			if (!field.attrs.fieldType){
+				if (field.type){
+					field.attrs.fieldType=$type_field[field.type]
+				}else{
+					field.attrs.fieldType="text"
+				}
+			}
+			return ($field_com[field.attrs.fieldType] || "TextInput")
+			/*
 			if (!(field.attrs && field.attrs.fieldType)) {
 				if (field.type === 'string') {
 					return "TextInput"
@@ -117,6 +172,7 @@ export default {
 				case "date": 
 					return "SelectDate"
 			}
+			*/
 		}
 	}
 }
@@ -124,7 +180,9 @@ export default {
 
 <style>
 .field-title {
+	/*
 	color: blueviolet;
+	*/
 }
 .display-inline {
 	display: inline-block;

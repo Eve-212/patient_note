@@ -5,8 +5,16 @@
       <a href="#"><img class="logo-b" src="../assets/logo.png"></a>
     </div>
     <div class="center">
-      <input type="text" placeholder="Search">
-      <button class="btn btn-block" type="button">Load</button>
+      <!--
+      <input type="text" v-model="no" placeholder="Search">
+      <button class="btn btn-block" v-on:click="load" type="button">Load</button>
+      -->
+      <div class="input-group search_box">
+        <input type="text"  v-model="no" class="form-control no" placeholder="病歷號/床號/身分證字號" >
+        <div class="input-group-append">
+          <button class="btn" type="button" v-on:click="load" >Load</button>
+        </div>
+      </div>
     </div>
     <div class="right">
       <i class="fa fa-search"></i>
@@ -21,7 +29,9 @@
 export default {
   data() {
     return {
-      isExpanded: false
+      isExpanded: false,
+      no:"",
+      status:""
     }
   },
   methods: {
@@ -37,6 +47,20 @@ export default {
         this.$emit('authenticated', false)
         this.$router.replace({ name: 'login' })
       }
+    },
+    load(){
+      if (this.no){
+        this.status=""
+        this.$wf.note.sess({no:this.no}).then(($raw)=>{
+          let $sess=$raw.data
+          if ($sess.fee_no){
+            this.$router.push({name:'edit',params:{fee_no:$sess.fee_no}})
+
+          }
+        })
+        
+      }
+      
     }
   }
 }
@@ -89,8 +113,12 @@ header {
     @media screen and (max-width: $break-medium) {
       justify-content: center;
     }
-
-    input {
+    .search_box{
+        width:30rem;
+        padding-left: 0.5rem;
+    }
+    .no {
+      /*
       padding: 1.2rem 1rem 1.2rem 3.2rem;
       height: 40px;
       font-size: 0.9rem;
@@ -108,7 +136,12 @@ header {
       outline: 0;
       transition: background 0.3s ease-out, opacity 0.5s ease-out;
       width: 50%;
-
+      */
+      background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png);
+      background-repeat: no-repeat;
+      background-position: 0.3rem 50%;
+      background-size: 1.5rem;
+      padding-left:2rem;
       @media screen and (max-width: 1024px) {
         width: 100%;
       }
@@ -121,8 +154,9 @@ header {
         width: 70%;
       }
     }
-
+  
     button {
+      /*
       height: 40px;
       width: 120px;
       color: #fff;
@@ -134,7 +168,9 @@ header {
       transition: all 0.4s ease-out;
       border-radius: 0;
       background: $blue;
-
+      */
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
       @media screen and (max-width: $break-small) {
         width: 70px;
         font-size: 12px;

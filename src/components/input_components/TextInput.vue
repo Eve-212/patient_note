@@ -1,81 +1,54 @@
 
-<template>	
-		<div class="display-inline" v-if="showInputField">
-			<label 
-				:for="currentKey">
-				{{ schema.title }}
-			</label>
-			<input 
-				id="text-input" 
-				type="text" 
-				:name="currentKey" 
-				v-model="value[currentKey]">
+<template>
+		<div  :class="[bsColSize]" v-if="showInputField">
+      <div v-if="schema.attrs.inputGroup">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" >{{ schema.title}}</span>
+          </div>
+          <input 
+            :id="getId()" 
+
+            type="text" 
+            :name="currentKey" 
+            v-model="value[currentKey]"
+            class="form-control"
+            >
+        </div>
+      </div>
+      <div class="form-group row" v-if="!schema.attrs.inputGroup">
+      
+        <label 
+          class="col-md-2 col-form-label"
+          :for="currentKey">
+          {{ schema.title }}
+        </label>
+        <div class="col-md-10">
+          <input 
+            :id="getId()" 
+
+            type="text" 
+            :name="currentKey" 
+            v-model="value[currentKey]"
+            class="form-control"
+            >
+        </div>
+      </div>
 		</div>	
 </template>
 
 <script>
+import Proto from './Proto'
 export default {
   name: 'TextInput',
-  props: {
-    schema: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    value: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    currentKey: {
-      type: String,
-      default() {
-        return ""
-      }
-    }
-  },
+  mixins:[Proto],
+  
   data() {
     return {
       placeholder: this.getPlaceholder()     
     }
   },
   methods: {
-    clearInput() {
-      // this.value[this.schema.attrs.fieldName] = null
-      let initValue = null
-      switch (this.$options.name) {
-        case 'TextInput':
-          initValue = ''
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'NumberInput':
-          initValue = ''
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'Checkbox':
-          initValue = false
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'CheckList':
-          initValue = []
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'RadioInput':
-          initValue = ''
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'SelectDate':
-          initValue = ''
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'SelectList':
-          initValue = ''
-          this.$set(this.value, this.currentKey, initValue)
-          break
-      }
-    },
     getPlaceholder() {
       if (typeof this.schema.attrs !== 'undefined') {
         if (typeof this.schema.attrs.placeholder !== 'undefined') {
@@ -84,7 +57,7 @@ export default {
       }
       return ''
     }
-  },
+  },/*
   computed: {
     showInputField() {
       let schemaAttrs = this.schema.attrs
@@ -127,6 +100,7 @@ export default {
       return true
     }
   }
+  */
 }
 </script>
 

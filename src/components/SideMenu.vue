@@ -3,7 +3,7 @@
     <ul>
       <li>
         <router-link :to="{ name: 'dashboard' }">
-          <i class="fa fa-home fa-2x"></i>
+          <i class="fas fa-th fa-2x"></i>
           <span class="nav-text">DashBoard</span>
         </router-link>
       </li>
@@ -46,10 +46,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '../assets/global.scss';
-
+$icon_color:#5a5a5a;
 .side-menu {
   z-index: 1;
-  background: #ededed;
+  background: #f1f1f1;
   position: absolute;
   top: 62px;
   bottom: 0;
@@ -97,9 +97,9 @@ export default {
     }
   }
 
-  .fa {
+  i {
     font-size: 14px;
-    color: $black;
+    color: $icon_color;
     display: flex;
     align-items: center;
     justify-content: center;

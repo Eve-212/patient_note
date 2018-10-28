@@ -1,14 +1,18 @@
 <template>
 	<div v-if="showInputField"> 
-		<legend class="field-title">{{ schema.title }}</legend>  
-		<div v-for="(field, key) in schema.properties" :key="key"> 
-			<component 
-				:is="getComponentName(field)" 
-				:schema="field"
-        :currentKey="key"
-				v-model="value[currentFieldName]">         
-			</component>
-		</div>
+		<h2 class="field-title">{{ schema.title }}</h2> 
+    <div class="obj_box row" > 
+
+        <component 
+          v-for="(field, key) in schema.properties" :key="key"
+          :is="getComponentName(field)" 
+          :schema="field"
+          :path="path.concat(key)"
+          :currentKey="key"
+          v-model="value[currentFieldName]">         
+        </component>
+
+    </div>
 	</div>
 </template>
 
@@ -47,6 +51,12 @@ export default {
         return {}
       }
     },
+    path:{
+      type:Array,
+      default(){
+        return [];
+      }
+    },
     currentKey: {
       type: String,
       default() {
@@ -69,6 +79,39 @@ export default {
   },
   methods: {
     getComponentName(field) {
+      			let $com="TextInput"
+			let $type_field={
+				"object":"object",
+				"string":"text",
+				"number":"number",
+				"integer":"number",
+				"array":"checklist",
+				"boolean":"radio"
+
+			};
+			let $field_com={
+				"text":"TextInput",
+				"checklistwithother":"CheckListWithOther",
+				"radio":"RadioInput",
+				"checkbox":"Checkbox",
+				"checklist":"CheckList",
+				"selectList":"SelectList",
+				"object": "ObjectComponent",
+				"number": "NumberInput",
+				"date": "SelectDate"
+			}
+			if (!field.attrs){
+				field.attrs={}
+			}
+			if (!field.attrs.fieldType){
+				if (field.type){
+					field.attrs.fieldType=$type_field[field.type]
+				}else{
+					field.attrs.fieldType="text"
+				}
+			}
+			return ($field_com[field.attrs.fieldType] || "TextInput")
+      /*
       if (!(field.attrs && field.attrs.fieldType)) {
 				if (field.type === 'string') {
 					return "TextInput"
@@ -104,6 +147,7 @@ export default {
         case 'checklistwithother':
           return 'CheckListWithOther'
       }
+      */
     },
     clearInput() {
       // this.value[this.schema.attrs.fieldName] = null
@@ -157,7 +201,10 @@ export default {
 
 <style>
 .field-title {
-	color: blueviolet;
+	/*color: blueviolet;*/
+}
+.obj_box{
+  padding:1rem;
 }
 .display-inline {
 	display: inline-block;

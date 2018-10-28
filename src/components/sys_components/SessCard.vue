@@ -14,7 +14,7 @@
             <p class="card-text">
                 主責醫師 : <span>{{sess.ipd.doc_id}}</span>
             </p>
-            <button class="btn btn-sm">住院</button>
+            <button class="btn btn-sm" v-on:click="show_edit('admission')">住院</button>
             <button class="btn btn-sm" title="2018-10-26 未完成">
                 Progress  <span class="badge badge-danger" model="tobedone">3</span>
             </button>
@@ -42,6 +42,11 @@ export default {
         },
         complete_status(){
             return 'incompleted'
+        }
+    },
+    methods:{
+        show_edit($type){
+            this.$router.push({name:'edit',params:{fee_no:this.sess.fee_no}})
         }
     }
 
