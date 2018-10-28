@@ -12,8 +12,8 @@ import OneAPI from './lib/oneapi'
 //Vue.use(Vuex)
 Vue.prototype.$http = axios
 Vue.prototype.$wf =  OneAPI({
-  spec_url:"http://127.0.0.1:3000/api/spec.get",
-  server_url:"http://127.0.0.1:3000/api"
+  spec_url:"http://10.65.1.228:3000/api/spec.get",
+  server_url:"http://10.65.1.228:3000/api"
 })
 Vue.config.productionTip = false
 
