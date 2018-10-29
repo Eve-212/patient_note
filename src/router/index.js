@@ -6,6 +6,7 @@ import ProfileComponent from '@/components/Profile'
 import TableComponent from '@/components/Table'
 import EditNote from '@/components/note_components/EditNote'
 import DashBoard from '@/components/DashBoard'
+import PTLists from '@/components/PTLists'
 
 Vue.use(Router)
 
@@ -49,6 +50,11 @@ export default new Router({
           path: '/dashboard',
           name: 'dashboard',
           component: DashBoard
+        },
+        {
+          path: '/ptlists',
+          name: 'ptlists',
+          component: PTLists
         }
       ]
     }

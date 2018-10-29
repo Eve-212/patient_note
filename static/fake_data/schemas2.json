@@ -209,11 +209,9 @@
     },
     "socioeco": {
       "title": "Social/Economic Evaluation",
-      "description": "social/Economic Evaluation",
       "type": "object",
       "properties": {
         "living": {
-          "description": "lives",
           "type": "string",
           "title": "Lives",
           "attrs": {
@@ -223,7 +221,6 @@
           }
         },
         "family": {
-          "description": "family",
           "type": "string",
           "title": "Family support",
           "attrs": {
@@ -233,7 +230,6 @@
           }
         },
         "caregiver": {
-          "description": "caregiver",
           "type": "string",
           "title": "Main caregiver",
           "attrs": {
@@ -243,7 +239,6 @@
           }
         },
         "finacial": {
-          "description": "finacial",
           "type": "string",
           "title": "Financial support",
           "attrs": {
@@ -259,7 +254,6 @@
       "type": "object",
       "properties": {
         "psyco": {
-          "description": "psyco",
           "type": "string",
           "attrs": {
             "fieldType": "radio",
@@ -281,7 +275,6 @@
       "type": "object",
       "properties": {
         "general": {
-          "description": "general",
           "type": "string",
           "title": "General",
           "attrs": {
@@ -289,8 +282,7 @@
             "values": ["Unremarkable", "Abnormal"]
           }
         },
-        "abnormalities": {
-          "description": "general",
+        "general_abnormal": {
           "type": "array",
           "attrs": {
             "fieldType": "checklist",
@@ -303,6 +295,252 @@
               "Weakness",
               "Other"
             ]
+          }
+        },
+        "skin": {
+          "type": "string",
+          "title": "Skin",
+          "attrs": {
+            "fieldType": "radio",
+            "values": ["Normal", "Abnormal"]
+          }
+        },
+        "skin_abnormal": {
+          "type": "array",
+          "attrs": {
+            "fieldType": "checklist",
+            "values": ["Color changes", "Dryness", "hair loss", "Rashes", "Pruritis", "Bruishing", "Bleeding", "Other"]
+          }
+        },
+        "heent_object": {
+          "type": "string",
+          "attrs": {
+            "fieldType": "object"
+          },
+          "properties": {
+            "heent": {
+              "type": "string",
+              "title": "Heent",
+              "attrs": {
+                "fieldType": "radio",
+                "values": ["Normal", "Abnormal"]
+              }
+            },
+            "heent_head": {
+              "type": "array",
+              "title": "Head",
+              "attrs": {
+                "fieldType": "checklist",
+                "values": ["Headaches", "Trauma", "Syncope"]
+              }
+            },
+            "heent_eyes": {
+              "type": "array",
+              "title": "Eyes",
+              "attrs": {
+                "fieldType": "checklist",
+                "values": ["Change in vision", "Blurry vision", "Double vision", "Floaters", "Trauma", "Use of corrective lenses"]
+              }
+            },
+            "heent_ears": {
+              "type": "array",
+              "title": "Ears",
+              "attrs": {
+                "fieldType": "checklist",
+                "values": ["Change in hearing", "Tinnitus", "Vertigo", "Pain"]
+              }
+            },
+            "heent_nose": {
+              "type": "array",
+              "title": "Nose",
+              "attrs": {
+                "fieldType": "checklist",
+                "values": ["Discharge", "Nasal stuffiness", "Epistaxis"]
+              }
+            },
+            "heent_mouth": {
+              "type": "array",
+              "title": "Mouth",
+              "attrs": {
+                "fieldType": "checklist",
+                "values": ["Soreness", "Gum bleeding", "Issues with teeth"]
+              }
+            },
+            "heent_throat": {
+              "type": "array",
+              "title": "Throat",
+              "attrs": {
+                "fieldType": "checklist",
+                "values": ["Difficulty swallowing", "Painful swallowing", "Change in voice"]
+              }
+            },
+            "heent_neck": {
+              "type": "array",
+              "title": "Neck",
+              "attrs": {
+                "fieldType": "checklist",
+                "values": ["Neck Pain", "Neck stiffness", "Neck swelling", "Neck lumps"]
+              }
+            }
+          }
+        },
+        "respiratory_sys": {
+          "type": "string",
+          "title": "Respiratory system",
+          "attrs": {
+            "fieldType": "radio",
+            "values": ["Normal", "Abnormal"]
+          }
+        },
+        "respiratory_abnormal": {
+          "type": "array",
+          "attrs": {
+            "fieldType": "checklist",
+            "values": ["Shortness of breath", "Dyspnea", "Wheezing", "Orthopnea", "Dry cough", "Productive cough", "Hemoptysis"]
+          }
+        },
+        "cardiovascular_sys": {
+          "type": "string",
+          "title": "Cardiovascular system",
+          "attrs": {
+            "fieldType": "radio",
+            "values": ["Normal", "Abnormal"]
+          }
+        },
+        "cardiovascular_abnormal": {
+          "type": "array",
+          "attrs": {
+            "fieldType": "checklist",
+            "values": ["Chest pain", "Palpitation", "Other"]
+          }
+        },
+        "gastrointestinal_sys": {
+          "type": "string",
+          "title": "Gastrointestinal system",
+          "attrs": {
+            "fieldType": "radio",
+            "values": ["Normal", "Abnormal"]
+          }
+        },
+        "gastrointestinal_abnormal": {
+          "type": "array",
+          "attrs": {
+            "fieldName": "checklist",
+            "values": ["Nausea", "Vomiting", "Constipation", "Diarrhea", "Abdominal pain", "Hematemesis", "Melena", "Hematochezia", "Jaundice", "Other"]
+          }
+        },
+        "genitourinary_object": {
+          "type": "string",
+          "attrs": {
+            "fieldType": "object"
+          },
+          "properties": {
+            "genitourinary_sys": {
+              "type": "string",
+              "title": "Genitourinary system",
+              "attrs": {
+                "fieldType": "radio",
+                "values": ["Normal", "Abnormal"]
+              }
+            },
+            "genitourinary_abnormal": {
+              "type": "array",
+              "attrs": {
+                "fieldName": "checklist",
+                "values": ["Urinary frequency", "Urgency", "Hesitancy", "Dysuria", "Hematuria", "Incontinence", "Pain", "Other"]
+              }
+            },
+            "male": {
+              "type": "array",
+              "title": "Male",
+              "attrs": {
+                "fieldType": "checklist",
+                "values": ["Erectile dysfunction", "Lesions", "Contraceptive method", "Other"]
+              }
+            },
+            "female": {
+              "type": "array",
+              "title": "Female",
+              "attrs": {
+                "fieldType": "checklist",
+                "values": ["Vaginal discharge", "Discomfort", "Itching", "Character of menstrual periods", "Contraception method", "Other"]
+              }
+            }
+          }
+        },
+        "nervous_sys": {
+          "type": "string",
+          "title": "Nervous system",
+          "attrs": {
+            "fieldType": "radio",
+            "values": ["Normal", "Abnormal"]
+          }
+        },
+        "nervous_abnormal": {
+          "type": "array",
+          "attrs": {
+            "fieldType": "checklist",
+            "values": ["Seizures", "Tremors", "Weakness", "Altered sensations", "Incoordination", "Difficulties in speech", "Other"]
+          }
+        },
+        "musculoskeletal_sys": {
+          "type": "string",
+          "title": "Musculoskeletal system",
+          "attrs": {
+            "fieldType": "radio",
+            "values": ["Normal", "Abnormal"]
+          }
+        },
+        "musculoskeletal_abnormal": {
+          "type": "array",
+          "attrs": {
+            "fieldType": "checklist",
+            "values": ["Pain", "Trauma", "Tenderness", "Swelling", "Decreassed range of motion", "Other"]
+          }
+        },
+        "neuro_psychiatric_sys": {
+          "type": "string",
+          "title": "Neuro-Psychiatric system",
+          "attrs": {
+            "fieldType": "radio",
+            "values": ["Normal", "Abnormal"]
+          }
+        },
+        "neuro_psychiatric_abnormal": {
+          "type": "array",
+          "attrs": {
+            "fieldType": "checklist",
+            "values": ["Changes in mood", "Anxiety", "Depression", "Changes in memory", "Difficulty sleeping", "Difficulty concentrating", "Other"]
+          }
+        },
+        "endocrine_system": {
+          "type": "string",
+          "title": "Endocrine system",
+          "attrs": {
+            "fieldType": "radio",
+            "values": ["Normal", "Abnormal"]
+          }
+        },
+        "endocrine_abnormal": {
+          "type": "array",
+          "attrs": {
+            "fieldType": "checklist",
+            "values": ["Polyuria", "Polydipsia", "Polyphagia", "Intolerance to heat or cold", "Other"]
+          }
+        },
+        "peripheral_vascular_sys": {
+          "type": "string",
+          "title": "Peripheral vascular system",
+          "attrs": {
+            "fieldType": "radio",
+            "values": ["Normal", "Abnormal"]
+          }
+        },
+        "peripheral_vascular_abnormal": {
+          "type": "array",
+          "attrs": {
+            "fieldType": "checklist",
+            "values": ["Varicose veins", "Leg cramping", "Edema", "Other"]
           }
         }
       }
