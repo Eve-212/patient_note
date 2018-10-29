@@ -51,6 +51,7 @@ import SelectDate from "./input_components/SelectDate"
 import SelectList from "./input_components/SelectList"
 import ObjectComponent from "./utility_components/ObjectComponent"
 import FamilyTree from "./input_components/FamilyTree"
+import bsLabTable from "./input_components/bsLabTable"
 
 export default {
 	name: 'Note',
@@ -64,7 +65,8 @@ export default {
 		SelectList,
 		ObjectComponent,
 		CheckListWithOther,
-		FamilyTree
+		FamilyTree,
+		bsLabTable
 	},
 	props: {
 		schema: {
@@ -132,7 +134,8 @@ export default {
 				"selectList":"SelectList",
 				"object": "ObjectComponent",
 				"number": "NumberInput",
-				"date": "SelectDate"
+				"date": "SelectDate",
+				"labtable": "bsLabTable"
 			}
 			if (!field.attrs){
 				field.attrs={}
