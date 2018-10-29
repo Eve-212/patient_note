@@ -25,9 +25,16 @@
 				v-model="jsonSchemaData">
 			</component>
 			</div>
+
+			
+
 		</div>
 
 		<!-- {{ jsonSchema }} -->
+		<div class="center">
+			<FamilyTree></FamilyTree>
+		</div>
+		
 		{{ jsonSchemaData }}
 		  
 	</div>
@@ -43,6 +50,7 @@ import NumberInput from "./input_components/NumberInput"
 import SelectDate from "./input_components/SelectDate"
 import SelectList from "./input_components/SelectList"
 import ObjectComponent from "./utility_components/ObjectComponent"
+import FamilyTree from "./input_components/FamilyTree"
 
 export default {
 	name: 'Note',
@@ -55,7 +63,8 @@ export default {
 		SelectDate,
 		SelectList,
 		ObjectComponent,
-		CheckListWithOther
+		CheckListWithOther,
+		FamilyTree
 	},
 	props: {
 		schema: {
@@ -192,6 +201,9 @@ export default {
 }
 .padding-left-large {
 	padding-left: 20px;
+}
+.center {
+	margin: 10% 5%;
 }
 
 </style>
