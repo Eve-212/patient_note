@@ -1,19 +1,20 @@
 <template>
-	<div v-if="showInputField"> 
-		<h2 class="field-title">{{ schema.title }}</h2> 
-    <div class="obj_box row" > 
+  <div v-if="showInputField">
+    <h2 :id="anchorIdFormat(schema.title)" class="field-title">{{ schema.title }}</h2>
+    <div class="obj_box row">
 
-        <component 
-          v-for="(field, key) in schema.properties" :key="key"
-          :is="getComponentName(field)" 
-          :schema="field"
-          :path="path.concat(key)"
-          :currentKey="key"
-          v-model="value[currentFieldName]">         
-        </component>
+      <component 
+        v-for="(field, key) in schema.properties" 
+        :key="key" 
+        :is="getComponentName(field)" 
+        :schema="field" 
+        :path="path.concat(key)" 
+        :currentKey="key" 
+        v-model="value[currentFieldName]">
+      </component>
 
     </div>
-	</div>
+  </div>
 </template>
 
 <script>
@@ -25,9 +26,11 @@ import CheckListWithOther from '../input_components/CheckListWithOther'
 import NumberInput from '../input_components/NumberInput'
 import SelectDate from '../input_components/SelectDate'
 import SelectList from '../input_components/SelectList'
+import Proto from '../input_components/Proto';
 
 export default {
   name: 'ObjectComponent',
+  mixins: [Proto],
   components: {
     TextInput,
     RadioInput,
@@ -51,16 +54,16 @@ export default {
         return {}
       }
     },
-    path:{
-      type:Array,
-      default(){
-        return [];
+    path: {
+      type: Array,
+      default() {
+        return []
       }
     },
     currentKey: {
       type: String,
       default() {
-        return ""
+        return ''
       }
     }
   },
@@ -79,38 +82,37 @@ export default {
   },
   methods: {
     getComponentName(field) {
-      			let $com="TextInput"
-			let $type_field={
-				"object":"object",
-				"string":"text",
-				"number":"number",
-				"integer":"number",
-				"array":"checklist",
-				"boolean":"radio"
-
-			};
-			let $field_com={
-				"text":"TextInput",
-				"checklistwithother":"CheckListWithOther",
-				"radio":"RadioInput",
-				"checkbox":"Checkbox",
-				"checklist":"CheckList",
-				"selectList":"SelectList",
-				"object": "ObjectComponent",
-				"number": "NumberInput",
-				"date": "SelectDate"
-			}
-			if (!field.attrs){
-				field.attrs={}
-			}
-			if (!field.attrs.fieldType){
-				if (field.type){
-					field.attrs.fieldType=$type_field[field.type]
-				}else{
-					field.attrs.fieldType="text"
-				}
-			}
-			return ($field_com[field.attrs.fieldType] || "TextInput")
+      let $com = 'TextInput'
+      let $type_field = {
+        object: 'object',
+        string: 'text',
+        number: 'number',
+        integer: 'number',
+        array: 'checklist',
+        boolean: 'radio'
+      }
+      let $field_com = {
+        text: 'TextInput',
+        checklistwithother: 'CheckListWithOther',
+        radio: 'RadioInput',
+        checkbox: 'Checkbox',
+        checklist: 'CheckList',
+        selectList: 'SelectList',
+        object: 'ObjectComponent',
+        number: 'NumberInput',
+        date: 'SelectDate'
+      }
+      if (!field.attrs) {
+        field.attrs = {}
+      }
+      if (!field.attrs.fieldType) {
+        if (field.type) {
+          field.attrs.fieldType = $type_field[field.type]
+        } else {
+          field.attrs.fieldType = 'text'
+        }
+      }
+      return $field_com[field.attrs.fieldType] || 'TextInput'
       /*
       if (!(field.attrs && field.attrs.fieldType)) {
 				if (field.type === 'string') {
@@ -200,17 +202,14 @@ export default {
 </script>
 
 <style>
-.field-title {
-	/*color: blueviolet;*/
-}
-.obj_box{
-  padding:1rem;
+.obj_box {
+  padding: 1rem;
 }
 .display-inline {
-	display: inline-block;
+  display: inline-block;
 }
 .padding-left {
-	padding-left: 3px;
+  padding-left: 3px;
 }
 </style>
 

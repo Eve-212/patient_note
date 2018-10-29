@@ -1,7 +1,7 @@
 
 <template>
 	<div>
-		<div class="display-inline" v-if="showInputField">
+		<div :id="anchorIdFormat(schema.title)" :class="[bsColSize, styleClass]" class="display-inline" v-if="showInputField">
 			<label :for="currentKey">{{ schema.title }}</label>
 			<input
 				id="number-input" 

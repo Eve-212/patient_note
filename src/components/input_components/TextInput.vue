@@ -1,40 +1,40 @@
 
 <template>
-		<div  :class="[bsColSize]" v-if="showInputField">
-      <div v-if="schema.attrs.inputGroup">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" >{{ schema.title}}</span>
-          </div>
-          <input 
-            :id="getId()" 
-
-            type="text" 
-            :name="currentKey" 
-            v-model="value[currentKey]"
-            class="form-control"
-            >
+  <div :id="anchorIdFormat(schema.title)" :class="[bsColSize, styleClass]" v-if="showInputField">
+    <div v-if="schema.attrs.inputGroup">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" >{{ schema.title}}</span>
         </div>
-      </div>
-      <div class="form-group row" v-if="!schema.attrs.inputGroup">
-      
-        <label 
-          class="col-md-2 col-form-label"
-          :for="currentKey">
-          {{ schema.title }}
-        </label>
-        <div class="col-md-10">
-          <input 
-            :id="getId()" 
+        <input 
+          :id="getId()" 
 
-            type="text" 
-            :name="currentKey" 
-            v-model="value[currentKey]"
-            class="form-control"
-            >
-        </div>
+          type="text" 
+          :name="currentKey" 
+          v-model="value[currentKey]"
+          class="form-control"
+          >
       </div>
-		</div>	
+    </div>
+    <div class="form-group row" v-if="!schema.attrs.inputGroup">
+    
+      <label 
+        class="col-md-2 col-form-label"
+        :for="currentKey">
+        {{ schema.title }}
+      </label>
+      <div class="col-md-10">
+        <input 
+          :id="getId()" 
+
+          type="text" 
+          :name="currentKey" 
+          v-model="value[currentKey]"
+          class="form-control"
+          >
+      </div>
+    </div>
+  </div>	
 </template>
 
 <script>

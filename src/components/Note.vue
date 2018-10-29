@@ -26,7 +26,7 @@
 			</component>
 			</div>
 		</div>
-
+			
 		<!-- {{ jsonSchema }} -->
 		{{ jsonSchemaData }}
 		  
@@ -179,11 +179,6 @@ export default {
 </script>
 
 <style>
-.field-title {
-	/*
-	color: blueviolet;
-	*/
-}
 .display-inline {
 	display: inline-block;
 }

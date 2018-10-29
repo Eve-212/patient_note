@@ -40,7 +40,7 @@ export default new Router({
           ]
         },
         {
-          path: '/edit/:fee_no',
+          path: '/edit/:fee_no?',
           name: 'edit',
           props: true,
           component: EditNote

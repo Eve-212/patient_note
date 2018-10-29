@@ -1,28 +1,27 @@
 
 <template>
-	<div>
-		<fieldset>
-			<div v-if="showInputField">
-				<select v-model="value[currentKey]">
-					<template v-if="typeof schema.attrs.placeholder !== 'undefined'">
-						<option value="" >{{ schema.attrs.placeholder }}</option>
-					</template>
-					<!-- dynamic placeholder and placeholder name?-->
-					<option
-						v-for="(item, index) in schema.attrs.values"
-						:key="index"
-						:value="item">
-						{{ item }}
-					</option>
-				</select>
-			</div>
-		</fieldset>
-	</div>
+  <div :id="anchorIdFormat(schema.title)" :class="[bsColSize, styleClass]" v-if="showInputField">
+    <select v-model="value[currentKey]">
+      <template v-if="typeof schema.attrs.placeholder !== 'undefined'">
+        <option value="">{{ schema.attrs.placeholder }}</option>
+      </template>
+      <!-- dynamic placeholder and placeholder name?-->
+      <option 
+        v-for="(item, index) in schema.attrs.values" 
+        :key="index" 
+        :value="item">
+        {{ item }}
+      </option>
+    </select>
+  </div>
 </template>
 
 <script>
+import Proto from './Proto'
+
 export default {
   name: 'SelectList',
+  mixins: [Proto],
   props: {
     schema: {
       type: Object,
@@ -39,13 +38,13 @@ export default {
     currentKey: {
       type: String,
       default() {
-        return ""
+        return ''
       }
     }
   },
   data() {
     return {
-      placeholder: this.getPlaceholder()      
+      placeholder: this.getPlaceholder()
     }
   },
   created: function() {

@@ -1,40 +1,23 @@
 <template>
-	<div v-if="showInputField">
-		<label
-			:for="currentKey">
-			{{ schema.attrs.label }}
-			<input
-				:id="currentKey"
-				type="checkbox"
-				:name="currentKey"
-				v-model="value[currentKey]">
-		</label>
-	</div>
+  <div :id="anchorIdFormat(schema.title)" :class="[bsColSize, styleClass]" v-if="showInputField">
+    <label
+      :for="currentKey">
+      {{ schema.attrs.label }}
+      <input
+        :id="currentKey"
+        type="checkbox"
+        :name="currentKey"
+        v-model="value[currentKey]">
+    </label>
+  </div>
 </template>
 
 <script>
+import Proto from './Proto'
+
 export default {
   name: 'Checkbox',
-  props: {
-    schema: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    value: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    currentKey: {
-      type: String,
-      default() {
-        return ""
-      }
-    }
-  },
+  mixins: [Proto],
   data() {
     return {
       

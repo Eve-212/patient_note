@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="showInputField">          
+    <div :class="[bsColSize ,styleClass]" v-if="showInputField">          
       <div    
         class="display-inline" 
         v-for="(item, index) in schema.attrs.values" 
@@ -31,31 +31,14 @@
 
 <script>
 import TextInput from './TextInput'
+import Proto from './Proto'
+
 
 export default {
   name: 'CheckListWithOther',
+  mixins: [Proto],
   components: {
     TextInput
-  },
-  props: {
-    schema: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    value: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    currentKey: {
-      type: String,
-      default() {
-        return ""
-      }
-    }
   },
   data() {
     return {

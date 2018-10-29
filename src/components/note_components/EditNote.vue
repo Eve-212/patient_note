@@ -5,13 +5,14 @@
       <Section :schema="schema" :currentKey="key"></Section>
       <ObjectComponent :schema="schema" :currentKey="key"></ObjectComponent>
     </div> -->
-    <Note :schema="noteSchema" :schemaData="data"></Note>
-    
+    <Note class="col-xl-10" :schema="noteSchema" :schemaData="data"></Note>
+    <SectionNav class="col-xl-2 d-none d-xl-block" :schema="noteSchema"></SectionNav>
 	</div>
 </template>
 
 <script>
 import Note from '../Note';
+import SectionNav from '../SectionNav';
 import ObjectComponent from "../utility_components/ObjectComponent"
 import axios from 'axios';
 
@@ -20,7 +21,8 @@ export default {
   props: ['isExpanded','fee_no'],
   components: {
     Note,
-    ObjectComponent
+    ObjectComponent,
+    SectionNav
   },
 	data() {
 		return {
@@ -61,7 +63,6 @@ export default {
                 d:$d[$child_name]
               })
             }
-            
           }
         }
       }
