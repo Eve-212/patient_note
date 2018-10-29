@@ -52,7 +52,6 @@ import SelectList from "./input_components/SelectList"
 import ObjectComponent from "./utility_components/ObjectComponent"
 import FamilyTree from "./input_components/FamilyTree"
 import bsLabTable from "./input_components/bsLabTable"
-
 export default {
 	name: 'Note',
 	components: {

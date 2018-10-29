@@ -32,6 +32,9 @@ export default {
 </script>
 
 <style scoped>
+ul {
+  margin-top: 20px;
+}
 li {
   border: none;
   padding: .125rem 1.5rem;
@@ -43,5 +46,6 @@ li a {
   position: fixed;
   right: 0;
   border-left: 1px solid #eee;
+  overflow:scroll;
 }
 </style>
