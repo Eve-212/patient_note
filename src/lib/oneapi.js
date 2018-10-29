@@ -51,22 +51,28 @@ let Plugins = {
 		},
 		local_get($icd){
 			return new Promise((res,rej)=>{
-				$icd=this.format_code($icd);
-				if (this.cache[$icd]){
-					res(this.cache[$icd]);
+				if ($icd){
+					$icd=this.format_code($icd);
+					if (this.cache[$icd]){
+						res(this.cache[$icd]);
+					}else{
+						this.icd_queue.push($icd);
+						this.event_queue.push(()=>{
+							if (this.cache[$icd]){
+								res(this.cache[$icd])
+							}else{
+								res({label:""})
+							}
+							
+						})
+						this.db_bulk_list();
+						//return this.list({codes:[$icd]}).then($icds=>{});
+					}
 				}else{
-					this.icd_queue.push($icd);
-					this.event_queue.push(()=>{
-						if (this.cache[$icd]){
-							res(this.cache[$icd])
-						}else{
-							res({label:""})
-						}
-						
-					})
-					this.db_bulk_list();
-					//return this.list({codes:[$icd]}).then($icds=>{});
+					//return nothing
+					res({});
 				}
+				
 			
 
 			});

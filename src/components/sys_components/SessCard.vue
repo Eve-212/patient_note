@@ -26,46 +26,48 @@
 
 <script>
 //import moment from 'moment'
-import ICDSpan from "./ICDSpan"
+import ICDSpan from './ICDSpan'
 export default {
-    name:'SessCard',
-    components: {
-        'icd-span':ICDSpan
+  name: 'SessCard',
+  components: {
+    'icd-span': ICDSpan
+  },
+  props: ['sess'],
+  computed: {
+    age() {
+      return parseInt(
+        (Date.now() - Date.parse(this.sess.ipd.birthdate)) /
+          (60 * 60 * 24 * 365 * 1000)
+      )
     },
-    props:['sess'],
-    computed:{
-        age(){
-            return parseInt((Date.now()-Date.parse(this.sess.ipd.birthdate))/(60*60*24*365*1000));
-        },
-        sex(){
-            return (this.sess.ipd.sex?"male":"female");
-        },
-        complete_status(){
-            return 'incompleted'
-        }
+    sex() {
+      return this.sess.ipd.sex ? 'male' : 'female'
     },
-    methods:{
-        show_edit($type){
-            this.$router.push({name:'edit',params:{fee_no:this.sess.fee_no}})
-        }
+    complete_status() {
+      return 'incompleted'
     }
-
+  },
+  methods: {
+    show_edit($type) {
+      this.$router.push({ name: 'edit', params: { fee_no: this.sess.fee_no } })
+    }
+  }
 }
 </script>
 
 <style>
-    .sess_box {
-        border-left:4px solid #9be497;
-        font-family: 微軟正黑體; 
-    }
-    .sess_box.incompleted {
-        border-left:4px solid #ea8989; 
-    }
-    .sess_box.female .bed_no{
-        background: #eaa5b8;
-    }
+.sess_box {
+  border-left: 4px solid #9be497;
+  font-family: 微軟正黑體;
+}
+.sess_box.incompleted {
+  border-left: 4px solid #ea8989;
+}
+.sess_box.female .bed_no {
+  background: #eaa5b8;
+}
 
-    .sess_box.male .bed_no{
-        background: #8abeff;
-    }
+.sess_box.male .bed_no {
+  background: #8abeff;
+}
 </style>

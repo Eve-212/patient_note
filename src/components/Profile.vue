@@ -12,7 +12,6 @@
     <div class="content-wrap">
       <router-view @unfollow="unfollow"></router-view>
     </div>
-    <button @click="getAllData">取得</button>
   </div>
 </template>
 <script>
@@ -55,36 +54,6 @@ export default {
       if (unfollow) {
         console.log('unfollow doctor success')
       }
-    },
-    getAllData: function() {
-      axios({
-        methods: 'get',
-        url: 'http://10.65.1.66:3000/OneRecord/schema/raw/commit/10bd41458243f6ddd05d5d6000a37dfc86543d22/sch.note.adm.json'
-      }).then(resp => {
-        console.log(resp)
-      })
-      // let wf = new APIClient({
-      //   spec_url: 'http://10.66.30.213:4000/api/spec.get',
-      //   server_url: 'http://10.65.1.228:3001/api'
-      // })
-
-      // wf.loader
-      //   .then($spec => {
-      //     this.spec = $spec
-      //     this.wf = wf
-      //     console.log(wf.note)
-
-      //     wf.note.get().then($list => {
-      //       console.log($list)
-      //     })
-
-      //     wf.pt.get({ no: '00000002' }).then($patient_file => {
-      //       console.log($patient_file)
-      //     })
-      //   })
-      //   .catch(error => {
-      //     console.log(error.response.data.message)
-      //   })
     }
   }
 }

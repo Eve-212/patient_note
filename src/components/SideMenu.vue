@@ -1,15 +1,8 @@
 <template>
   <div class="side-menu" :class="{expanded: isExpanded}">
-    <ul>
+    <ul style="padding-left: 0">
       <li>
-        <router-link :to="{ name: 'dashboard' }">
-          <i class="fas fa-th fa-2x"></i>
-          <span class="nav-text">DashBoard</span>
-        </router-link>
-      </li>
-     <li>
-      <li>
-        <router-link :to="{ name: 'incompletedTable' }">
+        <router-link :to="{ name: 'ptlists' }">
           <i class="fa fa-home fa-2x"></i>
           <span class="nav-text">My Profile</span>
         </router-link>
@@ -21,9 +14,10 @@
         </router-link>
       </li>
       <li>
-        <a href="#">
-                   <i class="fa fa-table fa-2x"></i><span class="nav-text">Tables</span>
-                </a>
+        <router-link :to="{ name: 'dashboard' }">
+          <i class="fa fa-home fa-2x"></i>
+          <span class="nav-text">Dashboard</span>
+        </router-link>
       </li>
       <li>
         <a href="#">
@@ -40,76 +34,64 @@
 </template>
 <script>
 export default {
-  props: ['isExpanded'],
+  props: ['isExpanded']
 }
-
 </script>
 <style lang="scss" scoped>
 @import '../assets/global.scss';
-$icon_color:#5a5a5a;
+
 .side-menu {
-  z-index: 1;
-  background: #f1f1f1;
-  position: absolute;
-  top: 62px;
-  bottom: 0;
-  height: 100%;
-  left: 0;
+  background: #f8f9fa;
+  top: 58px;
   width: 60px;
   overflow: hidden;
-  transition: width .1s linear;
+  transition: width 0.1s linear;
   font-size: 14px;
-  &:hover, &.expanded {
-    width: 250px;
+  position: fixed;
+  height: 100%;
+  z-index: 100;
+  &:hover,
+  &.expanded {
+    width: 240px;
     overflow: visible;
     box-shadow: 3px 3px 10px -2px rgba(20%, 20%, 40%, 0.5);
   }
-  @media screen and (max-width: $break-small) {
+  @media screen and (max-width: $break-medium) {
+    top: 53px;
     width: 50px;
   }
-
   li {
     display: block;
-    width: 245px;
+    width: 240px;
     margin: 20px 0;
-
+    &:hover a {
+      background-color: #fff;
+    }
     a {
-      position: relative;
       display: table;
       border-collapse: collapse;
       border-spacing: 0;
       color: black;
       text-decoration: none;
-      transition: all .1s linear;
-
+      transition: all 0.1s linear;
+      i {
+        font-size: 14px;
+        color: $black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 36px;
+        @media screen and (max-width: $break-medium) {
+          width: 50px;
+        }
+      }
       span {
-        position: relative;
         display: table-cell;
         vertical-align: middle;
-        width: 190px;
+        width: 180px;
       }
-    }
-
-    &:hover a {
-      background-color: #fff;
-      border-top-right-radius: 25px;
-      border-bottom-right-radius: 25px;
-    }
-  }
-
-  i {
-    font-size: 14px;
-    color: $icon_color;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 36px;
-
-    @media screen and (max-width: $break-small) {
-      width: 50px;
     }
   }
 }
-
 </style>
