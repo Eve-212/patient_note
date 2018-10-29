@@ -1,16 +1,17 @@
 <template>
   <div class="mt-5" :class="{isExpanded: isExpanded}">
+    <span>{{status}}</span>
     <div class="selectBtn_wrap mx-sm-5 mx-2 mb-5 d-flex align-items-center">
       <span class="h5 my-0" >Sort By：</span>
       <div class="selectBtn">
         <select @change="switchType()" v-model="sortType">
-          <option value="completion">Completion</option>
-          <option value="doctors">Doctors</option>
-          <option value="floors">Floors</option>
+          <!-- <option value="completion">Completion</option> -->
+          <option value="doc_id">Doctors</option>
+          <option value="bed_no">Floors</option>
         </select>
       </div>
     </div>
-    <card-component :data="lists" :sortType="sortType"></card-component>
+    <card-component :sortType="sortType" :list="sortedData"></card-component>
   </div>
 </template>
 
@@ -22,10 +23,11 @@ export default {
   props: ['isExpanded'],
   data() {
     return {
-      sortType: 'completion',
-      componentName: 'OrderByCompleted',
-      showMenu: false,
-      lists: {},
+      sortType: 'doc_id',
+      status: '',
+      rowData: {},
+      sortedData: {},
+      aaa: {},
       pt: [
         {
           pt_id: 'K221111111',
@@ -102,54 +104,56 @@ export default {
       ]
     }
   },
-  beforeMount() {
-    this.switchType()
-  },
   methods: {
-    switchType() {
-      //return key for sorting data
-      let sortType = ''
-      switch (this.sortType) {
-        case 'completion':
-          sortType = 'completed'
-          break
-        case 'doctors':
-          sortType = 'doc_name'
-          break
-        case 'floors':
-          sortType = 'bed_no'
-          break
-      }
-
-      if (sortType == 'completed') {
-        // sort data by if it's completed first
-        let sortByProgress = this.pt.sort(function(a, b) {
-          if (a.completed !== b.completed) {
-            return a.completed ? 1 : -1
-          } else {
-            return 0
-          }
+    load() {
+      this.status = 'Loading...'
+      this.$wf.ready().then($api => {
+        return $api.note.list().then($raw => {
+          this.rowData = $raw.data
+          this.status = ''
+          this.sortRawData()
         })
-        this.pt = sortByProgress
-      }
-
-      let sortedData = {}
-      this.pt.forEach(function(v, k) {
-        if (sortType == 'bed_no') {
-          sortedData[Number(v[sortType].slice(0, 2))] == undefined &&
-            (sortedData[Number(v[sortType].slice(0, 2))] = [])
-          sortedData[Number(v[sortType].slice(0, 2))].push(v)
-        } else if (sortType == 'completed') {
-          let status = v[sortType] ? 'completed' : 'incompleted'
-          sortedData[status] == undefined && (sortedData[status] = [])
-          sortedData[status].push(v)
-        } else {
-          sortedData[v[sortType]] == undefined && (sortedData[v[sortType]] = [])
-          sortedData[v[sortType]].push(v)
-        }
       })
-      this.lists = sortedData
+    },
+    sortRawData() {
+      let sortedData = {}
+      this.rowData.forEach(function(v, k) {
+        if (this.sortType === 'bed_no') {
+          sortedData[Number(v.ipd.bed_no.slice(0, 2))] == undefined &&
+            (sortedData[Number(v.ipd.bed_no.slice(0, 2))] = [])
+          sortedData[Number(v.ipd.bed_no.slice(0, 2))].push(v)
+        } else {
+          sortedData[v.ipd.doc_id] == undefined &&
+            (sortedData[v.ipd.doc_id] = [])
+          sortedData[v.ipd.doc_id].push(v)
+        }
+      }, this)
+      this.sortedData = sortedData
+    },
+    switchType() {
+      this.sortRawData()
+      // if (sortType == 'completed') {
+      //   // sort data by if it's completed first
+      //   let sortByProgress = this.pt.sort(function(a, b) {
+      //     if (a.completed !== b.completed) {
+      //       return a.completed ? 1 : -1
+      //     } else {
+      //       return 0
+      //     }
+      //   })
+      //   this.pt = sortByProgress
+      // }
+      // let sortedData = {}
+      // this.pt.forEach(function(v, k) {
+      //     let status = v[sortType] ? 'completed' : 'incompleted'
+      //     sortedData[status] == undefined && (sortedData[status] = [])
+      //     sortedData[status].push(v)
+      // })
+      // this.lists = sortedData
     }
+  },
+  mounted() {
+    this.load()
   }
 }
 </script>
