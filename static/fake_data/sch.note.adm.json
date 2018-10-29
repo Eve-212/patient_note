@@ -738,7 +738,15 @@
                 "plan": {
                     "title": "Plan (Management)",
                     "type": "string"
+                },
+                "labtable": {
+                    "title": "Lab Table",
+                    "type": "string",
+                    "attrs": {
+                        "fieldType": "labtable"
+                    }
                 }
+
             }
         }
     

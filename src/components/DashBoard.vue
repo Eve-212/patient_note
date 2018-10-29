@@ -14,58 +14,55 @@
     </div>
 </template>
 <script>
-import SessCard from "./sys_components/SessCard"
-import ICDSpan from "./sys_components/ICDSpan"
+import SessCard from './sys_components/SessCard'
+import ICDSpan from './sys_components/ICDSpan'
 export default {
   name: 'DashBoard',
   components: {
-    'sess-card':SessCard
+    'sess-card': SessCard
   },
   data() {
     return {
-        list:[],
-        status:""
+      list: [],
+      status: ''
     }
   },
-  methods:{
-      load(){
-         this.status="Loading..."
-         this.$wf.ready().then($api=>{
-            return $api.note.list().then(($raw)=>{
-                this.list=$raw.data
-                this.status=""
-            })
-         });
-      }
+  methods: {
+    load() {
+      this.status = 'Loading...'
+      this.$wf.ready().then($api => {
+        return $api.note.list().then($raw => {
+          this.list = $raw.data
+          this.status = ''
+        })
+      })
+    }
   },
-  mounted(){
-      this.load();
+  mounted() {
+    this.load()
   }
 }
 </script>
 <style>
-.container-fluid{
-  padding-top:10px;
-  
+.container-fluid {
+  padding-top: 10px;
 }
-
 
 .box_wrap {
-  float:left;
-  margin-right:15px;
+  float: left;
+  margin-right: 15px;
   width: 18rem;
 }
-.box_group{
-  clear:both;
-  padding-bottom : 50px;
+.box_group {
+  clear: both;
+  padding-bottom: 50px;
 }
 
-.box_group::after{
-  clear:both;
+.box_group::after {
+  clear: both;
 }
-.group_title{
+.group_title {
   border-bottom: 1px #cccaca solid;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
-
 </style>

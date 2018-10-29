@@ -9,17 +9,16 @@
 //import moment from 'moment'
 
 export default {
-    name:'ICDSpan',
-    props:['icd'],
-    data(){
-        return {
-            "desc":""
-        }
-    },
-    created(){
-        this.$wf.icd.local_get(this.icd).then(($icd)=>this.desc=$icd.label);
+  name: 'ICDSpan',
+  props: ['icd'],
+  data() {
+    return {
+      desc: ''
     }
-
+  },
+  created() {
+    this.$wf.icd.local_get(this.icd).then($icd => (this.desc = $icd.label))
+  }
 }
 </script>
 
