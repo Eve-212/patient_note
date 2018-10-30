@@ -141,6 +141,9 @@
             "cigarette": {
               "title": "Smoking",
               "type": "object",
+              "attrs": {
+                "styleClass": ["subsection"]
+              },
               "properties": {
                 "used": {
                   "title": "Used",

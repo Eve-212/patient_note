@@ -3,7 +3,7 @@
     :id="anchorIdFormat(schema)" 
     :class="[bsColSize, styleClass]" 
     v-if="showInputField">    
-    <label>{{ schema.title }}</label>
+    <label class="radio-label">{{ schema.title }}</label>
     <div 
       v-for="(item, index) in schema.attrs.values" 
       :key="index"
@@ -40,5 +40,9 @@ export default {
 </script>
 
 <style>
+.radio-label {
+  font-size: 1.1rem;
+  margin-right: 15px;
+}
 
 </style>
