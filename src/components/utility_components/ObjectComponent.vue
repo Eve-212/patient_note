@@ -29,6 +29,7 @@ import SelectList from '../input_components/SelectList'
 import bsLabTable from "../input_components/bsLabTable"
 import OrgChart from "../input_components/OrgChart"
 import FamilyTree from "../input_components/FamilyTree"
+import FuncAssess from "../input_components/FuncAssess"
 import Proto from '../input_components/Proto';
 
 export default {
@@ -45,6 +46,7 @@ export default {
     CheckListWithOther,
     bsLabTable,
     FamilyTree,
+    FuncAssess,
     OrgChart
   },
   props: {
@@ -117,7 +119,8 @@ export default {
         number: 'NumberInput',
         date: 'SelectDate',
         labtable: "bsLabTable",
-        familytree: "FamilyTree"
+        familytree: "FamilyTree",
+        funcassess:"FuncAssess"
       }
       if (!field.attrs) {
         field.attrs = {}

@@ -509,6 +509,9 @@
           "title": "Functional Assessment",
           "description": "Katz Index of Independence in Activities of Daily Living",
           "type": "object",
+          "attrs":{
+            "fieldType":"funcassess"
+          },
           "properties": {
             "bath": {
               "title": "BATHING",
