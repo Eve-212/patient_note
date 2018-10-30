@@ -30,16 +30,9 @@ export default {
     return {
       noteSchema: null,
       data: {},
-<<<<<<< HEAD
-      meta:{},
-      sess:null,
-      fee_numb: this.fee_no
-    }    
-=======
       meta: {},
       sess: null
     }
->>>>>>> bcd65a79b814cd037ed462df2606a6154b9bdc29
   },
   methods: {
     prepare_data($schema, $data) {
@@ -78,15 +71,6 @@ export default {
         }
       }
     },
-<<<<<<< HEAD
-    init(){
-      if (this.fee_numb){
-        this.sess=this.$wf.note.sess_cache[this.fee_numb]
-        if (!this.sess){
-          this.$wf.note.sess({no:this.fee_numb}).then($raw=>{
-            if ($raw.data.fee_no){
-              this.sess=$raw.data;
-=======
     init() {
       console.log(this.fee_no)
       if (this.fee_no) {
@@ -95,7 +79,6 @@ export default {
           this.$wf.note.sess({ no: this.fee_no }).then($raw => {
             if ($raw.data.fee_no) {
               this.sess = $raw.data
->>>>>>> bcd65a79b814cd037ed462df2606a6154b9bdc29
               this.load()
             }
           })
@@ -148,12 +131,7 @@ export default {
     this.$wf.note.schema({ type: 'admission' }).then($raw => {
       //
       //this.noteSchema=$raw.data
-<<<<<<< HEAD
-      // console.log($raw)
-      this.noteSchema= require("../../../static/fake_data/sch.note.adm.json")
-=======
       this.noteSchema = require('../../../static/fake_data/sch.note.adm.json')
->>>>>>> bcd65a79b814cd037ed462df2606a6154b9bdc29
       this.init()
     })
 
@@ -163,16 +141,16 @@ export default {
       //admission not exist
     }
     */
-<<<<<<< HEAD
   },  
+  watch: {
+    fee_no: function() {
+      init()
+    }
+  },
   mounted(){
 
     
   }
-=======
-  },
-  mounted() {}
->>>>>>> bcd65a79b814cd037ed462df2606a6154b9bdc29
 }
 </script>
 
