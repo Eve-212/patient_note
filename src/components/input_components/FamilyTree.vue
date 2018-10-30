@@ -1,18 +1,16 @@
 <template>
-  <div>
-    <h3>Family Tree</h3>
-    <TreeChart :json="treeData"></TreeChart>
+  <div>   
+    <tree-charter :json="treeData"></tree-charter>
   </div>  
 </template>
 
 <script>
-import TreeChart from "vue-tree-chart"
-
+import TreeCharter from './TreeCharter'
 
 export default {
   name: "FamilyTree",
   components: {
-    TreeChart
+    TreeCharter
   },
   data() {
     return {

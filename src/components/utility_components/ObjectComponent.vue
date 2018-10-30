@@ -27,6 +27,8 @@ import NumberInput from '../input_components/NumberInput'
 import SelectDate from '../input_components/SelectDate'
 import SelectList from '../input_components/SelectList'
 import bsLabTable from "../input_components/bsLabTable"
+import OrgChart from "../input_components/OrgChart"
+import FamilyTree from "../input_components/FamilyTree"
 import Proto from '../input_components/Proto';
 
 export default {
@@ -41,7 +43,9 @@ export default {
     SelectList,
     SelectDate,
     CheckListWithOther,
-    bsLabTable
+    bsLabTable,
+    FamilyTree,
+    OrgChart
   },
   props: {
     schema: {
@@ -103,7 +107,8 @@ export default {
         object: 'ObjectComponent',
         number: 'NumberInput',
         date: 'SelectDate',
-        labtable: "bsLabTable"
+        labtable: "bsLabTable",
+        familytree: "FamilyTree"
       }
       if (!field.attrs) {
         field.attrs = {}

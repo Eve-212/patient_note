@@ -8,6 +8,8 @@ import axios from 'axios'
 //import APIClient from 'moleculer-openapi-client'
 import OneAPI from './lib/oneapi'
 //import Vuex from 'vuex'
+// import 'vue-orgchart/dist/style.min.css'
+
 var VueScrollTo = require('vue-scrollto');
 
 Vue.use(VueScrollTo, {

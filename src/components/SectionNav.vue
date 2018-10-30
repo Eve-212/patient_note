@@ -1,6 +1,7 @@
 <template>
   <div class="section-nav">
-    <ul class="list-group">
+    
+    <ul class="list-group">      
       <li 
         v-for="(title, key) in schema.properties.content.properties"
         :key="key"

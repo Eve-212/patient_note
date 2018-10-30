@@ -13,10 +13,7 @@
 		</div> -->
 
 		
-		<h2>{{ schema.title }}</h2>   
-		<div>
-			<FamilyTree></FamilyTree>
-		</div>		   
+		<h2>{{ schema.title }}</h2>  		
 		<div  class="container-fluid"> 
 			<div class="row">        
 			<component 
@@ -34,10 +31,10 @@
 
 		</div>
 			
-		<!-- {{ jsonSchema }} -->
 		
 		
-		{{ jsonSchemaData }}
+		
+		
 		  
 	</div>
 </template>
@@ -54,6 +51,8 @@ import SelectList from "./input_components/SelectList"
 import ObjectComponent from "./utility_components/ObjectComponent"
 import FamilyTree from "./input_components/FamilyTree"
 import bsLabTable from "./input_components/bsLabTable"
+import OrgChart from "./input_components/OrgChart"
+
 export default {
 	name: 'Note',
 	components: {
@@ -67,7 +66,8 @@ export default {
 		ObjectComponent,
 		CheckListWithOther,
 		FamilyTree,
-		bsLabTable
+		bsLabTable,
+		OrgChart
 	},
 	props: {
 		schema: {
@@ -136,7 +136,8 @@ export default {
 				"object": "ObjectComponent",
 				"number": "NumberInput",
 				"date": "SelectDate",
-				"labtable": "bsLabTable"
+				"labtable": "bsLabTable",
+				"familytree": "FamilyTree"
 			}
 			if (!field.attrs){
 				field.attrs={}
@@ -203,9 +204,9 @@ export default {
 	padding-left: 20px;
 }
 /* change family tree styles */
-.avat {
+/* .avat {
   border: none !important;
-}
+} */
 
 
 </style>

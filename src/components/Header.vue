@@ -30,6 +30,7 @@ export default {
       isExpanded: false,
       no: '',
       status: ''
+      
     }
   },
   methods: {

@@ -29,7 +29,8 @@ export default {
       noteSchema: null,
       data: {},
       meta:{},
-      sess:null    
+      sess:null,
+      fee_numb: this.fee_no
     }    
   },
   methods:{
@@ -68,10 +69,10 @@ export default {
       }
     },
     init(){
-      if (this.fee_no){
-        this.sess=this.$wf.note.sess_cache[this.fee_no]
+      if (this.fee_numb){
+        this.sess=this.$wf.note.sess_cache[this.fee_numb]
         if (!this.sess){
-          this.$wf.note.sess({no:this.fee_no}).then($raw=>{
+          this.$wf.note.sess({no:this.fee_numb}).then($raw=>{
             if ($raw.data.fee_no){
               this.sess=$raw.data;
               this.load()
@@ -128,6 +129,7 @@ export default {
     this.$wf.note.schema({"type":"admission"}).then($raw=>{
       //
       //this.noteSchema=$raw.data
+      // console.log($raw)
       this.noteSchema= require("../../../static/fake_data/sch.note.adm.json")
       this.init()
     })
@@ -138,7 +140,7 @@ export default {
       //admission not exist
     }
     */
-  },
+  },  
   mounted(){
 
     
