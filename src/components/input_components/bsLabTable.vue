@@ -245,7 +245,7 @@ export default {
       font-size: 12px;
       &.low {
         color: #fff;
-        background: $red;
+        background: $red-light;
       }
       &.high {
         color: #fff;

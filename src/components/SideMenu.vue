@@ -31,8 +31,8 @@ export default {
 @import '../assets/global.scss';
 
 .side-menu {
-  background: #f8f9fa;
-  top: 58px;
+  background: #f4f6f7;
+  top: 56px;
   width: 60px;
   overflow: hidden;
   transition: width 0.1s linear;
@@ -40,6 +40,7 @@ export default {
   position: fixed;
   height: 100%;
   z-index: 100;
+  padding-left: 0;
   &:hover,
   &.expanded {
     width: 240px;
@@ -47,7 +48,7 @@ export default {
     box-shadow: 3px 3px 10px -2px rgba(20%, 20%, 40%, 0.5);
   }
   @media screen and (max-width: $break-medium) {
-    top: 53px;
+    top: 50px;
     width: 50px;
   }
   li {

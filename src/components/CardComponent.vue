@@ -1,7 +1,6 @@
 <template>
-  <div class="mx-sm-5 mx-2">
+  <div>
     <div v-for="(v, k, index) in list" :key="index">
-
       <!-- Card Title -->
       <div v-if="sortType === 'completion'">
         <h3 v-if="k === 'incompleted'" class="card_title">未完成</h3>

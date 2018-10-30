@@ -3,10 +3,11 @@
       <div style="position: absolute; z-index: 1;">
         <header-component @isExpanded="toggleExpand" :user="user" :hide="hide"></header-component>
       </div>  
-      
-      <sidemenu :isExpanded="isExpanded"></sidemenu>
-      <div id="content">
-        <router-view :isExpanded="isExpanded"></router-view>
+      <div class="container-fluid">
+        <div class="row">
+          <sidemenu class="col-md-2" :isExpanded="isExpanded"></sidemenu>
+          <router-view :isExpanded="isExpanded"></router-view>
+        </div>
       </div>
       <back-to-top @hide="hideSearch"></back-to-top> 
     </div>
@@ -36,17 +37,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '../assets/global.scss';
-
-#content {
-  overflow: auto;
-  margin-top: 56px;
-  margin-left: 60px;
-  @media screen and (max-width: $break-medium) {
-    margin-top: 86px;
-    margin-left: 50px;
-  }
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar fixed-top bg-light">
+    <nav class="navbar fixed-top">
       <div class="hamburger" v-on:click="toggleExpand()"><i class="fa fa-bars"></i></div>
       <router-link :to="{name: 'ptlists'}" class="navbar-brand mr-auto" href="#">
         <img class="logo-sm mx-1" src="../assets/logo-sm.png">病摘
@@ -30,7 +30,6 @@ export default {
       isExpanded: false,
       no: '',
       status: ''
-      
     }
   },
   methods: {
@@ -68,10 +67,10 @@ export default {
 @import '../assets/global.scss';
 
 nav {
-  background: #f8f9fa;
+  background: #f4f6f7;
   padding: 8px 10px;
   width: 100%;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.08);
+  // box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.08);
   font-size: 14px;
   .hamburger {
     border-radius: 50%;
@@ -109,7 +108,7 @@ nav {
     @media screen and (max-width: $break-medium) {
       display: flex;
       position: absolute;
-      top: 53px;
+      top: 50px;
       right: 38px;
       button {
         position: absolute;

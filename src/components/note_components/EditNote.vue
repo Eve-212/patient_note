@@ -31,7 +31,8 @@ export default {
       noteSchema: null,
       data: {},
       meta: {},
-      sess: null
+      sess: null,
+      fee_no: null
     }
   },
   methods: {
@@ -72,7 +73,6 @@ export default {
       }
     },
     init() {
-      console.log(this.fee_no)
       if (this.fee_no) {
         this.sess = this.$wf.note.sess_cache[this.fee_no]
         if (!this.sess) {
@@ -92,7 +92,6 @@ export default {
       if (($id = this.sess.admission.id)) {
         this.$wf.note.get({ id: $id }).then($raw => {
           this.prepare_data(this.noteSchema, $raw.data)
-          console.log($raw.data)
           this.data = $raw.data.content
           this.meta = $raw.data
         })
@@ -110,7 +109,6 @@ export default {
         $data.admit_dept = $ipd.dept_id
         $data.admit_time = $ipd.start
         this.prepare_data(this.noteSchema.properties.content, $data)
-        console.log($data)
         this.data = $data
       }
     } /*,
@@ -141,21 +139,7 @@ export default {
       //admission not exist
     }
     */
-<<<<<<< HEAD
-  },  
-  watch: {
-    fee_no: function() {
-      init()
-    }
-  },
-  mounted(){
-
-    
   }
-=======
-  },
-  mounted() {}
->>>>>>> ac170702014394cef1de7c7b549c19c1809581c9
 }
 </script>
 
