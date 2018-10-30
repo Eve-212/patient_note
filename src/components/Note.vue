@@ -30,10 +30,10 @@
 
 		</div>
 			
+		<!-- {{ jsonSchema }} -->
 		
 		
-		
-		
+		{{ jsonSchemaData }}
 		  
 	</div>
 </template>
@@ -78,6 +78,7 @@ export default {
         return {}
       }
     },
+
     path: {
       type: Array,
       default() {
@@ -140,11 +141,9 @@ export default {
           field.attrs.fieldType = 'text'
         }
       }
+
       return $field_com[field.attrs.fieldType] || 'TextInput'
       /*
-      return $field_com[field.attrs.fieldType] || 'TextInput'
-      /*
->>>>>>> bcd65a79b814cd037ed462df2606a6154b9bdc29
 			if (!(field.attrs && field.attrs.fieldType)) {
 				if (field.type === 'string') {
 					return "TextInput"
@@ -197,8 +196,7 @@ export default {
   padding-left: 20px;
 }
 /* change family tree styles */
-/* .avat {
+.avat {
   border: none !important;
-<<<<<<< HEAD
-} */
+}
 </style>

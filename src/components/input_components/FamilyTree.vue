@@ -1,5 +1,5 @@
 <template>
-  <div>   
+  <div class="tree-style">   
     <tree-charter :json="treeData"></tree-charter>
   </div>  
 </template>
@@ -60,5 +60,7 @@ export default {
 </script>
 
 <style>
-
+.tree-style {
+  overflow-x: scroll;
+}
 </style>

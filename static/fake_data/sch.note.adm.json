@@ -250,16 +250,7 @@
 
         "family_hx": {
           "title": "Family History",
-          "type": "object",
-          "properties": {
-            "familytree": {
-                "type": "string",
-                "attrs": {
-                    "fieldType": "familytree"
-                }
-            }
-          }
-          
+          "type": "object"
         },
         "past_hx": {
           "title": "Past History",
