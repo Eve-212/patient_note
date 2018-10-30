@@ -16,6 +16,7 @@
 <script>
 import SessCard from './sys_components/SessCard'
 import ICDSpan from './sys_components/ICDSpan'
+
 export default {
   name: 'DashBoard',
   components: {

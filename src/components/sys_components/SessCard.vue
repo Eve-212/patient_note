@@ -12,7 +12,7 @@
                 <div><icd-span :icd="sess.ipd.icd10_in[0]"></icd-span></div>
             </h6>
             <p class="card-text">
-                主責醫師 : <span>{{sess.ipd.doc_id}}</span>
+                主責醫師 : <emp-span :id="sess.ipd.doc_id" :hide_id="true"></emp-span>
             </p>
             <button class="btn btn-sm" v-on:click="show_edit('admission')">住院</button>
             <button class="btn btn-sm" title="2018-10-26 未完成">
@@ -27,10 +27,12 @@
 <script>
 //import moment from 'moment'
 import ICDSpan from './ICDSpan'
+import EmpSpan from './EmpSpan'
 export default {
   name: 'SessCard',
   components: {
-    'icd-span': ICDSpan
+    'icd-span': ICDSpan,
+    'emp-span': EmpSpan
   },
   props: ['sess'],
   computed: {
