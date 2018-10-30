@@ -1,5 +1,8 @@
 <template>
-  <div :id="anchorIdFormat(schema.title)" :class="[bsColSize, styleClass]" v-if="showInputField">    
+  <div 
+    :id="anchorIdFormat(schema.title)" 
+    :class="[bsColSize, styleClass]" 
+    v-if="showInputField">    
     <label>{{ schema.title }}</label>
     <div 
       v-for="(item, index) in schema.attrs.values" 

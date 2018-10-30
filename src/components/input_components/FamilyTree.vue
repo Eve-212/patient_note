@@ -1,5 +1,8 @@
 <template>
-  <TreeChart :json="treeData"></TreeChart>
+  <div>
+    <h3>Family Tree</h3>
+    <TreeChart :json="treeData"></TreeChart>
+  </div>  
 </template>
 
 <script>
@@ -53,7 +56,7 @@ export default {
           }
         ]
       }  
-    }
+    }  
   }
 }
 </script>
