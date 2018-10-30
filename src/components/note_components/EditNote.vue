@@ -141,6 +141,7 @@ export default {
       //admission not exist
     }
     */
+<<<<<<< HEAD
   },  
   watch: {
     fee_no: function() {
@@ -151,6 +152,10 @@ export default {
 
     
   }
+=======
+  },
+  mounted() {}
+>>>>>>> ac170702014394cef1de7c7b549c19c1809581c9
 }
 </script>
 

@@ -12,14 +12,13 @@
 </template>
 
 <script>
-import Proto from './input_components/Proto';
+import Proto from './input_components/Proto'
 export default {
   name: 'SectionNav',
   mixins: [Proto],
   data() {
-    return {
-    }
-  },
+    return {}
+  }
 }
 </script>
 
@@ -29,7 +28,7 @@ ul {
 }
 li {
   border: none;
-  padding: .125rem 1.5rem;
+  padding: 0.125rem 1.5rem;
 }
 li a {
   color: #99979c;
@@ -39,7 +38,7 @@ li a {
   right: 0;
   height: 80vh;
   border-left: 1px solid #eee;
-  overflow-y:scroll;
+  overflow-y: scroll;
 }
 .customActive {
   color: #17a2b8;
