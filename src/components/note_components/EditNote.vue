@@ -8,7 +8,7 @@
       </div> -->
       <SectionNav class="col-xl-2 d-none d-xl-block" :schema="noteSchema"></SectionNav>
     </div>
-    <Note class="col-xl-9" :schema="noteSchema" :schemaData="data"></Note>
+    <Note class="col-xl-9" :schema="noteSchema" :schemaData="data" :sectionKeys="sectionKeys"></Note>
   </div>
 </template>
 
@@ -32,9 +32,15 @@ export default {
       data: {},
       meta: {},
       sess: null
+      
     }
   },
-  methods: {
+  methods: {        
+    // getSectionKeys: function() {
+    //   let sectionKeys = Object.keys(this.noteSchema.properties.content.properties)
+    //   console.log(sectionKeys)  
+    //   return sectionKeys    
+    // },      
     prepare_data($schema, $data) {
       //let $tmps=$sch;
       //let $tmpd=$data;
@@ -132,6 +138,7 @@ export default {
       //
       //this.noteSchema=$raw.data
       this.noteSchema = require('../../../static/fake_data/sch.note.adm.json')
+      
       this.init()
     })
 
@@ -141,21 +148,18 @@ export default {
       //admission not exist
     }
     */
-<<<<<<< HEAD
   },  
-  watch: {
-    fee_no: function() {
-      init()
-    }
-  },
+  // computed: {
+  //   getSectionKeys: function() {
+  //     let sectionKeys = Object.keys(this.noteSchema.properties.content.properties)
+  //     console.log(sectionKeys)     
+  //     return sectionKeys 
+  //   }
+  // },  
   mounted(){
 
     
   }
-=======
-  },
-  mounted() {}
->>>>>>> ac170702014394cef1de7c7b549c19c1809581c9
 }
 </script>
 

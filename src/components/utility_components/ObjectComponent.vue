@@ -1,6 +1,7 @@
 <template>
   <div v-if="showInputField">
-    <h2 :id="anchorIdFormat(schema)" class="field-title">{{ schema.title }}</h2>
+    
+    <h2 :id="anchorIdFormat(schema)" >{{ schema.title }}</h2>
     <div class="obj_box row">
 
       <component 
@@ -71,11 +72,18 @@ export default {
       default() {
         return ''
       }
-    }
+    },
+    sectsKeys: {
+			type: Array,
+			default() {
+				return []
+			}
+		}
   },
   data() {
     return {
-      currentFieldName: this.currentKey
+      currentFieldName: this.currentKey,
+      sectionKeys: null
     }
   },
   created() {
@@ -85,6 +93,8 @@ export default {
       this.$set(this.value, this.currentFieldName, {})
       //this.value["keyOnCreate"] = {};
     }
+
+    this.sectionKeys = this.sectsKeys
   },
   methods: {
     getComponentName(field) {
@@ -167,6 +177,7 @@ export default {
     }
   },
   computed: {
+    
     showInputField() {
       let schemaAttrs = this.schema.attrs
       //dependsOn name is Array?
