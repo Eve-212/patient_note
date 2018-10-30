@@ -250,7 +250,15 @@
 
         "family_hx": {
           "title": "Family History",
-          "type": "object"
+          "type": "object",
+          "properties": {
+            "familytree": {
+              "type": "string",
+              "attrs": {
+                "fieldType": "familytree"
+              }
+            }
+          }
         },
         "past_hx": {
           "title": "Past History",
@@ -433,16 +441,14 @@
                   "title": "BMI",
                   "type": "number",
                   "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 4
+                    "bsColSize": 6
                   }
                 },
                 "bmi_score": {
                   "title": "BMI Score",
                   "type": "integer",
                   "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 4
+                    "bsColSize": 6
                   }
                 },
                 "weight_loss": {
@@ -450,22 +456,20 @@
                   "type": "number",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 4
+                    "bsColSize": 6
                   }
                 },
                 "weight_loss_score": {
                   "title": "Weight loss score",
                   "type": "integer",
                   "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 4
+                    "bsColSize": 6
                   }
                 },
                 "acute_effect": {
                   "title": "Acutely illness because of poor intake",
                   "type": "boolean",
                   "attrs": {
-                    "inputGroup": true,
                     "bsColSize": 12
                   }
                 },
@@ -473,7 +477,6 @@
                   "title": "Acute disease effect score",
                   "type": "integer",
                   "attrs": {
-                    "inputGroup": true,
                     "bsColSize": 4
                   }
                 },
@@ -481,7 +484,6 @@
                   "title": "Total score",
                   "type": "integer",
                   "attrs": {
-                    "inputGroup": true,
                     "bsColSize": 4
                   }
                 }

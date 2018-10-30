@@ -141,8 +141,16 @@ export default {
       //admission not exist
     }
     */
+  },  
+  watch: {
+    fee_no: function() {
+      init()
+    }
   },
-  mounted() {}
+  mounted(){
+
+    
+  }
 }
 </script>
 

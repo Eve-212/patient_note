@@ -1,6 +1,6 @@
 <template>
 	<div id="labwrap" class="mb-2">
-		<table class="col-xl-5 table-bordered">
+		<table class="table table-bordered">
       <thead>
         <tr>
           <th></th>
@@ -221,24 +221,28 @@ export default {
 @import '../../assets/global.scss';
 
 #labwrap {
-  width: 1250px;
-  transform: scale(0.65);
-  -webkit-transform-origin-x: 0;
+  width: 900px;
   overflow-x: scroll;
-  @media screen and (max-width: $break-medium) {
-    width: 400px;
+  @media screen and (max-width: 1000px) {
+    width: px-to-vw(650, 1000);
   }
   table {
+    @media screen and (max-width: 1000px) {
+      width: px-to-vw(650, 1000);
+    }
+    overflow-x: scroll;
     white-space: normal;
     word-wrap: break-word;
     thead,
     tbody {
       th {
+        font-size: 14px;
         overflow: hidden;
         white-space: nowrap;
       }
     }
     td {
+      font-size: 12px;
       &.low {
         color: #fff;
         background: $red;
