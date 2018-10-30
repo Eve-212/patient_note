@@ -63,6 +63,7 @@ export default {
 
 <style>
 .tree-style {
-  overflow-x: scroll;
+  z-index: 0;
+  overflow: auto;
 }
 </style>

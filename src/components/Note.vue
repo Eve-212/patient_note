@@ -32,10 +32,10 @@
 
 		</div>
 			
-		<!-- {{ jsonSchema }} -->
 		
 		
-		{{ jsonSchemaData }}
+		
+		
 		  
 	</div>
 </template>
