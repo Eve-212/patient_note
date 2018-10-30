@@ -1,6 +1,6 @@
 <template>
   <div v-if="showInputField">
-    <h2 :id="anchorIdFormat(schema.title)" class="field-title">{{ schema.title }}</h2>
+    <h2 :id="anchorIdFormat(schema)" class="field-title">{{ schema.title }}</h2>
     <div class="obj_box row">
 
       <component 

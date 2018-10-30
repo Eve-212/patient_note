@@ -67,9 +67,9 @@ export default {
           break
       }
     },
-    anchorIdFormat(title){
-      if(title){
-        return title.replace(/\W/gm, '-').toLowerCase()
+    anchorIdFormat(item){
+      if(item && item.title){
+        return item.title.replace(/\W/gm, '-').toLowerCase()
       }
     }
   },

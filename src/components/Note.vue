@@ -1,5 +1,5 @@
 <template> 
-	<div class="padding-left-large">		
+	<div>		
 		<!-- <h2>{{ jsonSchema.title }}</h2>  
 		{{ jsonSchema.title }}      
 		<div v-for="(field, key) in jsonSchema.properties" :key="key">   	
@@ -13,8 +13,8 @@
 		</div> -->
 
 		<h2>{{ schema.title }}</h2>   		   
-		<div  class="container-fluid"> 
-			<div class="row">        
+		<div class="container-fluid"> 
+			<div v-scroll-spy="{ offset: 100 } " class="row">        
 			<component 
 				class="col-md-12"
 				v-for="(field, key) in jsonSchema.properties" :key="key"

@@ -1,13 +1,13 @@
 
 <template>
   <div 
-    :id="anchorIdFormat(schema.title)" 
+    :id="anchorIdFormat(schema)" 
     :class="[bsColSize, styleClass]" 
     v-if="showInputField">
     <div v-if="schema.attrs.inputGroup">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text" >{{ schema.title}}</span>
+          <span class="input-group-text" >{{ schema.title }}</span>
         </div>
         <input 
           :id="getId()" 

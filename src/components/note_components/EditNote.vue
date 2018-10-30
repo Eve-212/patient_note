@@ -1,13 +1,15 @@
 <template>
-	<div class="row" :class="{isExpanded: isExpanded}">    
-    <!-- <h1 class="note-title">{{ noteSchema.title }}</h1>  		   
-		<div v-for="(schema, key) in noteSchema.properties" :key="key">      
-      <Section :schema="schema" :currentKey="key"></Section>
-      <ObjectComponent :schema="schema" :currentKey="key"></ObjectComponent>
-    </div> -->
-    <Note class="col-xl-10" :schema="noteSchema" :schemaData="data"></Note>
-    <SectionNav class="col-xl-2 d-none d-xl-block" :schema="noteSchema"></SectionNav>
-	</div>
+  <div v-scroll-spy="{ offset: 100 }" :class="{isExpanded: isExpanded}">
+    <div class="row">    
+      <!-- <h1 class="note-title">{{ noteSchema.title }}</h1>  		   
+      <div v-for="(schema, key) in noteSchema.properties" :key="key">      
+        <Section :schema="schema" :currentKey="key"></Section>
+        <ObjectComponent :schema="schema" :currentKey="key"></ObjectComponent>
+      </div> -->
+      <SectionNav class="col-xl-2 d-none d-xl-block" :schema="noteSchema"></SectionNav>
+    </div>
+    <Note class="col-xl-9" :schema="noteSchema" :schemaData="data"></Note>
+  </div>
 </template>
 
 <script>

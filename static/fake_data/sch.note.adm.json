@@ -85,41 +85,41 @@
                 "inputGroup": true,
                 "bsColSize": 3
               }
+            },
+            "admit_dept": {
+              "title": "Department",
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 3
+              }
+            },
+            "admit_time": {
+              "title": "Time of Admission",
+              "format": "date-time",
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 3
+              }
+            },
+            "evaluate_time": {
+              "title": "Time of History-talking",
+              "format": "date-time",
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 3
+              }
+            },
+            "source": {
+              "title": "Information Source",
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 3
+              }
             }
-          }
-        },
-        "admit_dept": {
-          "title": "Department",
-          "type": "string",
-          "attrs": {
-            "inputGroup": true,
-            "bsColSize": 3
-          }
-        },
-        "admit_time": {
-          "title": "Time of Admission",
-          "format": "date-time",
-          "type": "string",
-          "attrs": {
-            "inputGroup": true,
-            "bsColSize": 3
-          }
-        },
-        "evaluate_time": {
-          "title": "Time of History-talking",
-          "format": "date-time",
-          "type": "string",
-          "attrs": {
-            "inputGroup": true,
-            "bsColSize": 3
-          }
-        },
-        "source": {
-          "title": "Information Source",
-          "type": "string",
-          "attrs": {
-            "inputGroup": true,
-            "bsColSize": 3
           }
         },
         "cc": {
@@ -434,7 +434,7 @@
                   "type": "number",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "bmi_score": {
@@ -442,7 +442,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "weight_loss": {
@@ -450,7 +450,7 @@
                   "type": "number",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "weight_loss_score": {
@@ -458,7 +458,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "acute_effect": {
@@ -466,7 +466,7 @@
                   "type": "boolean",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 12
                   }
                 },
                 "acute_effect_score": {
@@ -474,12 +474,16 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "score": {
                   "title": "Total score",
-                  "type": "integer"
+                  "type": "integer",
+                  "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 4
+                  }
                 }
               }
             }

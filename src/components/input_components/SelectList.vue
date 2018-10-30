@@ -1,7 +1,7 @@
 
 <template>
   <div 
-    :id="anchorIdFormat(schema.title)" 
+    :id="anchorIdFormat(schema)" 
     :class="[bsColSize, styleClass]" 
     v-if="showInputField">
     <select v-model="value[currentKey]">
@@ -25,26 +25,6 @@ import Proto from './Proto'
 export default {
   name: 'SelectList',
   mixins: [Proto],
-  props: {
-    schema: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    value: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    currentKey: {
-      type: String,
-      default() {
-        return ''
-      }
-    }
-  },
   data() {
     return {
       placeholder: this.getPlaceholder()

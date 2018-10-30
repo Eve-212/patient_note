@@ -10,6 +10,10 @@ import OneAPI from './lib/oneapi'
 //import Vuex from 'vuex'
 var VueScrollTo = require('vue-scrollto');
 
+import Scrollspy from 'vue2-scrollspy';
+// use default options
+Vue.use(Scrollspy);
+
 Vue.use(VueScrollTo, {
   container: "body",
   duration: 500,
