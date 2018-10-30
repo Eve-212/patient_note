@@ -165,6 +165,9 @@ export default {
 
 .wrap {
   margin: 80px 50px 0 100px;
+  @media screen and (max-width: 1025px) {
+    margin: 80px 10px 0 90px;
+  }
   @media screen and (max-width: $break-medium) {
     margin: 120px 10px 0 60px;
   }

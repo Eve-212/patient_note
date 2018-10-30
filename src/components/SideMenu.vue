@@ -40,10 +40,10 @@ export default {
   position: fixed;
   height: 100%;
   z-index: 100;
-  padding-left: 0;
+  padding: 0;
   &:hover,
   &.expanded {
-    width: 240px;
+    min-width: 240px;
     overflow: visible;
     box-shadow: 3px 3px 10px -2px rgba(20%, 20%, 40%, 0.5);
   }
@@ -53,7 +53,7 @@ export default {
   }
   li {
     display: block;
-    width: 240px;
+    width: 100%;
     margin: 20px 0;
     &:hover a {
       background-color: #fff;
@@ -80,7 +80,7 @@ export default {
       span {
         display: table-cell;
         vertical-align: middle;
-        width: 180px;
+        width: 190px;
       }
     }
   }
