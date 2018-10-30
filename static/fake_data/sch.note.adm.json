@@ -685,23 +685,9 @@
               "properties": {
                 "blood": {
                   "title": "Blood",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "item": {
-                        "type": "string"
-                      },
-                      "value": {
-                        "type": "string"
-                      },
-                      "mark": {
-                        "type": "string"
-                      }
-                    }
+                  "type": "number",
+                  "attrs": {
+                    "fieldType": "labtable"
                   }
                 }
               }

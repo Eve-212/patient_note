@@ -26,6 +26,7 @@ import CheckListWithOther from '../input_components/CheckListWithOther'
 import NumberInput from '../input_components/NumberInput'
 import SelectDate from '../input_components/SelectDate'
 import SelectList from '../input_components/SelectList'
+import bsLabTable from "../input_components/bsLabTable"
 import Proto from '../input_components/Proto';
 
 export default {
@@ -39,7 +40,8 @@ export default {
     NumberInput,
     SelectList,
     SelectDate,
-    CheckListWithOther
+    CheckListWithOther,
+    bsLabTable
   },
   props: {
     schema: {
@@ -100,7 +102,8 @@ export default {
         selectList: 'SelectList',
         object: 'ObjectComponent',
         number: 'NumberInput',
-        date: 'SelectDate'
+        date: 'SelectDate',
+        labtable: "bsLabTable"
       }
       if (!field.attrs) {
         field.attrs = {}
