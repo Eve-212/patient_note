@@ -1,13 +1,14 @@
 <template>
-  <div class="mt-5" :class="{isExpanded: isExpanded}">
+  <div class="mt-sm-4 mt-5" :class="{isExpanded: isExpanded}">
     <span>{{status}}</span>
-    <div class="selectBtn_wrap mx-sm-5 mx-2 mb-5 d-flex align-items-center">
-      <span class="h5 my-0" >Sort By：</span>
+    <div class="selectBtn_wrap mx-sm-5 mx-2 mb-4 mb-sm-0 d-flex align-items-center justify-content-sm-end
+">
+      <span class="h5 my-0" >Group By：</span>
       <div class="selectBtn">
         <select @change="switchType()" v-model="sortType">
           <!-- <option value="completion">Completion</option> -->
-          <option value="doc_id">Doctors</option>
-          <option value="bed_no">Floors</option>
+          <option value="doc_id">Doctor</option>
+          <option value="bed_no">Floor</option>
         </select>
       </div>
     </div>
