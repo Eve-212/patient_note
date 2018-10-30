@@ -1,6 +1,9 @@
 
 <template>
-  <div :id="anchorIdFormat(schema.title)" :class="[bsColSize, styleClass]" v-if="showInputField">
+  <div 
+    :id="anchorIdFormat(schema.title)" 
+    :class="[bsColSize, styleClass]" 
+    v-if="showInputField">
     <select v-model="value[currentKey]">
       <template v-if="typeof schema.attrs.placeholder !== 'undefined'">
         <option value="">{{ schema.attrs.placeholder }}</option>

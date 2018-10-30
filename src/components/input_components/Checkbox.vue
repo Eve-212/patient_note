@@ -1,5 +1,8 @@
 <template>
-  <div :id="anchorIdFormat(schema.title)" :class="[bsColSize, styleClass]" v-if="showInputField">
+  <div 
+    :id="anchorIdFormat(schema.title)" 
+    :class="[bsColSize, styleClass]" 
+    v-if="showInputField">
     <label
       :for="currentKey">
       {{ schema.attrs.label }}
