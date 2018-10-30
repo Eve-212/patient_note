@@ -1,5 +1,5 @@
 <template>
-	<div :class="[bsColSize]" v-if="showInputField">
+	<div>
 		<table class="table">
       <thead>
         <tr>

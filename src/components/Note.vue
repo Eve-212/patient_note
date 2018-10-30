@@ -12,7 +12,11 @@
 
 		</div> -->
 
-		<h2>{{ schema.title }}</h2>   		   
+		
+		<h2>{{ schema.title }}</h2>   
+		<div>
+			<FamilyTree></FamilyTree>
+		</div>		   
 		<div  class="container-fluid"> 
 			<div class="row">        
 			<component 
@@ -31,9 +35,7 @@
 		</div>
 			
 		<!-- {{ jsonSchema }} -->
-		<div class="center">
-			<FamilyTree></FamilyTree>
-		</div>
+		
 		
 		{{ jsonSchemaData }}
 		  
@@ -146,6 +148,7 @@ export default {
 					field.attrs.fieldType="text"
 				}
 			}
+			
 			return ($field_com[field.attrs.fieldType] || "TextInput")
 			/*
 			if (!(field.attrs && field.attrs.fieldType)) {
@@ -199,8 +202,10 @@ export default {
 .padding-left-large {
 	padding-left: 20px;
 }
-.center {
-	margin: 10% 5%;
+/* change family tree styles */
+.avat {
+  border: none !important;
 }
+
 
 </style>
