@@ -12,16 +12,9 @@
 
 		</div> -->
 
-<<<<<<< HEAD
-		
-		<h2>{{ schema.title }}</h2>  		
-		<div  class="container-fluid"> 
-			<div class="row">        
-=======
 		<h2>{{ schema.title }}</h2>   		   
 		<div class="container-fluid"> 
 			<div v-scroll-spy="{ offset: 100 } " class="row">        
->>>>>>> bcd65a79b814cd037ed462df2606a6154b9bdc29
 			<component 
 				class="col-md-12"
 				v-for="(field, key) in jsonSchema.properties" :key="key"
@@ -46,81 +39,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-import TextInput from "./input_components/TextInput"
-import RadioInput from "./input_components/RadioInput"
-import Checkbox from "./input_components/Checkbox"
-import CheckList from "./input_components/CheckList"
-import CheckListWithOther from "./input_components/CheckListWithOther"
-import NumberInput from "./input_components/NumberInput"
-import SelectDate from "./input_components/SelectDate"
-import SelectList from "./input_components/SelectList"
-import ObjectComponent from "./utility_components/ObjectComponent"
-import FamilyTree from "./input_components/FamilyTree"
-import bsLabTable from "./input_components/bsLabTable"
-import OrgChart from "./input_components/OrgChart"
-
-export default {
-	name: 'Note',
-	components: {
-		TextInput,
-		RadioInput,
-		Checkbox,
-		CheckList,
-		NumberInput,
-		SelectDate,
-		SelectList,
-		ObjectComponent,
-		CheckListWithOther,
-		FamilyTree,
-		bsLabTable,
-		OrgChart
-	},
-	props: {
-		schema: {
-			type: Object,
-			default() {
-				return {}
-			}
-		},
-		schemaData: {
-			type: Object,
-			default() {
-				return {}
-			}
-		},
-		
-		path:{
-			type:Array,
-			default(){
-				return [];
-		}
-		},
-		currentKey: {
-			type: String,
-			default() {
-				return ""
-			}
-    	}
-	},
-	data() {
-		return {
-			jsonSchemaData: this.schemaData,
-			jsonSchema: this.schema      
-		}    
-	},
-	created() {
-	},
-	watch:{
-		schemaData($data){
-			this.jsonSchemaData=this.schemaData
-		},
-		schema($schema){
-			this.jsonSchema=this.schema.properties.content
-		}
-	},
-	methods: {   
-=======
 import TextInput from './input_components/TextInput'
 import RadioInput from './input_components/RadioInput'
 import Checkbox from './input_components/Checkbox'
@@ -160,8 +78,6 @@ export default {
         return {}
       }
     },
->>>>>>> bcd65a79b814cd037ed462df2606a6154b9bdc29
-
     path: {
       type: Array,
       default() {
@@ -224,36 +140,8 @@ export default {
           field.attrs.fieldType = 'text'
         }
       }
-
-<<<<<<< HEAD
-			};
-			let $field_com={
-				"text":"TextInput",
-				"checklistwithother":"CheckListWithOther",
-				"radio":"RadioInput",
-				"checkbox":"Checkbox",
-				"checklist":"CheckList",
-				"selectList":"SelectList",
-				"object": "ObjectComponent",
-				"number": "NumberInput",
-				"date": "SelectDate",
-				"labtable": "bsLabTable",
-				"familytree": "FamilyTree"
-			}
-			if (!field.attrs){
-				field.attrs={}
-			}
-			if (!field.attrs.fieldType){
-				if (field.type){
-					field.attrs.fieldType=$type_field[field.type]
-				}else{
-					field.attrs.fieldType="text"
-				}
-			}
-			
-			return ($field_com[field.attrs.fieldType] || "TextInput")
-			/*
-=======
+      return $field_com[field.attrs.fieldType] || 'TextInput'
+      /*
       return $field_com[field.attrs.fieldType] || 'TextInput'
       /*
 >>>>>>> bcd65a79b814cd037ed462df2606a6154b9bdc29
@@ -313,9 +201,4 @@ export default {
   border: none !important;
 <<<<<<< HEAD
 } */
-
-
-=======
-}
->>>>>>> bcd65a79b814cd037ed462df2606a6154b9bdc29
 </style>

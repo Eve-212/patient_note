@@ -1,11 +1,6 @@
 <template>
   <div class="section-nav">
-<<<<<<< HEAD
-    
-    <ul class="list-group">      
-=======
     <ul v-scroll-spy-active="{ class: 'customActive'}" v-scroll-spy-link class="list-group">
->>>>>>> bcd65a79b814cd037ed462df2606a6154b9bdc29
       <li 
         v-for="(item, key) in schema.properties.content.properties"
         :key="key"
@@ -17,14 +12,13 @@
 </template>
 
 <script>
-import Proto from './input_components/Proto';
+import Proto from './input_components/Proto'
 export default {
   name: 'SectionNav',
   mixins: [Proto],
   data() {
-    return {
-    }
-  },
+    return {}
+  }
 }
 </script>
 
@@ -34,7 +28,7 @@ ul {
 }
 li {
   border: none;
-  padding: .125rem 1.5rem;
+  padding: 0.125rem 1.5rem;
 }
 li a {
   color: #99979c;
@@ -44,7 +38,7 @@ li a {
   right: 0;
   height: 80vh;
   border-left: 1px solid #eee;
-  overflow-y:scroll;
+  overflow-y: scroll;
 }
 .customActive {
   color: #17a2b8;
