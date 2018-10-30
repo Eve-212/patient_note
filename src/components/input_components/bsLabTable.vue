@@ -222,7 +222,7 @@ export default {
 
 #labwrap {
   width: 900px;
-  overflow-x: scroll;
+  overflow: auto;
   @media screen and (max-width: 1000px) {
     width: px-to-vw(650, 1000);
   }
@@ -245,7 +245,7 @@ export default {
       font-size: 12px;
       &.low {
         color: #fff;
-        background: $red;
+        background: $red-light;
       }
       &.high {
         color: #fff;

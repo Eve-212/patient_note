@@ -35,6 +35,11 @@ export default {
     }
   },
   methods: {
+    // getSectionKeys: function() {
+    //   let sectionKeys = Object.keys(this.noteSchema.properties.content.properties)
+    //   console.log(sectionKeys)
+    //   return sectionKeys
+    // },
     prepare_data($schema, $data) {
       //let $tmps=$sch;
       //let $tmpd=$data;
@@ -72,7 +77,6 @@ export default {
       }
     },
     init() {
-      console.log(this.fee_no)
       if (this.fee_no) {
         this.sess = this.$wf.note.sess_cache[this.fee_no]
         if (!this.sess) {
@@ -92,7 +96,6 @@ export default {
       if (($id = this.sess.admission.id)) {
         this.$wf.note.get({ id: $id }).then($raw => {
           this.prepare_data(this.noteSchema, $raw.data)
-          console.log($raw.data)
           this.data = $raw.data.content
           this.meta = $raw.data
         })
@@ -110,7 +113,6 @@ export default {
         $data.admit_dept = $ipd.dept_id
         $data.admit_time = $ipd.start
         this.prepare_data(this.noteSchema.properties.content, $data)
-        console.log($data)
         this.data = $data
       }
     } /*,
@@ -132,6 +134,7 @@ export default {
       //
       //this.noteSchema=$raw.data
       this.noteSchema = require('../../../static/fake_data/sch.note.adm.json')
+
       this.init()
     })
 
@@ -141,16 +144,15 @@ export default {
       //admission not exist
     }
     */
-  },  
-  watch: {
-    fee_no: function() {
-      init()
-    }
   },
-  mounted(){
-
-    
-  }
+  // computed: {
+  //   getSectionKeys: function() {
+  //     let sectionKeys = Object.keys(this.noteSchema.properties.content.properties)
+  //     console.log(sectionKeys)
+  //     return sectionKeys
+  //   }
+  // },
+  mounted() {}
 }
 </script>
 

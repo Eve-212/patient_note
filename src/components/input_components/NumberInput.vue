@@ -7,7 +7,7 @@
     <div v-if="schema.attrs.inputGroup">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text" >{{ schema.title}}</span>
+          <div class="input-group-text" >{{ schema.title}}</div>
         </div>
                   <input 
           id="text-input" 

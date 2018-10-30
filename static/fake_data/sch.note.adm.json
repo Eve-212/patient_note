@@ -104,7 +104,7 @@
               }
             },
             "evaluate_time": {
-              "title": "Time of History-talking",
+              "title": "Time of History-taking",
               "format": "date-time",
               "type": "string",
               "attrs": {
@@ -143,6 +143,9 @@
             "cigarette": {
               "title": "Smoking",
               "type": "object",
+              "attrs": {
+                "styleClass": ["subsection"]
+              },
               "properties": {
                 "used": {
                   "title": "Used",
@@ -693,7 +696,7 @@
           "type": "object",
           "properties": {
             "data": {
-              "title": "blood",
+              "title": "Blood",
               "type": "object",
               "properties": {
                 "blood": {
@@ -736,6 +739,48 @@
         "plan": {
           "title": "Plan (Management)",
           "type": "string"
+        },
+        "habits": {
+          "description": "habits of the patient",
+          "type": "object",
+          "title": "Habits",
+          "attrs": {
+              "fieldName": "habits"
+          },
+          "properties": {
+              "smoking": {
+                "description": "smoking habit",
+                "type": "string",
+                "title": "Smoking",
+                "attrs": {
+                    "fieldType": "radio",                    
+                    "values": [
+                      "Yes",
+                      "No"
+                    ],
+                    "fieldName": "smoking"
+                }
+              },
+              "species": {
+                "description": "cigarette species",
+                "type": "array",
+                "attrs": {
+                    "dependsOn": {
+                      "name": "smoking",
+                      "values": [
+                          "Yes"
+                      ]
+                    },
+                    "fieldType": "checklist",
+                    "fieldName": "species",
+                    "label": "Species",
+                    "values": [
+                      "Cigarettes",
+                      "Electronic cigarettes"
+                    ]
+                }
+              }
+          }
         }
       }
     }

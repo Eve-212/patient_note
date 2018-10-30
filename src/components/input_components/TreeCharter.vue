@@ -1,4 +1,5 @@
 <template>
+
     <table class="small" v-if="treeData.name">
       <tr>
         <td :colspan="treeData.children ? treeData.children.length * 2 : 1" :class="{parentLevel: treeData.children, extend: treeData.children && treeData.extend}">
@@ -25,6 +26,7 @@
         </td>
       </tr>
     </table>
+    
 </template>
 
 <script>

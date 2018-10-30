@@ -7,7 +7,7 @@
     <div v-if="schema.attrs.inputGroup">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <label class="input-group-text" >{{ schema.title }}</label>
+          <div class="input-group-text text-label" >{{ schema.title }}</div>
         </div>
         <input 
           :id="getId()" 
@@ -112,6 +112,9 @@ export default {
 </script>
 
 <style>
+.text-label {
+  font-size: 1.1rem;
+}
 </style>
 
 

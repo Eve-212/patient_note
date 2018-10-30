@@ -3,7 +3,7 @@
     :id="anchorIdFormat(schema)" 
     :class="[bsColSize, styleClass]" 
     v-if="showInputField">
-    <span :for="currentKey">{{ schema.title }}</span>
+    <div class="checklist-label" :for="currentKey">{{ schema.title }}</div>
     <div 
       :id="currentKey"			
       class="form-check form-check-inline" 
@@ -49,4 +49,7 @@ export default {
 </script>
 
 <style>
+.checklist-label {
+  font-size: 1.1rem;  
+}
 </style>
