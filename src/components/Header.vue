@@ -13,11 +13,11 @@
       <div class="actions">
         <div class="mx-2 ml-sm-4 mr-sm-2">Hi, {{ user }}</div>
         <router-link class="badge mx-1" :to="{name: 'ptlists'}">
-          notes<span class="mx-1 badge badge-danger text-white">9</span>
+          <i class="fa fa-bell"></i><span class="mx-1 badge badge-danger text-white">9</span>
           <span class="sr-only">note lists</span>
         </router-link>
         <div class="mx-1 logout" v-on:click="logout()">
-          <i class="fa fa-sign-out-alt"></i><span class="ml-sm-1">Logout</span>
+          <i class="fa fa-sign-out-alt"></i><span class="ml-sm-1 mb-1">Logout</span>
         </div>
       </div>
     </nav>
@@ -71,6 +71,7 @@ nav {
   padding: 8px 10px;
   width: 100%;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.08);
+  font-size: 14px;
   .hamburger {
     border-radius: 50%;
     margin: 0 11px;
@@ -137,6 +138,8 @@ nav {
       }
     }
     .logout {
+      display: flex;
+      align-items: center;
       span {
         cursor: pointer;
       }

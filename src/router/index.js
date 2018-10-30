@@ -7,6 +7,7 @@ import TableComponent from '@/components/Table'
 import EditNote from '@/components/note_components/EditNote'
 import DashBoard from '@/components/DashBoard'
 import PTLists from '@/components/PTLists'
+import Lab from '@/components/input_components/bsLabTable'
 
 Vue.use(Router)
 
@@ -55,6 +56,11 @@ export default new Router({
           path: '/ptlists',
           name: 'ptlists',
           component: PTLists
+        },
+        {
+          path: '/lab',
+          name: 'lab',
+          component: Lab
         }
       ]
     }

@@ -684,6 +684,9 @@
                   "type": "array",
                   "items": {
                     "type": "object",
+                    "attrs": {
+                      "fieldType": "labtable"
+                    },
                     "properties": {
                       "id": {
                         "type": "string"

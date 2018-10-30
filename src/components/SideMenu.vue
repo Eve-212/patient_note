@@ -20,9 +20,10 @@
         </router-link>
       </li>
       <li>
-        <a href="#">
-                    <i class="fa fa-map-marker fa-2x"></i><span class="nav-text">Maps</span>
-                </a>
+        <router-link :to="{ name: 'lab' }">
+          <i class="fa fa-home fa-2x"></i>
+          <span class="nav-text">Lab</span>
+        </router-link>
       </li>
       <li>
         <a href="#">

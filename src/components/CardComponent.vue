@@ -18,7 +18,7 @@
       <div class="card_wrap mb-5">
         <div class="card mt-4 mr-sm-3 mr-0" v-for="(v1, index1) in v" :key="index1">
           <div class="card-header">
-            {{v1.ipd.bed_no}}｜<span class="font-weight-bold">{{v1.ipd.name}}</span>
+            <span class="bed_no px-1 py-1" :class="{ female: v1.ipd.sex == '0' }">{{v1.ipd.bed_no}}</span>｜<span class="font-weight-bold">{{v1.ipd.name}}</span>
             <small class="text-muted float-right">{{v1.ipd.chr_no}}</small>
           </div>
           <div class="card-body">
@@ -33,10 +33,7 @@
                   <span v-if="n === 1">住院</span>
                   <span v-if="n === 2">Prog.</span>
                   <span v-if="n === 3">出院</span>
-                  <span 
-                    v-if="v1.completed === false" 
-                    class="badge badge-danger text-white">8
-                  </span>
+                  <span class="badge badge-danger text-white">2</span>
                 </button>
               </div>
             </div>
@@ -88,6 +85,16 @@ export default {
     }
     @media screen and (max-width: $break-medium) {
       width: 100%;
+    }
+    .card-header {
+      .bed_no {
+        background: $blue;
+        color: white;
+        border-radius: 5px;
+        &.female {
+          background: $red-light;
+        }
+      }
     }
     .card-body {
       @media screen and (max-width: $break-small) {
