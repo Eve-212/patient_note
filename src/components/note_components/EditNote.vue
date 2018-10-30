@@ -8,7 +8,7 @@
       </div> -->
       <SectionNav class="col-xl-2 d-none d-xl-block" :schema="noteSchema"></SectionNav>
     </div>
-    <Note class="col-xl-9" :schema="noteSchema" :schemaData="data"></Note>
+    <Note class="col-xl-9" :schema="noteSchema" :schemaData="data" :sectionKeys="sectionKeys"></Note>
   </div>
 </template>
 
@@ -31,11 +31,21 @@ export default {
       noteSchema: null,
       data: {},
       meta: {},
+<<<<<<< HEAD
       sess: null,
       fee_no: null
+=======
+      sess: null
+      
+>>>>>>> 715247484b0466c5ff792f409249558ef69ceb79
     }
   },
-  methods: {
+  methods: {        
+    // getSectionKeys: function() {
+    //   let sectionKeys = Object.keys(this.noteSchema.properties.content.properties)
+    //   console.log(sectionKeys)  
+    //   return sectionKeys    
+    // },      
     prepare_data($schema, $data) {
       //let $tmps=$sch;
       //let $tmpd=$data;
@@ -130,6 +140,7 @@ export default {
       //
       //this.noteSchema=$raw.data
       this.noteSchema = require('../../../static/fake_data/sch.note.adm.json')
+      
       this.init()
     })
 
@@ -139,6 +150,20 @@ export default {
       //admission not exist
     }
     */
+<<<<<<< HEAD
+=======
+  },  
+  // computed: {
+  //   getSectionKeys: function() {
+  //     let sectionKeys = Object.keys(this.noteSchema.properties.content.properties)
+  //     console.log(sectionKeys)     
+  //     return sectionKeys 
+  //   }
+  // },  
+  mounted(){
+
+    
+>>>>>>> 715247484b0466c5ff792f409249558ef69ceb79
   }
 }
 </script>

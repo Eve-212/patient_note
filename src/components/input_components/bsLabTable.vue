@@ -9,7 +9,7 @@
       </thead>
       <tbody>
         <tr v-for="(v, k, index) in lists">
-          <th class="px-1 py-1">{{k}}</th>
+          <th class="px-1 py-1">{{ k }}</th>
           <td
             v-for="(v1, k1, index1) in v"
             class="text-center px-1 py-1"
@@ -222,7 +222,7 @@ export default {
 
 #labwrap {
   width: 900px;
-  overflow-x: scroll;
+  overflow: auto;
   @media screen and (max-width: 1000px) {
     width: px-to-vw(650, 1000);
   }

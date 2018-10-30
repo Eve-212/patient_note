@@ -1,5 +1,5 @@
 <template> 
-	<div>		
+	<div class="padding-left-large">		
 		<!-- <h2>{{ jsonSchema.title }}</h2>  
 		{{ jsonSchema.title }}      
 		<div v-for="(field, key) in jsonSchema.properties" :key="key">   	
@@ -12,16 +12,18 @@
 
 		</div> -->
 
-		<h2>{{ schema.title }}</h2>   		   
-		<div class="container-fluid"> 
-			<div v-scroll-spy="{ offset: 100 } " class="row">        
+		
+		<h2>{{ schema.title }}</h2>  		
+		
+		<div  class="container-fluid"> 			
+			<div class="row">        
 			<component 
 				class="col-md-12"
 				v-for="(field, key) in jsonSchema.properties" :key="key"
 				:is="getComponentName(field)"
 				:schema="field" 
 				:path="path.concat(key)"
-				:currentKey="key"
+				:currentKey="key"			
 				v-model="jsonSchemaData">
 			</component>
 			</div>
@@ -39,17 +41,19 @@
 </template>
 
 <script>
-import TextInput from './input_components/TextInput'
-import RadioInput from './input_components/RadioInput'
-import Checkbox from './input_components/Checkbox'
-import CheckList from './input_components/CheckList'
-import CheckListWithOther from './input_components/CheckListWithOther'
-import NumberInput from './input_components/NumberInput'
-import SelectDate from './input_components/SelectDate'
-import SelectList from './input_components/SelectList'
-import ObjectComponent from './utility_components/ObjectComponent'
-import FamilyTree from './input_components/FamilyTree'
-import bsLabTable from './input_components/bsLabTable'
+import TextInput from "./input_components/TextInput"
+import RadioInput from "./input_components/RadioInput"
+import Checkbox from "./input_components/Checkbox"
+import CheckList from "./input_components/CheckList"
+import CheckListWithOther from "./input_components/CheckListWithOther"
+import NumberInput from "./input_components/NumberInput"
+import SelectDate from "./input_components/SelectDate"
+import SelectList from "./input_components/SelectList"
+import ObjectComponent from "./utility_components/ObjectComponent"
+import FamilyTree from "./input_components/FamilyTree"
+import bsLabTable from "./input_components/bsLabTable"
+import OrgChart from "./input_components/OrgChart"
+
 export default {
   name: 'Note',
   components: {
@@ -78,6 +82,7 @@ export default {
         return {}
       }
     },
+
     path: {
       type: Array,
       default() {
@@ -140,11 +145,9 @@ export default {
           field.attrs.fieldType = 'text'
         }
       }
+
       return $field_com[field.attrs.fieldType] || 'TextInput'
       /*
-      return $field_com[field.attrs.fieldType] || 'TextInput'
-      /*
->>>>>>> bcd65a79b814cd037ed462df2606a6154b9bdc29
 			if (!(field.attrs && field.attrs.fieldType)) {
 				if (field.type === 'string') {
 					return "TextInput"
@@ -181,24 +184,23 @@ export default {
 					return "SelectDate"
 			}
 			*/
-    }
-  }
+		}
+	}
 }
 </script>
 
 <style>
 .display-inline {
-  display: inline-block;
+	display: inline-block;
 }
 .padding-left {
-  padding-left: 3px;
+	padding-left: 3px;
 }
 .padding-left-large {
-  padding-left: 20px;
+	padding-left: 20px;
 }
 /* change family tree styles */
-/* .avat {
+.avat {
   border: none !important;
-<<<<<<< HEAD
-} */
+}
 </style>

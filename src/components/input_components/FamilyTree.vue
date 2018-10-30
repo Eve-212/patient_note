@@ -1,6 +1,6 @@
 <template>
-  <div>   
-    <!-- <tree-charter :json="treeData"></tree-charter> -->
+  <div class="tree-style">   
+    <tree-charter :json="treeData"></tree-charter>
   </div>  
 </template>
 
@@ -62,4 +62,8 @@ export default {
 </script>
 
 <style>
+.tree-style {
+  z-index: 0;
+  overflow: auto;
+}
 </style>
