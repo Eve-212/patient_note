@@ -1,11 +1,6 @@
 <template>
   <div class="section-nav">
-<<<<<<< HEAD
-    
-    <ul class="list-group">      
-=======
     <ul v-scroll-spy-active="{ class: 'customActive'}" v-scroll-spy-link class="list-group">
->>>>>>> bcd65a79b814cd037ed462df2606a6154b9bdc29
       <li 
         v-for="(item, key) in schema.properties.content.properties"
         :key="key"
