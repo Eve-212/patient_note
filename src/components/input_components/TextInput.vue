@@ -7,16 +7,15 @@
     <div v-if="schema.attrs.inputGroup">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text" >{{ schema.title }}</span>
+          <label class="input-group-text" >{{ schema.title }}</label>
         </div>
         <input 
           :id="getId()" 
-
           type="text" 
           :name="currentKey" 
           v-model="value[currentKey]"
-          class="form-control"
-          >
+          class="form-control">
+
       </div>
     </div>
     <div class="form-group row" v-if="!schema.attrs.inputGroup">
@@ -29,12 +28,17 @@
       <div class="col-md-10">
         <input 
           :id="getId()" 
-
           type="text" 
           :name="currentKey" 
           v-model="value[currentKey]"
           class="form-control"
-          >
+          :aria-describedby="helpText(schema)">
+        <small 
+          v-if="schema.description" 
+          :id="helpText(schema)" 
+          class="form-text text-muted">
+          {{ schema.description }}
+        </small>
       </div>
     </div>
   </div>	

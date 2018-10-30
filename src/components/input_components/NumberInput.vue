@@ -29,12 +29,17 @@
       <div class="col-md-10">
         <input 
           id="text-input" 
-
           type="number" 
           :name="currentKey" 
           v-model="value[currentKey]"
           class="form-control"
-          >
+          :aria-describedby="helpText(schema)">
+        <small 
+          v-if="schema.description" 
+          :id="helpText(schema)" 
+          class="form-text text-muted">
+          {{ schema.description }}
+        </small>
       </div>
     </div>
   </div>	

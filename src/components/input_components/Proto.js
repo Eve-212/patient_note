@@ -71,6 +71,11 @@ export default {
       if(item && item.title){
         return item.title.replace(/\W/gm, '-').toLowerCase()
       }
+    },
+    helpText(schema){
+      if(schema.description) {
+        return `${schema.title.replace(/\W/gm, '-').toLowerCase()} + '-help'`
+      }
     }
   },
   computed: {

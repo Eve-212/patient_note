@@ -8,7 +8,7 @@
       </div> -->
       <SectionNav class="col-xl-2 d-none d-xl-block" :schema="noteSchema"></SectionNav>
     </div>
-    <Note class="col-xl-9" :schema="noteSchema" :schemaData="data"></Note>
+    <Note class="col-xl-10" :schema="noteSchema" :schemaData="data"></Note>
   </div>
 </template>
 

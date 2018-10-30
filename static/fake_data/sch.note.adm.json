@@ -124,7 +124,9 @@
         },
         "cc": {
           "title": "Chief Complaint",
-          "type": "string"
+          "type": "string",
+          "description": "This is a test"
+
         },
         "pi": {
           "title": "Present Illness",
@@ -422,15 +424,25 @@
           "properties": {
             "higth": {
               "title": "Height(cm)",
-              "type": "number"
+              "type": "number",
+              "attrs": {
+                "bsColSize": 3
+              }
             },
             "weight": {
               "title": "Weight(kg)",
-              "type": "number"
+              "type": "number",
+              "description": "This is a test! Work",
+              "attrs": {
+                "bsColSize": 3
+              }
             },
             "bmi": {
               "title": "Body Mass Index(BMI)",
-              "type": "number"
+              "type": "number",
+              "attrs": {
+                "bsColSize": 3
+              }
             },
             "must": {
               "title": "MUST",
@@ -455,7 +467,6 @@
                   "title": "Unplanned weight loss in 3-6 months",
                   "type": "number",
                   "attrs": {
-                    "inputGroup": true,
                     "bsColSize": 6
                   }
                 },
