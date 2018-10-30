@@ -1,12 +1,16 @@
 <template>
   <div class="section-nav">
+<<<<<<< HEAD
     
     <ul class="list-group">      
+=======
+    <ul v-scroll-spy-active="{ class: 'customActive'}" v-scroll-spy-link class="list-group">
+>>>>>>> bcd65a79b814cd037ed462df2606a6154b9bdc29
       <li 
-        v-for="(title, key) in schema.properties.content.properties"
+        v-for="(item, key) in schema.properties.content.properties"
         :key="key"
         class="list-group-item">
-        <a href="#" v-scroll-to="`#${anchorIdFormat(title.title)}`">{{ title.title }}</a>
+        <a href="#" v-scroll-to="`#${anchorIdFormat(item)}`">{{ item.title }}</a>
       </li>
     </ul>
   </div>
@@ -17,14 +21,6 @@ import Proto from './input_components/Proto';
 export default {
   name: 'SectionNav',
   mixins: [Proto],
-  props: {
-    schema: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-  },
   data() {
     return {
     }
@@ -46,7 +42,14 @@ li a {
 .section-nav {
   position: fixed;
   right: 0;
+  height: 80vh;
   border-left: 1px solid #eee;
-  overflow:scroll;
+  overflow-y:scroll;
+}
+.customActive {
+  color: #17a2b8;
+  border-left: 1px solid #17a2b8;
+  padding-left: 40px;
+  transition: all 0.1s;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div 
-    :id="anchorIdFormat(schema.title)" 
+    :id="anchorIdFormat(schema)" 
     :class="[bsColSize, styleClass]" 
     v-if="showInputField">
     <label
