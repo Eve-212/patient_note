@@ -4,19 +4,19 @@
 
       <!-- Card Title -->
       <div v-if="sortType === 'completion'">
-        <h2 v-if="k === 'incompleted'" class="card_title">未完成</h2>
-        <h2 v-else class="card_title">已完成</h2> 
+        <h3 v-if="k === 'incompleted'" class="card_title">未完成</h3>
+        <h3 v-else class="card_title">已完成</h3> 
       </div>
       <div v-else-if="sortType === 'doc_id'">
-        <h2 class="card_title"><small class="text-muted">醫師</small> {{k}}</h2> 
+        <h3 class="card_title"><small class="text-muted">醫師</small> {{k}}</h3> 
       </div>
       <div v-else="sortType === 'bed_no'">
-        <h2 class="card_title">{{k}}<small class="text-muted ml-1">樓</small></h2>
+        <h3 class="card_title">{{k}}<small class="text-muted ml-1">樓</small></h3>
       </div>
 
       <!-- Card Content -->
-      <div class="card_wrap mb-5">
-        <div class="card mt-4 mr-sm-3 mr-0" v-for="(v1, index1) in v" :key="index1">
+      <div class="card_wrap mb-4">
+        <div class="card mt-2 mr-sm-3 mr-0" v-for="(v1, index1) in v" :key="index1">
           <div class="card-header">
             <span class="bed_no px-1 py-1" :class="{ female: v1.ipd.sex == '0' }">{{v1.ipd.bed_no}}</span>｜<span class="font-weight-bold">{{v1.ipd.name}}</span>
             <small class="text-muted float-right">{{v1.ipd.chr_no}}</small>
@@ -67,7 +67,7 @@ export default {
 @import '../assets/global.scss';
 .card_title {
   border-bottom: 1px #cccaca solid;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   text-transform: capitalize;
   @media screen and (max-width: $break-small) {
     font-size: px-to-vw(32, 450);

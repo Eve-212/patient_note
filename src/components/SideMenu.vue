@@ -3,32 +3,21 @@
     <ul style="padding-left: 0">
       <li>
         <router-link :to="{ name: 'ptlists' }">
-          <i class="fa fa-home fa-2x"></i>
-          <span class="nav-text">My Profile</span>
+          <i class="fa fa-book-open fa-2x"></i>
+          <span class="nav-text">Dashboard</span>
         </router-link>
       </li>
      <li>
         <router-link :to="{ name: 'edit' }">
-          <i class="fa fa-font fa-2x"></i>
+          <i class="fa fa-pen fa-2x"></i>
           <span class="nav-text">Edit</span>
         </router-link>
       </li>
       <li>
         <router-link :to="{ name: 'dashboard' }">
-          <i class="fa fa-home fa-2x"></i>
+          <i class="fa fa-sticky-note fa-2x"></i>
           <span class="nav-text">Dashboard</span>
         </router-link>
-      </li>
-      <li>
-        <router-link :to="{ name: 'lab' }">
-          <i class="fa fa-home fa-2x"></i>
-          <span class="nav-text">Lab</span>
-        </router-link>
-      </li>
-      <li>
-        <a href="#">
-                   <i class="fa fa-info fa-2x"></i><span class="nav-text">Documentation</span>
-                </a>
       </li>
     </ul>
   </div>

@@ -31,10 +31,11 @@
 			
 
 		</div>
+			
+		<!-- {{ jsonSchema }} -->
 		
 		
-		
-		
+		{{ jsonSchemaData }}
 		  
 	</div>
 </template>
@@ -54,107 +55,99 @@ import bsLabTable from "./input_components/bsLabTable"
 import OrgChart from "./input_components/OrgChart"
 
 export default {
-	name: 'Note',
-	components: {
-		TextInput,
-		RadioInput,
-		Checkbox,
-		CheckList,
-		NumberInput,
-		SelectDate,
-		SelectList,
-		ObjectComponent,
-		CheckListWithOther,
-		FamilyTree,
-		bsLabTable,
-		OrgChart
-	},
-	props: {
-		schema: {
-			type: Object,
-			default() {
-				return {}
-			}
-		},
-		schemaData: {
-			type: Object,
-			default() {
-				return {}
-			}
-		},
-		
-		path:{
-			type:Array,
-			default(){
-				return [];
-			}
-		},
-		currentKey: {
-			type: String,
-			default() {
-				return ""
-			}
-		}
-		
-	},
-	data() {
-		return {
-			jsonSchemaData: this.schemaData,
-			jsonSchema: this.schema,
-			// sectionKeys: null      
-		}    
-	},
-	created() {
-		// this.sectionKeys = Object.keys(this.schema.properties.content.properties)		
-	},
-	watch:{
-		schemaData($data){
-			this.jsonSchemaData=this.schemaData
-		},
-		schema($schema){
-			this.jsonSchema=this.schema.properties.content
-		}
-	},
-	methods: {   
+  name: 'Note',
+  components: {
+    TextInput,
+    RadioInput,
+    Checkbox,
+    CheckList,
+    NumberInput,
+    SelectDate,
+    SelectList,
+    ObjectComponent,
+    CheckListWithOther,
+    FamilyTree,
+    bsLabTable
+  },
+  props: {
+    schema: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
+    schemaData: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
 
-		// TODO: should be able to default to JSON type (string, int, array etc.) if no custom fieldType given
-		getComponentName(field) {
-			let $com="TextInput"
-			let $type_field={
-				"object":"object",
-				"string":"text",
-				"number":"number",
-				"integer":"number",
-				"array":"checklist",
-				"boolean":"radio"
+    path: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    currentKey: {
+      type: String,
+      default() {
+        return ''
+      }
+    }
+  },
+  data() {
+    return {
+      jsonSchemaData: this.schemaData,
+      jsonSchema: this.schema
+    }
+  },
+  created() {},
+  watch: {
+    schemaData($data) {
+      this.jsonSchemaData = this.schemaData
+    },
+    schema($schema) {
+      this.jsonSchema = this.schema.properties.content
+    }
+  },
+  methods: {
+    // TODO: should be able to default to JSON type (string, int, array etc.) if no custom fieldType given
+    getComponentName(field) {
+      let $com = 'TextInput'
+      let $type_field = {
+        object: 'object',
+        string: 'text',
+        number: 'number',
+        integer: 'number',
+        array: 'checklist',
+        boolean: 'radio'
+      }
+      let $field_com = {
+        text: 'TextInput',
+        checklistwithother: 'CheckListWithOther',
+        radio: 'RadioInput',
+        checkbox: 'Checkbox',
+        checklist: 'CheckList',
+        selectList: 'SelectList',
+        object: 'ObjectComponent',
+        number: 'NumberInput',
+        date: 'SelectDate',
+        labtable: 'bsLabTable'
+      }
+      if (!field.attrs) {
+        field.attrs = {}
+      }
+      if (!field.attrs.fieldType) {
+        if (field.type) {
+          field.attrs.fieldType = $type_field[field.type]
+        } else {
+          field.attrs.fieldType = 'text'
+        }
+      }
 
-			};
-			let $field_com={
-				"text":"TextInput",
-				"checklistwithother":"CheckListWithOther",
-				"radio":"RadioInput",
-				"checkbox":"Checkbox",
-				"checklist":"CheckList",
-				"selectList":"SelectList",
-				"object": "ObjectComponent",
-				"number": "NumberInput",
-				"date": "SelectDate",
-				"labtable": "bsLabTable",
-				"familytree": "FamilyTree"
-			}
-			if (!field.attrs){
-				field.attrs={}
-			}
-			if (!field.attrs.fieldType){
-				if (field.type){
-					field.attrs.fieldType=$type_field[field.type]
-				}else{
-					field.attrs.fieldType="text"
-				}
-			}
-			
-			return ($field_com[field.attrs.fieldType] || "TextInput")
-			/*
+      return $field_com[field.attrs.fieldType] || 'TextInput'
+      /*
 			if (!(field.attrs && field.attrs.fieldType)) {
 				if (field.type === 'string') {
 					return "TextInput"
@@ -207,9 +200,7 @@ export default {
 	padding-left: 20px;
 }
 /* change family tree styles */
-/* .avat {
+.avat {
   border: none !important;
-} */
-
-
+}
 </style>
