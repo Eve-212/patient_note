@@ -1,17 +1,19 @@
 <template>
-	<div>
-		<table class="table table-sm table-bordered">
+	<div id="labwrap" class="mb-2">
+		<table class="col-sm-5 table-bordered">
       <thead>
         <tr>
-          <th scope="col"></th>
-          <th v-for ="(v, k, index) in lab.blood" scope="col">{{ v.id }}</th>
+          <th></th>
+          <th class="px-1 py-1" v-for ="(v, k, index) in lab.blood">{{ v.id }}</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(v, k, index) in lists">
-          <th scope="row">{{k}}</th>
-          <td 
-            v-for="(v1, k1, index1) in v" 
+          <th class="px-1 py-1">{{k}}</th>
+          <td
+            v-for="(v1, k1, index1) in v"
+            class="text-center px-1 py-1"
+            :class="{low : v1.mark == 'L', high: v1.mark == 'H'}" 
             >{{ v1.value }}</td>
         </tr>
       </tbody>
@@ -215,5 +217,37 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import '../../assets/global.scss';
+
+#labwrap {
+  width: 1250px;
+  transform: scale(0.65);
+  -webkit-transform-origin-x: 0;
+  overflow-x: scroll;
+  @media screen and (max-width: $break-medium) {
+    width: 400px;
+  }
+  table {
+    white-space: normal;
+    word-wrap: break-word;
+    thead,
+    tbody {
+      th {
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+    td {
+      &.low {
+        color: #fff;
+        background: $red;
+      }
+      &.high {
+        color: #fff;
+        background: $blue;
+      }
+    }
+  }
+}
 </style>
