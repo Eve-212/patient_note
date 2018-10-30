@@ -680,7 +680,7 @@
           "type": "object",
           "properties": {
             "data": {
-              "title": "XXXXX",
+              "title": "blood",
               "type": "object",
               "properties": {
                 "blood": {
