@@ -1,6 +1,6 @@
 <template>
   <div class="tree-style">   
-    <!-- <tree-charter :json="treeData"></tree-charter> -->
+    <tree-charter :json="treeData"></tree-charter>
   </div>  
 </template>
 
