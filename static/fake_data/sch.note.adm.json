@@ -360,22 +360,28 @@
                   "Fatigue",
                   "Weakness",
                   "Other"
-                ]
+                ],
+                "styleClass": ["margin-bot-small"]
+
               }
             },
-            "gen_other": {
-              "description": "Other",
+            "general_other": {   
+              "title": "Other",
               "type": "string",
               "attrs": {
                 "dependsOn": {
                   "name": "general",
-                  "values": ["Other", "other"]
+                  "values": ["Other"]
                 }
+                
               }
-            },
+            },          
             "skin": {
               "title": "Skin",
               "type": "array",
+              "attrs": {                
+                "styleClass": ["margin-bot-small"]
+              },
               "items": {
                 "type": "string",
                 "enum": [
@@ -392,6 +398,9 @@
             "heent": {
               "title": "HEENT",
               "type": "array",
+              "attrs": {                
+                "styleClass": ["margin-bot-small"]
+              },
               "items": {
                 "type": "string",
                 "enum": [
@@ -407,6 +416,9 @@
             "cardio_resp": {
               "title": "Cardio-Respiratory system",
               "type": "array",
+              "attrs": {                
+                "styleClass": ["margin-bot-small"]
+              },
               "items": {
                 "type": "string",
                 "enum": [
@@ -422,6 +434,9 @@
             "gi": {
               "title": "Gastrointestinal system",
               "type": "array",
+              "attrs": {                
+                "styleClass": ["margin-bot-small"]
+              },
               "items": {
                 "type": "string",
                 "enum": [
@@ -438,6 +453,9 @@
             "gu": {
               "title": "Genito-urinary system",
               "type": "array",
+              "attrs": {                
+                "styleClass": ["margin-bot-small"]
+              },
               "items": {
                 "type": "string",
                 "enum": [
@@ -454,6 +472,9 @@
             "neuro": {
               "title": "Neuro-Psychiatric system",
               "type": "array",
+              "attrs": {                
+                "styleClass": ["margin-bot-small"]
+              },
               "items": {
                 "type": "string",
                 "enum": [
@@ -470,6 +491,9 @@
             "mus_ske": {
               "title": "Musculoskeletal system",
               "type": "array",
+              "attrs": {                
+                "styleClass": ["margin-bot-small"]
+              },
               "items": {
                 "type": "string",
                 "enum": [
@@ -550,7 +574,7 @@
           }
         },
         "psyco": {
-          "title": "Psychological Evaluation：",
+          "title": "Psychological Evaluation",
           "type": "string",
           "attrs": {
             "fieldType": "radio",
@@ -913,7 +937,7 @@
             }
           }
         },
-        "image": {
+        "image": {           
           "title": "Image finding",
           "type": "string",
           "attrs": {
