@@ -9,7 +9,7 @@
 				:name="currentKey" 
 				v-model="value[currentKey]">
 		</div>
-	</div>
+	</div>  
 </template>
 
 <script>

@@ -65,6 +65,10 @@ export default {
           initValue = ''
           this.$set(this.value, this.currentKey, initValue)
           break
+        case 'bsRadioInput':
+          initValue = ''
+          this.$set(this.value, this.currentKey, initValue)
+          break
       }
     },
     anchorIdFormat(item){
@@ -94,11 +98,11 @@ export default {
     showInputField() {
       let schemaAttrs = this.schema.attrs
       //dependsOn name is Array?
-      if (typeof schemaAttrs !== 'undefined') {
-        if (typeof schemaAttrs.dependsOn !== 'undefined') {
+      if (schemaAttrs) {
+        if (schemaAttrs.dependsOn) {
           if (
-            typeof schemaAttrs.dependsOn.values !== 'undefined' &&
-            typeof schemaAttrs.dependsOn.name !== 'undefined'
+            schemaAttrs.dependsOn.values &&
+            schemaAttrs.dependsOn.name
           ) {
             if (Array.isArray(this.value[schemaAttrs.dependsOn.name])) {
               for (let i = 0; i < schemaAttrs.dependsOn.values.length; i++) {

@@ -1,8 +1,12 @@
 <template>
+<<<<<<< HEAD
+  <div v-if="showInputField">
+    <h5 :id="anchorIdFormat(schema)" :class="[styleClass]">{{ schema.title }}</h5>
+=======
   <div class="col-lg-12 scroll-watch" v-if="showInputField">
     <h5 :id="anchorIdFormat(schema)">{{ schema.title }}</h5>
+>>>>>>> 4ba80cde14f0da1de31368188e59fe21f1d012af
     <div class="obj_box row">
-
       <component 
         v-for="(field, key) in schema.properties" 
         :key="key" 
@@ -12,14 +16,13 @@
         :currentKey="key" 
         v-model="value[currentFieldName]">
       </component>
-
     </div>
   </div>
 </template>
 
 <script>
 import TextInput from '../input_components/TextInput'
-import RadioInput from '../input_components/RadioInput'
+import bsRadioInput from '../input_components/bsRadioInput'
 import Checkbox from '../input_components/Checkbox'
 import CheckList from '../input_components/CheckList'
 import CheckListWithOther from '../input_components/CheckListWithOther'
@@ -37,7 +40,7 @@ export default {
   mixins: [Proto],
   components: {
     TextInput,
-    RadioInput,
+    bsRadioInput,
     Checkbox,
     CheckList,
     NumberInput,
@@ -111,7 +114,7 @@ export default {
       let $field_com = {
         text: 'TextInput',
         checklistwithother: 'CheckListWithOther',
-        radio: 'RadioInput',
+        radio: 'bsRadioInput',
         checkbox: 'Checkbox',
         checklist: 'CheckList',
         selectList: 'SelectList',

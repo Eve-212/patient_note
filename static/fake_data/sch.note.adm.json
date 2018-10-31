@@ -58,8 +58,8 @@
               "format": "date",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
-                "bsColSize": 4
+                "fieldType": "date",                
+                "bsColSize": 12
               }
             },
             "age": {
@@ -99,7 +99,7 @@
               "format": "date-time",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
+                "fieldType": "date",                
                 "bsColSize": 4
               }
             },
@@ -108,7 +108,7 @@
               "format": "date-time",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
+                "fieldType": "date",                
                 "bsColSize": 4
               }
             },
@@ -125,7 +125,7 @@
         "cc": {
           "title": "Chief Complaint",
           "type": "string",
-          "description": "This is a test",
+          "description": "<input description>",
           "attrs": {
             "inputGroup": true,
             "bsColSize": 12,
@@ -157,10 +157,16 @@
             "cigarette": {
               "title": "Smoking",
               "type": "object",
+<<<<<<< HEAD
+=======
+              "attrs": {  
+                "styleClass": ["subsection-title"]                
+              },
+>>>>>>> 3a5975ed8abd79970ac633e3945f88f5fc07e279
               "properties": {
                 "used": {
                   "title": "Used",
-                  "type": "boolean"
+                  "type": "boolean"                  
                 },
                 "type": {
                   "title": "Type",
@@ -168,18 +174,35 @@
                   "items": {
                     "type": "string",
                     "enum": ["Cigarettes", "Electronic cigarettes"]
+                  },
+                  "attrs": {
+                    "dependsOn": {
+                      "name": "used",
+                      "values": ["Yes"]
+                    }
                   }
                 },
                 "quitted": {
                   "title": "Quitted",
-                  "type": "boolean"
+                  "type": "boolean",
+                  "attrs": {
+                    "dependsOn": {
+                      "name": "used",
+                      "values": ["Yes"]
+                    }
+                  }
                 },
                 "pack_per_day": {
                   "title": "Packs per day",
                   "type": "number",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 3,
+                    "dependsOn": {
+                      "name": "used",
+                      "values": ["Yes"]
+                    }
+                    
                   }
                 },
                 "duration": {
@@ -187,7 +210,11 @@
                   "type": "number",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 3,
+                    "dependsOn": {
+                      "name": "used",
+                      "values": ["Yes"]
+                    }
                   }
                 },
                 "passive_expose": {
@@ -199,14 +226,18 @@
             "alcohol": {
               "title": "Alcohol drinking",
               "type": "object",
+              "attrs": {  
+                "styleClass": ["subsection-title"]
+              },
               "properties": {
                 "used": {
                   "title": "Used",
                   "type": "boolean"
                 },
                 "quitted": {
-                  "title": "Quited",
+                  "title": "Quit use",
                   "type": "boolean"
+                 
                 },
                 "vol_per_day": {
                   "title": "Volumn(ml) per day",
@@ -228,13 +259,17 @@
             },
             "betel_nut": {
               "type": "object",
+              "title": "Betel Nuts",
+              "attrs": {
+                "styleClass": ["subsection-title"]
+              },
               "properties": {
                 "used": {
-                  "title": "Betel nuts",
+                  "title": "Used",
                   "type": "boolean"
                 },
                 "quitted": {
-                  "title": "Quited",
+                  "title": "Quit use",
                   "type": "boolean"
                 },
                 "num_per_day": {
@@ -324,8 +359,7 @@
               "items": {
                 "type": "string"
               },
-              "attrs": {
-                "fieldType": "checklist",
+              "attrs": {                
                 "values": [
                   "Weight loss or gain",
                   "Fever",
@@ -337,53 +371,121 @@
                 ]
               }
             },
+            "gen_other": {
+              "description": "Other",
+              "type": "string",
+              "attrs": {                                
+                  "dependsOn": {
+                    "name": "general",
+                    "values": [
+                        "Other", "other"
+                    ]
+                  }
+              }
+            },
             "skin": {
               "title": "Skin",
               "type": "array",
               "items": {
-                "type": "string"
+                "type": "string",
+                "enum": [ "Pigment changes",
+                  "Rashes/Pruritus",
+                  "Bruising/Bleeding",
+                  "Nevi/Moles",
+                  "Dryness/Sweating",
+                  "Prior",
+                  "Other"
+                ]
               }
             },
             "heent": {
               "title": "HEENT",
               "type": "array",
               "items": {
-                "type": "string"
+                "type": "string",
+                "enum": [ 
+                  "Head trauma",
+                  "Headaches",
+                  "Swelling of face",
+                  "Sinus infections",
+                  "Enlarged thyroid",
+                  "Other"
+                ]
               }
             },
             "cardio_resp": {
               "title": "Cardio-Respiratory system",
               "type": "array",
               "items": {
-                "type": "string"
+                "type": "string",
+                "enum": [ 
+                  "Breathlessness",
+                  "Cough",
+                  "Voice changes",
+                  "Dizziness",
+                  "Nausea",
+                  "Other"
+                ]
               }
             },
             "gi": {
               "title": "Gastrointestinal system",
               "type": "array",
               "items": {
-                "type": "string"
+                "type": "string",
+                "enum": [ "Weight loss or gain",
+                  "Fever",
+                  "Chills",
+                  "Night sweating",
+                  "Fatigue",
+                  "Weakness",
+                  "Other"
+                ]
               }
             },
             "gu": {
               "title": "Genito-urinary system",
               "type": "array",
               "items": {
-                "type": "string"
+                "type": "string",
+                "enum": [ "Weight loss or gain",
+                  "Fever",
+                  "Chills",
+                  "Night sweating",
+                  "Fatigue",
+                  "Weakness",
+                  "Other"
+                ]
               }
             },
             "neuro": {
               "title": "Neuro-Psychiatric system",
               "type": "array",
               "items": {
-                "type": "string"
+                "type": "string",
+                "enum": [ "Weight loss or gain",
+                  "Fever",
+                  "Chills",
+                  "Night sweating",
+                  "Fatigue",
+                  "Weakness",
+                  "Other"
+                ]
               }
             },
             "mus_ske": {
               "title": "Musculoskeletal system",
               "type": "array",
               "items": {
-                "type": "string"
+                "type": "string",
+                "enum": [ "Weight loss or gain",
+                  "Fever",
+                  "Chills",
+                  "Night sweating",
+                  "Fatigue",
+                  "Weakness",
+                  "Other"
+                ]
               }
             }
           }
@@ -483,7 +585,7 @@
             "weight": {
               "title": "Weight(kg)",
               "type": "number",
-              "description": "This is a test! Work",
+              "description": "<input description>",
               "attrs": {
                 "inputGroup": true,
                 "bsColSize": 4
