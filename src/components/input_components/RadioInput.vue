@@ -23,18 +23,16 @@
 import Proto from './Proto'
 export default {
   name: 'RadioInput',
-  mixins:[Proto],
-  created(){
-    if(!this.schema.attrs.values){
-      if (this.schema.type=="boolean"){
-        this.schema.attrs.values=['Yes','No']
+  mixins: [Proto],
+  created() {
+    if (!this.schema.attrs.values) {
+      if (this.schema.type == 'boolean') {
+        this.schema.attrs.values = ['Yes', 'No']
       }
     }
   },
   data() {
-    return {
-      
-    }
+    return {}
   }
 }
 </script>
@@ -44,5 +42,4 @@ export default {
   font-size: 1.1rem;
   margin-right: 15px;
 }
-
 </style>

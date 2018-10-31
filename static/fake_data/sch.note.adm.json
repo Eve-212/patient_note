@@ -86,21 +86,14 @@
                 "bsColSize": 4
               }
             },
-            "admit_dept": {
-              "title": "Department",
-              "type": "string",
-              "attrs": {
-                "inputGroup": true,
-                "bsColSize": 4
-              }
-            },
+
             "admit_time": {
               "title": "Time of Admission",
               "format": "date-time",
               "type": "string",
               "attrs": {
                 "fieldType": "date",
-                "bsColSize": 4
+                "bsColSize": 6
               }
             },
             "evaluate_time": {
@@ -109,7 +102,15 @@
               "type": "string",
               "attrs": {
                 "fieldType": "date",
-                "bsColSize": 4
+                "bsColSize": 6
+              }
+            },
+            "admit_dept": {
+              "title": "Department",
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 6
               }
             },
             "source": {
@@ -117,7 +118,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 4
+                "bsColSize": 6
               }
             }
           }
