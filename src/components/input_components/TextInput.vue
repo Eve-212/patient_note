@@ -1,7 +1,7 @@
 <template>
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[bsColSize, styleClass, paddingY15]" 
+    :class="[bsColSize, styleClass]" 
     v-if="showInputField">
     <div v-if="schema.attrs.inputGroup">
       <div class="input-group mb-3">

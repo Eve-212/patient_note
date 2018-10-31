@@ -1,6 +1,6 @@
 <template>
   <div class="wrap" :class="{isExpanded: isExpanded}">
-    <div v-scroll-spy="{ sectionSelector: '.scroll-watch', offset: 0 }" class="row">    
+    <div v-scroll-spy="{ sectionSelector: '.scroll-watch', offset: 100 }" class="row">    
       <Note class="col-xl-10" :schema="noteSchema" :schemaData="data"></Note>
       <SectionNav class="col-xl-2 d-none d-xl-block mt-5" :schema="noteSchema"></SectionNav>
     </div>
