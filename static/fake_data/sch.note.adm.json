@@ -362,16 +362,17 @@
                 ]
               }
             },
-            "gen_other": {
-              "description": "Other",
+            "general_other": {   
+              "title": "Other",
               "type": "string",
               "attrs": {
                 "dependsOn": {
                   "name": "general",
-                  "values": ["Other", "other"]
+                  "values": ["Other"]
                 }
+                
               }
-            },
+            },          
             "skin": {
               "title": "Skin",
               "type": "array",
@@ -912,7 +913,7 @@
             }
           }
         },
-        "image": {
+        "image": {           
           "title": "Image finding",
           "type": "string",
           "attrs": {
