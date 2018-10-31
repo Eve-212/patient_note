@@ -573,7 +573,7 @@
           }
         },
         "psyco": {
-          "title": "Psychological Evaluation：",
+          "title": "Psychological Evaluation",
           "type": "string",
           "attrs": {
             "fieldType": "radio",

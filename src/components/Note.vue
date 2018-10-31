@@ -1,7 +1,7 @@
 <template> 
-	<div class="scroll-watch">
+	<div class="note-style">
 		<h2>{{ schema.title }}</h2>  		
-			<div class="row">   
+			<div class="row scroll-watch">   
 			<component 
 				v-for="(field, key) in jsonSchema.properties" 
 				:key="key"
@@ -169,7 +169,7 @@ export default {
 </script>
 
 <style lang="scss">
-.scroll-watch {
+.note-style {
   .input-group-text {
     font-size: 14px !important;
   }

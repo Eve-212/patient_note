@@ -1,7 +1,7 @@
 <template>
   <div v-if="showInputField" :class="[bsColSize]">
     <h5 :id="anchorIdFormat(schema)" :class="[styleClass]">{{ schema.title }}</h5>
-    <div class="obj_box row">
+    <div class="obj_box row scroll-watch">
       <component 
         v-for="(field, key) in schema.properties" 
         :key="key" 
