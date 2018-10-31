@@ -30,6 +30,7 @@ import ObjectComponent from "./utility_components/ObjectComponent"
 import FamilyTree from "./input_components/FamilyTree"
 import bsLabTable from "./input_components/bsLabTable"
 import OrgChart from "./input_components/OrgChart"
+import FuncAssess from "./input_components/FuncAssess"
 
 export default {
   name: 'Note',
@@ -44,7 +45,8 @@ export default {
     ObjectComponent,
     CheckListWithOther,
     FamilyTree,
-    bsLabTable
+    bsLabTable,
+    FuncAssess
   },
   props: {
     schema: {
@@ -110,7 +112,8 @@ export default {
         object: 'ObjectComponent',
         number: 'NumberInput',
         date: 'SelectDate',
-        labtable: 'bsLabTable'
+        labtable: 'bsLabTable',
+        funcassess:"FuncAssess"
       }
       if (!field.attrs) {
         field.attrs = {}

@@ -1,6 +1,6 @@
 <template>
 
-    <table class="small" v-if="treeData.name">
+    <table class="small" v-if="treeData">
       <tr>
         <td :colspan="treeData.children ? treeData.children.length * 2 : 1" :class="{parentLevel: treeData.children, extend: treeData.children && treeData.extend}">
           <div :class="{node: true, hasMate: treeData.mate}">
@@ -8,13 +8,20 @@
               <div class="avat">
                 <img :src="treeData.image_url" />
               </div>
-              <div class="name">{{treeData.name}}</div>
+              <div class="name">
+                <span class="age" v-if="treeData.age" >{{treeData.age}} y/o </span>
+                <span class="disease" v-if="treeData.disease" >{{treeData.disease}}</span>
+              </div>
             </div>
             <div class="person" v-if="treeData.mate" @click="$emit('click-node', treeData.mate)">
               <div class="avat">
                 <img :src="treeData.mate.image_url" />
               </div>
-              <div class="name">{{treeData.mate.name}}</div>
+              <div class="name">
+                <span class="age" v-if="treeData.mate.age" >{{treeData.mate.age}} y/o </span>
+                <span class="disease" v-if="treeData.mate.disease" >{{treeData.mate.disease}}</span>
+              </div>
+              
             </div>
           </div>
           <div class="extend_handle" v-if="treeData.children" @click="toggleExtend(treeData)"></div>
@@ -174,6 +181,7 @@ td {
   z-index: 2;
   width: 4em;
   overflow: hidden;
+  vertical-align: top;
 }
 .node .person .avat {
   display: block;
@@ -190,10 +198,11 @@ td {
   height: 100%;
 }
 .node .person .name {
-  height: 2em;
-  line-height: 2em;
+  /*height: 2em;
+  line-height: 2em;*/
   overflow: hidden;
   width: 100%;
+  margin-bottom: 1em;
 }
 .node.hasMate::after {
   content: '';
