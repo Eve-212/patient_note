@@ -1,4 +1,3 @@
-
 <template>
   <div 
     :id="anchorIdFormat(schema)" 
@@ -14,8 +13,15 @@
           type="text" 
           :name="currentKey" 
           v-model="value[currentKey]"
-          class="form-control">
+          class="form-control"
+          :aria-describedby="helpText(schema)">
       </div>
+      <small 
+        v-if="schema.description" 
+        :id="helpText(schema)" 
+        class="form-text text-muted reminder">
+        {{ schema.description }}
+      </small>
     </div>
     <div class="form-group row" v-if="!schema.attrs.inputGroup">
     
@@ -35,7 +41,7 @@
         <small 
           v-if="schema.description" 
           :id="helpText(schema)" 
-          class="form-text text-muted">
+          class="form-text text-muted reminder">
           {{ schema.description }}
         </small>
       </div>

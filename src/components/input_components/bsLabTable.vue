@@ -1,5 +1,5 @@
 <template>
-	<div id="labwrap" class="mb-2">
+	<div id="labwrap">
 		<table class="table table-bordered">
       <thead>
         <tr>
@@ -223,6 +223,8 @@ export default {
 #labwrap {
   width: 900px;
   overflow: auto;
+  margin-left: 15px;
+  margin-bottom: -15px;
   @media screen and (max-width: 1000px) {
     width: px-to-vw(650, 1000);
   }

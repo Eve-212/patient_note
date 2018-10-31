@@ -58,8 +58,8 @@
               "format": "date",
               "type": "string",
               "attrs": {
-                "fieldType": "date",                
-                "bsColSize": 12
+                "fieldType": "date",
+                "bsColSize": 4
               }
             },
             "age": {
@@ -99,7 +99,7 @@
               "format": "date-time",
               "type": "string",
               "attrs": {
-                "fieldType": "date",                
+                "fieldType": "date",
                 "bsColSize": 4
               }
             },
@@ -108,7 +108,7 @@
               "format": "date-time",
               "type": "string",
               "attrs": {
-                "fieldType": "date",                
+                "fieldType": "date",
                 "bsColSize": 4
               }
             },
@@ -125,11 +125,9 @@
         "cc": {
           "title": "Chief Complaint",
           "type": "string",
-          "description": "<input description>",
           "attrs": {
             "inputGroup": true,
-            "bsColSize": 12,
-            "styleClass": ["paddingY30"]
+            "bsColSize": 12
           }
         },
         "pi": {
@@ -137,8 +135,7 @@
           "type": "string",
           "attrs": {
             "inputGroup": true,
-            "bsColSize": 12,
-            "styleClass": ["paddingY30"]
+            "bsColSize": 12
           }
         },
         "travel_contact": {
@@ -146,8 +143,7 @@
           "type": "string",
           "attrs": {
             "inputGroup": true,
-            "bsColSize": 12,
-            "styleClass": ["paddingY30"]
+            "bsColSize": 12
           }
         },
         "personal_hx": {
@@ -157,16 +153,13 @@
             "cigarette": {
               "title": "Smoking",
               "type": "object",
-<<<<<<< HEAD
-=======
-              "attrs": {  
-                "styleClass": ["subsection-title"]                
+              "attrs": {
+                "styleClass": ["subsection-title"]
               },
->>>>>>> 3a5975ed8abd79970ac633e3945f88f5fc07e279
               "properties": {
                 "used": {
-                  "title": "Used",
-                  "type": "boolean"                  
+                  "title": "Used：",
+                  "type": "boolean"
                 },
                 "type": {
                   "title": "Type",
@@ -202,7 +195,6 @@
                       "name": "used",
                       "values": ["Yes"]
                     }
-                    
                   }
                 },
                 "duration": {
@@ -218,7 +210,7 @@
                   }
                 },
                 "passive_expose": {
-                  "title": "Passive smoking",
+                  "title": "Passive smoking：",
                   "type": "boolean"
                 }
               }
@@ -226,25 +218,24 @@
             "alcohol": {
               "title": "Alcohol drinking",
               "type": "object",
-              "attrs": {  
+              "attrs": {
                 "styleClass": ["subsection-title"]
               },
               "properties": {
                 "used": {
-                  "title": "Used",
+                  "title": "Used：",
                   "type": "boolean"
                 },
                 "quitted": {
-                  "title": "Quit use",
+                  "title": "Quit use：",
                   "type": "boolean"
-                 
                 },
                 "vol_per_day": {
                   "title": "Volumn(ml) per day",
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 5
                   }
                 },
                 "duration": {
@@ -252,7 +243,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 5
                   }
                 }
               }
@@ -265,11 +256,11 @@
               },
               "properties": {
                 "used": {
-                  "title": "Used",
+                  "title": "Used：",
                   "type": "boolean"
                 },
                 "quitted": {
-                  "title": "Quit use",
+                  "title": "Quit use：",
                   "type": "boolean"
                 },
                 "num_per_day": {
@@ -277,7 +268,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 5
                   }
                 },
                 "duration": {
@@ -285,7 +276,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 5
                   }
                 }
               }
@@ -359,7 +350,7 @@
               "items": {
                 "type": "string"
               },
-              "attrs": {                
+              "attrs": {
                 "values": [
                   "Weight loss or gain",
                   "Fever",
@@ -374,13 +365,11 @@
             "gen_other": {
               "description": "Other",
               "type": "string",
-              "attrs": {                                
-                  "dependsOn": {
-                    "name": "general",
-                    "values": [
-                        "Other", "other"
-                    ]
-                  }
+              "attrs": {
+                "dependsOn": {
+                  "name": "general",
+                  "values": ["Other", "other"]
+                }
               }
             },
             "skin": {
@@ -388,7 +377,8 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [ "Pigment changes",
+                "enum": [
+                  "Pigment changes",
                   "Rashes/Pruritus",
                   "Bruising/Bleeding",
                   "Nevi/Moles",
@@ -403,7 +393,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [ 
+                "enum": [
                   "Head trauma",
                   "Headaches",
                   "Swelling of face",
@@ -418,7 +408,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [ 
+                "enum": [
                   "Breathlessness",
                   "Cough",
                   "Voice changes",
@@ -433,7 +423,8 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [ "Weight loss or gain",
+                "enum": [
+                  "Weight loss or gain",
                   "Fever",
                   "Chills",
                   "Night sweating",
@@ -448,7 +439,8 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [ "Weight loss or gain",
+                "enum": [
+                  "Weight loss or gain",
                   "Fever",
                   "Chills",
                   "Night sweating",
@@ -463,7 +455,8 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [ "Weight loss or gain",
+                "enum": [
+                  "Weight loss or gain",
                   "Fever",
                   "Chills",
                   "Night sweating",
@@ -478,7 +471,8 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": [ "Weight loss or gain",
+                "enum": [
+                  "Weight loss or gain",
                   "Fever",
                   "Chills",
                   "Night sweating",
@@ -517,7 +511,7 @@
           "type": "object",
           "properties": {
             "living": {
-              "title": "Lives",
+              "title": "Lives：",
               "type": "string",
               "attrs": {
                 "fieldName": "living",
@@ -526,7 +520,7 @@
               }
             },
             "family": {
-              "title": "Family support",
+              "title": "Family support：",
               "type": "string",
               "attrs": {
                 "fieldName": "family",
@@ -535,7 +529,7 @@
               }
             },
             "caregiver": {
-              "title": "Main caregiver",
+              "title": "Main caregiver：",
               "type": "string",
               "attrs": {
                 "fieldName": "caregiver",
@@ -544,7 +538,7 @@
               }
             },
             "finatial": {
-              "title": "Financial support",
+              "title": "Financial support：",
               "type": "string",
               "attrs": {
                 "fieldName": "finacial",
@@ -555,7 +549,7 @@
           }
         },
         "psyco": {
-          "title": "Psychological Evaluation",
+          "title": "Psychological Evaluation：",
           "type": "string",
           "attrs": {
             "fieldType": "radio",
@@ -585,7 +579,6 @@
             "weight": {
               "title": "Weight(kg)",
               "type": "number",
-              "description": "<input description>",
               "attrs": {
                 "inputGroup": true,
                 "bsColSize": 4
@@ -603,6 +596,9 @@
               "title": "MUST",
               "description": "Malnutrition Universal Screening Tool",
               "type": "object",
+              "attrs": {
+                "styleClass": ["subsection-title"]
+              },
               "properties": {
                 "bmi": {
                   "title": "BMI",
@@ -621,7 +617,8 @@
                   }
                 },
                 "weight_loss": {
-                  "title": "Unplanned weight loss in 3-6 months",
+                  "title": "Weight loss",
+                  "description": "Unplanned in 3-6 months",
                   "type": "number",
                   "attrs": {
                     "inputGroup": true,
@@ -637,7 +634,7 @@
                   }
                 },
                 "acute_effect": {
-                  "title": "Acutely illness because of poor intake",
+                  "title": "Acutely illness because of poor intake：",
                   "type": "boolean",
                   "attrs": {
                     "inputGroup": true,
@@ -717,6 +714,9 @@
             "vitals": {
               "title": "Vital signs",
               "type": "object",
+              "attrs": {
+                "styleClass": ["subsection-title"]
+              },
               "properties": {
                 "bt": {
                   "title": "BT(℃)",
@@ -774,13 +774,15 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 12,
-                "styleClass": ["paddingY30"]
+                "bsColSize": 12
               }
             },
             "GCS": {
               "title": "Glasgow Coma Scale",
               "type": "object",
+              "attrs": {
+                "styleClass": ["subsection-title"]
+              },
               "properties": {
                 "e": {
                   "title": "E",
@@ -819,25 +821,28 @@
             "skin": {
               "title": "Skin",
               "type": "object",
+              "attrs": {
+                "styleClass": ["subsection-title"]
+              },
               "properties": {
                 "intact": {
-                  "title": "Intact",
+                  "title": "Intact：",
                   "type": "boolean"
                 },
                 "turgor": {
-                  "title": "Turgor",
+                  "title": "Turgor：",
                   "type": "boolean"
                 },
                 "cynosis": {
-                  "title": "Cyanosis",
+                  "title": "Cyanosis：",
                   "type": "boolean"
                 },
                 "jaundice": {
-                  "title": "Jaundice",
+                  "title": "Jaundice：",
                   "type": "boolean"
                 },
                 "petechia": {
-                  "title": "Petechia",
+                  "title": "Petechia：",
                   "type": "boolean"
                 }
               }
@@ -845,6 +850,9 @@
             "heent": {
               "title": "HEENT",
               "type": "object",
+              "attrs": {
+                "styleClass": ["subsection-title"]
+              },
               "properties": {
                 "conjuntivae": {
                   "title": "Conjunctivae",
@@ -881,6 +889,9 @@
             "data": {
               "title": "Blood",
               "type": "object",
+              "attrs": {
+                "styleClass": ["subsection-title"]
+              },
               "properties": {
                 "blood": {
                   "title": "Blood",
@@ -896,26 +907,42 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 10
+                "bsColSize": 12
               }
             }
           }
         },
         "image": {
           "title": "Image finding",
-          "type": "string"
+          "type": "string",
+          "attrs": {
+            "inputGroup": true,
+            "bsColSize": 12
+          }
         },
         "ecg": {
           "title": "ECG finding",
-          "type": "string"
+          "type": "string",
+          "attrs": {
+            "inputGroup": true,
+            "bsColSize": 12
+          }
         },
         "impression": {
           "title": "Impressions",
-          "type": "string"
+          "type": "string",
+          "attrs": {
+            "inputGroup": true,
+            "bsColSize": 12
+          }
         },
         "plan": {
           "title": "Plan (Management)",
-          "type": "string"
+          "type": "string",
+          "attrs": {
+            "inputGroup": true,
+            "bsColSize": 12
+          }
         }
       }
     }

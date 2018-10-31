@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showInputField">
+  <div v-if="showInputField" :class="[bsColSize]">
     <h5 :id="anchorIdFormat(schema)" :class="[styleClass]">{{ schema.title }}</h5>
     <div class="obj_box row">
       <component 
@@ -24,11 +24,11 @@ import CheckListWithOther from '../input_components/CheckListWithOther'
 import NumberInput from '../input_components/NumberInput'
 import SelectDate from '../input_components/SelectDate'
 import SelectList from '../input_components/SelectList'
-import bsLabTable from "../input_components/bsLabTable"
-import OrgChart from "../input_components/OrgChart"
-import FamilyTree from "../input_components/FamilyTree"
-import FuncAssess from "../input_components/FuncAssess"
-import Proto from '../input_components/Proto';
+import bsLabTable from '../input_components/bsLabTable'
+import OrgChart from '../input_components/OrgChart'
+import FamilyTree from '../input_components/FamilyTree'
+import FuncAssess from '../input_components/FuncAssess'
+import Proto from '../input_components/Proto'
 
 export default {
   name: 'ObjectComponent',
@@ -73,11 +73,11 @@ export default {
       }
     },
     sectsKeys: {
-			type: Array,
-			default() {
-				return []
-			}
-		}
+      type: Array,
+      default() {
+        return []
+      }
+    }
   },
   data() {
     return {
@@ -116,9 +116,9 @@ export default {
         object: 'ObjectComponent',
         number: 'NumberInput',
         date: 'SelectDate',
-        labtable: "bsLabTable",
-        familytree: "FamilyTree",
-        funcassess:"FuncAssess"
+        labtable: 'bsLabTable',
+        familytree: 'FamilyTree',
+        funcassess: 'FuncAssess'
       }
       if (!field.attrs) {
         field.attrs = {}
@@ -177,7 +177,6 @@ export default {
     }
   },
   computed: {
-    
     showInputField() {
       let schemaAttrs = this.schema.attrs
       //dependsOn name is Array?

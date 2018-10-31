@@ -1,22 +1,5 @@
 <template> 
-<<<<<<< HEAD
-	<div class="padding-left-temp">		
-		<!-- <h2>{{ jsonSchema.title }}</h2>  
-		{{ jsonSchema.title }}      
-		<div v-for="(field, key) in jsonSchema.properties" :key="key">   	
-		
-			<component 				
-				:is="getComponentName(field)"
-				:schema="field"
-				:currentKey="key"
-				v-model="jsonSchemaData" ></component>
-
-		</div> -->
-
-		
-=======
 	<div class="scroll-watch">
->>>>>>> 4ba80cde14f0da1de31368188e59fe21f1d012af
 		<h2>{{ schema.title }}</h2>  		
 			<div class="row">   
 			<component 
@@ -33,23 +16,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-import TextInput from "./input_components/TextInput"
-import bsRadioInput from "./input_components/bsRadioInput"
-import Checkbox from "./input_components/Checkbox"
-import CheckList from "./input_components/CheckList"
-import CheckListWithOther from "./input_components/CheckListWithOther"
-import NumberInput from "./input_components/NumberInput"
-import SelectDate from "./input_components/SelectDate"
-import SelectList from "./input_components/SelectList"
-import ObjectComponent from "./utility_components/ObjectComponent"
-import FamilyTree from "./input_components/FamilyTree"
-import bsLabTable from "./input_components/bsLabTable"
-import OrgChart from "./input_components/OrgChart"
-import FuncAssess from "./input_components/FuncAssess"
-=======
 import TextInput from './input_components/TextInput'
 import RadioInput from './input_components/RadioInput'
+import bsRadioInput from './input_components/bsRadioInput'
 import Checkbox from './input_components/Checkbox'
 import CheckList from './input_components/CheckList'
 import CheckListWithOther from './input_components/CheckListWithOther'
@@ -61,7 +30,6 @@ import FamilyTree from './input_components/FamilyTree'
 import bsLabTable from './input_components/bsLabTable'
 import OrgChart from './input_components/OrgChart'
 import FuncAssess from './input_components/FuncAssess'
->>>>>>> 4ba80cde14f0da1de31368188e59fe21f1d012af
 
 export default {
   name: 'Note',
@@ -200,29 +168,15 @@ export default {
 }
 </script>
 
-<<<<<<< HEAD
-<style>
-.display-inline {
-	display: inline-block;
-}
-.padding-left {
-	padding-left: 3px;
-}
-.padding-left-temp {
-	padding-left: 50px !important;
-}
-/* change family tree styles */
-.avat {
-  border: none !important;
-=======
 <style lang="scss">
 .scroll-watch {
-  .paddingY30 {
-    padding: 0 30px;
-  }
-
   .input-group-text {
     font-size: 14px !important;
+  }
+
+  h2 {
+    margin-left: -15px;
+    text-transform: uppercase;
   }
 
   h5 {
@@ -230,22 +184,39 @@ export default {
     margin-bottom: 0;
     display: flex;
     align-items: center;
+    font-size: 1.5rem;
     &::before {
       font-family: 'Font Awesome 5 Free';
       font-weight: 600;
       content: '\f0c5';
-      font-size: 14px;
+      font-size: 1rem;
       margin-right: 5px;
       color: #495057;
     }
+    &.subsection-title {
+      font-size: 1.3rem;
+      padding-left: 15px;
+      margin-bottom: -10px;
+      &::before {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 600;
+        content: '\f0da';
+        font-size: 1rem;
+        margin-right: 5px;
+        color: #495057;
+      }
+    }
+  }
+
+  .reminder {
+    margin-top: -15px;
+    margin-bottom: 15px;
   }
 
   /* change family tree styles */
   .avat {
     border: none !important;
   }
-<<<<<<< HEAD
-
   // individual settings for demo
   #information-source .input-group,
   #rr--min- .input-group,
@@ -258,13 +229,65 @@ export default {
       margin-bottom: 16px !important;
     }
   }
-=======
->>>>>>> 4ba80cde14f0da1de31368188e59fe21f1d012af
-}
-.subsection-title {
-  font-size: 1.0rem;
->>>>>>> 3a5975ed8abd79970ac633e3945f88f5fc07e279
 }
 
+#chief-complaint,
+#present-illness,
+#travel-history,
+#note,
+#consciousness {
+  margin: 0 15px;
+}
 
+#birth-date,
+#time-of-admission,
+#time-of-history-taking {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  label {
+    font-size: 14px !important;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    height: 38px;
+    line-height: 24px;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-right: 0;
+    border-radius: 0.25rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  input {
+    font-size: 14px !important;
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    -webkit-transition: border-color 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+      -webkit-box-shadow 0.15s ease-in-out;
+  }
+}
 </style>
