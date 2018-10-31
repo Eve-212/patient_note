@@ -1,42 +1,19 @@
 <template> 
-	<div class="padding-left-large">		
-		<!-- <h2>{{ jsonSchema.title }}</h2>  
-		{{ jsonSchema.title }}      
-		<div v-for="(field, key) in jsonSchema.properties" :key="key">   	
-		
-			<component 				
-				:is="getComponentName(field)"
-				:schema="field"
-				:currentKey="key"
-				v-model="jsonSchemaData" ></component>
-
-		</div> -->
-
-		
+	<div class="scroll-watch">
 		<h2>{{ schema.title }}</h2>  		
-		
-		<div  class="container-fluid"> 			
-			<div class="row">        
+			<div class="row">   
+				
 			<component 
-				class="col-md-12"
-				v-for="(field, key) in jsonSchema.properties" :key="key"
+				v-for="(field, key) in jsonSchema.properties" 
+				:key="key"
 				:is="getComponentName(field)"
 				:schema="field" 
 				:path="path.concat(key)"
 				:currentKey="key"			
 				v-model="jsonSchemaData">
 			</component>
+			
 			</div>
-
-			
-
-		</div>
-			
-		
-		
-		
-		
-		  
 	</div>
 </template>
 
@@ -192,12 +169,6 @@ export default {
 <style>
 .display-inline {
 	display: inline-block;
-}
-.padding-left {
-	padding-left: 3px;
-}
-.padding-left-large {
-	padding-left: 20px;
 }
 /* change family tree styles */
 .avat {

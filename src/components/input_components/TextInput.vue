@@ -21,11 +21,11 @@
     <div class="form-group row" v-if="!schema.attrs.inputGroup">
     
       <label 
-        class="col-md-2 col-form-label"
+        class="col-lg-2 col-form-label"
         :for="currentKey">
         {{ schema.title }}
       </label>
-      <div class="col-md-10">
+      <div class="col-lg-10">
         <input 
           :id="getId()" 
           type="text" 
