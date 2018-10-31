@@ -15,7 +15,6 @@
           :name="currentKey" 
           v-model="value[currentKey]"
           class="form-control">
-
       </div>
     </div>
     <div class="form-group row" v-if="!schema.attrs.inputGroup">
@@ -48,11 +47,11 @@
 import Proto from './Proto'
 export default {
   name: 'TextInput',
-  mixins:[Proto],
-  
+  mixins: [Proto],
+
   data() {
     return {
-      placeholder: this.getPlaceholder()     
+      placeholder: this.getPlaceholder()
     }
   },
   methods: {
@@ -64,7 +63,7 @@ export default {
       }
       return ''
     }
-  },/*
+  } /*
   computed: {
     showInputField() {
       let schemaAttrs = this.schema.attrs
