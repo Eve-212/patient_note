@@ -71,14 +71,14 @@ export default {
           break
       }
     },
-    anchorIdFormat(item){
-      if(item && item.title){
+    anchorIdFormat(item) {
+      if (item && item.title) {
         return item.title.replace(/\W/gm, '-').toLowerCase()
       }
     },
-    helpText(schema){
-      if(schema.description) {
-        return `${schema.title.replace(/\W/gm, '-').toLowerCase()} + '-help'`
+    helpText(schema) {
+      if (schema.description) {
+        return `${schema.title.replace(/\W/gm, '-').toLowerCase()}-help`
       }
     }
   },
@@ -100,10 +100,7 @@ export default {
       //dependsOn name is Array?
       if (schemaAttrs) {
         if (schemaAttrs.dependsOn) {
-          if (
-            schemaAttrs.dependsOn.values &&
-            schemaAttrs.dependsOn.name
-          ) {
+          if (schemaAttrs.dependsOn.values && schemaAttrs.dependsOn.name) {
             if (Array.isArray(this.value[schemaAttrs.dependsOn.name])) {
               for (let i = 0; i < schemaAttrs.dependsOn.values.length; i++) {
                 if (

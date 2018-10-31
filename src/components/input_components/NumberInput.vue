@@ -1,4 +1,3 @@
-
 <template>
   <div 
     :id="anchorIdFormat(schema)" 
@@ -9,15 +8,20 @@
         <div class="input-group-prepend">
           <div class="input-group-text" >{{ schema.title}}</div>
         </div>
-                  <input 
+        <input 
           id="text-input" 
-
           type="number" 
           :name="currentKey" 
           v-model="value[currentKey]"
           class="form-control"
-          >
+          :aria-describedby="helpText(schema)">
       </div>
+      <small 
+        v-if="schema.description" 
+        :id="helpText(schema)" 
+        class="form-text text-muted reminder">
+        {{ schema.description }}
+      </small>
     </div>
     <div class="form-group row" v-if="!schema.attrs.inputGroup">
     
@@ -37,7 +41,7 @@
         <small 
           v-if="schema.description" 
           :id="helpText(schema)" 
-          class="form-text text-muted">
+          class="form-text text-muted reminder">
           {{ schema.description }}
         </small>
       </div>
@@ -45,11 +49,14 @@
   </div>	
 </template>
 
+
+
+
 <script>
 import Proto from './Proto'
 export default {
   name: 'NumberInput',
-  mixins:[Proto],
+  mixins: [Proto],
   /*
   props: {
     schema: {
@@ -72,10 +79,8 @@ export default {
     }
   },*/
   data() {
-    return {
-      
-    }
-  }/*,
+    return {}
+  } /*,
   
   methods: {
     clearInput() {

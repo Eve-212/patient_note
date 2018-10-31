@@ -1,22 +1,20 @@
 
 <template>
-	
-		<div :id="anchorIdFormat(schema)" :class="[bsColSize, styleClass]" class="display-inline" v-if="showInputField">
-			<label :for="currentKey">{{ schema.title }}</label>
-			<input
-				id="number-input" 
-				type="date" 
-				:name="currentKey" 
-				v-model="value[currentKey]">
-		</div>
-	  
+  <div :id="anchorIdFormat(schema)" :class="[bsColSize, styleClass]" v-if="showInputField">
+    <label :for="currentKey">{{ schema.title }}</label>
+    <input
+      id="number-input" 
+      type="date" 
+      :name="currentKey" 
+      v-model="value[currentKey]">
+  </div>
 </template>
 
 <script>
 import Proto from './Proto'
 export default {
   name: 'SelectDate',
-  mixins:[Proto],
+  mixins: [Proto],
   /*
   props: {
     schema: {
@@ -40,10 +38,8 @@ export default {
   },
   */
   data() {
-    return {
-      
-    }
-  },
+    return {}
+  }
   /*
   methods: {
     clearInput() {

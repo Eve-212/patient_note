@@ -1,7 +1,7 @@
 <template>
-  <div class="col-xl-10 my-5 ml-4" :class="{isExpanded: isExpanded}">
+  <div class="wrap" :class="{isExpanded: isExpanded}">
     <div v-scroll-spy="{ sectionSelector: '.scroll-watch', offset: 0 }" class="row">    
-      <Note class="col-xl-10 offset-1 my-5" :schema="noteSchema" :schemaData="data"></Note>
+      <Note class="col-xl-10" :schema="noteSchema" :schemaData="data"></Note>
       <SectionNav class="col-xl-2 d-none d-xl-block mt-5" :schema="noteSchema"></SectionNav>
     </div>
   </div>
@@ -153,7 +153,13 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/global.scss';
-
-
-
+.wrap {
+  margin: 80px 50px 0 100px;
+  @media screen and (max-width: 1025px) {
+    margin: 80px 10px 0 90px;
+  }
+  @media screen and (max-width: $break-medium) {
+    margin: 120px 10px 0 60px;
+  }
+}
 </style>
