@@ -1,4 +1,5 @@
 <template> 
+<<<<<<< HEAD
 	<div class="padding-left-temp">		
 		<!-- <h2>{{ jsonSchema.title }}</h2>  
 		{{ jsonSchema.title }}      
@@ -13,34 +14,28 @@
 		</div> -->
 
 		
+=======
+	<div class="scroll-watch">
+>>>>>>> 4ba80cde14f0da1de31368188e59fe21f1d012af
 		<h2>{{ schema.title }}</h2>  		
-		
-		<div  class="container-fluid"> 			
-			<div class="row">        
+			<div class="row">   
+				
 			<component 
-				class="col-md-12"
-				v-for="(field, key) in jsonSchema.properties" :key="key"
+				v-for="(field, key) in jsonSchema.properties" 
+				:key="key"
 				:is="getComponentName(field)"
 				:schema="field" 
 				:path="path.concat(key)"
 				:currentKey="key"			
 				v-model="jsonSchemaData">
 			</component>
+			
 			</div>
-
-			
-
-		</div>
-			
-		
-		
-		
-		
-		  
 	</div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import TextInput from "./input_components/TextInput"
 import bsRadioInput from "./input_components/bsRadioInput"
 import Checkbox from "./input_components/Checkbox"
@@ -54,6 +49,21 @@ import FamilyTree from "./input_components/FamilyTree"
 import bsLabTable from "./input_components/bsLabTable"
 import OrgChart from "./input_components/OrgChart"
 import FuncAssess from "./input_components/FuncAssess"
+=======
+import TextInput from './input_components/TextInput'
+import RadioInput from './input_components/RadioInput'
+import Checkbox from './input_components/Checkbox'
+import CheckList from './input_components/CheckList'
+import CheckListWithOther from './input_components/CheckListWithOther'
+import NumberInput from './input_components/NumberInput'
+import SelectDate from './input_components/SelectDate'
+import SelectList from './input_components/SelectList'
+import ObjectComponent from './utility_components/ObjectComponent'
+import FamilyTree from './input_components/FamilyTree'
+import bsLabTable from './input_components/bsLabTable'
+import OrgChart from './input_components/OrgChart'
+import FuncAssess from './input_components/FuncAssess'
+>>>>>>> 4ba80cde14f0da1de31368188e59fe21f1d012af
 
 export default {
   name: 'Note',
@@ -136,7 +146,7 @@ export default {
         number: 'NumberInput',
         date: 'SelectDate',
         labtable: 'bsLabTable',
-        funcassess:"FuncAssess"
+        funcassess: 'FuncAssess'
       }
       if (!field.attrs) {
         field.attrs = {}
@@ -187,11 +197,12 @@ export default {
 					return "SelectDate"
 			}
 			*/
-		}
-	}
+    }
+  }
 }
 </script>
 
+<<<<<<< HEAD
 <style>
 .display-inline {
 	display: inline-block;
@@ -205,6 +216,37 @@ export default {
 /* change family tree styles */
 .avat {
   border: none !important;
+=======
+<style lang="scss">
+.scroll-watch {
+  h5 {
+    margin-top: 15px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    &::before {
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 600;
+      content: '\f0c5';
+      font-size: 14px;
+      margin-right: 3px;
+      color: #495057;
+    }
+  }
+  .input-group-text {
+    padding: 4px 8px;
+    font-size: 14px !important;
+  }
+
+  textarea:focus,
+  input:focus {
+    outline: none;
+  }
+  /* change family tree styles */
+  .avat {
+    border: none !important;
+  }
+>>>>>>> 4ba80cde14f0da1de31368188e59fe21f1d012af
 }
 .subsection-title {
   font-size: 1.0rem;

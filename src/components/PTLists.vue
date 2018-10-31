@@ -4,12 +4,17 @@
       <span>{{status}}</span>
       <div class="selectBtn_wrap mb-4 mb-sm-0 d-flex align-items-center justify-content-sm-end">
         <span class="h5 my-0" >Group By：</span>
-        <div class="selectBtn">
-          <select @change="switchType()" v-model="sortType">
-            <!-- <option value="completion">Completion</option> -->
-            <option value="doc_id">Doctor</option>
-            <option value="bed_no">Floor</option>
-          </select>
+        <div class="switchBtn">
+          <button 
+            class="btn btn-outline-info mr-1"
+            :class="{clicked: sortType == 'doc_id'}" 
+            type="button" 
+            @click="switchType('doc_id')">Doctor</button>
+          <button 
+            class="btn btn-outline-info mr-1"
+            :class="{clicked: sortType == 'bed_no'}"  
+            type="button" 
+            @click="switchType('bed_no')">Floor</button>
         </div>
       </div>
       <card-component :sortType="sortType" :list="sortedData"></card-component>
@@ -132,8 +137,10 @@ export default {
       }, this)
       this.sortedData = sortedData
     },
-    switchType() {
+    switchType(value) {
+      this.sortType = value
       this.sortRawData()
+      // console.log(1)
       // if (sortType == 'completed') {
       //   // sort data by if it's completed first
       //   let sortByProgress = this.pt.sort(function(a, b) {
@@ -171,55 +178,13 @@ export default {
   @media screen and (max-width: $break-medium) {
     margin: 120px 10px 0 60px;
   }
-}
-.selectBtn_wrap {
-  span {
-    @media screen and (max-width: $break-small) {
-      font-size: px-to-vw(25, 450);
-    }
-  }
-  .selectBtn {
-    position: relative;
-    display: block;
-    width: 10rem;
-    height: 2.2em;
-    line-height: 2.2;
-    overflow: hidden;
-    border-radius: 0.25em;
-    @media screen and (max-width: $break-small) {
-      height: px-to-vw(40, 450);
-      line-height: px-to-vw(40, 450);
-    }
-    select {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      -ms-appearance: none;
-      appearance: none;
-      outline: 0;
-      box-shadow: none;
-      border: 0;
-      background: #6c757d;
-      background-image: none;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0 0 0 0.5em;
-      color: #fff;
+  .switchBtn {
+    button {
       cursor: pointer;
-    }
-    &::after {
-      content: '\25BC';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      padding: 0 1em;
-      background: #6c757d;
-      pointer-events: none;
-      -webkit-transition: 0.25s all ease;
-      -o-transition: 0.25s all ease;
-      transition: 0.25s all ease;
-      color: #fff;
+      &.clicked {
+        color: #fff;
+        background: #17a2b8;
+      }
     }
   }
 }

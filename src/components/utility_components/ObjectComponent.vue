@@ -1,6 +1,11 @@
 <template>
+<<<<<<< HEAD
   <div v-if="showInputField">
     <h5 :id="anchorIdFormat(schema)" :class="[styleClass]">{{ schema.title }}</h5>
+=======
+  <div class="col-lg-12 scroll-watch" v-if="showInputField">
+    <h5 :id="anchorIdFormat(schema)">{{ schema.title }}</h5>
+>>>>>>> 4ba80cde14f0da1de31368188e59fe21f1d012af
     <div class="obj_box row">
       <component 
         v-for="(field, key) in schema.properties" 

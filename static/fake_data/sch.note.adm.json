@@ -42,7 +42,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "name": {
@@ -50,7 +50,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "birthdate": {
@@ -67,7 +67,7 @@
               "type": "integer",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "id_no": {
@@ -75,7 +75,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "sex": {
@@ -83,7 +83,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "admit_dept": {
@@ -91,7 +91,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "admit_time": {
@@ -100,7 +100,7 @@
               "type": "string",
               "attrs": {
                 "fieldType": "date",                
-                "bsColSize": 12
+                "bsColSize": 4
               }
             },
             "evaluate_time": {
@@ -109,7 +109,7 @@
               "type": "string",
               "attrs": {
                 "fieldType": "date",                
-                "bsColSize": 12
+                "bsColSize": 4
               }
             },
             "source": {
@@ -117,7 +117,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             }
           }
@@ -125,15 +125,27 @@
         "cc": {
           "title": "Chief Complaint",
           "type": "string",
-          "description": "<input description>"
+          "description": "<input description>",
+          "attrs": {
+            "inputGroup": true,
+            "bsColSize": 10
+          }
         },
         "pi": {
           "title": "Present Illness",
-          "type": "string"
+          "type": "string",
+          "attrs": {
+            "inputGroup": true,
+            "bsColSize": 10
+          }
         },
         "travel_contact": {
           "title": "Travel History",
-          "type": "string"
+          "type": "string",
+          "attrs": {
+            "inputGroup": true,
+            "bsColSize": 10
+          }
         },
         "personal_hx": {
           "title": "Personal History",
@@ -178,16 +190,21 @@
                   "title": "Packs per day",
                   "type": "number",
                   "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 3,
                     "dependsOn": {
                       "name": "used",
                       "values": ["Yes"]
                     }
+                    
                   }
                 },
                 "duration": {
                   "title": "for years",
                   "type": "number",
                   "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 3,
                     "dependsOn": {
                       "name": "used",
                       "values": ["Yes"]
@@ -218,13 +235,19 @@
                 },
                 "vol_per_day": {
                   "title": "Volumn(ml) per day",
-                  "type": "integer"
-                  
+                  "type": "integer",
+                  "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 3
+                  }
                 },
                 "duration": {
                   "title": "for years",
-                  "type": "integer"
-                  
+                  "type": "integer",
+                  "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 3
+                  }
                 }
               }
             },
@@ -245,11 +268,19 @@
                 },
                 "num_per_day": {
                   "title": "Number per day",
-                  "type": "integer"
+                  "type": "integer",
+                  "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 3
+                  }
                 },
                 "duration": {
                   "title": "for years",
-                  "type": "integer"
+                  "type": "integer",
+                  "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 3
+                  }
                 }
               }
             }
@@ -304,7 +335,11 @@
           "properties": {
             "note": {
               "title": "Note",
-              "type": "string"
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 10
+              }
             }
           }
         },
@@ -455,11 +490,19 @@
           "properties": {
             "in_institute": {
               "title": "Inside hospital",
-              "type": "string"
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 10
+              }
             },
             "out_institute": {
               "title": "Other hispital/Clinic",
-              "type": "string"
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 10
+              }
             }
           }
         },
@@ -529,7 +572,8 @@
               "title": "Height(cm)",
               "type": "number",
               "attrs": {
-                "bsColSize": 3
+                "inputGroup": true,
+                "bsColSize": 4
               }
             },
             "weight": {
@@ -537,14 +581,16 @@
               "type": "number",
               "description": "<input description>",
               "attrs": {
-                "bsColSize": 3
+                "inputGroup": true,
+                "bsColSize": 4
               }
             },
             "bmi": {
               "title": "Body Mass Index(BMI)",
               "type": "number",
               "attrs": {
-                "bsColSize": 3
+                "inputGroup": true,
+                "bsColSize": 4
               }
             },
             "must": {
@@ -556,6 +602,7 @@
                   "title": "BMI",
                   "type": "number",
                   "attrs": {
+                    "inputGroup": true,
                     "bsColSize": 6
                   }
                 },
@@ -563,6 +610,7 @@
                   "title": "BMI Score",
                   "type": "integer",
                   "attrs": {
+                    "inputGroup": true,
                     "bsColSize": 6
                   }
                 },
@@ -570,6 +618,7 @@
                   "title": "Unplanned weight loss in 3-6 months",
                   "type": "number",
                   "attrs": {
+                    "inputGroup": true,
                     "bsColSize": 6
                   }
                 },
@@ -577,6 +626,7 @@
                   "title": "Weight loss score",
                   "type": "integer",
                   "attrs": {
+                    "inputGroup": true,
                     "bsColSize": 6
                   }
                 },
@@ -584,21 +634,24 @@
                   "title": "Acutely illness because of poor intake",
                   "type": "boolean",
                   "attrs": {
-                    "bsColSize": 12
+                    "inputGroup": true,
+                    "bsColSize": 6
                   }
                 },
                 "acute_effect_score": {
                   "title": "Acute disease effect score",
                   "type": "integer",
                   "attrs": {
-                    "bsColSize": 4
+                    "inputGroup": true,
+                    "bsColSize": 6
                   }
                 },
                 "score": {
                   "title": "Total score",
                   "type": "integer",
                   "attrs": {
-                    "bsColSize": 4
+                    "inputGroup": true,
+                    "bsColSize": 6
                   }
                 }
               }
@@ -609,8 +662,8 @@
           "title": "Functional Assessment",
           "description": "Katz Index of Independence in Activities of Daily Living",
           "type": "object",
-          "attrs":{
-            "fieldType":"funcassess"
+          "attrs": {
+            "fieldType": "funcassess"
           },
           "properties": {
             "bath": {
@@ -649,7 +702,11 @@
           "properties": {
             "looking": {
               "title": "General looking",
-              "type": "string"
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 12
+              }
             },
             "vitals": {
               "title": "Vital signs",
@@ -708,7 +765,11 @@
 
             "conscious": {
               "title": "Consciousness",
-              "type": "string"
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 10
+              }
             },
             "GCS": {
               "title": "Glasgow Coma Scale",
@@ -780,15 +841,27 @@
               "properties": {
                 "conjuntivae": {
                   "title": "Conjunctivae",
-                  "type": "string"
+                  "type": "string",
+                  "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 12
+                  }
                 },
                 "sclera": {
                   "title": "Sclera",
-                  "type": "string"
+                  "type": "string",
+                  "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 12
+                  }
                 },
                 "throat": {
                   "title": "Throat",
-                  "type": "string"
+                  "type": "string",
+                  "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 12
+                  }
                 }
               }
             }
@@ -813,27 +886,21 @@
             },
             "note": {
               "title": "Note",
-              "type": "string"
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 10
+              }
             }
           }
         },
         "image": {
           "title": "Image finding",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "type": "string"
         },
         "ecg": {
           "title": "ECG finding",
           "type": "string"
-        },
-        "exam": {
-          "title": "Examination Report",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         },
         "impression": {
           "title": "Impressions",
@@ -842,48 +909,6 @@
         "plan": {
           "title": "Plan (Management)",
           "type": "string"
-        },
-        "habits": {
-          "description": "habits of the patient",
-          "type": "object",
-          "title": "Habits",
-          "attrs": {
-              "fieldName": "habits"
-          },
-          "properties": {
-              "smoking": {
-                "description": "smoking habit",
-                "type": "string",
-                "title": "Smoking",
-                "attrs": {
-                    "fieldType": "radio",                    
-                    "values": [
-                      "Yes",
-                      "No"
-                    ],
-                    "fieldName": "smoking"
-                }
-              },
-              "species": {
-                "description": "cigarette species",
-                "type": "array",
-                "attrs": {
-                    "dependsOn": {
-                      "name": "smoking",
-                      "values": [
-                          "Yes"
-                      ]
-                    },
-                    "fieldType": "checklist",
-                    "fieldName": "species",
-                    "label": "Species",
-                    "values": [
-                      "Cigarettes",
-                      "Electronic cigarettes"
-                    ]
-                }
-              }
-          }
         }
       }
     }
