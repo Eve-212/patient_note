@@ -42,7 +42,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "name": {
@@ -50,7 +50,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "birthdate": {
@@ -59,7 +59,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "age": {
@@ -67,7 +67,7 @@
               "type": "integer",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "id_no": {
@@ -75,7 +75,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "sex": {
@@ -83,7 +83,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "admit_dept": {
@@ -91,7 +91,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "admit_time": {
@@ -100,7 +100,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "evaluate_time": {
@@ -109,7 +109,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             },
             "source": {
@@ -117,7 +117,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 3
+                "bsColSize": 4
               }
             }
           }
@@ -800,21 +800,11 @@
         },
         "image": {
           "title": "Image finding",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "type": "string"
         },
         "ecg": {
           "title": "ECG finding",
           "type": "string"
-        },
-        "exam": {
-          "title": "Examination Report",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         },
         "impression": {
           "title": "Impressions",
@@ -822,45 +812,7 @@
         },
         "plan": {
           "title": "Plan (Management)",
-          "type": "string",
-          "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12
-          }
-        },
-        "habits": {
-          "description": "habits of the patient",
-          "type": "object",
-          "title": "Habits",
-          "attrs": {
-            "fieldName": "habits"
-          },
-          "properties": {
-            "smoking": {
-              "description": "smoking habit",
-              "type": "string",
-              "title": "Smoking",
-              "attrs": {
-                "fieldType": "radio",
-                "values": ["Yes", "No"],
-                "fieldName": "smoking"
-              }
-            },
-            "species": {
-              "description": "cigarette species",
-              "type": "array",
-              "attrs": {
-                "dependsOn": {
-                  "name": "smoking",
-                  "values": ["Yes"]
-                },
-                "fieldType": "checklist",
-                "fieldName": "species",
-                "label": "Species",
-                "values": ["Cigarettes", "Electronic cigarettes"]
-              }
-            }
-          }
+          "type": "string"
         }
       }
     }

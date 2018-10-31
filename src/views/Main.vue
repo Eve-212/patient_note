@@ -1,16 +1,14 @@
 <template>
-    <div>
-      <div style="position: absolute; z-index: 1;">
-        <header-component @isExpanded="toggleExpand" :user="user" :hide="hide"></header-component>
-      </div>  
-      <div class="container-fluid">
-        <div class="row">
-          <sidemenu class="col-md-2" :isExpanded="isExpanded"></sidemenu>
-          <router-view :isExpanded="isExpanded"></router-view>
-        </div>
-      </div>
-      <back-to-top @hide="hideSearch"></back-to-top> 
+  <div>
+    <div style="position: absolute; z-index: 1;">
+      <header-component @isExpanded="toggleExpand" :user="user" :hide="hide"></header-component>
     </div>
+    <div class="row">
+      <sidemenu class="col-md-1" :isExpanded="isExpanded"></sidemenu>
+      <router-view :isExpanded="isExpanded"></router-view>
+    </div>
+    <back-to-top @hide="hideSearch"></back-to-top>
+  </div>
 </template>
 
 <script>

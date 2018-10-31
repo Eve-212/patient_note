@@ -1,14 +1,9 @@
 <template>
-  <div v-scroll-spy="{ offset: 100 }" :class="{isExpanded: isExpanded}">
-    <div class="row">    
-      <!-- <h1 class="note-title">{{ noteSchema.title }}</h1>  		   
-      <div v-for="(schema, key) in noteSchema.properties" :key="key">      
-        <Section :schema="schema" :currentKey="key"></Section>
-        <ObjectComponent :schema="schema" :currentKey="key"></ObjectComponent>
-      </div> -->
-      <SectionNav class="col-xl-2 d-none d-xl-block" :schema="noteSchema"></SectionNav>
+  <div class="col-xl-10 my-5 ml-4" :class="{isExpanded: isExpanded}">
+    <div v-scroll-spy="{ sectionSelector: '.scroll-watch', offset: 0 }" class="row">    
+      <Note class="col-xl-10 offset-1 my-5" :schema="noteSchema" :schemaData="data"></Note>
+      <SectionNav class="col-xl-2 d-none d-xl-block mt-5" :schema="noteSchema"></SectionNav>
     </div>
-    <Note class="col-xl-10" :schema="noteSchema" :schemaData="data"></Note>
   </div>
 </template>
 
@@ -159,7 +154,6 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/global.scss';
 
-// .note-title {
-//   font-size: 2.0rem;
-// }
+
+
 </style>

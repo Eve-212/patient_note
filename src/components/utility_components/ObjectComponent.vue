@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showInputField">
+  <div class="col-lg-12 scroll-watch" v-if="showInputField">
     <h5 :id="anchorIdFormat(schema)">{{ schema.title }}</h5>
     <div class="obj_box row">
 
