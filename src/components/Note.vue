@@ -1,22 +1,5 @@
 <template> 
-<<<<<<< HEAD
-	<div class="padding-left-temp">		
-		<!-- <h2>{{ jsonSchema.title }}</h2>  
-		{{ jsonSchema.title }}      
-		<div v-for="(field, key) in jsonSchema.properties" :key="key">   	
-		
-			<component 				
-				:is="getComponentName(field)"
-				:schema="field"
-				:currentKey="key"
-				v-model="jsonSchemaData" ></component>
-
-		</div> -->
-
-		
-=======
 	<div class="scroll-watch">
->>>>>>> 4ba80cde14f0da1de31368188e59fe21f1d012af
 		<h2>{{ schema.title }}</h2>  		
 			<div class="row">   
 				
@@ -35,7 +18,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import TextInput from "./input_components/TextInput"
 import bsRadioInput from "./input_components/bsRadioInput"
 import Checkbox from "./input_components/Checkbox"
@@ -49,21 +31,6 @@ import FamilyTree from "./input_components/FamilyTree"
 import bsLabTable from "./input_components/bsLabTable"
 import OrgChart from "./input_components/OrgChart"
 import FuncAssess from "./input_components/FuncAssess"
-=======
-import TextInput from './input_components/TextInput'
-import RadioInput from './input_components/RadioInput'
-import Checkbox from './input_components/Checkbox'
-import CheckList from './input_components/CheckList'
-import CheckListWithOther from './input_components/CheckListWithOther'
-import NumberInput from './input_components/NumberInput'
-import SelectDate from './input_components/SelectDate'
-import SelectList from './input_components/SelectList'
-import ObjectComponent from './utility_components/ObjectComponent'
-import FamilyTree from './input_components/FamilyTree'
-import bsLabTable from './input_components/bsLabTable'
-import OrgChart from './input_components/OrgChart'
-import FuncAssess from './input_components/FuncAssess'
->>>>>>> 4ba80cde14f0da1de31368188e59fe21f1d012af
 
 export default {
   name: 'Note',
@@ -202,21 +169,6 @@ export default {
 }
 </script>
 
-<<<<<<< HEAD
-<style>
-.display-inline {
-	display: inline-block;
-}
-.padding-left {
-	padding-left: 3px;
-}
-.padding-left-temp {
-	padding-left: 50px !important;
-}
-/* change family tree styles */
-.avat {
-  border: none !important;
-=======
 <style lang="scss">
 .scroll-watch {
   h5 {
@@ -246,7 +198,6 @@ export default {
   .avat {
     border: none !important;
   }
->>>>>>> 4ba80cde14f0da1de31368188e59fe21f1d012af
 }
 .subsection-title {
   font-size: 1.0rem;

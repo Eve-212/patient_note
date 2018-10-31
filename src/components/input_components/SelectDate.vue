@@ -1,6 +1,6 @@
 
 <template>
-	<div>
+	
 		<div :id="anchorIdFormat(schema)" :class="[bsColSize, styleClass]" class="display-inline" v-if="showInputField">
 			<label :for="currentKey">{{ schema.title }}</label>
 			<input
@@ -9,7 +9,7 @@
 				:name="currentKey" 
 				v-model="value[currentKey]">
 		</div>
-	</div>  
+	  
 </template>
 
 <script>

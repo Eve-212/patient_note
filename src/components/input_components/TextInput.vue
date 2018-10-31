@@ -15,16 +15,17 @@
           :name="currentKey" 
           v-model="value[currentKey]"
           class="form-control">
+
       </div>
     </div>
     <div class="form-group row" v-if="!schema.attrs.inputGroup">
     
       <label 
-        class="col-lg-2 col-form-label"
+        class="col-md-2 col-form-label"
         :for="currentKey">
         {{ schema.title }}
       </label>
-      <div class="col-lg-10">
+      <div class="col-md-10">
         <input 
           :id="getId()" 
           type="text" 
@@ -47,11 +48,11 @@
 import Proto from './Proto'
 export default {
   name: 'TextInput',
-  mixins: [Proto],
-
+  mixins:[Proto],
+  
   data() {
     return {
-      placeholder: this.getPlaceholder()
+      placeholder: this.getPlaceholder()     
     }
   },
   methods: {
@@ -63,7 +64,7 @@ export default {
       }
       return ''
     }
-  } /*
+  },/*
   computed: {
     showInputField() {
       let schemaAttrs = this.schema.attrs
@@ -113,6 +114,9 @@ export default {
 <style>
 .text-label {
   font-size: 1.1rem;
+}
+.w-10 {
+  width: 10%
 }
 </style>
 
