@@ -128,7 +128,8 @@
           "description": "This is a test",
           "attrs": {
             "inputGroup": true,
-            "bsColSize": 10
+            "bsColSize": 12,
+            "styleClass": ["paddingY30"]
           }
         },
         "pi": {
@@ -136,7 +137,8 @@
           "type": "string",
           "attrs": {
             "inputGroup": true,
-            "bsColSize": 10
+            "bsColSize": 12,
+            "styleClass": ["paddingY30"]
           }
         },
         "travel_contact": {
@@ -144,7 +146,8 @@
           "type": "string",
           "attrs": {
             "inputGroup": true,
-            "bsColSize": 10
+            "bsColSize": 12,
+            "styleClass": ["paddingY30"]
           }
         },
         "personal_hx": {
@@ -154,9 +157,6 @@
             "cigarette": {
               "title": "Smoking",
               "type": "object",
-              "attrs": {
-                "styleClass": ["subsection"]
-              },
               "properties": {
                 "used": {
                   "title": "Used",
@@ -309,7 +309,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 10
+                "bsColSize": 12
               }
             }
           }
@@ -397,7 +397,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 10
+                "bsColSize": 12
               }
             },
             "out_institute": {
@@ -405,7 +405,7 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 10
+                "bsColSize": 12
               }
             }
           }
@@ -672,7 +672,8 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 10
+                "bsColSize": 12,
+                "styleClass": ["paddingY30"]
               }
             },
             "GCS": {

@@ -2,7 +2,6 @@
 	<div class="scroll-watch">
 		<h2>{{ schema.title }}</h2>  		
 			<div class="row">   
-				
 			<component 
 				v-for="(field, key) in jsonSchema.properties" 
 				:key="key"
@@ -12,7 +11,6 @@
 				:currentKey="key"			
 				v-model="jsonSchemaData">
 			</component>
-			
 			</div>
 	</div>
 </template>
@@ -171,6 +169,14 @@ export default {
 
 <style lang="scss">
 .scroll-watch {
+  .paddingY30 {
+    padding: 0 30px;
+  }
+
+  .input-group-text {
+    font-size: 14px !important;
+  }
+
   h5 {
     margin-top: 15px;
     margin-bottom: 0;
@@ -181,22 +187,27 @@ export default {
       font-weight: 600;
       content: '\f0c5';
       font-size: 14px;
-      margin-right: 3px;
+      margin-right: 5px;
       color: #495057;
     }
   }
-  .input-group-text {
-    padding: 4px 8px;
-    font-size: 14px !important;
-  }
 
-  textarea:focus,
-  input:focus {
-    outline: none;
-  }
   /* change family tree styles */
   .avat {
     border: none !important;
+  }
+
+  // individual settings for demo
+  #information-source .input-group,
+  #rr--min- .input-group,
+  #pain-score .input-group {
+    margin-bottom: 0 !important;
+  }
+
+  #rr--min- .input-group {
+    @media screen and (max-width: 1000px) {
+      margin-bottom: 16px !important;
+    }
   }
 }
 </style>
