@@ -1,5 +1,5 @@
 <template> 
-	<div class="padding-left-large">		
+	<div class="padding-left-temp">		
 		<!-- <h2>{{ jsonSchema.title }}</h2>  
 		{{ jsonSchema.title }}      
 		<div v-for="(field, key) in jsonSchema.properties" :key="key">   	
@@ -42,7 +42,7 @@
 
 <script>
 import TextInput from "./input_components/TextInput"
-import RadioInput from "./input_components/RadioInput"
+import bsRadioInput from "./input_components/bsRadioInput"
 import Checkbox from "./input_components/Checkbox"
 import CheckList from "./input_components/CheckList"
 import CheckListWithOther from "./input_components/CheckListWithOther"
@@ -59,7 +59,7 @@ export default {
   name: 'Note',
   components: {
     TextInput,
-    RadioInput,
+    bsRadioInput,
     Checkbox,
     CheckList,
     NumberInput,
@@ -128,7 +128,7 @@ export default {
       let $field_com = {
         text: 'TextInput',
         checklistwithother: 'CheckListWithOther',
-        radio: 'RadioInput',
+        radio: 'bsRadioInput',
         checkbox: 'Checkbox',
         checklist: 'CheckList',
         selectList: 'SelectList',
@@ -199,11 +199,16 @@ export default {
 .padding-left {
 	padding-left: 3px;
 }
-.padding-left-large {
-	padding-left: 20px;
+.padding-left-temp {
+	padding-left: 50px !important;
 }
 /* change family tree styles */
 .avat {
   border: none !important;
 }
+.subsection-title {
+  font-size: 1.0rem;
+}
+
+
 </style>
