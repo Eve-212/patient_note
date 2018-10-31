@@ -27,12 +27,12 @@
             <div class="d-flex">
               <div v-for="n in 3">
                 <button 
-                  class="btn px-1"
+                  class="btn btn-sm btn-light mx-1 px-1"
                   title="2018-10-12 未完成">
                   <span v-if="n === 1">住院</span>
                   <span v-if="n === 2">Prog.</span>
                   <span v-if="n === 3">出院</span>
-                  <span class="badge badge-danger text-white">2</span>
+                  <span class="badge badge-danger text-white">1</span>
                 </button>
               </div>
             </div>
@@ -102,7 +102,8 @@ export default {
     }
     button {
       font-size: 14px;
-      background: #fff;
+      color: #fff;
+      // background: #fff;
     }
   }
 }

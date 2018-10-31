@@ -67,6 +67,6 @@ export default {
 <style>
 .tree-style {
   z-index: 0;
-  overflow: auto;
+  overflow-x: scroll;
 }
 </style>
