@@ -191,7 +191,7 @@ export default {
       content: '\f0c5';
       font-size: 1rem;
       margin-right: 5px;
-      color: #495057;
+      color: #17a2b8;
     }
     &.subsection-title {
       font-size: 1.3rem;
@@ -203,7 +203,7 @@ export default {
         content: '\f0da';
         font-size: 1rem;
         margin-right: 5px;
-        color: #495057;
+        color: orangered;
       }
     }
   }
@@ -247,6 +247,9 @@ export default {
   display: flex;
   -ms-flex-align: center;
   -webkit-box-align: center;
+  @media screen and (max-width: 1000px) {
+    margin-bottom: 16px !important;
+  }
   label {
     font-size: 14px !important;
     align-items: center;
@@ -289,5 +292,10 @@ export default {
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
       -webkit-box-shadow 0.15s ease-in-out;
   }
+}
+
+#time-of-admission,
+#time-of-history-taking {
+  margin-bottom: 16px !important;
 }
 </style>

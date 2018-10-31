@@ -159,7 +159,10 @@ export default {
     margin: 80px 10px 0 90px;
   }
   @media screen and (max-width: $break-medium) {
-    margin: 120px 10px 0 60px;
+    margin: 120px 10px 0 70px;
+    boj_box {
+      padding: 15px 0 !important;
+    }
   }
 }
 </style>
