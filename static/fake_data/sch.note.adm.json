@@ -364,10 +364,9 @@
                   "Other"
                 ],
                 "styleClass": ["margin-bot-small"]
-
               }
             },
-            "general_other": {   
+            "general_other": {
               "title": "Other",
               "type": "string",
               "attrs": {
@@ -375,13 +374,12 @@
                   "name": "general",
                   "values": ["Other"]
                 }
-                
               }
-            },          
+            },
             "skin": {
               "title": "Skin",
               "type": "array",
-              "attrs": {                
+              "attrs": {
                 "styleClass": ["margin-bot-small"]
               },
               "items": {
@@ -400,7 +398,7 @@
             "heent": {
               "title": "HEENT",
               "type": "array",
-              "attrs": {                
+              "attrs": {
                 "styleClass": ["margin-bot-small"]
               },
               "items": {
@@ -418,7 +416,7 @@
             "cardio_resp": {
               "title": "Cardio-Respiratory system",
               "type": "array",
-              "attrs": {                
+              "attrs": {
                 "styleClass": ["margin-bot-small"]
               },
               "items": {
@@ -436,7 +434,7 @@
             "gi": {
               "title": "Gastrointestinal system",
               "type": "array",
-              "attrs": {                
+              "attrs": {
                 "styleClass": ["margin-bot-small"]
               },
               "items": {
@@ -455,7 +453,7 @@
             "gu": {
               "title": "Genito-urinary system",
               "type": "array",
-              "attrs": {                
+              "attrs": {
                 "styleClass": ["margin-bot-small"]
               },
               "items": {
@@ -474,7 +472,7 @@
             "neuro": {
               "title": "Neuro-Psychiatric system",
               "type": "array",
-              "attrs": {                
+              "attrs": {
                 "styleClass": ["margin-bot-small"]
               },
               "items": {
@@ -493,7 +491,7 @@
             "mus_ske": {
               "title": "Musculoskeletal system",
               "type": "array",
-              "attrs": {                
+              "attrs": {
                 "styleClass": ["margin-bot-small"]
               },
               "items": {
@@ -939,7 +937,7 @@
             }
           }
         },
-        "image": {           
+        "image": {
           "title": "Image finding",
           "type": "string",
           "attrs": {

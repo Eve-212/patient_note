@@ -7,10 +7,15 @@
         <h3 v-else class="card_title">已完成</h3> 
       </div>
       <div v-else-if="sortType === 'doc_id'">
-        <h3 class="card_title"><emp-span class="mr-1" :id="k" :hide_id="true"></emp-span><small class="text-muted">醫師</small></h3> 
+        <h3 class="card_title">
+          <emp-span class="mr-1" :id="k" :hide_id="true"></emp-span>
+          <small class="text-muted">醫師</small>
+        </h3> 
       </div>
       <div v-else="sortType === 'bed_no'">
-        <h3 class="card_title">{{k}}<small class="text-muted ml-1">樓</small></h3>
+        <h3 class="card_title"><span>{{k}}</span> 
+          <small class="text-muted ml-1">樓</small>
+        </h3>
       </div>
 
       <!-- Card Content -->
@@ -69,8 +74,9 @@ export default {
   border-bottom: 1px #cccaca solid;
   padding-bottom: 5px;
   text-transform: capitalize;
-  @media screen and (max-width: $break-small) {
-    font-size: px-to-vw(32, 450);
+  span {
+    font-size: 1.75rem;
+    font-weight: 400;
   }
 }
 .card_wrap {

@@ -10,9 +10,7 @@
         </thead>
         <tbody>
           <tr v-for="(v, k, index) in lists">
-            <th 
-              class="px-2 py-2 sticky-col"
-              >{{ k }}</th>
+            <th class="px-2 py-2 sticky-col">{{ k }}</th>
             <td
               v-for="(v1, k1, index1) in v"
               class="text-center px-2 py-2"
@@ -254,13 +252,12 @@ export default {
       }
     }
   }
-}
-
-.sticky-col {
-  left: 0;
-  position: sticky;
-  top: 0;
-  background: #fff;
-  z-index: 100;
+  .sticky-col {
+    left: 0;
+    position: sticky;
+    top: auto;
+    z-index: 1;
+    border: 1px solid #dee2e6;
+  }
 }
 </style>

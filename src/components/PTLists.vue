@@ -1,7 +1,7 @@
 <template>
   <div :class="{isExpanded: isExpanded}">
       <span>{{status}}</span>
-      <div class="selectBtn_wrap mt-5 mt-sm-0 mb-sm-1 mb-3 d-flex align-items-center justify-content-sm-end">
+      <div class="selectBtn_wrap mt-5 mt-sm-0 mb-sm-1 mb-4 d-flex align-items-center justify-content-sm-end">
         <span class="h5 my-0" >Group By：</span>
         <div class="switchBtn">
           <button 

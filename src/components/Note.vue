@@ -1,7 +1,7 @@
 <template> 
 	<div class="note-style">
 		<h2>{{ schema.title }}</h2>  		
-			<div class="row scroll-watch">   
+			<div class="scroll-watch">   
 			<component 
 				v-for="(field, key) in jsonSchema.properties" 
 				:key="key"
