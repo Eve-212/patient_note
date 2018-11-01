@@ -31,11 +31,14 @@ Vue.use(VueScrollTo, {
 })
 
 //Vue.use(Vuex)
+
 Vue.prototype.$http = axios
-Vue.prototype.$wf =  OneAPI({
+let $wf=OneAPI({
   spec_url:"http://10.65.1.228:3000/api/spec.get",
   server_url:"http://10.65.1.228:3000/api"
 })
+Vue.prototype.$wf =  $wf
+window.$wf=$wf
 Vue.config.productionTip = false
 
 

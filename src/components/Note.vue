@@ -86,7 +86,8 @@ export default {
       this.jsonSchemaData = this.schemaData
     },
     schema($schema) {
-      this.jsonSchema = this.schema.properties.content
+      //this.jsonSchema = this.schema.properties.content
+      this.jsonSchema = this.schema
     }
   },
   methods: {

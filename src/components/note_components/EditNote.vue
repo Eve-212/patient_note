@@ -1,7 +1,7 @@
 <template>
   <div class="wrap" :class="{isExpanded: isExpanded}">
-    <div v-scroll-spy="{ sectionSelector: '.scroll-watch', offset: 100 }" class="row">    
-      <Note class="col-xl-10" :schema="noteSchema" :schemaData="data"></Note>
+    <div v-if="isLoaded" v-scroll-spy="{ sectionSelector: '.scroll-watch', offset: 100 }" class="row">    
+      <Note class="col-xl-10" :schema="noteSchema.properties.content" :schemaData="data"></Note>
       <SectionNav class="col-xl-2 d-none d-xl-block mt-5" :schema="noteSchema"></SectionNav>
     </div>
   </div>
@@ -26,7 +26,8 @@ export default {
       noteSchema: null,
       data: {},
       meta: {},
-      sess: null
+      sess: null,
+      isLoaded:false
     }
   },
   methods: {
@@ -93,6 +94,7 @@ export default {
           this.prepare_data(this.noteSchema, $raw.data)
           this.data = $raw.data.content
           this.meta = $raw.data
+          this.isLoaded=true
         })
       } else {
         let $ipd = this.sess.ipd
@@ -109,13 +111,14 @@ export default {
         $data.admit_time = $ipd.start
         this.prepare_data(this.noteSchema.properties.content, $data)
         this.data = $data
+        this.isLoaded=true
       }
     } /*,
     prepare_schema($sch){
       
     }*/
   },
-  created: function() {
+  beforeCreate: function() {
     // axios.get('fake_data/schemas.json')
     // .then((res) => {
     //   console.log(res.body)
@@ -147,7 +150,12 @@ export default {
   //     return sectionKeys
   //   }
   // },
-  mounted() {}
+  mounted() {},
+  beforeRouteEnter (to, from, next){
+    //let $test=vm;
+    console.log('beforeRouteEnter')
+    window.$wf.ready().then(()=>next())
+  }
 }
 </script>
 
