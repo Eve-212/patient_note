@@ -50,7 +50,8 @@
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 4
+                "bsColSize": 4,
+                "placeholder": "Patient Name"
               }
             },
             "birthdate": {
@@ -192,6 +193,7 @@
                   "attrs": {
                     "inputGroup": true,
                     "bsColSize": 3,
+                    "placeholder": "Frequency",
                     "dependsOn": {
                       "name": "used",
                       "values": ["Yes"]
