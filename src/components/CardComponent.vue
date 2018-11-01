@@ -82,7 +82,7 @@ export default {
     &.incompleted {
       border-left: 4px solid $red-light;
     }
-    @media screen and (max-width: $break-medium) {
+    @media screen and (max-width: $break-small) {
       width: 100%;
     }
     .card-header {

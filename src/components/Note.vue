@@ -170,13 +170,8 @@ export default {
 
 <style lang="scss">
 .note-style {
-  .input-group-text {
+  .text-label {
     font-size: 14px !important;
-  }
-
-  h2 {
-    margin-left: -15px;
-    text-transform: uppercase;
   }
 
   h5 {
@@ -207,95 +202,13 @@ export default {
       }
     }
   }
-
   .reminder {
     margin-top: -15px;
     margin-bottom: 15px;
   }
-
   /* change family tree styles */
   .avat {
     border: none !important;
   }
-  // individual settings for demo
-  #information-source .input-group,
-  #rr--min- .input-group,
-  #pain-score .input-group {
-    margin-bottom: 0 !important;
-  }
-
-  #rr--min- .input-group {
-    @media screen and (max-width: 1000px) {
-      margin-bottom: 16px !important;
-    }
-  }
-}
-
-#chief-complaint,
-#present-illness,
-#travel-history,
-#note,
-#consciousness {
-  margin: 0 15px;
-}
-
-#birth-date,
-#time-of-admission,
-#time-of-history-taking {
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: flex;
-  -ms-flex-align: center;
-  -webkit-box-align: center;
-  @media screen and (max-width: 1000px) {
-    margin-bottom: 16px !important;
-  }
-  label {
-    font-size: 14px !important;
-    align-items: center;
-    padding: 0.375rem 0.75rem;
-    margin-bottom: 0;
-    font-size: 1rem;
-    font-weight: 400;
-    height: 38px;
-    line-height: 24px;
-    color: #495057;
-    text-align: center;
-    white-space: nowrap;
-    background-color: #e9ecef;
-    border: 1px solid #ced4da;
-    border-right: 0;
-    border-radius: 0.25rem;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-  input {
-    font-size: 14px !important;
-    display: block;
-    width: 100%;
-    height: calc(2.25rem + 2px);
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    -webkit-transition: border-color 0.15s ease-in-out,
-      -webkit-box-shadow 0.15s ease-in-out;
-    transition: border-color 0.15s ease-in-out,
-      -webkit-box-shadow 0.15s ease-in-out;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
-      -webkit-box-shadow 0.15s ease-in-out;
-  }
-}
-
-#time-of-admission,
-#time-of-history-taking {
-  margin-bottom: 16px !important;
 }
 </style>

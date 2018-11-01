@@ -1,23 +1,28 @@
 <template>
 	<div id="labwrap">
-		<table class="table table-bordered">
-      <thead>
-        <tr>
-          <th></th>
-          <th class="px-1 py-1" v-for ="(v, k, index) in lab.blood">{{ v.id }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(v, k, index) in lists">
-          <th class="px-1 py-1">{{ k }}</th>
-          <td
-            v-for="(v1, k1, index1) in v"
-            class="text-center px-1 py-1"
-            :class="{low : v1.mark == 'L', high: v1.mark == 'H'}" 
-            >{{ v1.value }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="scroller">
+      <table class="table table-bordered" style="position: relative">
+        <thead>
+          <tr>
+            <th class="sticky-col"></th>
+            <th class="px-2 py-2" v-for ="(v, k, index) in lab.blood">{{ v.id }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(v, k, index) in lists">
+            <th 
+              class="px-2 py-2 sticky-col"
+              >{{ k }}</th>
+            <td
+              v-for="(v1, k1, index1) in v"
+              class="text-center px-2 py-2"
+              :class="{low : v1.mark == 'L', high: v1.mark == 'H'}" 
+              >{{ v1.value }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+		
 	</div>
 </template>
 
@@ -221,29 +226,23 @@ export default {
 @import '../../assets/global.scss';
 
 #labwrap {
-  width: 900px;
+  width: 100%;
   overflow: auto;
-  margin-left: 15px;
-  margin-bottom: -15px;
-  @media screen and (max-width: 1000px) {
-    width: px-to-vw(650, 1000);
-  }
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
   table {
-    @media screen and (max-width: 1000px) {
-      width: px-to-vw(650, 1000);
-    }
-    overflow-x: scroll;
-    white-space: normal;
-    word-wrap: break-word;
+    margin-bottom: 0;
+    padding-bottom: 10px;
     thead,
     tbody {
       th {
-        font-size: 14px;
-        overflow: hidden;
+        font-size: 12px;
         white-space: nowrap;
+        background: #fff;
       }
     }
     td {
+      background: #fff;
       font-size: 12px;
       &.low {
         color: #fff;
@@ -255,5 +254,13 @@ export default {
       }
     }
   }
+}
+
+.sticky-col {
+  left: 0;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 100;
 }
 </style>

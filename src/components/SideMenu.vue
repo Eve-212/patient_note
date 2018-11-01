@@ -32,18 +32,16 @@ export default {
 
 .side-menu {
   background: #f4f6f7;
-  top: 56px;
+  top: 55px;
   width: 60px;
   overflow: hidden;
   transition: width 0.1s linear;
-  font-size: 14px;
   position: fixed;
   height: 100%;
   z-index: 100;
-  padding: 0;
   &:hover,
   &.expanded {
-    min-width: 240px;
+    min-width: 220px;
     overflow: visible;
     box-shadow: 3px 3px 10px -2px rgba(20%, 20%, 40%, 0.5);
   }
@@ -66,8 +64,6 @@ export default {
       text-decoration: none;
       transition: all 0.1s linear;
       i {
-        font-size: 14px;
-        color: $black;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -79,8 +75,7 @@ export default {
       }
       span {
         display: table-cell;
-        vertical-align: middle;
-        width: 190px;
+        width: 170px;
       }
     }
   }
