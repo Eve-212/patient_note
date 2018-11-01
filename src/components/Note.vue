@@ -126,43 +126,7 @@ export default {
       }
 
       return $field_com[field.attrs.fieldType] || 'TextInput'
-      /*
-			if (!(field.attrs && field.attrs.fieldType)) {
-				if (field.type === 'string') {
-					return "TextInput"
-				}
-				else if (field.type === 'number' || field.type === 'integer') {
-					return "NumberInput"
-				}			
-				else if (field.type === 'object') {
-					return "ObjectComponent"
-				}		
-				else if (field.type === 'array') {
-					return "CheckList"
-				}	
-			}
 
-			switch (field.attrs.fieldType) {
-				case "text":
-					return "TextInput"
-				case "checklistwithother":
-					return "CheckListWithOther"
-				case "radio":
-					return "RadioInput"
-				case "checkbox":
-					return "Checkbox"
-				case "checklist":
-					return "CheckList"
-				case "selectList":
-					return "SelectList"
-				case "object": 
-					return "ObjectComponent"
-				case "number": 
-					return "NumberInput"
-				case "date": 
-					return "SelectDate"
-			}
-			*/
     }
   }
 }

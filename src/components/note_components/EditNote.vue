@@ -144,7 +144,11 @@ export default {
   //     console.log(sectionKeys)
   //     return sectionKeys
   //   }
-  // },
-  mounted() {}
+  // }
+  watch: {
+    fee_no(){
+      this.init()
+    }
+  }
 }
 </script>
