@@ -80,6 +80,14 @@ export default {
       if (schema.description) {
         return `${schema.title.replace(/\W/gm, '-').toLowerCase()}-help`
       }
+    },
+    getPlaceholder() {
+      if (this.schema.attrs) {
+        if (this.schema.attrs.placeholder) {
+          return this.schema.attrs.placeholder
+        }
+      }
+      return ''
     }
   },
   computed: {
@@ -103,11 +111,8 @@ export default {
           if (schemaAttrs.dependsOn.values && schemaAttrs.dependsOn.name) {
             if (Array.isArray(this.value[schemaAttrs.dependsOn.name])) {
               for (let i = 0; i < schemaAttrs.dependsOn.values.length; i++) {
-                if (
-                  this.value[schemaAttrs.dependsOn.name].indexOf(
-                    schemaAttrs.dependsOn.values[i]
-                  ) !== -1
-                ) {
+                if (this.value[schemaAttrs.dependsOn.name].indexOf(
+                    schemaAttrs.dependsOn.values[i])) {
                   return true
                 } else {
                   this.clearInput()

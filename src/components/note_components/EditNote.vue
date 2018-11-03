@@ -1,9 +1,15 @@
 <template>
+<<<<<<< HEAD
   <div class="wrap" :class="{isExpanded: isExpanded}">
     <div v-if="isLoaded" v-scroll-spy="{ sectionSelector: '.scroll-watch', offset: 100 }" class="row">    
       <Note class="col-xl-10" :schema="noteSchema.properties.content" :schemaData="data"></Note>
       <SectionNav class="col-xl-2 d-none d-xl-block mt-5" :schema="noteSchema"></SectionNav>
     </div>
+=======
+  <div class="row" :class="{isExpanded: isExpanded}" v-scroll-spy="{ sectionSelector: '.scroll-watch', offset: 100 }">    
+    <Note class="col-12 col-sm-10 mt-4 px-0" :schema="noteSchema" :schemaData="data"></Note>
+    <SectionNav class="col-sm-2 d-none d-xl-block mt-4" :schema="noteSchema"></SectionNav>
+>>>>>>> 3c8b3fc27ed9ba9df43fcacac889573e732c4322
   </div>
 </template>
 
@@ -149,6 +155,7 @@ export default {
   //     console.log(sectionKeys)
   //     return sectionKeys
   //   }
+<<<<<<< HEAD
   // },
   mounted() {},
   beforeRouteEnter (to, from, next){
@@ -170,7 +177,13 @@ export default {
     margin: 120px 10px 0 70px;
     boj_box {
       padding: 15px 0 !important;
+=======
+  // }
+  watch: {
+    fee_no(){
+      this.init()
+>>>>>>> 3c8b3fc27ed9ba9df43fcacac889573e732c4322
     }
   }
 }
-</style>
+</script>

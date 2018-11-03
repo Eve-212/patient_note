@@ -1,16 +1,22 @@
 <template>
-  <div>
-    <div style="position: absolute; z-index: 1;">
-      <header-component @isExpanded="toggleExpand" :user="user" :hide="hide"></header-component>
-    </div>
-    <div class="row">
-      <sidemenu class="col-md-1" :isExpanded="isExpanded"></sidemenu>
-      <router-view :isExpanded="isExpanded"></router-view>
-    </div>
-    <back-to-top @hide="hideSearch"></back-to-top>
+  <div class="container-fluid">
+    <header-component 
+      class="navbar fixed-top"
+      @isExpanded="toggleExpand" 
+      :user="user" 
+      :hide="hide">
+    </header-component>
+    <div class="row content">
+      <div class="col-2 col-sm-1 px-0">
+        <sidemenu :isExpanded="isExpanded"></sidemenu>
+      </div>
+      <div class="col-10 col-sm-10">
+        <router-view :isExpanded="isExpanded"></router-view>
+      </div>
+      <back-to-top @hide="hideSearch"></back-to-top>
+    </div>    
   </div>
 </template>
-
 <script>
 import Vue from 'vue'
 Vue.component('header-component', require('@/components/Header.vue').default)
@@ -35,3 +41,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.content {
+  margin-top: 80px;
+}
+</style>

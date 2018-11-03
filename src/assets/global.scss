@@ -2,8 +2,8 @@
   @return ($px * 100 / $base) * 1vw;
 }
 
-$break-small: 450px;
-$break-medium: 650px;
+$break-small: 576px;
+$break-medium: 768px;
 $break-large: 1200px;
 $brown: #786450;
 $blue: #17a2b8;
@@ -15,6 +15,7 @@ $red-light: #ea8989;
 *,
 body {
   color: $black;
+  font-size: 14px;
   box-sizing: border-box;
   font-family: Microsoft JhengHei, sans-serif, Font Awesome 5 Brands;
 }
@@ -34,7 +35,7 @@ i.fa {
 }
 
 .isExpanded {
-  margin-left: 190px;
+  margin-left: 150px;
   @media screen and (max-width: $break-medium) {
     margin-left: 0;
   }
