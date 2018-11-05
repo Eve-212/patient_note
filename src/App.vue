@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="container-fluid">
+    <div id="app">
         <router-view @authenticated="setAuthenticated" :user="authenticated.user"></router-view>
     </div>
 </template>

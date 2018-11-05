@@ -14,7 +14,8 @@
           :name="currentKey" 
           v-model="value[currentKey]"
           class="form-control"
-          :aria-describedby="helpText(schema)">
+          :aria-describedby="helpText(schema)"
+          :placeholder="placeholder">
       </div>
       <small 
         v-if="schema.description" 
@@ -37,7 +38,8 @@
           :name="currentKey" 
           v-model="value[currentKey]"
           class="form-control"
-          :aria-describedby="helpText(schema)">
+          :aria-describedby="helpText(schema)"
+          :placeholder="placeholder">
         <small 
           v-if="schema.description" 
           :id="helpText(schema)" 
@@ -61,58 +63,8 @@ export default {
     }
   },
   methods: {
-    getPlaceholder() {
-      if (typeof this.schema.attrs !== 'undefined') {
-        if (typeof this.schema.attrs.placeholder !== 'undefined') {
-          return this.schema.attrs.placeholder
-        }
-      }
-      return ''
-    }
-  },/*
-  computed: {
-    showInputField() {
-      let schemaAttrs = this.schema.attrs
 
-      // dependsOn name is Array?
-      if (schemaAttrs) {
-        if (schemaAttrs.dependsOn) {
-          if (schemaAttrs.dependsOn.values && schemaAttrs.dependsOn.name) {
-            // if(typeof schemaAttrs.dependsOn.values !== 'undefined' && typeof schemaAttrs.dependsOn.name !== 'undefined'){
-            if (Array.isArray(this.value[schemaAttrs.dependsOn.name])) {
-              for (let i = 0; i < schemaAttrs.dependsOn.values.length; i++) {
-                if (
-                  this.value[schemaAttrs.dependsOn.name].indexOf(
-                    schemaAttrs.dependsOn.values[i]
-                  ) !== -1
-                ) {
-                  return true
-                } else {
-                  this.clearInput()
-                  return false
-                }
-              }
-            } else {
-              if (
-                schemaAttrs.dependsOn.values.indexOf(
-                  this.value[schemaAttrs.dependsOn.name]
-                ) !== -1
-              ) {
-                return true
-              } else {
-                this.clearInput()
-                return false
-              }
-            }
-          }
-          return true
-        }
-        return true
-      }
-      return true
-    }
   }
-  */
 }
 </script>
 

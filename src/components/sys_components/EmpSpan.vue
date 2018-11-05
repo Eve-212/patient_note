@@ -10,14 +10,16 @@
 
 export default {
   name: 'EmpSpan',
-  props: ['id','hide_id'],
+  props: ['id', 'hide_id'],
   data() {
     return {
       name: ''
     }
   },
   created() {
-    this.$wf.emp.local_get(this.id).then($emp => (this.name = ($emp.name || this.id)))
+    this.$wf.emp
+      .local_get(this.id)
+      .then($emp => (this.name = $emp.name || this.id))
   }
 }
 </script>

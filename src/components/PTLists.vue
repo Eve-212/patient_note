@@ -1,8 +1,7 @@
 <template>
-  <div :class="{isExpanded: isExpanded}" style="width: 100%;">
-    <div class="wrap">
+  <div :class="{isExpanded: isExpanded}">
       <span>{{status}}</span>
-      <div class="selectBtn_wrap mb-4 mb-sm-0 d-flex align-items-center justify-content-sm-end">
+      <div class="selectBtn_wrap mt-5 mt-sm-0 mb-sm-1 mb-4 d-flex align-items-center justify-content-sm-end">
         <span class="h5 my-0" >Group By：</span>
         <div class="switchBtn">
           <button 
@@ -18,7 +17,6 @@
         </div>
       </div>
       <card-component :sortType="sortType" :list="sortedData"></card-component>
-    </div>
   </div>
 </template>
 
@@ -168,23 +166,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/global.scss';
-
-.wrap {
-  margin: 80px 50px 0 100px;
-  @media screen and (max-width: 1025px) {
-    margin: 80px 10px 0 90px;
-  }
-  @media screen and (max-width: $break-medium) {
-    margin: 120px 10px 0 60px;
-  }
-  .switchBtn {
-    button {
-      cursor: pointer;
-      &.clicked {
-        color: #fff;
-        background: #17a2b8;
-      }
+.switchBtn {
+  button {
+    cursor: pointer;
+    &.clicked {
+      color: #fff;
+      background: #17a2b8;
     }
   }
 }

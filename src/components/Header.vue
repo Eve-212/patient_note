@@ -6,7 +6,7 @@
       </router-link>
       <form class="form-inline search-wrap" :class="{hide:hide}">
         <input type="text" class="form-control" v-model="no" placeholder="病歷號/床號/ 身分證">
-        <div class="input-group-prepend">
+        <div class="input-group-append">
           <button type="button" class="input-group-text search" @click="load"><i class="fa fa-search"></i></button>
         </div>
       </form>
@@ -68,10 +68,11 @@ export default {
 
 nav {
   background: #f4f6f7;
-  padding: 8px 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   width: 100%;
-  // box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.08);
   font-size: 14px;
+  height: 55px;
   .hamburger {
     border-radius: 50%;
     margin: 0 11px;
@@ -85,44 +86,42 @@ nav {
     }
   }
   .navbar-brand {
-    display: flex;
-    align-items: center;
     &:hover {
       color: inherit;
     }
     img {
       width: 20px;
-      height: 20px;
-    }
-    @media screen and (max-width: $break-medium) {
-      font-size: 16px;
+      height: auto;
     }
   }
   .search-wrap {
-    display: flex;
     @media screen and (max-width: $break-small) {
       &.hide {
         display: none;
       }
     }
-    @media screen and (max-width: $break-medium) {
-      display: flex;
+    @media screen and (max-width: $break-small) {
       position: absolute;
-      top: 50px;
-      right: 38px;
-      button {
-        position: absolute;
-        right: -38px;
-        top: 0;
-      }
+      top: 55px;
+      right: 31px;
     }
     .search {
       display: flex;
       justify-content: center;
       padding: 0;
+      @media screen and (max-width: $break-small) {
+        position: absolute;
+        right: -31px;
+        top: 0;
+      }
       i {
-        width: 36px;
-        line-height: 36px;
+        width: 31px;
+        line-height: 31px;
+        height: 31px;
+        @media screen and (max-width: $break-small) {
+          height: 32px;
+          line-height: 32px;
+        }
       }
     }
   }
