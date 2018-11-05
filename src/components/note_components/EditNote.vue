@@ -29,6 +29,12 @@ export default {
       sess: null
     }
   },
+  watch: {
+    fee_no: function() {
+      this.init();  
+    }
+    
+  },
   methods: {
     // getSectionKeys: function() {
     //   let sectionKeys = Object.keys(this.noteSchema.properties.content.properties)
@@ -129,7 +135,7 @@ export default {
       //
       //this.noteSchema=$raw.data
       this.noteSchema = require('../../../static/fake_data/sch.note.adm.json')
-
+      
       this.init()
     })
 

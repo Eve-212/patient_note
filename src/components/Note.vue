@@ -12,6 +12,8 @@
 				v-model="jsonSchemaData">
 			</component>
 			</div>
+
+      {{ schemaData }}
 	</div>
 </template>
 

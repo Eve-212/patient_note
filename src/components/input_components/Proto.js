@@ -53,6 +53,10 @@ export default {
           initValue = []
           this.$set(this.value, this.currentKey, initValue)
           break
+        case 'CheckListWithOther':
+          initValue = []
+          this.$set(this.value, this.currentKey, initValue)
+          break
         case 'RadioInput':
           initValue = ''
           this.$set(this.value, this.currentKey, initValue)

@@ -2,7 +2,7 @@
     <nav class="navbar fixed-top">
       <div class="hamburger" v-on:click="toggleExpand()"><i class="fa fa-bars"></i></div>
       <router-link :to="{name: 'ptlists'}" class="navbar-brand mr-auto" href="#">
-        <img class="logo-sm mx-1" src="../assets/logo-sm.png">病摘
+        <img class="logo-sm ml-3 mr-1" src="../assets/logo-sm.png">病摘
       </router-link>
       <form class="form-inline search-wrap" :class="{hide:hide}">
         <input type="text" class="form-control" v-model="no" placeholder="病歷號/床號/ 身分證">
