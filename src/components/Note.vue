@@ -1,9 +1,9 @@
 <template> 
-	<div class="note-style">
-		<h2>{{ schema.title }}</h2>  		
+	<div class="note-style" v-if="jsonSchema">
+		<h2>{{ jsonSchema.title }}</h2>  		
 			<div class="scroll-watch">   
 			<component 
-				v-for="(field, key) in jsonSchema.properties" 
+				v-for="(field, key) in jsonSchema.properties.content.properties" 
 				:key="key"
 				:is="getComponentName(field)"
 				:schema="field" 
