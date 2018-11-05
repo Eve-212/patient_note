@@ -1,6 +1,6 @@
 <template>
   <div class="wrap" :class="{isExpanded: isExpanded}">
-    <div v-scroll-spy="{ sectionSelector: '.scroll-watch' }" class="row">    
+    <div class="row">    
       <Form class="col-md-10 mb-5" :schema="noteSchema" :schemaData="data"></Form>
       <SectionNav class="col-md-2 d-none d-md-block mb-5" :schema="noteSchema"></SectionNav>
     </div>
@@ -27,6 +27,12 @@ export default {
       sess: null,
       isLoaded:false
     }
+  },
+  watch: {
+    fee_no: function() {
+      this.init();  
+    }
+    
   },
   methods: {
     // getSectionKeys: function() {
@@ -130,7 +136,7 @@ export default {
       //
       //this.noteSchema=$raw.data
       this.noteSchema = require('../../../static/fake_data/sch.note.adm.json')
-
+      
       this.init()
     })
 
@@ -152,9 +158,6 @@ export default {
     fee_no(){
       this.init()
     }
-  },
-  mounted() {
-    console.log(field)
   }
 }
 </script>

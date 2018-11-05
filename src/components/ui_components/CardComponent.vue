@@ -27,8 +27,8 @@
           </div>
           <div class="card-body">
             <p class="mb-0">{{ age(v1.ipd.birthdate) }} y/o, {{sex(v1.ipd.sex)}}</p>
-            <div v-if="v1.ipd.icd10_in[0]"><icd-span :icd="v1.ipd.icd10_in[0]"></icd-span></div>
-            <p>主責醫師：<emp-span class="mr-1" :id="v1.ipd.doc_id" :hide_id="true"></emp-span></p>
+            <div v-if="v1.ipd.icd10_in[0]"><ICDSpan :icd="v1.ipd.icd10_in[0]"></ICDSpan></div>
+            <p>主責醫師：<EmpSpan class="mr-1" :id="v1.ipd.doc_id" :hide_id="true"></EmpSpan></p>
             <div class="d-flex">
               <div v-for="n in 3">
                 <button 

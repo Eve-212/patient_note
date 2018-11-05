@@ -1,32 +1,33 @@
 <template>
-  <div>
-    <div :class="[bsColSize ,styleClass]" v-if="showInputField">          
-      <div    
-        class="display-inline" 
-        v-for="(item, index) in schema.attrs.values" 
-        :key="index">
-        <input 
-          type="checkbox" 
-          :id="item" 
-          :value="item" 
-          v-model="value[currentKey]">
-        <label :for="item">{{ item }}</label>
-      </div>
-      <div class="display-inline padding-left">
-        <label 
-          for="other">Other:				
-        </label>
-        <input 
-          id="other" 
-          type="text" 
-          name="other" 
-          v-model="other">
-      </div>    	 
-      {{ other }}  
-      
+<div>
+  <div 
+    :id="anchorIdFormat(schema)" 
+    :class="[bsColSize, styleClass]" 
+    v-if="showInputField">
+    <div class="checklist-label" :for="currentKey">{{ schema.title }}</div>
+    <div 
+      :id="currentKey"			
+      class="form-check form-check-inline" 
+      v-for="(item, index) in checklistOptions" 
+      :key="index">      
+      <input 
+        class="form-check-input"
+        type="checkbox" 
+        :id="getId(index)" 
+        :value="item"
+        v-model="value[currentKey]">
+      <label  class="form-check-label" :for="getId(index)">{{ item }}</label>
     </div>
-    {{ value }}
+
+    <!-- add Other input box -->
+    <input type="text" placeholder="Other..." v-on:keyup.13="add_item" v-model="other_val">
+    <button v-if="other_val" v-on:click="add_item">+</button>
+    
   </div>
+  {{ checklistOptions }}
+  <br>
+  {{ value }}
+</div>
 </template>
 
 <script>
@@ -43,32 +44,48 @@ export default {
   },
   data() {
     return {
-      other: null,
-      
+      other_val: null  
+    }    
+  },  
+  methods: {    
+    // add new item to checklist and reset value of Other input box to null
+    add_item(){
+      if (this.other_val){
+        this.value[this.currentKey].push(this.other_val)
+        this.other_val = null
+      }      
+    }
+  },
+  computed: {
+    checklistOptions() {
+      return this.schema.attrs.values.concat(this.value[this.currentKey].filter((x) => !this.schema.attrs.values.includes(x)));
+    },  
+    
+    items(){
+      return this.def_items.concat(this.values.filter((x)=> !this.def_items.includes(x)));
     }
   },
   created: function() {
+    if(!this.schema.attrs.values){
+      if (this.schema.items.enum){
+        this.schema.attrs.values=this.schema.items.enum
+      }
+    }
     if (!(this.currentKey in this.value)) {
       // this.value[this.currentKey] = {}
       // this.$emit('input', this.value)
       this.$set(this.value, this.currentKey, [])
       //this.value["keyOnCreate"] = {};
     }
-  },
-  methods: {
-    clearInput() {
-      let initValue = []
-      this.$set(this.value, this.currentKey, initValue)
-    }
-  },
-  computed: {
-    addUpdateOther() {
-      if (this.value[currentKey].includes(this.other)) {
-      }
-    }
   }
 }
 </script>
 
 <style>
+.checklist-label {
+  font-size: 1.1rem;  
+}
+/* .margin-bot-small {
+  margin-bottom: 10px;
+} */
 </style>

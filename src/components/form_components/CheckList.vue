@@ -53,7 +53,7 @@ export default {
 .checklist-label {
   font-size: 1.1rem;  
 }
-.margin-bot-small {
+/* .margin-bot-small {
   margin-bottom: 10px;
-}
+} */
 </style>

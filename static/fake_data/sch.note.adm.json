@@ -360,22 +360,12 @@
                   "Chills",
                   "Night sweating",
                   "Fatigue",
-                  "Weakness",
-                  "Other"
+                  "Weakness"                  
                 ],
+                "fieldType": "checklistwithother",
                 "styleClass": ["margin-bot-small"]
               }
-            },
-            "general_other": {
-              "title": "Other",
-              "type": "string",
-              "attrs": {
-                "dependsOn": {
-                  "name": "general",
-                  "values": ["Other"]
-                }
-              }
-            },
+            },                     
             "skin": {
               "title": "Skin",
               "type": "array",

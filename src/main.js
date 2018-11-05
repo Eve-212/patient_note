@@ -1,18 +1,24 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+// import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios'
 import OneAPI from './lib/oneapi'
-import Scrollspy from 'vue2-scrollspy'
+//import Vuex from 'vuex'
+// import 'vue-orgchart/dist/style.min.css'
+import { store } from './store/store'
 
 
+// install Vuex
+// Vue.use(Vuex);
+import VueScrollTo from 'vue-scrollto'
+import Scrollspy from 'vue2-scrollspy';
+// use default options
+Vue.use(Scrollspy);
 
-
-var VueScrollTo = require('vue-scrollto')
-Vue.use(Scrollspy)
 
 Vue.use(VueScrollTo, {
   container: 'body',
@@ -31,18 +37,18 @@ Vue.use(VueScrollTo, {
 //Vue.use(Vuex)
 
 Vue.prototype.$http = axios
-let $wf = OneAPI({
-  spec_url: 'http://10.65.1.228:3000/api/spec.get',
-  server_url: 'http://10.65.1.228:3000/api'
+let $wf=OneAPI({
+  spec_url:"http://10.65.1.228:3000/api/spec.get",
+  server_url:"http://10.65.1.228:3000/api"
 })
-Vue.prototype.$wf = $wf
-window.$wf = $wf
+Vue.prototype.$wf =  $wf
+window.$wf=$wf
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  //  store,
+  store,
   router,
   components: { App },
   template: '<App/>'
