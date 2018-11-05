@@ -49,11 +49,15 @@
 </template>
 
 <script>
-import Vue from 'vue'
-Vue.component('icd-span', require('./sys_components/ICDSpan.vue').default)
-Vue.component('emp-span', require('./sys_components/EmpSpan.vue').default)
+import ICDSpan from '@/components/sys_components/ICDSpan.vue'
+import EmpSpan from '@/components/sys_components/EmpSpan.vue'
+
 
 export default {
+  components:{
+    ICDSpan,
+    EmpSpan
+  },
   props: ['sortType', 'list'],
   methods: {
     sex(value) {
@@ -69,7 +73,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/global.scss';
+@import '@/assets/global.scss';
 .card_title {
   border-bottom: 1px #cccaca solid;
   padding-bottom: 5px;

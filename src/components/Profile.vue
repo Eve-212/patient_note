@@ -59,7 +59,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../assets/global.scss';
+@import '@/assets/global.scss';
+
 
 .card-wrap {
   box-shadow: 0 1px 8px rgba(170, 170, 170, 0.3);

@@ -1,22 +1,22 @@
 <template>
-  <div class="row" :class="{isExpanded: isExpanded}" v-scroll-spy="{ sectionSelector: '.scroll-watch', offset: 100 }">    
-    <Note class="col-12 col-sm-10 mt-4 px-0" :schema="noteSchema" :schemaData="data"></Note>
-    <SectionNav class="col-sm-2 d-none d-xl-block mt-4" :schema="noteSchema"></SectionNav>
+  <div class="wrap" :class="{isExpanded: isExpanded}">
+    <div v-scroll-spy="{ sectionSelector: '.scroll-watch' }" class="row">    
+      <Form class="col-md-10 mb-5" :schema="noteSchema" :schemaData="data"></Form>
+      <SectionNav class="col-md-2 d-none d-md-block mb-5" :schema="noteSchema"></SectionNav>
+    </div>
   </div>
 </template>
 
 <script>
-import Note from '../Note'
-import SectionNav from '../SectionNav'
-import ObjectComponent from '../utility_components/ObjectComponent'
+import Form from '@/components/form_components/Form.vue';
+import SectionNav from '@/components/ui_components/SectionNav.vue'
 import axios from 'axios'
 
 export default {
   name: 'EditNote',
   props: ['isExpanded', 'fee_no'],
   components: {
-    Note,
-    ObjectComponent,
+    Form,
     SectionNav
   },
   data() {
@@ -24,7 +24,8 @@ export default {
       noteSchema: null,
       data: {},
       meta: {},
-      sess: null
+      sess: null,
+      isLoaded:false
     }
   },
   methods: {
@@ -91,6 +92,7 @@ export default {
           this.prepare_data(this.noteSchema, $raw.data)
           this.data = $raw.data.content
           this.meta = $raw.data
+          this.isLoaded=true
         })
       } else {
         let $ipd = this.sess.ipd
@@ -107,13 +109,14 @@ export default {
         $data.admit_time = $ipd.start
         this.prepare_data(this.noteSchema.properties.content, $data)
         this.data = $data
+        this.isLoaded=true
       }
     } /*,
     prepare_schema($sch){
       
     }*/
   },
-  created: function() {
+  beforeCreate: function() {
     // axios.get('fake_data/schemas.json')
     // .then((res) => {
     //   console.log(res.body)
@@ -149,6 +152,26 @@ export default {
     fee_no(){
       this.init()
     }
+  },
+  mounted() {
+    console.log(field)
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '@/assets/global.scss';
+
+.wrap {
+  margin: 80px 50px 0 100px;
+  @media screen and (max-width: 1025px) {
+    margin: 80px 10px 0 90px;
+  }
+  @media screen and (max-width: $break-medium) {
+    margin: 120px 10px 0 70px;
+    boj_box {
+      padding: 15px 0 !important;
+    }
+  }
+}
+</style>

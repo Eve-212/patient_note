@@ -30,15 +30,16 @@
 </template>
 
 <script>
-import TextInput from './TextInput'
-import Proto from './Proto'
+
+import Proto from '@/components/mixin/Proto.js'
+
 
 
 export default {
   name: 'CheckListWithOther',
   mixins: [Proto],
   components: {
-    TextInput
+    
   },
   data() {
     return {

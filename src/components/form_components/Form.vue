@@ -2,75 +2,64 @@
 	<div class="note-style">
 		<h2>{{ schema.title }}</h2>  		
 			<div class="scroll-watch">   
-			<component 
-				v-for="(field, key) in jsonSchema.properties" 
-				:key="key"
-				:is="getComponentName(field)"
-				:schema="field" 
-				:path="path.concat(key)"
-				:currentKey="key"			
-				v-model="jsonSchemaData">
-			</component>
+        <component 
+          v-for="(field, key) in jsonSchema.properties.content.properties" 
+          :key="key"
+          :is="getComponentName(field)"
+          :schema="field"
+          :path="path.concat(key)"
+          :currentKey="key"			
+          v-model="jsonSchemaData">
+        </component>
 			</div>
 	</div>
 </template>
 
 <script>
-import TextInput from './input_components/TextInput'
-import RadioInput from './input_components/RadioInput'
-import bsRadioInput from './input_components/bsRadioInput'
-import Checkbox from './input_components/Checkbox'
-import CheckList from './input_components/CheckList'
-import CheckListWithOther from './input_components/CheckListWithOther'
-import NumberInput from './input_components/NumberInput'
-import SelectDate from './input_components/SelectDate'
-import SelectList from './input_components/SelectList'
-import ObjectComponent from './utility_components/ObjectComponent'
-import FamilyTree from './input_components/FamilyTree'
-import bsLabTable from './input_components/bsLabTable'
-import OrgChart from './input_components/OrgChart'
-import FuncAssess from './input_components/FuncAssess'
+import Proto from '@/components/mixin/Proto.js'
+import bsLabTable from '@/components/form_components/bsLabTable'
+import bsRadioInput from '@/components/form_components/bsRadioInput'
+import Checkbox from '@/components/form_components/Checkbox'
+import CheckList from '@/components/form_components/CheckList'
+import CheckListWithOther from '@/components/form_components/CheckListWithOther'
+import FamilyTree from '@/components/form_components/FamilyTree'
+import Form from '@/components/form_components/Form'
+import FuncAssess from '@/components/form_components/FuncAssess'
+import NumberInput from '@/components/form_components/NumberInput'
+import ObjectComponent from '@/components/form_components/ObjectComponent'
+import OrgChart from '@/components/form_components/OrgChart'
+import RadioInput from '@/components/form_components/RadioInput'
+import SelectDate from '@/components/form_components/SelectDate'
+import SelectList from '@/components/form_components/SelectList'
+import TextInput from '@/components/form_components/TextInput'
+import TreeCharter from '@/components/form_components/TreeCharter'
 
 export default {
-  name: 'Note',
+  name: 'Form',
+  mixins: [Proto],
   components: {
-    TextInput,
+    bsLabTable,
     bsRadioInput,
     Checkbox,
     CheckList,
-    NumberInput,
-    SelectDate,
-    SelectList,
-    ObjectComponent,
     CheckListWithOther,
     FamilyTree,
-    bsLabTable,
-    FuncAssess
+    Form,
+    FuncAssess,
+    NumberInput,
+    ObjectComponent,
+    OrgChart,
+    RadioInput,
+    SelectDate,
+    SelectList,
+    TextInput,
+    TreeCharter
   },
   props: {
-    schema: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
     schemaData: {
       type: Object,
       default() {
         return {}
-      }
-    },
-
-    path: {
-      type: Array,
-      default() {
-        return []
-      }
-    },
-    currentKey: {
-      type: String,
-      default() {
-        return ''
       }
     }
   },
@@ -86,7 +75,8 @@ export default {
       this.jsonSchemaData = this.schemaData
     },
     schema($schema) {
-      this.jsonSchema = this.schema.properties.content
+      //this.jsonSchema = this.schema.properties.content
+      this.jsonSchema = this.schema
     }
   },
   methods: {
@@ -128,6 +118,9 @@ export default {
       return $field_com[field.attrs.fieldType] || 'TextInput'
 
     }
+  },
+  mounted() {
+    console.log(this.jsonSchema)
   }
 }
 </script>

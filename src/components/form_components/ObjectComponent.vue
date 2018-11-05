@@ -16,60 +16,50 @@
 </template>
 
 <script>
-import TextInput from '../input_components/TextInput'
-import bsRadioInput from '../input_components/bsRadioInput'
-import Checkbox from '../input_components/Checkbox'
-import CheckList from '../input_components/CheckList'
-import CheckListWithOther from '../input_components/CheckListWithOther'
-import NumberInput from '../input_components/NumberInput'
-import SelectDate from '../input_components/SelectDate'
-import SelectList from '../input_components/SelectList'
-import bsLabTable from '../input_components/bsLabTable'
-import OrgChart from '../input_components/OrgChart'
-import FamilyTree from '../input_components/FamilyTree'
-import FuncAssess from '../input_components/FuncAssess'
-import Proto from '../input_components/Proto'
+import Proto from '@/components/mixin/Proto.js'
+import bsLabTable from '@/components/form_components/bsLabTable'
+import bsRadioInput from '@/components/form_components/bsRadioInput'
+import Checkbox from '@/components/form_components/Checkbox'
+import CheckList from '@/components/form_components/CheckList'
+import CheckListWithOther from '@/components/form_components/CheckListWithOther'
+import FamilyTree from '@/components/form_components/FamilyTree'
+import Form from '@/components/form_components/Form'
+import FuncAssess from '@/components/form_components/FuncAssess'
+import NumberInput from '@/components/form_components/NumberInput'
+import ObjectComponent from '@/components/form_components/ObjectComponent'
+import OrgChart from '@/components/form_components/OrgChart'
+import RadioInput from '@/components/form_components/RadioInput'
+import SelectDate from '@/components/form_components/SelectDate'
+import SelectList from '@/components/form_components/SelectList'
+import TextInput from '@/components/form_components/TextInput'
+import TreeCharter from '@/components/form_components/TreeCharter'
 
 export default {
   name: 'ObjectComponent',
-  mixins: [Proto],
   components: {
-    TextInput,
+    bsLabTable,
     bsRadioInput,
     Checkbox,
     CheckList,
-    NumberInput,
-    SelectList,
-    SelectDate,
     CheckListWithOther,
-    bsLabTable,
     FamilyTree,
+    Form,
     FuncAssess,
-    OrgChart
+    NumberInput,
+    ObjectComponent,
+    OrgChart,
+    RadioInput,
+    SelectDate,
+    SelectList,
+    TextInput,
+    TreeCharter
   },
+  mixins: [Proto],
   props: {
-    schema: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
     value: {
       type: Object,
       default() {
         return {}
-      }
-    },
-    path: {
-      type: Array,
-      default() {
-        return []
-      }
-    },
-    currentKey: {
-      type: String,
-      default() {
-        return ''
       }
     },
     sectsKeys: {
@@ -131,43 +121,6 @@ export default {
         }
       }
       return $field_com[field.attrs.fieldType] || 'TextInput'
-      /*
-      if (!(field.attrs && field.attrs.fieldType)) {
-				if (field.type === 'string') {
-					return "TextInput"
-				}
-				else if (field.type === 'number' || field.type === 'integer') {
-					return "NumberInput"
-				}			
-				else if (field.type === 'object') {
-					return "ObjectComponent"
-				}		
-				else if (field.type === 'array') {
-					return "CheckList"
-				}	
-			}
-      
-      switch (field.attrs.fieldType) {
-        case 'text':
-          return 'TextInput'
-        case 'radio':
-          return 'RadioInput'
-        case 'checkbox':
-          return 'Checkbox'
-        case 'checklist':
-          return 'CheckList'
-        case 'selectList':
-          return 'SelectList'
-        case 'object':
-          return 'ObjectComponent'
-        case 'number':
-          return 'NumberInput'
-        case 'date':
-          return 'SelectDate'
-        case 'checklistwithother':
-          return 'CheckListWithOther'
-      }
-      */
     },
     clearInput() {
       // this.value[this.schema.attrs.fieldName] = null

@@ -24,7 +24,7 @@
     
  
     <tr>
-      <th scope="row">Total : {{total}}</th>
+      <th scope="row">Total : {{total}} </th>
       <td></td>
 
     </tr>
@@ -36,7 +36,7 @@
 
 <script>
 //import moment from 'moment'
-import Proto from './Proto'
+import Proto from '@/components/mixin/Proto.js'
 
 export default {
   name: 'FuncAssess',
@@ -83,14 +83,18 @@ export default {
   },
 
   mounted() {
-      for (key in this.schema.properties){
-          if (this.value[this.currentKey][key]===undefined){
+      if (this.value[this.currentKey]){
+        for (let key in this.schema.properties){
+          
+          if (this.value[this.currentKey][key]===undefined ){
               this.value[this.currentKey][key]=1;
           }
+        }
+
       }
+      
   }
 }
 </script>
-
 <style>
 </style>

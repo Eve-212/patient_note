@@ -45,10 +45,11 @@
   </div>
 </template>
 <script>
-import Vue from 'vue'
-Vue.component('timePicker', require('@/components/TimePicker.vue').default)
-
+import TimePicker from './ui_components/TimePicker'
 export default {
+  components: {
+    TimePicker
+  },
   data() {
     return {
       items: {
@@ -386,8 +387,8 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-@import '../assets/global.scss';
-@import '../assets/paginate.scss';
+@import '@/assets/global.scss';
+@import '@/assets/paginate.scss';
 
 .wrap {
   width: 100%;

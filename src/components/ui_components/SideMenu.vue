@@ -28,7 +28,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../assets/global.scss';
+@import '@/assets/global.scss';
+
 
 .side-menu {
   background: #f4f6f7;

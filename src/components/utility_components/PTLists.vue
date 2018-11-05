@@ -23,7 +23,7 @@
 <script>
 import Vue from 'vue'
 
-Vue.component('card-component', require('./CardComponent.vue').default)
+Vue.component('card-component', require('@/components/ui_components/CardComponent.vue').default)
 export default {
   props: ['isExpanded'],
   data() {
