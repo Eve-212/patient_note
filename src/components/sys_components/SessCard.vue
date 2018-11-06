@@ -9,10 +9,10 @@
             <h6 class="card-subtitle mb-2 text-muted">
                 <div>{{age}} y/o, {{sex}} </div>
                 <!--<div>{{sess.ipd.icd10_in}}</div>-->
-                <div><icd-span :icd="sess.ipd.icd10_in[0]"></icd-span></div>
+                <div><ICDSpan :icd="sess.ipd.icd10_in[0]"></ICDSpan></div>
             </h6>
             <p class="card-text">
-                主責醫師 : <emp-span :id="sess.ipd.doc_id" :hide_id="true"></emp-span>
+                主責醫師 : <EmpSpan :id="sess.ipd.doc_id" :hide_id="true"></EmpSpan>
             </p>
             <button class="btn btn-sm" v-on:click="show_edit('admission')">住院</button>
             <button class="btn btn-sm" title="2018-10-26 未完成">

@@ -12,51 +12,25 @@
           v-model="jsonSchemaData">
         </component>
 			</div>
-
       {{ schemaData }}
 	</div>
 </template>
 
 <script>
+import Vue from 'vue'
 import Proto from '@/components/mixin/Proto.js'
-import bsLabTable from '@/components/form_components/bsLabTable'
-import bsRadioInput from '@/components/form_components/bsRadioInput'
-import Checkbox from '@/components/form_components/Checkbox'
-import CheckList from '@/components/form_components/CheckList'
-import CheckListWithOther from '@/components/form_components/CheckListWithOther'
-import FamilyTree from '@/components/form_components/FamilyTree'
-import Form from '@/components/form_components/Form'
-import FuncAssess from '@/components/form_components/FuncAssess'
-import NumberInput from '@/components/form_components/NumberInput'
-import ObjectComponent from '@/components/form_components/ObjectComponent'
-import OrgChart from '@/components/form_components/OrgChart'
-import RadioInput from '@/components/form_components/RadioInput'
-import SelectDate from '@/components/form_components/SelectDate'
-import SelectList from '@/components/form_components/SelectList'
-import TextInput from '@/components/form_components/TextInput'
-import TreeCharter from '@/components/form_components/TreeCharter'
+import * as fields from '@/components/form_components/fieldsLoader'
+
+function register (name) {
+  Vue.component(name, require('@/components/form_components/' + name).default)
+}
+for(let importField in fields) {
+  register(importField)
+}
 
 export default {
   name: 'Form',
   mixins: [Proto],
-  components: {
-    bsLabTable,
-    bsRadioInput,
-    Checkbox,
-    CheckList,
-    CheckListWithOther,
-    FamilyTree,
-    Form,
-    FuncAssess,
-    NumberInput,
-    ObjectComponent,
-    OrgChart,
-    RadioInput,
-    SelectDate,
-    SelectList,
-    TextInput,
-    TreeCharter
-  },
   props: {
     schemaData: {
       type: Object,
@@ -120,9 +94,6 @@ export default {
       return $field_com[field.attrs.fieldType] || 'TextInput'
 
     }
-  },
-  mounted() {
-    console.log(this.jsonSchema)
   }
 }
 </script>
