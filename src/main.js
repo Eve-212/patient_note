@@ -10,12 +10,6 @@ import { store } from './store/store.js'
 // import 'vue-orgchart/dist/style.min.css'
 
 
-<<<<<<< HEAD
-=======
-// install Vuex
-// Vue.use(Vuex);
-import VueScrollTo from 'vue-scrollto'
->>>>>>> b5c25cb568ec7b1309f1a76cd19f58361de956c7
 import Scrollspy from 'vue2-scrollspy';
 // use default options
 Vue.use(Scrollspy);
