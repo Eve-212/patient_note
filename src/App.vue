@@ -4,16 +4,18 @@
     </div>
 </template>
 
-<script>
-import Vue from 'vue'
 
-export default {
+<script>
+
+export default {  
+  
   name: 'App',
   data() {
     return {
       authenticated: {
         status: false,
         user: ''
+        
       }
     }
   },
@@ -26,6 +28,7 @@ export default {
     setAuthenticated(v) {
       this.authenticated.status = v.status
       this.authenticated.user = v.user
+      
     }
   }
 }
