@@ -6,11 +6,11 @@
       :user="user" 
       :hide="hide">
     </header-component>
-    <div class="row content">
+    <div class="row">
       <div class="col-2 col-sm-1 px-0">
         <sidemenu :isExpanded="isExpanded"></sidemenu>
       </div>
-      <div class="col-10 col-sm-10">
+      <div class="col-sm-10 mb-5">
         <router-view :isExpanded="isExpanded"></router-view>
       </div>
       <back-to-top @hide="hideSearch"></back-to-top>
@@ -19,9 +19,9 @@
 </template>
 <script>
 import Vue from 'vue'
-Vue.component('header-component', require('@/components/Header.vue').default)
-Vue.component('sidemenu', require('@/components/SideMenu.vue').default)
-Vue.component('back-to-top', require('@/components/BackToTop.vue').default)
+Vue.component('header-component', require('@/components/ui_components/Header.vue').default)
+Vue.component('sidemenu', require('@/components/ui_components/SideMenu.vue').default)
+Vue.component('back-to-top', require('@/components/ui_components/BackToTop.vue').default)
 import axios from 'axios'
 export default {
   props: ['user'],

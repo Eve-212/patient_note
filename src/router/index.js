@@ -4,9 +4,9 @@ import MainLayout from '@/views/Main'
 import LoginPage from '@/views/Login'
 import ProfileComponent from '@/components/Profile'
 import TableComponent from '@/components/Table'
-import EditNote from '@/components/note_components/EditNote'
 import DashBoard from '@/components/DashBoard'
-import PTLists from '@/components/PTLists'
+import EditNote from '@/components/utility_components/EditNote'
+import PTLists from '@/components/utility_components/PTLists'
 
 Vue.use(Router)
 

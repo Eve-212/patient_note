@@ -36,7 +36,7 @@
 
 <script>
 //import moment from 'moment'
-import Proto from './Proto'
+import Proto from '@/components/mixin/Proto.js'
 
 export default {
   name: 'FuncAssess',

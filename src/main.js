@@ -5,22 +5,26 @@ import App from './App'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios'
-//import APIClient from 'moleculer-openapi-client'
 import OneAPI from './lib/oneapi'
 import { store } from './store/store.js'
 // import 'vue-orgchart/dist/style.min.css'
 
-var VueScrollTo = require('vue-scrollto');
 
+<<<<<<< HEAD
+=======
+// install Vuex
+// Vue.use(Vuex);
+import VueScrollTo from 'vue-scrollto'
+>>>>>>> b5c25cb568ec7b1309f1a76cd19f58361de956c7
 import Scrollspy from 'vue2-scrollspy';
 // use default options
 Vue.use(Scrollspy);
 
 
 Vue.use(VueScrollTo, {
-  container: "body",
+  container: 'body',
   duration: 500,
-  easing: "ease",
+  easing: 'ease',
   offset: -60,
   force: true,
   cancelable: true,

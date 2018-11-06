@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import Proto from './input_components/Proto'
+import Proto from '@/components/mixin/Proto.js'
+
 export default {
   name: 'SectionNav',
   mixins: [Proto],
@@ -43,7 +44,7 @@ li a {
 .customActive {
   color: #17a2b8;
   border-left: 1px solid #17a2b8;
-  padding-left: 40px;
+  padding-left: 5px;
   transition: all 0.1s;
 }
 </style>

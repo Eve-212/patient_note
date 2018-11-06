@@ -1,78 +1,41 @@
 <template> 
 	<div class="note-style" v-if="jsonSchema">
-		<h2>{{ jsonSchema.title }}</h2>  		
-			<div class="scroll-watch">   
-			<component 
-				v-for="(field, key) in jsonSchema.properties.content.properties" 
-				:key="key"
-				:is="getComponentName(field)"
-				:schema="field" 
-				:path="path.concat(key)"
-				:currentKey="key"			
-				v-model="jsonSchemaData">
-			</component>
+		<h2>{{ jsonSchema.title }}</h2>
+			<div class="scroll-watch">
+        <component 
+          v-for="(field, key) in jsonSchema.properties.content.properties" 
+          :key="key"
+          :is="getComponentName(field)"
+          :schema="field"
+          :path="path.concat(key)"
+          :currentKey="key"			
+          v-model="jsonSchemaData">
+        </component>
 			</div>
-
       {{ schemaData }}
 	</div>
 </template>
 
 <script>
-import TextInput from './input_components/TextInput'
-import RadioInput from './input_components/RadioInput'
-import bsRadioInput from './input_components/bsRadioInput'
-import Checkbox from './input_components/Checkbox'
-import CheckList from './input_components/CheckList'
-import CheckListWithOther from './input_components/CheckListWithOther'
-import NumberInput from './input_components/NumberInput'
-import SelectDate from './input_components/SelectDate'
-import SelectList from './input_components/SelectList'
-import ObjectComponent from './utility_components/ObjectComponent'
-import FamilyTree from './input_components/FamilyTree'
-import bsLabTable from './input_components/bsLabTable'
-import OrgChart from './input_components/OrgChart'
-import FuncAssess from './input_components/FuncAssess'
+import Vue from 'vue'
+import Proto from '@/components/mixin/Proto.js'
+import * as fields from '@/components/form_components/fieldsLoader'
+
+function register (name) {
+  Vue.component(name, require('@/components/form_components/' + name).default)
+}
+for(let importField in fields) {
+  register(importField)
+}
 
 export default {
-  name: 'Note',
-  components: {
-    TextInput,
-    bsRadioInput,
-    Checkbox,
-    CheckList,
-    NumberInput,
-    SelectDate,
-    SelectList,
-    ObjectComponent,
-    CheckListWithOther,
-    FamilyTree,
-    bsLabTable,
-    FuncAssess
-  },
+  name: 'Form',
+  mixins: [Proto],
   props: {
-    schema: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
     schemaData: {
       type: Object,
       default() {
         return {}
-      }
-    },
-
-    path: {
-      type: Array,
-      default() {
-        return []
-      }
-    },
-    currentKey: {
-      type: String,
-      default() {
-        return ''
       }
     }
   },

@@ -1,4 +1,5 @@
 <template>
+<div>
   <div 
     :id="anchorIdFormat(schema)" 
     :class="[bsColSize, styleClass]" 
@@ -7,9 +8,8 @@
     <div 
       :id="currentKey"			
       class="form-check form-check-inline" 
-      v-for="(item, index) in schema.attrs.values" 
-      :key="index">
-      
+      v-for="(item, index) in checklistOptions" 
+      :key="index">      
       <input 
         class="form-check-input"
         type="checkbox" 
@@ -18,17 +18,51 @@
         v-model="value[currentKey]">
       <label  class="form-check-label" :for="getId(index)">{{ item }}</label>
     </div>
+
+    <!-- add Other input box -->
+    <input type="text" placeholder="Other..." v-on:keyup.13="add_item" v-model="other_val">
+    <button v-if="other_val" v-on:click="add_item">+</button>
+    
   </div>
+  {{ checklistOptions }}
+  <br>
+  {{ value }}
+</div>
 </template>
 
 <script>
-import Proto from './Proto'
+
+import Proto from '@/components/mixin/Proto.js'
+
+
+
 export default {
-  name: 'CheckList',
-  mixins:[Proto],
+  name: 'CheckListWithOther',
+  mixins: [Proto],
+  components: {
+    
+  },
   data() {
     return {
-      
+      other_val: null  
+    }    
+  },  
+  methods: {    
+    // add new item to checklist and reset value of Other input box to null
+    add_item(){
+      if (this.other_val){
+        this.value[this.currentKey].push(this.other_val)
+        this.other_val = null
+      }      
+    }
+  },
+  computed: {
+    checklistOptions() {
+      return this.schema.attrs.values.concat(this.value[this.currentKey].filter((x) => !this.schema.attrs.values.includes(x)));
+    },  
+    
+    items(){
+      return this.def_items.concat(this.values.filter((x)=> !this.def_items.includes(x)));
     }
   },
   created: function() {
@@ -44,7 +78,6 @@ export default {
       //this.value["keyOnCreate"] = {};
     }
   }
-   
 }
 </script>
 

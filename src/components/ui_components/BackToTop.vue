@@ -57,7 +57,7 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '../assets/global.scss';
+@import '@/assets/global.scss';
 
 .fade-enter-active,
 .fade-leave-active {

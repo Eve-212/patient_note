@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Proto from './Proto'
+import Proto from '@/components/mixin/Proto.js'
 export default {
   name: 'SelectDate',
   mixins: [Proto],

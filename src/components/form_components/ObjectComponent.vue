@@ -16,60 +16,25 @@
 </template>
 
 <script>
-import TextInput from '../input_components/TextInput'
-import bsRadioInput from '../input_components/bsRadioInput'
-import Checkbox from '../input_components/Checkbox'
-import CheckList from '../input_components/CheckList'
-import CheckListWithOther from '../input_components/CheckListWithOther'
-import NumberInput from '../input_components/NumberInput'
-import SelectDate from '../input_components/SelectDate'
-import SelectList from '../input_components/SelectList'
-import bsLabTable from '../input_components/bsLabTable'
-import OrgChart from '../input_components/OrgChart'
-import FamilyTree from '../input_components/FamilyTree'
-import FuncAssess from '../input_components/FuncAssess'
-import Proto from '../input_components/Proto'
+import Vue from 'vue'
+import Proto from '@/components/mixin/Proto.js'
+import * as fields from '@/components/form_components/fieldsLoader'
+
+function register (name) {
+  Vue.component(name, require('@/components/form_components/' + name).default)
+}
+for(let importField in fields) {
+  register(importField)
+}
 
 export default {
   name: 'ObjectComponent',
   mixins: [Proto],
-  components: {
-    TextInput,
-    bsRadioInput,
-    Checkbox,
-    CheckList,
-    NumberInput,
-    SelectList,
-    SelectDate,
-    CheckListWithOther,
-    bsLabTable,
-    FamilyTree,
-    FuncAssess,
-    OrgChart
-  },
   props: {
-    schema: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
     value: {
       type: Object,
       default() {
         return {}
-      }
-    },
-    path: {
-      type: Array,
-      default() {
-        return []
-      }
-    },
-    currentKey: {
-      type: String,
-      default() {
-        return ''
       }
     },
     sectsKeys: {
@@ -131,43 +96,6 @@ export default {
         }
       }
       return $field_com[field.attrs.fieldType] || 'TextInput'
-      /*
-      if (!(field.attrs && field.attrs.fieldType)) {
-				if (field.type === 'string') {
-					return "TextInput"
-				}
-				else if (field.type === 'number' || field.type === 'integer') {
-					return "NumberInput"
-				}			
-				else if (field.type === 'object') {
-					return "ObjectComponent"
-				}		
-				else if (field.type === 'array') {
-					return "CheckList"
-				}	
-			}
-      
-      switch (field.attrs.fieldType) {
-        case 'text':
-          return 'TextInput'
-        case 'radio':
-          return 'RadioInput'
-        case 'checkbox':
-          return 'Checkbox'
-        case 'checklist':
-          return 'CheckList'
-        case 'selectList':
-          return 'SelectList'
-        case 'object':
-          return 'ObjectComponent'
-        case 'number':
-          return 'NumberInput'
-        case 'date':
-          return 'SelectDate'
-        case 'checklistwithother':
-          return 'CheckListWithOther'
-      }
-      */
     },
     clearInput() {
       // this.value[this.schema.attrs.fieldName] = null
