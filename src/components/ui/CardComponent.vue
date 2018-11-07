@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import ICDSpan from '@/components/sys_components/ICDSpan.vue'
-import EmpSpan from '@/components/sys_components/EmpSpan.vue'
+import ICDSpan from '@/components/sys/ICDSpan.vue'
+import EmpSpan from '@/components/sys/EmpSpan.vue'
 
 
 export default {

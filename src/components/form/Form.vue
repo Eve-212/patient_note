@@ -18,11 +18,11 @@
 
 <script>
 import Vue from 'vue'
-import Proto from '@/components/mixin/Proto.js'
-import * as fields from '@/components/form_components/fieldsLoader'
+import Proto from '@/components/mixins/Proto.js'
+import * as fields from '@/components/form/fieldsLoader'
 
 function register (name) {
-  Vue.component(name, require('@/components/form_components/' + name).default)
+  Vue.component(name, require('@/components/form/' + name).default)
 }
 for(let importField in fields) {
   register(importField)

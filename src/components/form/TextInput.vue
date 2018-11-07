@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import Proto from '@/components/mixin/Proto.js'
+import Proto from '@/components/mixins/Proto.js'
 export default {
   name: 'TextInput',
   mixins:[Proto],

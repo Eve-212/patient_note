@@ -5,8 +5,8 @@ import LoginPage from '@/views/Login'
 import ProfileComponent from '@/components/Profile'
 import TableComponent from '@/components/Table'
 import DashBoard from '@/components/DashBoard'
-import EditNote from '@/components/utility_components/EditNote'
-import PTLists from '@/components/utility_components/PTLists'
+import EditNote from '@/components/utility/EditNote'
+import PTLists from '@/components/utility/PTLists'
 
 Vue.use(Router)
 

@@ -32,7 +32,7 @@
 
 <script>
 
-import Proto from '@/components/mixin/Proto.js'
+import Proto from '@/components/mixins/Proto.js'
 
 
 
@@ -58,12 +58,17 @@ export default {
   },
   computed: {
     checklistOptions() {
-      return this.schema.attrs.values.concat(this.value[this.currentKey].filter((x) => !this.schema.attrs.values.includes(x)));
+      if (this.value[this.currentKey]) {
+         return this.schema.attrs.values.concat(this.value[this.currentKey].filter((x) => !this.schema.attrs.values.includes(x)));
+      }                 
     },  
     
-    items(){
-      return this.def_items.concat(this.values.filter((x)=> !this.def_items.includes(x)));
-    }
+    // items(){
+    //   if (this.value) {
+    //      return this.def_items.concat(this.values.filter((x)=> !this.def_items.includes(x)));
+    //   }
+    //   // return this.def_items.concat(this.values.filter((x)=> !this.def_items.includes(x)));
+    // }
   },
   created: function() {
     if(!this.schema.attrs.values){

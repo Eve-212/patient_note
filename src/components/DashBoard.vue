@@ -14,8 +14,8 @@
     </div>
 </template>
 <script>
-import SessCard from './sys_components/SessCard'
-import ICDSpan from './sys_components/ICDSpan'
+import SessCard from './sys/SessCard'
+import ICDSpan from './sys/ICDSpan'
 
 export default {
   name: 'DashBoard',

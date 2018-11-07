@@ -45,7 +45,7 @@
   </div>
 </template>
 <script>
-import TimePicker from './ui_components/TimePicker'
+import TimePicker from './ui/TimePicker'
 export default {
   components: {
     TimePicker

@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios'
 import OneAPI from './lib/oneapi'
 import { store } from './store/store.js'
+import VueScrollTo from 'vue-scrollto'
 // import 'vue-orgchart/dist/style.min.css'
 
 
