@@ -19,9 +19,9 @@
 </template>
 <script>
 import Vue from 'vue'
-Vue.component('header-component', require('@/components/ui_components/Header.vue').default)
-Vue.component('sidemenu', require('@/components/ui_components/SideMenu.vue').default)
-Vue.component('back-to-top', require('@/components/ui_components/BackToTop.vue').default)
+Vue.component('header-component', require('@/components/ui/Header.vue').default)
+Vue.component('sidemenu', require('@/components/ui/SideMenu.vue').default)
+Vue.component('back-to-top', require('@/components/ui/BackToTop.vue').default)
 import axios from 'axios'
 export default {
   props: ['user'],
