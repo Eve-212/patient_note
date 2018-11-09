@@ -1,15 +1,26 @@
 
 <template>
-<div :class="bsColSize">
-  <div :id="anchorIdFormat(schema)" :class="[styleClass]" v-if="showInputField">
-    <label :for="currentKey">{{ schema.title }}</label>
-    <input
-      id="number-input" 
-      type="date" 
-      :name="currentKey" 
-      v-model="value[currentKey]">
+  <div :class="getBsColSize">
+    <div :id="anchorIdFormat(schema)" :class="[getStyleClass]" v-if="showInputField">
+      <div v-if="schema.attrs.inputGroup">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text text-label">{{ schema.title }}</div>
+          </div>
+          <input id="number-input" type="date" :name="currentKey" v-model="value[currentKey]">
+        </div>
+      </div>
+      <div v-if="!schema.attrs.inputGroup">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text text-label">{{ schema.title }}</div>
+          </div>
+          <input id="number-input" type="date" :name="currentKey" v-model="value[currentKey]">
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+  </div>
 </template>
 
 <script>

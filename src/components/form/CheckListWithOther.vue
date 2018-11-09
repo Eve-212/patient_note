@@ -1,8 +1,8 @@
 <template>
-<div :class="bsColSize">
+<div :class="getBsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[styleClass]" 
+    :class="[getStyleClass]" 
     v-if="showInputField">
     <div class="checklist-label" :for="currentKey">{{ schema.title }}</div>
     <div 

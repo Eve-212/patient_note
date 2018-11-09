@@ -1,22 +1,22 @@
 
 <template>
-<div :class="bsColSize">
-  <div 
-    :id="anchorIdFormat(schema)" 
-    :class="[styleClass]" 
-    v-if="showInputField">
-    <select v-model="value[currentKey]">
-      <template v-if="schema.attrs.placeholder">
-        <option value="">{{ schema.attrs.placeholder }}</option>
-      </template>
-      <option 
-        v-for="(item, index) in schema.attrs.values" 
-        :key="index" 
-        :value="item">
-        {{ item }}
-      </option>
-    </select>
-  </div>
+  <div :class="getBsColSize">
+    <div 
+      :id="anchorIdFormat(schema)" 
+      :class="[getStyleClass]" 
+      v-if="showInputField">
+      <select v-model="value[currentKey]">
+        <template v-if="schema.attrs.placeholder">
+          <option value="">{{ schema.attrs.placeholder }}</option>
+        </template>
+        <option 
+          v-for="(item, index) in schema.attrs.values" 
+          :key="index" 
+          :value="item">
+          {{ item }}
+        </option>
+      </select>
+    </div>
 </div>
 </template>
 

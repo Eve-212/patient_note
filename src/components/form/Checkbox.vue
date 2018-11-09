@@ -1,8 +1,8 @@
 <template>
-<div :class="bsColSize">
+<div :class="getBsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[styleClass]" 
+    :class="[getStyleClass]" 
     v-if="showInputField">
     <label
       :for="currentKey">

@@ -1,5 +1,5 @@
 <template>
-<div :class="bsColSize">
+<div :class="getBsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
     v-if="showInputField">
@@ -34,7 +34,7 @@
           v-model="value[currentKey]"
           class="form-control"
           :aria-describedby="helpText(schema)"
-          :placeholder="placeholder">
+          :placeholder="getPlaceholder">
           <slot name="subTitle"></slot>
       </div>
     </div>
@@ -47,18 +47,13 @@ import Proto from '@/components/mixins/Proto.js'
 export default {
   name: 'TextInput',
   mixins:[Proto],
-  props: {
-    placeholder: {
-      type: String
-    }
-  },
   data() {
     return {
     }
   },
   methods: {
 
-  },
+  }
 }
 </script>
 

@@ -60,6 +60,7 @@
               "format": "date",
               "type": "string",
               "attrs": {
+                "inputGroup": true,
                 "fieldType": "date",
                 "bsColSize": 4
               }

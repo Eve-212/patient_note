@@ -23,6 +23,15 @@ export default {
       default() {
         return ''
       }
+    },
+    bsColSize: {
+      type: Number
+    },
+    styleClass: {
+      type: Array
+    },
+    placeholder: {
+      type: String
     }
   },
   methods: {
@@ -85,25 +94,23 @@ export default {
         return `${schema.title.replace(/\W/gm, '-').toLowerCase()}-help`
       }
     },
-    getPlaceholder() {
-      if (this.schema.attrs) {
-        if (this.schema.attrs.placeholder) {
-          return this.schema.attrs.placeholder
-        }
-      }
-      return ''
-    }
   },
   computed: {
-    bsColSize() {
-      if (this.schema.attrs.bsColSize) {
-        return `col-md-${this.schema.attrs.bsColSize}`
+    getPlaceholder() {
+      if (this.placeholder) {
+        return this.placeholder
+      }
+      return ''
+    },
+    getBsColSize() {
+      if (this.bsColSize) {
+        return `col-md-${this.bsColSize}`
       }
       return 'col-md-12'
     },
-    styleClass() {
-      if (this.schema.attrs.styleClass) {
-        return `${this.schema.attrs.styleClass}`
+    getStyleClass() {
+      if (this.styleClass) {
+        return `${this.styleClass}`
       }
       return ''
     },
