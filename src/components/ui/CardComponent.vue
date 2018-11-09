@@ -52,9 +52,8 @@
 import ICDSpan from '@/components/sys/ICDSpan.vue'
 import EmpSpan from '@/components/sys/EmpSpan.vue'
 
-
 export default {
-  components:{
+  components: {
     ICDSpan,
     EmpSpan
   },
@@ -73,7 +72,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/global.scss';
+@import '@/assets/sass/main.scss';
 .card_title {
   border-bottom: 1px #cccaca solid;
   padding-bottom: 5px;
@@ -88,20 +87,20 @@ export default {
   flex-wrap: wrap;
   .card {
     width: 18rem;
-    border-left: 4px solid $green;
+    border-left: 4px solid $color-tertiary;
     &.incompleted {
-      border-left: 4px solid $red-light;
+      border-left: 4px solid $color-secondary-light;
     }
     @media screen and (max-width: $break-small) {
       width: 100%;
     }
     .card-header {
       .bed_no {
-        background: $blue;
+        background: $color-primary;
         color: white;
         border-radius: 5px;
         &.female {
-          background: $red-light;
+          background: $color-secondary-light;
         }
       }
     }

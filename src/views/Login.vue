@@ -55,11 +55,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../assets/global.scss';
+@import '@/assets/sass/main.scss';
 
 .login {
   margin: 130px auto 0 auto;
-  border: 1px solid #ccc;
+  border: 1px solid $color-grey-light;
   padding: 30px;
   width: 450px;
   @media screen and (max-width: $break-medium) {
@@ -69,7 +69,7 @@ export default {
     width: px-to-vw(400, 450);
   }
   h2 {
-    border-left: 5px solid $blue;
+    border-left: 5px solid $color-primary;
     padding: 15px 0 15px 30px;
     margin-left: -30px;
     margin-bottom: 30px;
@@ -88,7 +88,7 @@ export default {
     padding: 5px 0;
   }
   button {
-    color: #fff;
+    color: $color-white;
     height: 40px;
     margin: 20px 0;
   }

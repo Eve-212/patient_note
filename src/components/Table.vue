@@ -60,12 +60,13 @@ export default {
         showData: {
           tableTitle: [],
           tableContent: []
-        },
+        }
       },
       lists: {
         incompeleted: {
           tableTitle: ['Order', 'Id', 'Name', 'Hospitalization Date'],
-          tableContent: [{
+          tableContent: [
+            {
               id: 12,
               name: 'Jessica',
               date: '2018-10-22',
@@ -87,7 +88,8 @@ export default {
         },
         compeleted: {
           tableTitle: ['Order', 'Id', 'Name', 'Compeleted On'],
-          tableContent: [{
+          tableContent: [
+            {
               id: 122354132451345,
               name: 'Jessica',
               date: '2018-10-22',
@@ -253,7 +255,8 @@ export default {
         },
         pending: {
           tableTitle: ['Order', 'Id', 'Name', 'Hospitalization Date'],
-          tableContent: [{
+          tableContent: [
+            {
               id: 15,
               name: 'Ula',
               date: '2018-08-22'
@@ -272,7 +275,8 @@ export default {
         },
         followed: {
           tableTitle: ['Order', 'Id', 'Name', 'Department'],
-          tableContent: [{
+          tableContent: [
+            {
               id: 1,
               name: 'Wang',
               department: 'Kidney'
@@ -304,92 +308,83 @@ export default {
             }
           ]
         }
-      },
+      }
     }
   },
   mounted() {
-    this.init();
+    this.init()
   },
   computed: {
     renderTab() {
-      return { category: ['incompeleted', 'compeleted', 'pending', 'followed'] };
+      return { category: ['incompeleted', 'compeleted', 'pending', 'followed'] }
     },
     pageStart() {
-      return (this.items.currPage - 1) * this.items.countOfPage;
-    },
+      return (this.items.currPage - 1) * this.items.countOfPage
+    }
   },
   filters: {
     tabTitle(value) {
       switch (value) {
-        case "incompeleted":
-          return "incompeleted notes"
-        case "compeleted":
-          return "compeleted notes"
-        case "pending":
-          return "pending approval"
-        case "followed":
-          return "followed doctors"
+        case 'incompeleted':
+          return 'incompeleted notes'
+        case 'compeleted':
+          return 'compeleted notes'
+        case 'pending':
+          return 'pending approval'
+        case 'followed':
+          return 'followed doctors'
       }
     }
   },
   methods: {
-
     init() {
-
-      const { lists } = this;
-      const keysArr = Object.keys(lists);
-      const { showData } = this.items;
+      const { lists } = this
+      const keysArr = Object.keys(lists)
+      const { showData } = this.items
 
       for (let i = 0; i < keysArr.length; i++) {
-        this.items.badgeCount.push(lists[keysArr[i]]['tableContent'].length);
+        this.items.badgeCount.push(lists[keysArr[i]]['tableContent'].length)
       }
 
-      this.getDatas('incompeleted');
-      this.countTotalPage('incompeleted');
-
+      this.getDatas('incompeleted')
+      this.countTotalPage('incompeleted')
     },
     getDatas(category) {
+      this.items.currPage = 1
 
-      this.items.currPage = 1;
+      const { lists } = this
+      const { showData } = this.items
 
-      const { lists } = this;
-      const { showData } = this.items;
+      this.$set(showData, 'tableTitle', lists[category].tableTitle)
+      this.$set(showData, 'tableContent', lists[category].tableContent)
 
-      this.$set(showData, 'tableTitle', lists[category].tableTitle);
-      this.$set(showData, 'tableContent', lists[category].tableContent);
-
-      this.countTotalPage(category);
-
+      this.countTotalPage(category)
     },
     countTotalPage: function(category) {
-
-      this.items.totalPage = Math.ceil(this.lists[category]['tableContent'].length / this.items.countOfPage);
+      this.items.totalPage = Math.ceil(
+        this.lists[category]['tableContent'].length / this.items.countOfPage
+      )
     },
 
     unfollow(list) {
-      this.$emit("unfollow", list);
+      this.$emit('unfollow', list)
     },
     getData(v) {
-      this.$emit('selectedType', v);
-      this.pageStartsFrom = 0;
-      this.currPage = 1;
+      this.$emit('selectedType', v)
+      this.pageStartsFrom = 0
+      this.currPage = 1
     },
     setPage: function(idx) {
-
       if (idx <= 0 || idx > this.items.totalPage) {
-        return;
+        return
       }
-      this.items.currPage = idx;
-    },
-
+      this.items.currPage = idx
+    }
   }
 }
-
 </script>
 <style lang="scss" scoped>
-@import '@/assets/global.scss';
-@import '@/assets/paginate.scss';
-
+@import '@/assets/sass/main.scss';
 .wrap {
   width: 100%;
 
@@ -432,27 +427,27 @@ export default {
 
         &:hover {
           text-decoration: none;
-          color: $black;
+          color: $color-black;
         }
 
         .badge {
           padding: 3px;
           font-size: 12px;
           font-weight: 300;
-          background: $brown;
+          background: $color-primary;
           color: #fff;
         }
 
         &.router-link-active {
-          border-right: 3px solid $brown;
+          border-right: 3px solid $color-primary;
           margin-right: -3px;
-          color: $brown;
+          color: $color-primary;
           font-weight: 600;
 
           @media screen and (max-width: $break-small) {
             border-right: none;
             margin-right: 0;
-            border-bottom: 3px solid $brown;
+            border-bottom: 3px solid $color-primary;
           }
         }
       }
@@ -466,7 +461,7 @@ export default {
         width: 100%;
 
         th {
-          background: $brown;
+          background: $color-primary;
           color: #fff;
         }
 
@@ -474,12 +469,12 @@ export default {
         td {
           text-align: left;
           border-bottom: 1px solid #ddd;
-          padding: .4em 1em;
+          padding: 0.4em 1em;
         }
 
         .actions {
           i {
-            color: $blue;
+            color: $color-primary;
             cursor: pointer;
             width: 30px;
             height: 30px;
@@ -495,7 +490,7 @@ export default {
 
           th,
           td {
-            padding: .5em;
+            padding: 0.5em;
             display: block;
           }
 
@@ -514,7 +509,7 @@ export default {
           td:nth-child(2):before,
           td:nth-child(3):before {
             position: absolute;
-            left: .5em;
+            left: 0.5em;
           }
 
           td:nth-child(2):before {
@@ -531,7 +526,7 @@ export default {
           }
 
           td:nth-child(2) {
-            background: $brown;
+            background: $color-primary;
             color: #fff;
           }
 
@@ -556,5 +551,4 @@ export default {
     }
   }
 }
-
 </style>

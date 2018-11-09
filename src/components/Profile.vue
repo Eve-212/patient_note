@@ -59,12 +59,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '@/assets/global.scss';
-
+@import '@/assets/sass/main.scss';
 
 .card-wrap {
   box-shadow: 0 1px 8px rgba(170, 170, 170, 0.3);
-  color: $brown;
+  color: $color-primary;
   padding: 15px;
   display: flex;
   align-items: center;
@@ -94,12 +93,12 @@ export default {
       width: 90px;
       height: 25px;
       margin: 0 5px;
-      border: 1px solid $brown;
+      border: 1px solid $color-primary;
       border-radius: 15px;
       font-size: 12px;
       font-weight: 600;
       transition: all 0.3s ease-in-out;
-      color: $brown;
+      color: $color-primary;
       padding: 0;
       opacity: 0.6;
       display: flex;
@@ -111,13 +110,13 @@ export default {
       }
 
       i {
-        color: $brown;
+        color: $color-primary;
         font-size: 12px;
         margin-right: 5px;
       }
 
       &.followed {
-        background: $brown;
+        background: $color-primary;
         color: #fff;
         opacity: 1;
 

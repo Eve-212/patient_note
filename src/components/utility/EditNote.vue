@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Form from '@/components/form/Form.vue';
+import Form from '@/components/form/Form.vue'
 import SectionNav from '@/components/ui/SectionNav.vue'
 import axios from 'axios'
 import { mapActions } from 'vuex'
@@ -31,13 +31,13 @@ export default {
   },
   // watch: {
   //   fee_no: function() {
-  //     // console.log("ddd")  
-  //     // console.log(this.data)  
+  //     // console.log("ddd")
+  //     // console.log(this.data)
   //     // this.data = {}
-  //     // console.log(this.data)     
+  //     // console.log(this.data)
   //     this.init();
   //   }
-    
+
   // },
   methods: {
     // getSectionKeys: function() {
@@ -45,7 +45,7 @@ export default {
     //   console.log(sectionKeys)
     //   return sectionKeys
     // },
-    
+
     // package structure of patient data so that it fits our schema
     prepare_data($schema, $data) {
       //let $tmps=$sch;
@@ -57,19 +57,19 @@ export default {
         }
       ]
       while ($queue.length > 0) {
-        let { sch: $sch, d: $d } = $queue.shift()                    
+        let { sch: $sch, d: $d } = $queue.shift()
         if ($sch.properties) {
           for (let $child_name in $sch.properties) {
-            if ($d[$child_name] === undefined) {              
+            if ($d[$child_name] === undefined) {
               switch ($sch.properties[$child_name].type) {
-                case 'object':                  
+                case 'object':
                   $d[$child_name] = {}
                   break
-                case 'array':                  
+                case 'array':
                   console.log($child_name)
                   $d[$child_name] = []
                   break
-                default:                
+                default:
                   $d[$child_name] = ''
               }
             }
@@ -81,7 +81,7 @@ export default {
             }
           }
         }
-      }     
+      }
     },
     // check if patient has a fee_no
     // use fee_no to get patient data
@@ -90,7 +90,8 @@ export default {
       if (this.fee_no) {
         // attempt to get patient data from sess_cache using fee_no
         this.sess = this.$wf.note.sess_cache[this.fee_no]
-        if (!this.sess) { // if patient data does not exist in sess_cache          
+        if (!this.sess) {
+          // if patient data does not exist in sess_cache
           // then get patient data from database using fee_no
           this.$wf.note.sess({ no: this.fee_no }).then($raw => {
             if ($raw.data.fee_no) {
@@ -99,20 +100,22 @@ export default {
               this.load()
             }
           })
-        } else { // use load function to load patient data retrieved from sess_cache into component's data object
+        } else {
+          // use load function to load patient data retrieved from sess_cache into component's data object
           this.load()
         }
       }
     },
-    
-    load() {        
-      let $id      
-      if (($id = this.sess.admission.id)) { // true if this.session.admission.id exists / else false
+
+    load() {
+      let $id
+      if (($id = this.sess.admission.id)) {
+        // true if this.session.admission.id exists / else false
         this.$wf.note.get({ id: $id }).then($raw => {
           this.prepare_data(this.noteSchema, $raw.data)
           this.data = $raw.data.content
           this.meta = $raw.data
-          this.isLoaded=true
+          this.isLoaded = true
         })
       } else {
         // set $ipd to retrieved patient ipd (inpatient data)
@@ -129,21 +132,20 @@ export default {
           $data.profile[$col] = $ipd[$col]
         }
 
-        
         // changed for...in loop to use forEach
         // see: https://stackoverflow.com/questions/500504/why-is-using-for-in-with-array-iteration-a-bad-idea
         // let profileFields = ['name', 'fee_no', 'birthdate', 'sex']
         // profileFields.forEach(($col) => {   // populate profile field
-        //   $data.profile[$col] = $ipd[$col]          
-        // }) 
-        
+        //   $data.profile[$col] = $ipd[$col]
+        // })
+
         // ['name', 'fee_no', 'birthdate', 'sex'].forEach( $col => {   // populate profile field
-        //   $data.profile[$col] = $ipd[$col]          
-        // }) 
+        //   $data.profile[$col] = $ipd[$col]
+        // })
 
         $data.admit_dept = $ipd.dept_id
-        $data.admit_time = $ipd.start        
-        
+        $data.admit_time = $ipd.start
+
         // console.log("before")
         // console.log($data)
 
@@ -154,7 +156,7 @@ export default {
 
         this.data = $data
         // Form will not load unless isLoaded is true
-        this.isLoaded=true
+        this.isLoaded = true
       }
     } /*,
     prepare_schema($sch){
@@ -176,9 +178,9 @@ export default {
       //
       //this.noteSchema=$raw.data
       this.noteSchema = require('../../../static/fake_data/sch.note.adm.json')
-      // this.$store.dispatch('loadSchema', this.noteSchema);      
-      // console.log(this.$store.state.schema)      
-      
+      // this.$store.dispatch('loadSchema', this.noteSchema);
+      // console.log(this.$store.state.schema)
+
       // prepare schema and data to load form
       this.init()
     })
@@ -200,18 +202,18 @@ export default {
   //   }
   // }
   watch: {
-    fee_no(){
+    fee_no() {
       // console.log("========")
       // console.log(this.data)
       // this.data = {}
       this.init()
     }
-  }  
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/global.scss';
+@import '@/assets/sass/main.scss';
 
 .wrap {
   margin: 80px 50px 0 100px;

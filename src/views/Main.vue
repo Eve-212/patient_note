@@ -1,12 +1,11 @@
 <template>
-  <div class="container-fluid">
+  <div>
     <header-component 
-      class="navbar fixed-top"
       @isExpanded="toggleExpand" 
       :user="user" 
       :hide="hide">
     </header-component>
-    <div class="row">
+    <main class="row">
       <div class="col-2 col-sm-1 px-0">
         <sidemenu :isExpanded="isExpanded"></sidemenu>
       </div>
@@ -14,7 +13,7 @@
         <router-view :isExpanded="isExpanded"></router-view>
       </div>
       <back-to-top @hide="hideSearch"></back-to-top>
-    </div>    
+    </main>    
   </div>
 </template>
 <script>

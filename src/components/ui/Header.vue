@@ -1,26 +1,29 @@
 <template>
-    <nav class="navbar fixed-top">
-      <div class="hamburger" v-on:click="toggleExpand()"><i class="fa fa-bars"></i></div>
-      <router-link :to="{name: 'ptlists'}" class="navbar-brand mr-auto" href="#">
-        <img class="logo-sm ml-3 mr-1" src="@/assets/logo-sm.png">病摘
-      </router-link>
-      <form class="form-inline search-wrap" :class="{hide:hide}">
-        <input type="text" class="form-control" v-model="no" placeholder="病歷號/床號/ 身分證">
-        <div class="input-group-append">
-          <button type="button" class="input-group-text search" @click="load"><i class="fa fa-search"></i></button>
-        </div>
-      </form>
-      <div class="actions">
-        <div class="mx-2 ml-sm-4 mr-sm-2">Hi, {{ user }}</div>
-        <router-link class="badge mx-1" :to="{name: 'ptlists'}">
-          <i class="fa fa-bell"></i><span class="mx-1 badge badge-danger text-white">9</span>
-          <span class="sr-only">note lists</span>
-        </router-link>
-        <div class="mx-1 logout" v-on:click="logout()">
-          <i class="fa fa-sign-out-alt"></i><span class="ml-sm-1 mb-1">Logout</span>
-        </div>
+  <header class="header fixed-top d-flex justify-content-between align-items-center">
+    <div class="header_left d-flex">
+      <div class="header_handler-box" v-on:click="toggleExpand()">
+        <i class="fa fa-bars"></i>
       </div>
-    </nav>
+      <router-link :to="{name: 'ptlists'}" class="header_logo-box px-4 d-flex justify-content-between align-items-center">
+        <img class="header_logo mr-1" src="@/assets/img/logo-sm.png">病摘
+      </router-link>
+    </div>
+    <div class="header_right d-flex align-items-center">
+      <form class="header_search-box" :class="{hideSearch:hide}">
+        <input type="text" class="py-1 px-4" v-model="no" placeholder="病歷號/床號/ 身分證">
+        <button class="py-1 px-3" type="button" @click="load">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+      <div class="ml-4">Hi,{{ user }}</div>
+      <router-link class="ml-4" :to="{name: 'ptlists'}">
+        <i class="fa fa-bell"></i><span class="badge badge-danger header_badge">9</span>
+      </router-link>
+      <div class="ml-4" v-on:click="logout()">
+        <i class="fa fa-sign-out-alt"></i>
+      </div>
+    </div>
+  </header>
 </template>
 <script>
 export default {
@@ -64,91 +67,61 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '@/assets/global.scss';
+@import '@/assets/sass/main.scss';
 
-
-nav {
-  background: #f4f6f7;
-  padding-left: 10px;
-  padding-right: 10px;
-  width: 100%;
-  font-size: 14px;
-  height: 55px;
-  .hamburger {
+.header {
+  padding: 10px;
+  background-color: $color-grey-light;
+  font-size: $default-font-size;
+  color: $color-black;
+  @media screen and (max-width: $break-small) {
+    padding: 6px;
+  }
+  a {
+    color: $color-black;
+  }
+  &_handler-box {
     border-radius: 50%;
-    margin: 0 11px;
-    @media screen and (max-width: $break-medium) {
-      margin: 0 10px 0 6px;
-    }
+    cursor: pointer;
+    height: 3rem;
+    width: 3rem;
+    line-height: 3rem;
+    background: rgba($color-grey-dark, 0.4);
+    text-align: center;
     i {
-      padding-top: 5px;
-      font-size: 20px;
-      color: dimgrey;
+      color: $color-white;
     }
   }
-  .navbar-brand {
-    &:hover {
-      color: inherit;
-    }
-    img {
-      width: 20px;
-      height: auto;
-    }
+  &_logo-box {
+    text-decoration: none;
   }
-  .search-wrap {
+  &_logo {
+    width: 1.6rem;
+  }
+  &_search-box {
     @media screen and (max-width: $break-small) {
-      &.hide {
+      // hide search function in small device when scroll down
+      &.hideSearch {
         display: none;
       }
     }
+    input,
+    button {
+      border: 1px solid rgba($color-grey-dark, 0.6);
+    }
+    button {
+      color: $color-grey-dark;
+      margin-left: -4px;
+      border-left: none;
+    }
     @media screen and (max-width: $break-small) {
       position: absolute;
-      top: 55px;
-      right: 31px;
-    }
-    .search {
-      display: flex;
-      justify-content: center;
-      padding: 0;
-      @media screen and (max-width: $break-small) {
-        position: absolute;
-        right: -31px;
-        top: 0;
-      }
-      i {
-        width: 31px;
-        line-height: 31px;
-        height: 31px;
-        @media screen and (max-width: $break-small) {
-          height: 32px;
-          line-height: 32px;
-        }
-      }
+      right: 0;
+      top: 48px;
     }
   }
-
-  .actions {
-    display: flex;
-    align-items: center;
-    .badge {
-      font-weight: normal;
-      &:hover {
-        text-decoration: none;
-        color: inherit;
-      }
-    }
-    .logout {
-      display: flex;
-      align-items: center;
-      span {
-        cursor: pointer;
-      }
-      @media screen and (max-width: $break-medium) {
-        span {
-          display: none;
-        }
-      }
-    }
+  &_badge {
+    padding: 0.3rem;
   }
 }
 </style>
