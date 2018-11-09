@@ -1,7 +1,8 @@
 <template>
+<div :class="bsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[bsColSize, styleClass]" 
+    :class="[styleClass]" 
     v-if="showInputField">
     <div v-if="schema.attrs.inputGroup">
       <div class="input-group mb-3">
@@ -9,7 +10,7 @@
           <div class="input-group-text" >{{ schema.title}}</div>
         </div>
         <input 
-          id="text-input" 
+          :id="getId()" 
           type="number" 
           :name="currentKey" 
           v-model="value[currentKey]"
@@ -17,12 +18,7 @@
           :aria-describedby="helpText(schema)"
           :placeholder="placeholder">
       </div>
-      <small 
-        v-if="schema.description" 
-        :id="helpText(schema)" 
-        class="form-text text-muted reminder">
-        {{ schema.description }}
-      </small>
+      <slot name="subTitle"></slot>
     </div>
     <div class="form-group row" v-if="!schema.attrs.inputGroup">
     
@@ -40,15 +36,11 @@
           class="form-control"
           :aria-describedby="helpText(schema)"
           :placeholder="placeholder">
-        <small 
-          v-if="schema.description" 
-          :id="helpText(schema)" 
-          class="form-text text-muted reminder">
-          {{ schema.description }}
-        </small>
       </div>
+      <slot name="subTitle"></slot>
     </div>
   </div>	
+</div>
 </template>
 
 

@@ -1,5 +1,5 @@
 <template>
-
+  <div :class="bsColSize">
     <table class="small" v-if="treeData">
       <tr>
         <td :colspan="treeData.children ? treeData.children.length * 2 : 1" :class="{parentLevel: treeData.children, extend: treeData.children && treeData.extend}">
@@ -33,7 +33,7 @@
         </td>
       </tr>
     </table>
-    
+  </div>
 </template>
 
 <script>

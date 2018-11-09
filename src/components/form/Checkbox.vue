@@ -1,7 +1,8 @@
 <template>
+<div :class="bsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[bsColSize, styleClass]" 
+    :class="[styleClass]" 
     v-if="showInputField">
     <label
       :for="currentKey">
@@ -13,6 +14,7 @@
         v-model="value[currentKey]">
     </label>
   </div>
+</div>
 </template>
 
 <script>

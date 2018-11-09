@@ -1,4 +1,5 @@
 <template>
+<div :class="bsColSize">
 	<div id="labwrap">
     <div class="scroller">
       <table class="table table-bordered" style="position: relative">
@@ -20,8 +21,8 @@
         </tbody>
       </table>
     </div>
-		
 	</div>
+</div>
 </template>
 
 <script>

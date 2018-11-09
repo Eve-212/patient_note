@@ -97,9 +97,9 @@ export default {
   computed: {
     bsColSize() {
       if (this.schema.attrs.bsColSize) {
-        return `col-lg-${this.schema.attrs.bsColSize}`
+        return `col-md-${this.schema.attrs.bsColSize}`
       }
-      return 'col-lg-12'
+      return 'col-md-12'
     },
     styleClass() {
       if (this.schema.attrs.styleClass) {

@@ -1,7 +1,8 @@
 <template>
+<div :class="bsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[bsColSize, styleClass]" 
+    :class="[styleClass]" 
     v-if="showInputField">    
     <label class="radio-label">{{ schema.title }}</label>
     <div 
@@ -17,6 +18,7 @@
       <label class="form-check-label"  :for="item">{{ item }}</label>
     </div>
   </div>
+</div>
 </template>
 
 <script>

@@ -4,7 +4,6 @@ import Checkbox from '@/components/form/Checkbox.vue'
 import CheckList from '@/components/form/CheckList.vue'
 import CheckListWithOther from '@/components/form/CheckListWithOther.vue'
 import FamilyTree from '@/components/form/FamilyTree.vue'
-import Form from '@/components/form/Form.vue'
 import FuncAssess from '@/components/form/FuncAssess.vue'
 import NumberInput from '@/components/form/NumberInput.vue'
 import ObjectComponent from '@/components/form/ObjectComponent.vue'
@@ -24,7 +23,6 @@ export {
   CheckList,
   CheckListWithOther,
   FamilyTree,
-  Form,
   FuncAssess,
   NumberInput,
   ObjectComponent,

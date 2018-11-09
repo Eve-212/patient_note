@@ -1,18 +1,26 @@
 <template> 
-	<div class="note-style" v-if="jsonSchema">
+	<div class="note-style row" v-if="jsonSchema">
 		<h2>{{ jsonSchema.title }}</h2>
-			<div class="scroll-watch">
+    <div class="col-md-12">
+      <div class="row">
         <component 
           v-for="(field, key) in jsonSchema.properties.content.properties" 
           :key="key"
           :is="getComponentName(field)"
+          v-bind="field.attrs"
           :schema="field"
           :path="path.concat(key)"
           :currentKey="key"			
           v-model="jsonSchemaData">
+          <template slot="subTitle" v-if="field.description">
+            <small  
+              :id="helpText(field)">
+              {{ field.description  }}
+            </small>
+          </template>
         </component>
-			</div>
-      {{ schemaData }}
+      </div>
+    </div>
 	</div>
 </template>
 
@@ -42,7 +50,7 @@ export default {
   data() {
     return {
       jsonSchemaData: this.schemaData,
-      jsonSchema: this.schema
+      jsonSchema: this.schema,
     }
   },
   created() {},

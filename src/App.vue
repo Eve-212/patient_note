@@ -1,21 +1,18 @@
 <template>
-    <div id="app">
-        <router-view @authenticated="setAuthenticated" :user="authenticated.user"></router-view>
-    </div>
+  <div id="app">
+    <router-view @authenticated="setAuthenticated" :user="authenticated.user"></router-view>
+  </div>
 </template>
 
 
 <script>
-
-export default {  
-  
+export default {
   name: 'App',
   data() {
     return {
       authenticated: {
         status: false,
         user: ''
-        
       }
     }
   },
@@ -28,7 +25,6 @@ export default {
     setAuthenticated(v) {
       this.authenticated.status = v.status
       this.authenticated.user = v.user
-      
     }
   }
 }

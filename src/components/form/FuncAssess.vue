@@ -1,36 +1,36 @@
-<template><div>
+<template>
+<div :class="bsColSize">
+  <h5 :id="anchorIdFormat(schema)">{{ schema.title }}</h5>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Options</th>
 
-<h5 :id="anchorIdFormat(schema)">{{ schema.title }}</h5>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Item</th>
-      <th scope="col">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(opts,item) in options" :key="item">
+        <th scope="row">{{schema.properties[item].title}} : {{value[currentKey][item]}}</th>
+        <td>
+          <div v-for="(opt,score) in opts" :key="score" class="form-check">
+              <input class="form-check-input" v-model="value[currentKey][item]"  type="radio" :name="item" :id="getId([item,score])" :value="score" checked>
+              <label class="form-check-label" :for="getId([item,score])">
+                  ({{score}} Point) {{opt}}
+              </label>
+          </div>
+        </td>
+      </tr>
+      
+  
+      <tr>
+        <th scope="row">Total : {{total}} </th>
+        <td></td>
 
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="(opts,item) in options" :key="item">
-      <th scope="row">{{schema.properties[item].title}} : {{value[currentKey][item]}}</th>
-      <td>
-        <div v-for="(opt,score) in opts" :key="score" class="form-check">
-            <input class="form-check-input" v-model="value[currentKey][item]"  type="radio" :name="item" :id="getId([item,score])" :value="score" checked>
-            <label class="form-check-label" :for="getId([item,score])">
-                ({{score}} Point) {{opt}}
-            </label>
-        </div>
-      </td>
-    </tr>
-    
- 
-    <tr>
-      <th scope="row">Total : {{total}} </th>
-      <td></td>
+      </tr>
 
-    </tr>
-
-  </tbody>
-</table>
+    </tbody>
+  </table>
 </div>
 </template>
 

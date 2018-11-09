@@ -1,16 +1,27 @@
 <template>
-  <div v-if="showInputField" :class="[bsColSize]">
+  <div v-if="showInputField" class="row">
     <h5 :id="anchorIdFormat(schema)" :class="[styleClass]">{{ schema.title }}</h5>
-    <div class="obj_box row scroll-watch">
-      <component 
-        v-for="(field, key) in schema.properties" 
-        :key="key" 
-        :is="getComponentName(field)" 
-        :schema="field" 
-        :path="path.concat(key)" 
-        :currentKey="key" 
-        v-model="value[currentFieldName]">
-      </component>
+    <div class="obj_box col-md-12">
+      <div class="row">
+        <component 
+          v-for="(field, key) in schema.properties" 
+          :key="key" 
+          :is="getComponentName(field)" 
+          :schema="field"
+          v-bind="field.attrs" 
+          :path="path.concat(key)" 
+          :currentKey="key" 
+          v-model="value[currentFieldName]">
+          <template slot="subTitle">
+            <small 
+              v-if="field.description" 
+              :id="helpText(field)" 
+              class="form-text text-muted reminder">
+              {{ field.description }}
+            </small>
+          </template>
+        </component>
+      </div>
     </div>
   </div>
 </template>

@@ -1,8 +1,9 @@
 
 <template>
+<div :class="bsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[bsColSize, styleClass]" 
+    :class="[styleClass]" 
     v-if="showInputField">
     <select v-model="value[currentKey]">
       <template v-if="schema.attrs.placeholder">
@@ -16,6 +17,7 @@
       </option>
     </select>
   </div>
+</div>
 </template>
 
 <script>

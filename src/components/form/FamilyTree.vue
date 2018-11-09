@@ -1,7 +1,9 @@
 <template>
+<div :class="bsColSize">
   <div class="tree-style">   
     <tree-charter :json="treeData"></tree-charter>
-  </div>  
+  </div> 
+</div> 
 </template>
 
 <script>

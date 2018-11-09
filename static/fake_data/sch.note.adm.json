@@ -48,6 +48,7 @@
             "name": {
               "title": "Name",
               "type": "string",
+              "description": "Patient Name",
               "attrs": {
                 "inputGroup": true,
                 "bsColSize": 4,
@@ -129,7 +130,8 @@
           "type": "string",
           "attrs": {
             "inputGroup": true,
-            "bsColSize": 12
+            "bsColSize": 12,
+            "placeholder": "test"
           }
         },
         "pi": {
@@ -360,12 +362,12 @@
                   "Chills",
                   "Night sweating",
                   "Fatigue",
-                  "Weakness"                  
+                  "Weakness"
                 ],
                 "fieldType": "checklistwithother",
                 "styleClass": ["margin-bot-small"]
               }
-            },                     
+            },
             "skin": {
               "title": "Skin",
               "type": "array",

@@ -1,7 +1,8 @@
 <template>
+<div :class="bsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[bsColSize, styleClass]" 
+    :class="[styleClass]" 
     v-if="showInputField">
     <div class="checklist-label" :for="currentKey">{{ schema.title }}</div>
     <div 
@@ -19,6 +20,7 @@
       <label  class="form-check-label" :for="getId(index)">{{ item }}</label>
     </div>
   </div>
+</div>
 </template>
 
 <script>
