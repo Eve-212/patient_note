@@ -12,12 +12,14 @@
           :path="path.concat(key)"
           :currentKey="key"			
           v-model="jsonSchemaData">
+
           <template slot="subTitle" v-if="field.description">
             <small  
               :id="helpText(field)">
               {{ field.description  }}
             </small>
           </template>
+          
         </component>
       </div>
     </div>

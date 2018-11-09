@@ -1,5 +1,5 @@
 <template>
-<div :class="bsColSize">
+<div :class="getBsColSize">
 	<div id="labwrap">
     <div class="scroller">
       <table class="table table-bordered" style="position: relative">

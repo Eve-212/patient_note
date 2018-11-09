@@ -1,8 +1,8 @@
 <template>
-<div :class="bsColSize">
+<div :class="getBsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[styleClass]" 
+    :class="[getStyleClass]" 
     v-if="showInputField">
     <div v-if="schema.attrs.inputGroup">
       <div class="input-group mb-3">
@@ -54,7 +54,7 @@ export default {
   mixins: [Proto],
   data() {
     return {
-      placeholder: this.getPlaceholder()
+    
     }
   } 
 }

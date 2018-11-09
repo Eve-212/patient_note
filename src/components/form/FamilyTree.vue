@@ -1,5 +1,5 @@
 <template>
-<div :class="bsColSize">
+<div :class="getBsColSize">
   <div class="tree-style">   
     <tree-charter :json="treeData"></tree-charter>
   </div> 
@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import Proto from '@/components/mixins/Proto.js'
 import TreeCharter from './TreeCharter'
 
 export default {
@@ -14,6 +15,7 @@ export default {
   components: {
     TreeCharter
   },
+  mixins: [Proto],
   data() {
     return {
       treeData: {
