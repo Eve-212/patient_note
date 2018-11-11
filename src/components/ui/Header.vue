@@ -53,7 +53,7 @@ export default {
           let $sess = $raw.data
           if ($sess.fee_no) {
             this.$router.push({
-              name: 'edit',
+              name: 'edit2',
               params: { fee_no: $sess.fee_no }
             })
           }
