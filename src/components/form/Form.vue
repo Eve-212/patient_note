@@ -13,10 +13,11 @@
           :currentKey="key"			
           v-model="jsonSchemaData">
 
-          <template slot="subTitle" v-if="field.description">
-            <small  
-              :id="helpText(field)">
-              {{ field.description  }}
+          <template slot="subTitle" slot-scope="{ description }">
+            <small 
+              v-if="description" 
+              :id="helpText(field)" >
+              {{ description }}
             </small>
           </template>
           

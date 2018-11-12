@@ -32,6 +32,12 @@ export default {
     },
     placeholder: {
       type: String
+    },
+    inputGroup: {
+      type: Boolean,
+      default() {
+        return false
+      }
     }
   },
   methods: {

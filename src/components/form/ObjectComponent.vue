@@ -12,12 +12,12 @@
           :path="path.concat(key)" 
           :currentKey="key" 
           v-model="value[currentFieldName]">
-          <template slot="subTitle">
+          <template slot="subTitle" slot-scope="{ description }">
             <small 
-              v-if="field.description" 
+              v-if="description" 
               :id="helpText(field)" 
               class="form-text text-muted reminder">
-              {{ field.description }}
+              {{ description }}
             </small>
           </template>
         </component>

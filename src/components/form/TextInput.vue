@@ -1,5 +1,9 @@
 <template>
 <div :class="getBsColSize">
+  <slot 
+    name="group" 
+    :inputGroup="inputGroup"
+    :schema="schema"></slot>
   <div 
     :id="anchorIdFormat(schema)" 
     v-if="showInputField">
@@ -17,7 +21,7 @@
           :aria-describedby="helpText(schema)"
           :placeholder="placeholder">
       </div>
-      <slot name="subTitle"></slot>
+      <slot name="subTitle" :description="schema.description"></slot>
     </div>
     <div class="form-group row" v-if="!schema.attrs.inputGroup">
     
@@ -35,7 +39,7 @@
           class="form-control"
           :aria-describedby="helpText(schema)"
           :placeholder="getPlaceholder">
-          <slot name="subTitle"></slot>
+        <slot name="subTitle" :description="schema.description"></slot>          
       </div>
     </div>
   </div>	
