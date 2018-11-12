@@ -21,7 +21,7 @@ export default {
     currentKey: {
       type: String,
       default() {
-        return ''
+        return 'content'
       }
     },
     bsColSize: {
@@ -42,48 +42,48 @@ export default {
         return this.path.join('.')
       }
     },
-    clearInput() {
-      // this.value[this.currentKey] = null
-      let initValue = null
-      switch (this.$options.name) {
-        case 'TextInput':
-          initValue = ''
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'NumberInput':
-          initValue = ''
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'Checkbox':
-          initValue = false
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'CheckList':
-          initValue = []
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'CheckListWithOther':
-          initValue = []
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'RadioInput':
-          initValue = ''
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'SelectDate':
-          initValue = ''
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'SelectList':
-          initValue = ''
-          this.$set(this.value, this.currentKey, initValue)
-          break
-        case 'bsRadioInput':
-          initValue = ''
-          this.$set(this.value, this.currentKey, initValue)
-          break
-      }
-    },
+    // clearInput() {
+    //   // this.value[this.currentKey] = null
+    //   let initValue = null
+    //   switch (this.$options.name) {
+    //     case 'TextInput':
+    //       initValue = ''
+    //       this.$set(this.value, this.currentKey, initValue)
+    //       break
+    //     case 'NumberInput':
+    //       initValue = ''
+    //       this.$set(this.value, this.currentKey, initValue)
+    //       break
+    //     case 'Checkbox':
+    //       initValue = false
+    //       this.$set(this.value, this.currentKey, initValue)
+    //       break
+    //     case 'CheckList':
+    //       initValue = []
+    //       this.$set(this.value, this.currentKey, initValue)
+    //       break
+    //     case 'CheckListWithOther':
+    //       initValue = []
+    //       this.$set(this.value, this.currentKey, initValue)
+    //       break
+    //     case 'RadioInput':
+    //       initValue = ''
+    //       this.$set(this.value, this.currentKey, initValue)
+    //       break
+    //     case 'SelectDate':
+    //       initValue = ''
+    //       this.$set(this.value, this.currentKey, initValue)
+    //       break
+    //     case 'SelectList':
+    //       initValue = ''
+    //       this.$set(this.value, this.currentKey, initValue)
+    //       break
+    //     case 'bsRadioInput':
+    //       initValue = ''
+    //       this.$set(this.value, this.currentKey, initValue)
+    //       break
+    //   }
+    // },
     anchorIdFormat(item) {
       if (item && item.title) {
         return item.title.replace(/\W/gm, '-').toLowerCase()

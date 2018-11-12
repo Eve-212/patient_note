@@ -70,7 +70,11 @@
               "type": "integer",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 4
+                "bsColSize": 4,
+                "dependsOn": {
+                  "name": "profile.name",
+                  "values": ["david"]
+                }
               }
             },
             "id_no": {

@@ -70,7 +70,7 @@
               "type": "integer",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 4
+                "bsColSize": 4                
               }
             },
             "id_no": {
