@@ -14,7 +14,7 @@
           :aria-describedby="helpText(schema)"
           :placeholder="placeholder">
       </div>
-      <slot name="subTitle"></slot>
+      <slot name="subTitle" :description="schema.description"></slot>
     </div>
     <div class="form-group row" v-if="!inputGroup">
     
@@ -31,7 +31,7 @@
           class="form-control"
           :aria-describedby="helpText(schema)"
           :placeholder="getPlaceholder">
-          <slot name="subTitle"></slot>
+        <slot name="subTitle" :description="schema.description"></slot>          
       </div>
     </div>
   </div>	

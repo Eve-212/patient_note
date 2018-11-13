@@ -16,6 +16,13 @@ import Scrollspy from 'vue2-scrollspy';
 Vue.use(Scrollspy);
 
 
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus()
+  }
+})
+
+
 Vue.use(VueScrollTo, {
   container: 'body',
   duration: 500,
