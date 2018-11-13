@@ -57,7 +57,7 @@ export default {
     }
   },
   created() {       
-    // set first object component rendered as root object
+    // set first object component instance as root object
     if (this.rootObj) {
       //assign local root object variable to avoid changing prop
       this.$rootObj = this.rootObj;

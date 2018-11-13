@@ -112,31 +112,13 @@ export default {
         // populate profile field
         for (let $col of ['name', 'fee_no', 'birthdate', 'sex']) {
           $data.profile[$col] = $ipd[$col]
-        }
-
-        
-        // changed for...in loop to use forEach
-        // see: https://stackoverflow.com/questions/500504/why-is-using-for-in-with-array-iteration-a-bad-idea
-        // let profileFields = ['name', 'fee_no', 'birthdate', 'sex']
-        // profileFields.forEach(($col) => {   // populate profile field
-        //   $data.profile[$col] = $ipd[$col]          
-        // }) 
-        
-        // ['name', 'fee_no', 'birthdate', 'sex'].forEach( $col => {   // populate profile field
-        //   $data.profile[$col] = $ipd[$col]          
-        // }) 
+        }               
 
         $data.admit_dept = $ipd.dept_id
         $data.admit_time = $ipd.start        
-        
-        // console.log("before")
-        // console.log($data)
-
+                
         this.prepare_data(this.noteSchema.properties.content, $data)
-
-        // console.log("after")
-        // console.log($data)
-
+        
         this.data = $data
         // Form will not load unless isLoaded is true
         this.isLoaded=true
@@ -149,7 +131,7 @@ export default {
   created: function() {
 
     this.noteSchema = {}
-    //console.log(this.$wf.note.schema)
+
     this.$wf.note.schema({ type: 'admission' }).then($raw => {
 
       this.$set(this.$data,'noteSchema',require('../../../static/fake_data/sch.note.adm2.json'))
@@ -158,10 +140,7 @@ export default {
     })
   },
   watch: {
-    fee_no(){
-      // console.log("========")
-      // console.log(this.data)
-      // this.data = {}
+    fee_no(){      
       this.init()
     }
   }  
