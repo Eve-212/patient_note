@@ -2,8 +2,8 @@
 <div :class="getBsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[getStyleClass]" 
-    v-if="showInputField">
+    :class="[getStyleClass]"> 
+    
     <label
       :for="currentKey">
       {{ schema.attrs.label }}

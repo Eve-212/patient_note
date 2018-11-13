@@ -1,9 +1,7 @@
 <template>
-<div :class="getBsColSize">
-  <div 
-    :id="anchorIdFormat(schema)" 
-    v-if="showInputField">
-    <div v-if="schema.attrs.inputGroup">
+<div :class="getBsColSize">  
+  <div  :id="anchorIdFormat(schema)"  >
+    <div v-if="inputGroup">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <div class="input-group-text text-label" >{{ schema.title }}</div>
@@ -11,27 +9,25 @@
         <input 
           :id="getId()" 
           type="text" 
-          :name="currentKey" 
-          v-model="value[currentKey]"
+          v-model="val"
           class="form-control"
           :aria-describedby="helpText(schema)"
           :placeholder="placeholder">
       </div>
       <slot name="subTitle"></slot>
     </div>
-    <div class="form-group row" v-if="!schema.attrs.inputGroup">
+    <div class="form-group row" v-if="!inputGroup">
     
       <label 
         class="col-md-2 col-form-label"
-        :for="currentKey">
+        :for="getId()">
         {{ schema.title }}
       </label>
       <div class="col-md-10">
         <input 
           :id="getId()" 
           type="text" 
-          :name="currentKey" 
-          v-model="value[currentKey]"
+          v-model="val"
           class="form-control"
           :aria-describedby="helpText(schema)"
           :placeholder="getPlaceholder">
@@ -47,12 +43,15 @@ import Proto from '@/components/mixins/Proto.js'
 export default {
   name: 'TextInput',
   mixins:[Proto],
-  data() {
-    return {
-    }
+  props:{
+      inputGroup: {
+        default() {
+          return false
+        }
+      }      
   },
-  methods: {
-
+  created() {
+    console.log(typeof this.value) 
   }
 }
 </script>

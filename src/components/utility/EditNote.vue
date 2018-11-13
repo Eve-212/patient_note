@@ -1,24 +1,24 @@
 <template>
-  <div class="wrap" :class="{isExpanded: isExpanded}" v-if="noteSchema">
-    <div class="row">    
-      <Form class="col-md-10 mb-5" :schema="noteSchema" :schemaData="data"></Form>
+  <div class="wrap" :class="{isExpanded: isExpanded}" v-if="noteSchema">    
+    <div class="row" v-if="isLoaded">
+      <JSchemaObject class="col-md-10 mb-5" v-model="data" :schema="noteSchema.properties.content"></JSchemaObject>
       <SectionNav class="col-md-2 d-none d-md-block mb-5" :schema="noteSchema"></SectionNav>
     </div>
   </div>
 </template>
 
 <script>
-import Form from '@/components/form/Form.vue';
 import SectionNav from '@/components/ui/SectionNav.vue'
 import axios from 'axios'
 import { mapActions } from 'vuex'
+import JSchemaObject from '@/components/form/JSchemaObject'
 
 export default {
   name: 'EditNote',
   props: ['isExpanded', 'fee_no'],
   components: {
-    Form,
-    SectionNav
+    SectionNav,
+    JSchemaObject
   },
   data() {
     return {
@@ -29,22 +29,7 @@ export default {
       isLoaded: false
     }
   },
-  // watch: {
-  //   fee_no: function() {
-  //     // console.log("ddd")  
-  //     // console.log(this.data)  
-  //     // this.data = {}
-  //     // console.log(this.data)     
-  //     this.init();
-  //   }
-    
-  // },
   methods: {
-    // getSectionKeys: function() {
-    //   let sectionKeys = Object.keys(this.noteSchema.properties.content.properties)
-    //   console.log(sectionKeys)
-    //   return sectionKeys
-    // },
     
     // package structure of patient data so that it fits our schema
     prepare_data($schema, $data) {
@@ -161,44 +146,17 @@ export default {
       
     }*/
   },
-  beforeCreate: function() {
-    // axios.get('fake_data/schemas.json')
-    // .then((res) => {
-    //   console.log(res.body)
-    //   console.log("yay")
-    // })
-    //const json = require("../../../static/fake_data/schemas2.json")
+  created: function() {
 
-    //this.noteSchema = json
     this.noteSchema = {}
     //console.log(this.$wf.note.schema)
     this.$wf.note.schema({ type: 'admission' }).then($raw => {
-      //
-      //this.noteSchema=$raw.data
-      this.noteSchema = require('../../../static/fake_data/sch.note.adm.json')
-      // this.$store.dispatch('loadSchema', this.noteSchema);      
-      // console.log(this.$store.state.schema)      
-      
-      // prepare schema and data to load form
+
+      this.$set(this.$data,'noteSchema',require('../../../static/fake_data/sch.note.adm2.json'))
+
       this.init()
     })
-
-    // this.noteSchema = require('../../../static/fake_data/sch.note.adm.json')
-    // this.init()
-    /*
-    let $adm=this.sess.admission
-    if(!$adm.id){
-      //admission not exist
-    }
-    */
   },
-  // computed: {
-  //   getSectionKeys: function() {
-  //     let sectionKeys = Object.keys(this.noteSchema.properties.content.properties)
-  //     console.log(sectionKeys)
-  //     return sectionKeys
-  //   }
-  // }
   watch: {
     fee_no(){
       // console.log("========")

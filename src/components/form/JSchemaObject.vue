@@ -1,6 +1,5 @@
 <template>
-  <div v-if="isReady" class="row">
-    <template>{{ val }}</template>
+  <div v-if="isReady" class="row">   
     <h5 :id="anchorIdFormat(schema)">{{ schema.title }}</h5>
     <div class="obj_box col-md-12">
       <div class="row">
@@ -8,7 +7,7 @@
           v-for="(field, key) in schema.properties"           
           :rootObj="$rootObj"
           :key="key"
-          :currentKey="key" 
+          :child_key="key" 
           :is="getComponentName(field)" 
           :schema="field"
           v-bind="field.attrs" 
@@ -31,20 +30,19 @@
 
 <script>
 import Vue from 'vue'
-import Proto2 from '@/components/mixins/Proto2.js'
+import Proto from '@/components/mixins/Proto.js'
 import * as fields from '@/components/form/fieldsLoader'
-import JSchemaObject from '@/components/form/JSchemaObject'
-import TextInput2 from '@/components/form/TextInput2'
-//fields['TextInput2']=TextInput2fields['JSchemaObject']=JSchemaObject
-Vue.component('JSchemaObject',JSchemaObject)
-Vue.component('TextInput2',TextInput2)
-for(let cmp_name in fields) {
-  Vue.component(cmp_name, fields[cmp_name])
+
+function register (name) {
+  Vue.component(name, require('@/components/form/' + name).default)
+}
+for(let importField in fields) {
+  register(importField)
 }
 
 export default {
   name: 'JSchemaObject',
-  mixins: [Proto2],
+  mixins: [Proto],
   props: {
     rootObj:{
       default(){
@@ -93,7 +91,7 @@ export default {
 
                 console.log($child_schema)
 
-                // if isVisible is false then clear corresponding data 
+                // if corrresponding isVisible value is false then clear data 
                 if (!visibility) {                  
                   $this.clearInput($child_key, $child_schema);
                 }
@@ -102,8 +100,7 @@ export default {
           );
         }
       }
-    }
-    
+    }    
     this.isReady = true
   },
   methods: {
@@ -125,7 +122,7 @@ export default {
         boolean: 'radio'
       }
       let $field_com = {
-        text: 'TextInput2',
+        text: 'TextInput',
         checklistwithother: 'CheckListWithOther',
         radio: 'bsRadioInput',
         checkbox: 'Checkbox',
@@ -138,27 +135,55 @@ export default {
         familytree: 'FamilyTree',
         funcassess: 'FuncAssess'
       }
-      if (field.type == 'object'){
-        return 'JSchemaObject'
-      }else{
-        return 'TextInput2'
+      if (!field.attrs) {
+        field.attrs = {}
       }
-        
-
+      if (!field.attrs.fieldType) {
+        if (field.type) {
+          field.attrs.fieldType = $type_field[field.type]
+        } else {
+          field.attrs.fieldType = 'text'
+        }
+      }
+      return $field_com[field.attrs.fieldType] || 'TextInput'     
     },
     clearInput(child_key, child_schema) {   
       let initValue = null      
 
       let child_schema_type = this.getComponentName(child_schema)
 
-      // FIXME: change to switch syntax
-      if (child_schema_type === 'TextInput2') {
-        initValue = ""
-      } else if (child_schema_type === 'JSchemaObject') {
-        initValue = {}
-      }
-
-      console.log(child_schema_type)
+      switch (child_schema_type) {
+        case 'TextInput':
+          initValue = ""
+          break
+        case 'JSchemaObject':
+          initValue = {}
+          break         
+        case 'NumberInput':
+          initValue = ''          
+          break
+        case 'Checkbox':
+          initValue = false          
+          break
+        case 'CheckList':
+          initValue = []          
+          break
+        case 'CheckListWithOther':
+          initValue = []          
+          break
+        case 'RadioInput':
+          initValue = ''          
+          break
+        case 'SelectDate':
+          initValue = ''          
+          break
+        case 'SelectList':
+          initValue = ''          
+          break
+        case 'bsRadioInput':
+          initValue = ''          
+          break
+      }      
       
       this.$set(this.val, child_key, initValue)                       
     },
@@ -171,13 +196,10 @@ export default {
         if (!val){          
           return;
         }
-      }           
-
+      }          
       return val;
-
     },
     checkVisible($dependsOn) {
-
       if ($dependsOn.values && $dependsOn.name) {
         let val = this.getPathVal($dependsOn.name);
         if (Array.isArray(val)) {          
@@ -197,15 +219,7 @@ export default {
       }
       return true
     }
-  },
-  // computed: {
-  //   val: {
-  //     get() { return this.value },
-  //     set(val) {
-  //       this.$emit('input', val)
-  //     }
-  //   }
-  // }
+  }  
 }
 </script>
 
