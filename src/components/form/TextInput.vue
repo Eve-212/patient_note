@@ -1,9 +1,5 @@
 <template>
 <div :class="getBsColSize">
-  <slot 
-    name="group" 
-    :inputGroup="inputGroup"
-    :schema="schema"></slot>
   <div 
     :id="anchorIdFormat(schema)" 
     v-if="showInputField">

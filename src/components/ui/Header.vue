@@ -5,9 +5,20 @@
         <img class="logo-sm ml-3 mr-1" src="@/assets/logo-sm.png">病摘
       </router-link>
       <form class="form-inline search-wrap" :class="{hide:hide}">
-        <input type="text" class="form-control" v-model="no" placeholder="病歷號/床號/ 身分證">
+        <input 
+          type="text" 
+          class="form-control" 
+          v-model="no" 
+          v-focus
+          placeholder="病歷號/床號/ 身分證">
         <div class="input-group-append">
-          <button type="button" class="input-group-text search" @click="load"><i class="fa fa-search"></i></button>
+          <button 
+            type="submit" 
+            class="input-group-text search" 
+            @keyup.prevent="load" 
+            @click.prevent="load">
+            <i class="fa fa-search"></i>
+          </button>
         </div>
       </form>
       <div class="actions">
@@ -16,7 +27,7 @@
           <i class="fa fa-bell"></i><span class="mx-1 badge badge-danger text-white">9</span>
           <span class="sr-only">note lists</span>
         </router-link>
-        <div class="mx-1 logout" v-on:click="logout()">
+        <div class="mx-1 logout" @click="logout">
           <i class="fa fa-sign-out-alt"></i><span class="ml-sm-1 mb-1">Logout</span>
         </div>
       </div>
