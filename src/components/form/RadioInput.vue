@@ -13,7 +13,7 @@
         class="form-check-input"
         :id="getId(index)" 
         :value="item" 
-        v-model="value[currentKey]">
+         v-model="val">
       <label class="form-check-label" :for="getId(index)">{{ item }}</label>
     </div>
   </div>

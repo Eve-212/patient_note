@@ -12,7 +12,7 @@
           :id="getId()" 
           type="number" 
           :name="currentKey" 
-          v-model="value[currentKey]"
+           v-model="val"
           class="form-control"
           :aria-describedby="helpText(schema)"
           :placeholder="placeholder">
@@ -31,7 +31,7 @@
           id="text-input" 
           type="number" 
           :name="currentKey" 
-          v-model="value[currentKey]"
+           v-model="val"
           class="form-control"
           :aria-describedby="helpText(schema)"
           :placeholder="placeholder">
