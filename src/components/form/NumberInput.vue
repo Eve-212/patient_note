@@ -2,8 +2,7 @@
 <div :class="getBsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[getStyleClass]" 
-    v-if="showInputField">
+    :class="[getStyleClass]">
     <div v-if="schema.attrs.inputGroup">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -13,12 +12,12 @@
           :id="getId()" 
           type="number" 
           :name="currentKey" 
-          v-model="value[currentKey]"
+           v-model="val"
           class="form-control"
           :aria-describedby="helpText(schema)"
           :placeholder="placeholder">
       </div>
-      <slot name="subTitle"></slot>
+      <slot name="subTitle" :description="schema.description"></slot>      
     </div>
     <div class="form-group row" v-if="!schema.attrs.inputGroup">
     
@@ -32,12 +31,12 @@
           id="text-input" 
           type="number" 
           :name="currentKey" 
-          v-model="value[currentKey]"
+           v-model="val"
           class="form-control"
           :aria-describedby="helpText(schema)"
           :placeholder="placeholder">
       </div>
-      <slot name="subTitle"></slot>
+      <slot name="subTitle" :description="schema.description"></slot>      
     </div>
   </div>	
 </div>

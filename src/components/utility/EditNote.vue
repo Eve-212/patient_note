@@ -1,24 +1,28 @@
 <template>
-  <div :class="{isExpanded: $store.state.MainPushed}" v-if="noteSchema">
-    <div class="row">    
-      <Form class="col-md-10 mb-5" :schema="noteSchema" :schemaData="data"></Form>
-      <SectionNav class="col-md-2 d-none d-md-block mb-5" :schema="noteSchema"></SectionNav>
-    </div>
+  <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">    
+    <JSchemaObject
+      class="col-md-10 mb-5"
+      v-scroll-spy="{sectionSelector: '.scroll-watch', offset: 100}" 
+      v-model="data" 
+      :schema="noteSchema.properties.content">
+    </JSchemaObject>
+    <SectionNav 
+      class="col-md-2 d-none d-md-block mb-5" 
+      :schema="noteSchema">
+    </SectionNav>
   </div>
 </template>
 
 <script>
-import Form from '@/components/form/Form.vue'
 import SectionNav from '@/components/ui/SectionNav.vue'
-import axios from 'axios'
-import { mapActions } from 'vuex'
+import JSchemaObject from '@/components/form/JSchemaObject'
 
 export default {
   name: 'EditNote',
   props: ['fee_no'],
   components: {
-    Form,
-    SectionNav
+    SectionNav,
+    JSchemaObject
   },
   data() {
     return {
@@ -29,23 +33,7 @@ export default {
       isLoaded: false
     }
   },
-  // watch: {
-  //   fee_no: function() {
-  //     // console.log("ddd")
-  //     // console.log(this.data)
-  //     // this.data = {}
-  //     // console.log(this.data)
-  //     this.init();
-  //   }
-
-  // },
   methods: {
-    // getSectionKeys: function() {
-    //   let sectionKeys = Object.keys(this.noteSchema.properties.content.properties)
-    //   console.log(sectionKeys)
-    //   return sectionKeys
-    // },
-
     // package structure of patient data so that it fits our schema
     prepare_data($schema, $data) {
       //let $tmps=$sch;
@@ -66,7 +54,6 @@ export default {
                   $d[$child_name] = {}
                   break
                 case 'array':
-                  console.log($child_name)
                   $d[$child_name] = []
                   break
                 default:
@@ -106,7 +93,6 @@ export default {
         }
       }
     },
-
     load() {
       let $id
       if (($id = this.sess.admission.id)) {
@@ -132,27 +118,10 @@ export default {
           $data.profile[$col] = $ipd[$col]
         }
 
-        // changed for...in loop to use forEach
-        // see: https://stackoverflow.com/questions/500504/why-is-using-for-in-with-array-iteration-a-bad-idea
-        // let profileFields = ['name', 'fee_no', 'birthdate', 'sex']
-        // profileFields.forEach(($col) => {   // populate profile field
-        //   $data.profile[$col] = $ipd[$col]
-        // })
-
-        // ['name', 'fee_no', 'birthdate', 'sex'].forEach( $col => {   // populate profile field
-        //   $data.profile[$col] = $ipd[$col]
-        // })
-
         $data.admit_dept = $ipd.dept_id
         $data.admit_time = $ipd.start
 
-        // console.log("before")
-        // console.log($data)
-
         this.prepare_data(this.noteSchema.properties.content, $data)
-
-        // console.log("after")
-        // console.log($data)
 
         this.data = $data
         // Form will not load unless isLoaded is true
@@ -163,68 +132,23 @@ export default {
       
     }*/
   },
-  beforeCreate: function() {
-    // axios.get('fake_data/schemas.json')
-    // .then((res) => {
-    //   console.log(res.body)
-    //   console.log("yay")
-    // })
-    //const json = require("../../../static/fake_data/schemas2.json")
-
-    //this.noteSchema = json
+  created: function() {
     this.noteSchema = {}
-    //console.log(this.$wf.note.schema)
-    this.$wf.note.schema({ type: 'admission' }).then($raw => {
-      //
-      //this.noteSchema=$raw.data
-      this.noteSchema = require('../../../static/fake_data/sch.note.adm.json')
-      // this.$store.dispatch('loadSchema', this.noteSchema);
-      // console.log(this.$store.state.schema)
 
-      // prepare schema and data to load form
+    this.$wf.note.schema({ type: 'admission' }).then($raw => {
+      this.$set(
+        this.$data,
+        'noteSchema',
+        require('../../../static/fake_data/sch.note.adm2.json')
+      )
+
       this.init()
     })
-
-    // this.noteSchema = require('../../../static/fake_data/sch.note.adm.json')
-    // this.init()
-    /*
-    let $adm=this.sess.admission
-    if(!$adm.id){
-      //admission not exist
-    }
-    */
   },
-  // computed: {
-  //   getSectionKeys: function() {
-  //     let sectionKeys = Object.keys(this.noteSchema.properties.content.properties)
-  //     console.log(sectionKeys)
-  //     return sectionKeys
-  //   }
-  // }
   watch: {
     fee_no() {
-      // console.log("========")
-      // console.log(this.data)
-      // this.data = {}
       this.init()
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-@import '@/assets/sass/main.scss';
-
-// .wrap {
-//   margin: 80px 50px 0 100px;
-//   @media screen and (max-width: 1025px) {
-//     margin: 80px 10px 0 90px;
-//   }
-//   @media screen and (max-width: $break-medium) {
-//     margin: 120px 10px 0 70px;
-//     boj_box {
-//       padding: 15px 0 !important;
-//     }
-//   }
-// }
-</style>

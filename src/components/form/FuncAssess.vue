@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       options: {
-        bath:[
+        bath: [
             "Needs help with bathing more than one part of the body, getting in or out of the tub or shower. Requires total bathing.",
             "Bathes self completely or needs help in bathing only a single part of the body such as the back, genital area or disabled extremity."
         ],

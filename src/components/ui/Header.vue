@@ -11,14 +11,21 @@
       </router-link>
     </div>
     <div class="header_right d-flex align-items-center">
-      <!-- Search form -->
       <form class="header_search-box" :class="{hideSearch:hide}">
-        <input type="text" v-model="no" placeholder="病歷號/床號/ 身分證" ref="search">
-        <button class="py-2 px-3" type="button" @click="load" ref="searchs">
+        <input 
+          type="text" 
+          v-model="no" 
+          v-focus
+          placeholder="病歷號/床號/ 身分證">
+        <button 
+          type="submit" 
+          class="py-2 px-3" 
+          @keyup.enter.prevent="load" 
+          @click.prevent="load">
           <i class="fa fa-search"></i>
         </button>
       </form>
-      <div class="header_user">Hi, {{ user }}</div>
+      <div class="header_user text-muted">Hi, {{ this.$store.state.user.name }}</div>
       <!-- Badge and reminder -->
       <div class="header_badge-box d-flex align-items-center">
         <div
@@ -43,10 +50,10 @@
           </router-link>
         </div>
       </div>
-      <!-- Logout -->
+      <!-- Sign Out -->
       <div 
         class="header_logout-box d-flex justify-content-center align-items-center" 
-        v-on:click="logout()">
+        v-on:click="singOut()">
         <i class="fa fa-sign-out-alt"></i>
       </div>
     </div>
@@ -54,16 +61,13 @@
 </template>
 <script>
 export default {
-  props: ['user', 'hide'],
+  props: ['hide'],
   data() {
     return {
       showReminder: false,
       no: '',
       status: ''
     }
-  },
-  mounted() {
-    this.$refs.search.focus()
   },
   methods: {
     toggleSideMenu() {
@@ -72,12 +76,11 @@ export default {
     toggleReminder() {
       this.showReminder = !this.showReminder
     },
-    logout() {
-      //Logout
-      let logout = confirm('Sure you want to log out?')
-      if (logout == true) {
-        this.$emit('authenticated', false)
-        this.$router.replace({ name: 'login' })
+    singOut() {
+      let singOut = confirm('Sure you want to sign out?')
+      if (singOut) {
+        this.$store.dispatch('Sign_Out')
+        this.$router.replace({ name: 'signIn' })
       }
     },
     load() {
@@ -105,9 +108,6 @@ export default {
   background-color: $color-grey-light;
   font-size: $default-font-size;
   color: $color-black;
-  @media screen and (max-width: $break-small) {
-    padding-left: 0.65rem;
-  }
   a {
     color: $color-black;
   }
@@ -142,7 +142,7 @@ export default {
       border: none;
     }
     input {
-      padding: 0.6rem 1.8rem;
+      padding: 0.5rem 1.8rem;
       @media screen and (max-width: $break-small) {
         padding-right: 0;
       }

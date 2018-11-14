@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     show_edit($type) {
-      this.$router.push({ name: 'edit', params: { fee_no: this.sess.fee_no } })
+      this.$router.push({ name: 'edit2', params: { fee_no: this.sess.fee_no } })
     }
   }
 }

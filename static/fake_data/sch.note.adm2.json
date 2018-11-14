@@ -70,7 +70,11 @@
               "type": "integer",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 4                
+                "bsColSize": 4,
+                "dependsOn": {
+                  "name": "profile.name",
+                  "values": ["david"]
+                }
               }
             },
             "id_no": {
@@ -175,7 +179,7 @@
                   },
                   "attrs": {
                     "dependsOn": {
-                      "name": "used",
+                      "name": "personal_hx.cigarette.used",
                       "values": ["Yes"]
                     }
                   }
@@ -185,7 +189,7 @@
                   "type": "boolean",
                   "attrs": {
                     "dependsOn": {
-                      "name": "used",
+                      "name": "personal_hx.cigarette.used",
                       "values": ["Yes"]
                     }
                   }
@@ -198,7 +202,7 @@
                     "bsColSize": 3,
                     "placeholder": "Frequency",
                     "dependsOn": {
-                      "name": "used",
+                      "name": "personal_hx.cigarette.used",
                       "values": ["Yes"]
                     }
                   }
@@ -210,7 +214,7 @@
                     "inputGroup": true,
                     "bsColSize": 3,
                     "dependsOn": {
-                      "name": "used",
+                      "name": "personal_hx.cigarette.used",
                       "values": ["Yes"]
                     }
                   }
@@ -915,7 +919,8 @@
                   "title": "Blood",
                   "type": "number",
                   "attrs": {
-                    "fieldType": "labtable"
+                    "fieldType": "labtable",
+                    "bsColSize": 12
                   }
                 }
               }

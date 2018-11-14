@@ -1,9 +1,11 @@
 <template>
   <div>
     <header-component :user="user" :hide="hide"></header-component>
-    <main class="row">
-      <div class="col-2 col-sm-1 px-0"><sidemenu></sidemenu></div>
-      <div class="col-sm-10 mb-5"><router-view></router-view></div>
+    <main>
+      <sidemenu></sidemenu>
+      <div class="main_content">
+        <router-view></router-view>
+      </div>
       <back-to-top @hide="hideSearch"></back-to-top>
     </main>    
   </div>
@@ -27,3 +29,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.main_content {
+  margin: 0 6rem 0 8rem;
+  @media screen and (max-width: 768px) {
+    margin: 0 1rem 0 5rem;
+  }
+}
+</style>

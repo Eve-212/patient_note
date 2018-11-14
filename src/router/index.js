@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import MainLayout from '@/views/Main'
-import LoginPage from '@/views/Login'
+import SignIn from '@/views/SignIn'
 import EditNote from '@/components/utility/EditNote'
 import DashBoard from '@/components/utility/DashBoard'
 
@@ -11,9 +11,9 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/login',
-      name: 'login',
-      component: LoginPage
+      path: '/signin',
+      name: 'signIn',
+      component: SignIn
     },
     {
       path: '/',

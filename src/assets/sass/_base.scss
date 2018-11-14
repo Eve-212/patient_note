@@ -22,7 +22,7 @@ i.fa {
 }
 
 .isExpanded {
-  margin-left: 150px;
+  margin-left: 130px;
   @media screen and (max-width: $break-medium) {
     margin-left: 0;
   }
@@ -31,21 +31,4 @@ i.fa {
 button,
 input {
   outline: none;
-}
-
-::-webkit-input-placeholder {
-  /* Chrome/Opera/Safari */
-  font-size: 1.2rem;
-}
-::-moz-placeholder {
-  /* Firefox 19+ */
-  font-size: 1.2rem;
-}
-:-ms-input-placeholder {
-  /* IE 10+ */
-  font-size: 1.2rem;
-}
-:-moz-placeholder {
-  /* Firefox 18- */
-  font-size: 1.2rem;
 }

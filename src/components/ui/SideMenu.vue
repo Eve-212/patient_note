@@ -1,5 +1,5 @@
 <template>
-  <div class="side-menu" :class="{expanded: $store.state.MainPushed}">
+  <div class="side-menu" :class="{expanded: $store.state.sideExpanded}">
     <ul>
       <li>
         <router-link :to="{ name: 'dashBoard' }">
@@ -26,23 +26,22 @@ export default {}
   background: $color-grey-light;
   position: fixed;
   top: 5rem;
-  width: 5.5rem;
+  width: 4rem;
   height: 100%;
   overflow: hidden;
   transition: width 0.1s linear;
   z-index: 100;
   &:hover,
   &.expanded {
-    width: 20rem;
+    width: 16rem;
     overflow: visible;
     box-shadow: 3px 3px 10px -2px rgba(20%, 20%, 40%, 0.5);
     @media screen and (max-width: $break-small) {
-      width: 17rem;
+      width: 15rem;
     }
   }
   @media screen and (max-width: $break-small) {
     top: 4.5rem;
-    width: 5rem;
   }
   li {
     display: block;
@@ -60,11 +59,8 @@ export default {}
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 6.5rem;
+        width: 4rem;
         height: 3rem;
-        @media screen and (max-width: $break-small) {
-          width: 6rem;
-        }
       }
       span {
         display: table-cell;

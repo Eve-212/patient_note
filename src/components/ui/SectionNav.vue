@@ -1,6 +1,6 @@
 <template>
   <div class="section-nav">
-    <ul class="list-group">
+    <ul v-scroll-spy-active="{class: 'customActive'}" v-scroll-spy-link class="list-group">
       <li 
         v-for="(item, key) in schema.properties.content.properties"
         :key="key"
@@ -42,9 +42,14 @@ li a {
   overflow-y: scroll;
 }
 .customActive {
-  color: #17a2b8;
+  color: #17a2b8; 
   border-left: 1px solid #17a2b8;
   padding-left: 5px;
   transition: all 0.1s;
+}
+
+.customActive a {
+  color: #17a2b8; 
+  font-weight: bold;
 }
 </style>

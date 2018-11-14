@@ -3,9 +3,8 @@
   <div :class="getBsColSize">
     <div 
       :id="anchorIdFormat(schema)" 
-      :class="[getStyleClass]" 
-      v-if="showInputField">
-      <select v-model="value[currentKey]">
+      :class="[getStyleClass]">
+      <select  v-model="val">
         <template v-if="schema.attrs.placeholder">
           <option value="">{{ schema.attrs.placeholder }}</option>
         </template>

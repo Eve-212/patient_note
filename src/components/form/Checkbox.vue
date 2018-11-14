@@ -2,8 +2,8 @@
 <div :class="getBsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[getStyleClass]" 
-    v-if="showInputField">
+    :class="[getStyleClass]"> 
+    
     <label
       :for="currentKey">
       {{ schema.attrs.label }}
@@ -11,7 +11,7 @@
         :id="currentKey"
         type="checkbox"
         :name="currentKey"
-        v-model="value[currentKey]">
+         v-model="val">
     </label>
   </div>
 </div>

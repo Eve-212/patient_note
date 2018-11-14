@@ -5,17 +5,30 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    MainPushed: false
+    sideExpanded: false,
+    user: {}
   },
   getters: {},
   mutations: {
     Toogle_Main_Sec(state) {
-      this.state.MainPushed = !this.state.MainPushed
+      state.sideExpanded = !state.sideExpanded
+    },
+    Sign_In(state, user_payload) {
+      state.user = user_payload
+    },
+    Sign_Out(state) {
+      state.user = {}
     }
   },
   actions: {
     Toogle_Main_Sec({ commit }) {
       commit('Toogle_Main_Sec')
+    },
+    Sign_In({ commit }, user_payload) {
+      commit('Sign_In', user_payload)
+    },
+    Sign_Out({ commit }) {
+      commit('Sign_Out')
     }
   }
 })

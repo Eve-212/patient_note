@@ -225,7 +225,6 @@ export default {
 @import '../../assets/sass/main.scss';
 
 #labwrap {
-  width: 100%;
   overflow: auto;
   border-left: 1px solid $color-grey-light;
   border-right: 1px solid $color-grey-light;

@@ -2,8 +2,7 @@
 <div :class="getBsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[getStyleClass]" 
-    v-if="showInputField">
+    :class="[getStyleClass]">
     <div class="checklist-label" :for="currentKey">{{ schema.title }}</div>
     <div 
       :id="currentKey"			
@@ -15,12 +14,12 @@
         type="checkbox" 
         :id="getId(index)" 
         :value="item"
-        v-model="value[currentKey]">
+         v-model="val">
       <label  class="form-check-label" :for="getId(index)">{{ item }}</label>
     </div>
 
     <!-- add Other input box -->
-    <input type="text" placeholder="Other..." v-on:keyup.13="add_item" v-model="other_val">
+    <input type="text" placeholder="Other..." @keyup.enter="add_item" v-model="other_val">
     <button v-if="other_val" v-on:click="add_item">+</button>
     
   </div>
@@ -31,38 +30,37 @@
 </template>
 
 <script>
-
 import Proto from '@/components/mixins/Proto.js'
-
-
 
 export default {
   name: 'CheckListWithOther',
   mixins: [Proto],
-  components: {
-    
-  },
+  components: {},
   data() {
     return {
-      other_val: null  
-    }    
-  },  
-  methods: {    
+      other_val: null
+    }
+  },
+  methods: {
     // add new item to checklist and reset value of Other input box to null
-    add_item(){
-      if (this.other_val){
+    add_item() {
+      if (this.other_val) {
         this.value[this.currentKey].push(this.other_val)
         this.other_val = null
-      }      
+      }
     }
   },
   computed: {
     checklistOptions() {
       if (this.value[this.currentKey]) {
-         return this.schema.attrs.values.concat(this.value[this.currentKey].filter((x) => !this.schema.attrs.values.includes(x)));
-      }                 
-    },  
-    
+        return this.schema.attrs.values.concat(
+          this.value[this.currentKey].filter(
+            x => !this.schema.attrs.values.includes(x)
+          )
+        )
+      }
+    }
+
     // items(){
     //   if (this.value) {
     //      return this.def_items.concat(this.values.filter((x)=> !this.def_items.includes(x)));
@@ -71,9 +69,9 @@ export default {
     // }
   },
   created: function() {
-    if(!this.schema.attrs.values){
-      if (this.schema.items.enum){
-        this.schema.attrs.values=this.schema.items.enum
+    if (!this.schema.attrs.values) {
+      if (this.schema.items.enum) {
+        this.schema.attrs.values = this.schema.items.enum
       }
     }
     if (!(this.currentKey in this.value)) {
@@ -88,7 +86,7 @@ export default {
 
 <style>
 .checklist-label {
-  font-size: 1.1rem;  
+  font-size: 1.1rem;
 }
 /* .margin-bot-small {
   margin-bottom: 10px;

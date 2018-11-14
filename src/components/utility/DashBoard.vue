@@ -1,22 +1,21 @@
 <template>
-  <div :class="{isExpanded: $store.state.MainPushed}">
+  <div :class="{isExpanded: $store.state.sideExpanded}">
       <span>{{status}}</span>
-      <div class="selectBtn_wrap mt-5 mt-sm-0 mb-sm-1 mb-4 d-flex align-items-center justify-content-sm-end">
+      <div class="switch my-sm-3 my-5 d-flex align-items-center justify-content-sm-end">
         <span class="h5 my-0" >Group By：</span>
-        <div class="switchBtn">
+        <div>
           <button 
             class="btn btn-outline-info mr-1"
             :class="{clicked: sortType == 'doc_id'}" 
             type="button" 
             @click="switchType('doc_id')">Doctor</button>
           <button 
-            class="btn btn-outline-info mr-1"
+            class="btn btn-outline-info"
             :class="{clicked: sortType == 'bed_no'}"  
             type="button" 
             @click="switchType('bed_no')">Floor</button>
         </div>
       </div>
-      qejr[ogijqeiojrgoi]
       <card-component :sortType="sortType" :list="sortedData"></card-component>
   </div>
 </template>
@@ -94,13 +93,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.switchBtn {
-  button {
-    cursor: pointer;
-    &.clicked {
-      color: #fff;
-      background: #17a2b8;
-    }
+button {
+  cursor: pointer;
+  &.clicked {
+    color: #fff;
+    background: #17a2b8;
   }
 }
 </style>

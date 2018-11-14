@@ -2,8 +2,7 @@
 <div :class="getBsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[getStyleClass]" 
-    v-if="showInputField">    
+    :class="[getStyleClass]">    
     <label class="radio-label">{{ schema.title }}</label>
     <div 
       v-for="(item, index) in schema.attrs.values" 
@@ -14,7 +13,7 @@
         class="form-check-input"
         :id="getId(index)" 
         :value="item" 
-        v-model="value[currentKey]">
+         v-model="val">
       <label class="form-check-label" :for="getId(index)">{{ item }}</label>
     </div>
   </div>

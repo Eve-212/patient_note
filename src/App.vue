@@ -1,30 +1,14 @@
 <template>
   <div id="app">
-    <router-view @authenticated="setAuthenticated" :user="authenticated.user"></router-view>
+    <router-view></router-view>
   </div>
 </template>
-
-
 <script>
 export default {
   name: 'App',
-  data() {
-    return {
-      authenticated: {
-        status: false,
-        user: ''
-      }
-    }
-  },
   mounted() {
-    if (!this.authenticated.status) {
-      this.$router.replace({ name: 'login' })
-    }
-  },
-  methods: {
-    setAuthenticated(v) {
-      this.authenticated.status = v.status
-      this.authenticated.user = v.user
+    if (!this.$store.state.user.name) {
+      this.$router.replace({ name: 'signIn' })
     }
   }
 }
