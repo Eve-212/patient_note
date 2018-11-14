@@ -20,7 +20,7 @@
     <div class="form-group row" v-if="!inputGroup">
     
       <label 
-        class="col-md-2 col-form-label"
+        class=" col-form-label"
         :for="getId()">
         {{ schema.title }}
       </label>

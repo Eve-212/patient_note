@@ -2,21 +2,32 @@
 <template>
   <div :class="getBsColSize">
     <div :id="anchorIdFormat(schema)" :class="[getStyleClass]">
-      <div v-if="schema.attrs.inputGroup">
+      <div v-if="inputGroup">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <div class="input-group-text text-label">{{ schema.title }}</div>
           </div>
-          <input id="number-input" type="date" :name="currentKey"  v-model="val">
+          <input 
+            :id="getId()" 
+            type="date" 
+            :name="currentKey" 
+            v-model="val">
         </div>
       </div>
-      <div v-if="!schema.attrs.inputGroup">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <div class="input-group-text text-label">{{ schema.title }}</div>
-          </div>
-          <input id="number-input" type="date" :name="currentKey"  v-model="val">
-        </div>
+      <div class="form-group row" v-if="!inputGroup">
+        <label 
+          class="col-md-4 col-form-label"
+          :for="getId()">
+          {{ schema.title }}
+        </label>
+        <input 
+          id="getId()" 
+          type="date" 
+          :name="currentKey"  
+          v-model="val"
+          class="form-control col-md-8"
+          :aria-describedby="helpText(schema)">
+        <slot name="subTitle" :description="schema.description"></slot>
       </div>
     </div>
   </div>  

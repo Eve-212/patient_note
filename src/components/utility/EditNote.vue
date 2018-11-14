@@ -5,8 +5,8 @@
   </div>
   <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">    
     <JSchemaObject
-      class="col-md-10 mb-5"
       v-scroll-spy="{sectionSelector: '.scroll-watch', offset: 100}" 
+      class="col-md-10 mb-5"
       v-model="data" 
       :schema="noteSchema.properties.content">
     </JSchemaObject>

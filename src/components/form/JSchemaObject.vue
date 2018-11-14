@@ -2,27 +2,26 @@
   <div v-if="isReady">   
     <h5 :id="anchorIdFormat(schema)" >{{ schema.title }}</h5>
     <div :class="{ row: getRowGroup }" class="scroll-watch">
-      <template v-for="(field, key) in schema.properties">
-        <component           
-          :rootObj="$rootObj"
-          :key="key"
-          :currentKey="key" 
-          :is="getComponentName(field)" 
-          :schema="field"
-          v-bind="field.attrs" 
-          :path="path.concat(key)"           
-          v-model="val[key]"
-          v-if="isVisible[key]">          
-          <template slot="subTitle">
-            <small 
-              v-if="field.description" 
-              :id="helpText(field)" 
-              class="text-muted reminder w-100">
-              {{ field.description }}              
-            </small>
-          </template>
-        </component>
-      </template>
+      <component
+        v-for="(field, key) in schema.properties"           
+        :rootObj="$rootObj"
+        :key="key"
+        :currentKey="key" 
+        :is="getComponentName(field)" 
+        :schema="field"
+        v-bind="field.attrs" 
+        :path="path.concat(key)"           
+        v-model="val[key]"
+        v-if="isVisible[key]">          
+        <template slot="subTitle">
+          <small 
+            v-if="field.description" 
+            :id="helpText(field)" 
+            class="text-muted reminder w-100">
+            {{ field.description }}              
+          </small>
+        </template>
+      </component>
     </div>
   </div>
 </template>
