@@ -100,6 +100,7 @@
               "type": "string",
               "attrs": {
                 "fieldType": "date",
+                "inputGroup": true,
                 "bsColSize": 6
               }
             },
@@ -109,6 +110,7 @@
               "type": "string",
               "attrs": {
                 "fieldType": "date",
+                "inputGroup": true,
                 "bsColSize": 6
               }
             },
@@ -138,7 +140,6 @@
           "type": "string",
           "attrs": {
             "inputGroup": true,
-            "bsColSize": 12,
             "placeholder": "test"
           }
         },
@@ -146,16 +147,14 @@
           "title": "Present Illness",
           "type": "string",
           "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12
+            "inputGroup": true
           }
         },
         "travel_contact": {
           "title": "Travel History",
           "type": "string",
           "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12
+            "inputGroup": true          
           }
         },
         "personal_hx": {
@@ -232,23 +231,30 @@
               "title": "Alcohol drinking",
               "type": "object",
               "attrs": {
-                "styleClass": ["subsection-title"]
+                "styleClass": ["subsection-title"],
+                "rowGroup": true
               },
               "properties": {
                 "used": {
                   "title": "Used：",
-                  "type": "boolean"
+                  "type": "boolean",
+                  "attrs": {
+                    "bsColSize": 12
+                  }
                 },
                 "quitted": {
                   "title": "Quit use：",
-                  "type": "boolean"
+                  "type": "boolean",
+                  "attrs": {
+                    "bsColSize": 12
+                  }
                 },
                 "vol_per_day": {
                   "title": "Volumn(ml) per day",
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 5
+                    "bsColSize": 6
                   }
                 },
                 "duration": {
@@ -256,7 +262,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 5
+                    "bsColSize": 6
                   }
                 }
               }
@@ -347,8 +353,7 @@
               "title": "Note",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
-                "bsColSize": 12
+                "inputGroup": true 
               }
             }
           }
@@ -517,16 +522,14 @@
               "title": "Inside hospital",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
-                "bsColSize": 12
+                "inputGroup": true
               }
             },
             "out_institute": {
               "title": "Other hispital/Clinic",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
-                "bsColSize": 12
+                "inputGroup": true
               }
             }
           }
@@ -592,6 +595,9 @@
         "nutrition": {
           "title": "Nutritional Evaluation",
           "type": "object",
+          "attrs": {
+            "rowGroup": true
+          },
           "properties": {
             "higth": {
               "title": "Height(cm)",
@@ -685,9 +691,6 @@
                 }
               }
             }
-          },
-          "attrs": {
-            "rowGroup": true
           }
         },
         "functional_assess": {
@@ -736,8 +739,7 @@
               "title": "General looking",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
-                "bsColSize": 12
+                "inputGroup": true
               }
             },
             "vitals": {
@@ -798,13 +800,11 @@
                 }
               }
             },
-
             "conscious": {
               "title": "Consciousness",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
-                "bsColSize": 12
+                "inputGroup": true
               }
             },
             "GCS": {
@@ -889,24 +889,21 @@
                   "title": "Conjunctivae",
                   "type": "string",
                   "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 12
+                    "inputGroup": true
                   }
                 },
                 "sclera": {
                   "title": "Sclera",
                   "type": "string",
                   "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 12
+                    "inputGroup": true
                   }
                 },
                 "throat": {
                   "title": "Throat",
                   "type": "string",
                   "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 12
+                    "inputGroup": true
                   }
                 }
               }
@@ -928,8 +925,7 @@
                   "title": "Blood",
                   "type": "number",
                   "attrs": {
-                    "fieldType": "labtable",
-                    "bsColSize": 12
+                    "fieldType": "labtable"
                   }
                 }
               }
@@ -938,8 +934,7 @@
               "title": "Note",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
-                "bsColSize": 12
+                "inputGroup": true
               }
             }
           }
@@ -948,32 +943,28 @@
           "title": "Image finding",
           "type": "string",
           "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12
+            "inputGroup": true
           }
         },
         "ecg": {
           "title": "ECG finding",
           "type": "string",
           "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12
+            "inputGroup": true
           }
         },
         "impression": {
           "title": "Impressions",
           "type": "string",
           "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12
+            "inputGroup": true
           }
         },
         "plan": {
           "title": "Plan (Management)",
           "type": "string",
           "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12
+            "inputGroup": true
           }
         }
       }
