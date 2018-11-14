@@ -138,8 +138,7 @@
           "type": "string",
           "attrs": {
             "inputGroup": true,
-            "bsColSize": 12,
-            "placeholder": "test"
+            "bsColSize": 12
           }
         },
         "pi": {
@@ -798,7 +797,6 @@
                 }
               }
             },
-
             "conscious": {
               "title": "Consciousness",
               "type": "string",

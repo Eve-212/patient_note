@@ -56,15 +56,15 @@ export default {
     }
   },
   data() {
-    return {       
-      getRowGroup: this.rowGroup,    
-      isReady:false,
-      isVisible:{},
-      child_key: null  // for clarity, use child_key in obj comp and currentKey in input components
+    return {
+      getRowGroup: this.rowGroup,
+      isReady: false,
+      isVisible: {},
+      child_key: null // for clarity, use child_key in obj comp and currentKey in input components
     }
   },
   created() {
-    this.child_key = this.currentKey       
+    this.child_key = this.currentKey
     // set first object component instance as root object
     if (this.rootObj) {
       //assign local root object variable to avoid changing prop

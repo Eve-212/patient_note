@@ -226,8 +226,8 @@ export default {
 
 #labwrap {
   overflow: auto;
-  border-left: 1px solid $color-grey-light;
-  border-right: 1px solid $color-grey-light;
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
   table {
     margin-bottom: 0;
     padding-bottom: 10px;

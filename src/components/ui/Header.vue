@@ -181,7 +181,7 @@ export default {
         }
       }
       cursor: pointer;
-      width: 3rem;
+      width: 2.5rem;
       height: 3.5rem;
       span {
         padding: 0.2rem;
@@ -223,7 +223,7 @@ export default {
     }
   }
   &_logout-box {
-    width: 3rem;
+    width: 2.5rem;
     height: 3.5rem;
   }
 }
