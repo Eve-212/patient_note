@@ -1,7 +1,7 @@
 <template>
   <div :class="{isExpanded: $store.state.sideExpanded}">
       <span>{{status}}</span>
-      <div class="switch my-sm-3 my-5 d-flex align-items-center justify-content-sm-end">
+      <div class="switch my-sm-3 mt-5 mb-4 d-flex align-items-center justify-content-sm-end">
         <span class="h5 my-0" >Group By：</span>
         <div>
           <button 
@@ -94,6 +94,7 @@ export default {
 
 <style lang="scss" scoped>
 button {
+  font-size: 14px;
   cursor: pointer;
   &.clicked {
     color: #fff;

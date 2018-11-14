@@ -20,7 +20,7 @@
 
       <!-- Card Content -->
       <div class="card_wrap mb-4">
-        <div class="card mt-2 mr-sm-3 mr-0" v-for="(v1, index1) in v" :key="index1">
+        <div class="card mt-2 mr-sm-2 mr-0" v-for="(v1, index1) in v" :key="index1">
           <div class="card-header">
             <span class="bed_no px-1 py-1" :class="{ female: v1.ipd.sex == '0' }">{{v1.ipd.bed_no}}</span>｜<span class="font-weight-bold">{{v1.ipd.name}}</span>
             <small class="text-muted float-right">{{v1.ipd.chr_no}}</small>
@@ -78,15 +78,19 @@ export default {
   padding-bottom: 5px;
   text-transform: capitalize;
   span {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: 400;
+  }
+  small {
+    font-size: $default-font-size;
   }
 }
 .card_wrap {
   display: flex;
   flex-wrap: wrap;
+  font-size: $default-font-size;
   .card {
-    width: 18rem;
+    width: 15rem;
     border-left: 4px solid $color-tertiary;
     &.incompleted {
       border-left: 4px solid $color-secondary-light;

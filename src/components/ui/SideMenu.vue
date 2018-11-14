@@ -25,27 +25,24 @@ export default {}
 .side-menu {
   background: $color-grey-light;
   position: fixed;
-  top: 5rem;
-  width: 4rem;
+  top: 3.5rem;
+  width: 3.5rem;
   height: 100%;
   overflow: hidden;
   transition: width 0.1s linear;
   z-index: 100;
   &:hover,
   &.expanded {
-    width: 16rem;
+    width: 13rem;
     overflow: visible;
     box-shadow: 3px 3px 10px -2px rgba(20%, 20%, 40%, 0.5);
-    @media screen and (max-width: $break-small) {
-      width: 15rem;
-    }
   }
   @media screen and (max-width: $break-small) {
-    top: 4.5rem;
+    top: 3.5rem;
   }
   li {
     display: block;
-    margin: 2rem 0;
+    margin: 1rem 0 0.5rem 0;
     &:hover a {
       background-color: $color-white;
     }
@@ -59,8 +56,8 @@ export default {}
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 4rem;
-        height: 3rem;
+        width: 3.5rem;
+        height: 2.5rem;
       }
       span {
         display: table-cell;

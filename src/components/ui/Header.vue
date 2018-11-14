@@ -18,8 +18,7 @@
           v-focus
           placeholder="病歷號/床號/ 身分證">
         <button 
-          type="submit" 
-          class="py-2 px-3" 
+          type="submit"  
           @keyup.enter.prevent="load" 
           @click.prevent="load">
           <i class="fa fa-search"></i>
@@ -106,19 +105,20 @@ export default {
 .header {
   padding: 0 0 0 0.9rem;
   background-color: $color-grey-light;
-  font-size: $default-font-size;
   color: $color-black;
+  font-size: $default-font-size;
   a {
     color: $color-black;
   }
   &_handler-box {
     border-radius: 50%;
     cursor: pointer;
-    height: 2.5rem;
-    width: 2.5rem;
-    line-height: 2.5rem;
+    height: 2rem;
+    width: 2rem;
+    line-height: 2rem;
     background: rgba($color-grey-dark, 0.4);
     text-align: center;
+    font-size: 1rem;
     i {
       color: $color-white;
     }
@@ -126,7 +126,7 @@ export default {
   &_logo-box {
     text-decoration: none;
     &-logo {
-      width: 1.6rem;
+      width: 1.2rem;
     }
   }
   &_search-box {
@@ -140,9 +140,17 @@ export default {
     input,
     button {
       border: none;
+      padding: 0.3rem 0.8rem;
+      @media screen and (max-width: $break-small) {
+        padding: 0.3rem 0.5rem;
+      }
+    }
+    button {
+      @media screen and (max-width: $break-small) {
+        padding-left: 0;
+      }
     }
     input {
-      padding: 0.5rem 1.8rem;
       @media screen and (max-width: $break-small) {
         padding-right: 0;
       }
@@ -155,11 +163,11 @@ export default {
     @media screen and (max-width: $break-small) {
       position: absolute;
       right: 0;
-      top: 4.5rem;
+      top: 3.5rem;
     }
   }
   &_user {
-    margin: 0 1rem 0 2rem;
+    margin: 0 0.8rem 0 1.5rem;
     @media screen and (max-width: $break-small) {
       margin-left: 0;
     }
@@ -173,30 +181,25 @@ export default {
         }
       }
       cursor: pointer;
-      width: 4rem;
-      height: 5rem;
-      @media screen and (max-width: $break-small) {
-        width: 3.5rem;
-        height: 4.5rem;
-      }
+      width: 3rem;
+      height: 3.5rem;
       span {
-        padding: 0.3rem;
+        padding: 0.2rem;
       }
     }
     &-reminder {
       display: none;
       position: absolute;
       right: 0;
-      top: 5rem;
-      width: 17.5rem;
+      top: 3.5rem;
+      width: 12rem;
       background-color: $color-grey-light;
-      padding: 1rem 3rem;
+      padding: 0 2rem;
       box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
       &:hover {
         display: block;
       }
       @media screen and (max-width: $break-large) {
-        top: 4.5rem;
         &.show {
           // [click and show reminder block] only on small device(<1200px)
           display: block;
@@ -213,14 +216,15 @@ export default {
           opacity: 1;
         }
       }
+      @media screen and (max-width: $break-large) {
+        padding: 0 1.5rem;
+        width: 11.5rem;
+      }
     }
   }
   &_logout-box {
-    width: 3.5rem;
-    height: 5rem;
-    @media screen and (max-width: $break-small) {
-      height: 4.5rem;
-    }
+    width: 3rem;
+    height: 3.5rem;
   }
 }
 </style>

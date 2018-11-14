@@ -1,7 +1,7 @@
 <template>
   <div>
     <header-component :user="user" :hide="hide"></header-component>
-    <main>
+    <main style="padding-top: 80px">
       <sidemenu></sidemenu>
       <div class="main_content">
         <router-view></router-view>
@@ -32,9 +32,9 @@ export default {
 
 <style lang="scss" scoped>
 .main_content {
-  margin: 0 6rem 0 8rem;
+  margin: 0 6rem;
   @media screen and (max-width: 768px) {
-    margin: 0 1rem 0 5rem;
+    margin: 0 1rem 0 4.5rem;
   }
 }
 </style>

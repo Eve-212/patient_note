@@ -58,7 +58,7 @@ export default {
 @import '@/assets/sass/main.scss';
 
 .signin {
-  margin: 10rem auto 0 auto;
+  margin: 120px auto 0 auto;
   border: 1px solid lighten($color-grey-dark, 20%);
   border-radius: 0.2rem;
   padding: 1.5rem;

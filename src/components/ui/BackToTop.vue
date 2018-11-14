@@ -73,10 +73,10 @@ export default {
   position: fixed;
   z-index: 1000;
   cursor: pointer;
-  width: 4rem;
-  height: 4rem;
-  font-size: 2rem;
-  line-height: 2rem;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1rem;
+  line-height: 1rem;
   background: $color-primary;
   display: flex;
   align-items: center;
