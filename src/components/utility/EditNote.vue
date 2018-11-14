@@ -33,7 +33,7 @@ export default {
       isLoaded: false
     }
   },
-  methods: {
+  methods: {    
     // package structure of patient data so that it fits our schema
     prepare_data($schema, $data) {
       //let $tmps=$sch;
@@ -83,6 +83,8 @@ export default {
           this.$wf.note.sess({ no: this.fee_no }).then($raw => {
             if ($raw.data.fee_no) {
               this.sess = $raw.data
+              console.log(this.sess)
+              console.log('888888888888')
               // call load function to load retrieved patient data into component's data object
               this.load()
             }

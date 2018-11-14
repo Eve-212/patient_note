@@ -23,6 +23,12 @@ export default {
         return ''
       }
     },
+    child_key: {
+      type: String,
+      default() {
+        return ''
+      }
+    },
     bsColSize: {
       type: Number
     },

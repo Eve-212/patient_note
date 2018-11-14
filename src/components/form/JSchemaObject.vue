@@ -6,7 +6,7 @@
           v-for="(field, key) in schema.properties"           
           :rootObj="$rootObj"
           :key="key"
-          :child_key="key" 
+          :currentKey="key" 
           :is="getComponentName(field)" 
           :schema="field"
           v-bind="field.attrs" 
@@ -50,12 +50,14 @@ export default {
     }
   },
   data() {
-    return {
-      isReady: false,
-      isVisible: {}
+    return {           
+      isReady:false,
+      isVisible:{},
+      child_key: null  // for clarity, use child_key in obj comp and currentKey in input components
     }
   },
   created() {
+    this.child_key = this.currentKey       
     // set first object component instance as root object
     if (this.rootObj) {
       //assign local root object variable to avoid changing prop

@@ -2,7 +2,7 @@
 <div :class="getBsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[getStyleClass]">
+    :class="[getStyleClass]">    
     <div class="checklist-label" :for="currentKey">{{ schema.title }}</div>
     <div 
       :id="currentKey"			
@@ -23,7 +23,7 @@
     <button v-if="other_val" v-on:click="add_item">+</button>
     
   </div>
-  {{ checklistOptions }}
+  {{ currentKey }}
   <br>
   {{ value }}
 </div>
@@ -38,29 +38,30 @@ export default {
   components: {},
   data() {
     return {
-      other_val: null
-    }
-  },
-  methods: {
+      other_val: null      
+    }    
+  },  
+  methods: {    
     // add new item to checklist and reset value of Other input box to null
-    add_item() {
-      if (this.other_val) {
-        this.value[this.currentKey].push(this.other_val)
+    add_item(){
+      if (this.other_val){
+        this.val.push(this.other_val)
         this.other_val = null
       }
     }
   },
   computed: {
     checklistOptions() {
-      if (this.value[this.currentKey]) {
-        return this.schema.attrs.values.concat(
-          this.value[this.currentKey].filter(
-            x => !this.schema.attrs.values.includes(x)
-          )
-        )
-      }
-    }
-
+      // if (this.value[this.currentKey]) {
+      //    return this.schema.attrs.values.concat(this.value[this.currentKey].filter((x) => !this.schema.attrs.values.includes(x)));
+      // }    
+      if (this.val) {
+         return this.schema.attrs.values.concat(this.val.filter((x) => !this.schema.attrs.values.includes(x)));
+      }                 
+      
+      
+    },  
+    
     // items(){
     //   if (this.value) {
     //      return this.def_items.concat(this.values.filter((x)=> !this.def_items.includes(x)));
@@ -74,12 +75,12 @@ export default {
         this.schema.attrs.values = this.schema.items.enum
       }
     }
-    if (!(this.currentKey in this.value)) {
-      // this.value[this.currentKey] = {}
-      // this.$emit('input', this.value)
-      this.$set(this.value, this.currentKey, [])
-      //this.value["keyOnCreate"] = {};
-    }
+    // if (!(this.currentKey in this.value)) {
+    //   // this.value[this.currentKey] = {}
+    //   // this.$emit('input', this.value)
+    //   this.$set(this.value, this.currentKey, [])
+    //   //this.value["keyOnCreate"] = {};
+    // }
   }
 }
 </script>
