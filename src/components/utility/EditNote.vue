@@ -1,10 +1,12 @@
 <template>
-  <div class="wrap" :class="{isExpanded: isExpanded}" v-if="noteSchema">    
+  <div class="wrap" :class="{isExpanded: isExpanded}" v-if="noteSchema"> 
+    {{ data }}   
     <div class="row" v-if="isLoaded">
       <JSchemaObject class="col-md-10 mb-5" v-model="data" :schema="noteSchema.properties.content"></JSchemaObject>
       <SectionNav class="col-md-2 d-none d-md-block mb-5" :schema="noteSchema"></SectionNav>
     </div>
-  </div>
+    
+  </div>  
 </template>
 
 <script>
@@ -29,8 +31,7 @@ export default {
       isLoaded: false
     }
   },
-  methods: {
-    
+  methods: {    
     // package structure of patient data so that it fits our schema
     prepare_data($schema, $data) {
       //let $tmps=$sch;
@@ -75,11 +76,15 @@ export default {
       if (this.fee_no) {
         // attempt to get patient data from sess_cache using fee_no
         this.sess = this.$wf.note.sess_cache[this.fee_no]
+        console.log(this.sess)
+        console.log('888888888888')
         if (!this.sess) { // if patient data does not exist in sess_cache          
           // then get patient data from database using fee_no
           this.$wf.note.sess({ no: this.fee_no }).then($raw => {
             if ($raw.data.fee_no) {
               this.sess = $raw.data
+              console.log(this.sess)
+              console.log('888888888888')
               // call load function to load retrieved patient data into component's data object
               this.load()
             }
@@ -92,6 +97,8 @@ export default {
     
     load() {        
       let $id      
+      console.log(this.sess.admission.id)
+      console.log('``````') 
       if (($id = this.sess.admission.id)) { // true if this.session.admission.id exists / else false
         this.$wf.note.get({ id: $id }).then($raw => {
           this.prepare_data(this.noteSchema, $raw.data)
@@ -134,8 +141,8 @@ export default {
 
     this.$wf.note.schema({ type: 'admission' }).then($raw => {
 
-      this.$set(this.$data,'noteSchema',require('../../../static/fake_data/sch.note.adm2.json'))
-
+      this.$set(this.$data, 'noteSchema', require('../../../static/fake_data/sch.note.adm2.json'))
+     
       this.init()
     })
   },

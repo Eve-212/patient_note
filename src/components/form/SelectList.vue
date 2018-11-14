@@ -31,11 +31,11 @@ export default {
     }
   },
   created: function() {
-    if (!(this.currentKey in this.value)) {
-      // this.value[this.currentKey] = {}
-      this.$set(this.value, this.currentKey, '')
-      //this.value["keyOnCreate"] = {};
-    }
+    // if (!(this.currentKey in this.value)) {
+    //   // this.value[this.currentKey] = {}
+    //   this.$set(this.value, this.currentKey, '')
+    //   //this.value["keyOnCreate"] = {};
+    // }
   }
 }
 </script>
