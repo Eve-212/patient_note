@@ -1,9 +1,9 @@
 <template>
   <div v-if="isReady">   
     <h5 :id="anchorIdFormat(schema)" >{{ schema.title }}</h5>
-      <div class="scroll-watch">
-        <component
-          v-for="(field, key) in schema.properties"           
+    <div :class="{ row: getRowGroup }" class="scroll-watch">
+      <template v-for="(field, key) in schema.properties">
+        <component           
           :rootObj="$rootObj"
           :key="key"
           :currentKey="key" 
@@ -17,13 +17,13 @@
             <small 
               v-if="field.description" 
               :id="helpText(field)" 
-              class="form-text text-muted reminder">
+              class="text-muted reminder w-100">
               {{ field.description }}              
             </small>
           </template>
         </component>
-      </div>
-
+      </template>
+    </div>
   </div>
 </template>
 
@@ -47,10 +47,17 @@ export default {
       default() {
         return null
       }
+    },
+    rowGroup: {
+      type: Boolean,
+      default() {
+        return false
+      }
     }
   },
   data() {
-    return {           
+    return {       
+      getRowGroup: this.rowGroup,    
       isReady:false,
       isVisible:{},
       child_key: null  // for clarity, use child_key in obj comp and currentKey in input components

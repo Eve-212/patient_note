@@ -128,6 +128,9 @@
                 "bsColSize": 6
               }
             }
+          },
+          "attrs": {
+            "rowGroup": true
           }
         },
         "cc": {
@@ -619,7 +622,8 @@
               "description": "Malnutrition Universal Screening Tool",
               "type": "object",
               "attrs": {
-                "styleClass": ["subsection-title"]
+                "styleClass": ["subsection-title"],
+                "rowGroup": true
               },
               "properties": {
                 "bmi": {
@@ -681,6 +685,9 @@
                 }
               }
             }
+          },
+          "attrs": {
+            "rowGroup": true
           }
         },
         "functional_assess": {
@@ -737,7 +744,8 @@
               "title": "Vital signs",
               "type": "object",
               "attrs": {
-                "styleClass": ["subsection-title"]
+                "styleClass": ["subsection-title"],
+                "rowGroup": true
               },
               "properties": {
                 "bt": {
@@ -803,7 +811,8 @@
               "title": "Glasgow Coma Scale",
               "type": "object",
               "attrs": {
-                "styleClass": ["subsection-title"]
+                "styleClass": ["subsection-title"],
+                "rowGroup": true
               },
               "properties": {
                 "e": {
