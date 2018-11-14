@@ -919,7 +919,8 @@
                   "title": "Blood",
                   "type": "number",
                   "attrs": {
-                    "fieldType": "labtable"
+                    "fieldType": "labtable",
+                    "bsColSize": 12
                   }
                 }
               }

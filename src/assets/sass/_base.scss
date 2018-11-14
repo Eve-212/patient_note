@@ -1,0 +1,34 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  /* padding or border will not add extra width or height to the box */
+  box-sizing: inherit;
+}
+
+html {
+  /* root font size(10px) for rem to reference */
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  padding-top: 8rem;
+}
+
+i.fa {
+  cursor: pointer;
+}
+
+.isExpanded {
+  margin-left: 130px;
+  @media screen and (max-width: $break-medium) {
+    margin-left: 0;
+  }
+}
+
+button,
+input {
+  outline: none;
+}

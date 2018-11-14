@@ -1,23 +1,25 @@
 <template>
-  <div class="wrap" :class="{isExpanded: isExpanded}" v-if="noteSchema"> 
-    {{ data }}   
-    <div class="row" v-if="isLoaded">
-      <JSchemaObject class="col-md-10 mb-5" v-model="data" :schema="noteSchema.properties.content"></JSchemaObject>
-      <SectionNav class="col-md-2 d-none d-md-block mb-5" :schema="noteSchema"></SectionNav>
-    </div>
-    
-  </div>  
+  <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">    
+    <JSchemaObject
+      class="col-md-10 mb-5"
+      v-scroll-spy="{sectionSelector: '.scroll-watch', offset: 100}" 
+      v-model="data" 
+      :schema="noteSchema.properties.content">
+    </JSchemaObject>
+    <SectionNav 
+      class="col-md-2 d-none d-md-block mb-5" 
+      :schema="noteSchema">
+    </SectionNav>
+  </div>
 </template>
 
 <script>
 import SectionNav from '@/components/ui/SectionNav.vue'
-import axios from 'axios'
-import { mapActions } from 'vuex'
 import JSchemaObject from '@/components/form/JSchemaObject'
 
 export default {
   name: 'EditNote',
-  props: ['isExpanded', 'fee_no'],
+  props: ['fee_no'],
   components: {
     SectionNav,
     JSchemaObject
@@ -43,19 +45,18 @@ export default {
         }
       ]
       while ($queue.length > 0) {
-        let { sch: $sch, d: $d } = $queue.shift()                    
+        let { sch: $sch, d: $d } = $queue.shift()
         if ($sch.properties) {
           for (let $child_name in $sch.properties) {
-            if ($d[$child_name] === undefined) {              
+            if ($d[$child_name] === undefined) {
               switch ($sch.properties[$child_name].type) {
-                case 'object':                  
+                case 'object':
                   $d[$child_name] = {}
                   break
-                case 'array':                  
-                  console.log($child_name)
+                case 'array':
                   $d[$child_name] = []
                   break
-                default:                
+                default:
                   $d[$child_name] = ''
               }
             }
@@ -67,7 +68,7 @@ export default {
             }
           }
         }
-      }     
+      }
     },
     // check if patient has a fee_no
     // use fee_no to get patient data
@@ -76,9 +77,8 @@ export default {
       if (this.fee_no) {
         // attempt to get patient data from sess_cache using fee_no
         this.sess = this.$wf.note.sess_cache[this.fee_no]
-        console.log(this.sess)
-        console.log('888888888888')
-        if (!this.sess) { // if patient data does not exist in sess_cache          
+        if (!this.sess) {
+          // if patient data does not exist in sess_cache
           // then get patient data from database using fee_no
           this.$wf.note.sess({ no: this.fee_no }).then($raw => {
             if ($raw.data.fee_no) {
@@ -89,22 +89,21 @@ export default {
               this.load()
             }
           })
-        } else { // use load function to load patient data retrieved from sess_cache into component's data object
+        } else {
+          // use load function to load patient data retrieved from sess_cache into component's data object
           this.load()
         }
       }
     },
-    
-    load() {        
-      let $id      
-      console.log(this.sess.admission.id)
-      console.log('``````') 
-      if (($id = this.sess.admission.id)) { // true if this.session.admission.id exists / else false
+    load() {
+      let $id
+      if (($id = this.sess.admission.id)) {
+        // true if this.session.admission.id exists / else false
         this.$wf.note.get({ id: $id }).then($raw => {
           this.prepare_data(this.noteSchema, $raw.data)
           this.data = $raw.data.content
           this.meta = $raw.data
-          this.isLoaded=true
+          this.isLoaded = true
         })
       } else {
         // set $ipd to retrieved patient ipd (inpatient data)
@@ -119,16 +118,16 @@ export default {
         // populate profile field
         for (let $col of ['name', 'fee_no', 'birthdate', 'sex']) {
           $data.profile[$col] = $ipd[$col]
-        }               
+        }
 
         $data.admit_dept = $ipd.dept_id
-        $data.admit_time = $ipd.start        
-                
+        $data.admit_time = $ipd.start
+
         this.prepare_data(this.noteSchema.properties.content, $data)
-        
+
         this.data = $data
         // Form will not load unless isLoaded is true
-        this.isLoaded=true
+        this.isLoaded = true
       }
     } /*,
     prepare_schema($sch){
@@ -136,37 +135,22 @@ export default {
     }*/
   },
   created: function() {
-
     this.noteSchema = {}
 
     this.$wf.note.schema({ type: 'admission' }).then($raw => {
+      this.$set(
+        this.$data,
+        'noteSchema',
+        require('../../../static/fake_data/sch.note.adm2.json')
+      )
 
-      this.$set(this.$data, 'noteSchema', require('../../../static/fake_data/sch.note.adm2.json'))
-     
       this.init()
     })
   },
   watch: {
-    fee_no(){      
+    fee_no() {
       this.init()
     }
-  }  
+  }
 }
 </script>
-
-<style lang="scss" scoped>
-@import '@/assets/global.scss';
-
-.wrap {
-  margin: 80px 50px 0 100px;
-  @media screen and (max-width: 1025px) {
-    margin: 80px 10px 0 90px;
-  }
-  @media screen and (max-width: $break-medium) {
-    margin: 120px 10px 0 70px;
-    boj_box {
-      padding: 15px 0 !important;
-    }
-  }
-}
-</style>

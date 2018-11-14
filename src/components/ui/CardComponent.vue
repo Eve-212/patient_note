@@ -2,21 +2,21 @@
   <div>
     <div v-for="(v, k, index) in list" :key="index">
       <!-- Card Title -->
-      <div v-if="sortType === 'completion'">
+      <template v-if="sortType === 'completion'">
         <h3 v-if="k === 'incompleted'" class="card_title">未完成</h3>
         <h3 v-else class="card_title">已完成</h3> 
-      </div>
-      <div v-else-if="sortType === 'doc_id'">
+      </template>
+      <template v-else-if="sortType === 'doc_id'">
         <h3 class="card_title">
           <emp-span class="mr-1" :id="k" :hide_id="true"></emp-span>
           <small class="text-muted">醫師</small>
         </h3> 
-      </div>
-      <div v-else="sortType === 'bed_no'">
+      </template>
+      <template v-else="sortType === 'bed_no'">
         <h3 class="card_title"><span>{{k}}</span> 
           <small class="text-muted ml-1">樓</small>
         </h3>
-      </div>
+      </template>
 
       <!-- Card Content -->
       <div class="card_wrap mb-4">
@@ -32,7 +32,7 @@
             <div class="d-flex">
               <div v-for="n in 3">
                 <button 
-                  class="btn btn-sm btn-light mx-1 px-1"
+                  class="btn btn-sm mx-1 px-1"
                   title="2018-10-12 未完成">
                   <span v-if="n === 1">住院</span>
                   <span v-if="n === 2">Prog.</span>
@@ -52,9 +52,8 @@
 import ICDSpan from '@/components/sys/ICDSpan.vue'
 import EmpSpan from '@/components/sys/EmpSpan.vue'
 
-
 export default {
-  components:{
+  components: {
     ICDSpan,
     EmpSpan
   },
@@ -73,9 +72,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/global.scss';
+@import '@/assets/sass/main.scss';
 .card_title {
-  border-bottom: 1px #cccaca solid;
+  border-bottom: 1px lighten($color-grey-dark, 20%) solid;
   padding-bottom: 5px;
   text-transform: capitalize;
   span {
@@ -88,20 +87,20 @@ export default {
   flex-wrap: wrap;
   .card {
     width: 18rem;
-    border-left: 4px solid $green;
+    border-left: 4px solid $color-tertiary;
     &.incompleted {
-      border-left: 4px solid $red-light;
+      border-left: 4px solid $color-secondary-light;
     }
     @media screen and (max-width: $break-small) {
       width: 100%;
     }
     .card-header {
       .bed_no {
-        background: $blue;
-        color: white;
+        background: $color-primary;
+        color: $color-white;
         border-radius: 5px;
         &.female {
-          background: $red-light;
+          background: $color-secondary-light;
         }
       }
     }
@@ -111,9 +110,8 @@ export default {
       }
     }
     button {
-      font-size: 14px;
-      color: #fff;
-      // background: #fff;
+      font-size: 12px;
+      background: darken($color-grey-light, 5%);
     }
   }
 }

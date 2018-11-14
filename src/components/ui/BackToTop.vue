@@ -57,7 +57,7 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '@/assets/global.scss';
+@import '@/assets/sass/main.scss';
 
 .fade-enter-active,
 .fade-leave-active {
@@ -73,17 +73,17 @@ export default {
   position: fixed;
   z-index: 1000;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
-  font-size: 22px;
-  line-height: 22px;
-  background: $blue;
+  width: 4rem;
+  height: 4rem;
+  font-size: 2rem;
+  line-height: 2rem;
+  background: $color-primary;
   display: flex;
   align-items: center;
   justify-content: center;
 
   i {
-    color: #fff;
+    color: $color-white;
   }
 }
 </style>

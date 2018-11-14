@@ -1,9 +1,8 @@
 <template>
-  <div v-if="isReady" class="row">   
-    <h5 :id="anchorIdFormat(schema)">{{ schema.title }}</h5>
-    <div class="obj_box col-md-12">
-      <div class="row">
-        <component 
+  <div v-if="isReady">   
+    <h5 :id="anchorIdFormat(schema)" >{{ schema.title }}</h5>
+      <div class="scroll-watch">
+        <component
           v-for="(field, key) in schema.properties"           
           :rootObj="$rootObj"
           :key="key"
@@ -24,7 +23,7 @@
           </template>
         </component>
       </div>
-    </div>
+
   </div>
 </template>
 
@@ -33,10 +32,10 @@ import Vue from 'vue'
 import Proto from '@/components/mixins/Proto.js'
 import * as fields from '@/components/form/fieldsLoader'
 
-function register (name) {
+function register(name) {
   Vue.component(name, require('@/components/form/' + name).default)
 }
-for(let importField in fields) {
+for (let importField in fields) {
   register(importField)
 }
 
@@ -44,11 +43,11 @@ export default {
   name: 'JSchemaObject',
   mixins: [Proto],
   props: {
-    rootObj:{
-      default(){
-        return null;
+    rootObj: {
+      default() {
+        return null
       }
-    }       
+    }
   },
   data() {
     return {           
@@ -62,55 +61,54 @@ export default {
     // set first object component instance as root object
     if (this.rootObj) {
       //assign local root object variable to avoid changing prop
-      this.$rootObj = this.rootObj;
-    } else {      
-      // if no value is received in rootObj prop, then assign current object component as root            
-      this.$rootObj = this;
-      this.isRoot = true;
-      this.toWatch = [];
+      this.$rootObj = this.rootObj
+    } else {
+      // if no value is received in rootObj prop, then assign current object component as root
+      this.$rootObj = this
+      this.isRoot = true
+      this.toWatch = []
     }
 
     for (let $child_key in this.schema.properties) {
-      let $child_schema = this.schema.properties[$child_key];
-      let $this = this;
-      this.$set(this.isVisible, $child_key, true);
+      let $child_schema = this.schema.properties[$child_key]
+      let $this = this
+      this.$set(this.isVisible, $child_key, true)
       if ($child_schema.attrs) {
         if ($child_schema.attrs.dependsOn) {
           // render initial visibility tracker object
-          let $vis = this.$rootObj.checkVisible($child_schema.attrs.dependsOn);
-          if (!$vis){ 
-            this.$set(this.isVisible, $child_key, $vis);  // $vis === false here
+          let $vis = this.$rootObj.checkVisible($child_schema.attrs.dependsOn)
+          if (!$vis) {
+            this.$set(this.isVisible, $child_key, $vis) // $vis === false here
           }
           // set up watch for values in dependsOn
           // how to add watchers dynamically:
-          // https://codingexplained.com/coding/front-end/vue-js/adding-removing-watchers-dynamically          
+          // https://codingexplained.com/coding/front-end/vue-js/adding-removing-watchers-dynamically
           this.$rootObj.$watch(
-              'value.'+$child_schema.attrs.dependsOn.name,
-              function($oldVal, $newVal){
-                console.log("Change", $child_schema.attrs.dependsOn.name,)
-                let visibility =  this.checkVisible($child_schema.attrs.dependsOn)
-                $this.$set($this.isVisible, $child_key, visibility);                
+            'value.' + $child_schema.attrs.dependsOn.name,
+            function($oldVal, $newVal) {
+              console.log('Change', $child_schema.attrs.dependsOn.name)
+              let visibility = this.checkVisible($child_schema.attrs.dependsOn)
+              $this.$set($this.isVisible, $child_key, visibility)
 
-                console.log($child_schema)
+              console.log($child_schema)
 
-                // if corrresponding isVisible value is false then clear data 
-                if (!visibility) {                  
-                  $this.clearInput($child_key, $child_schema);
-                }
-                              
+              // if corrresponding isVisible value is false then clear data
+              if (!visibility) {
+                $this.clearInput($child_key, $child_schema)
               }
-          );
+            }
+          )
         }
       }
-    }    
+    }
     this.isReady = true
   },
   methods: {
-    getRootObj(){
-      if (this.$rootObj){
-        return this.$rootObj;
+    getRootObj() {
+      if (this.$rootObj) {
+        return this.$rootObj
       } else {
-        return this;
+        return this
       }
     },
     getComponentName(field) {
@@ -147,81 +145,81 @@ export default {
           field.attrs.fieldType = 'text'
         }
       }
-      return $field_com[field.attrs.fieldType] || 'TextInput'     
+      return $field_com[field.attrs.fieldType] || 'TextInput'
     },
-    clearInput(child_key, child_schema) {   
-      let initValue = null      
+    clearInput(child_key, child_schema) {
+      let initValue = null
 
       let child_schema_type = this.getComponentName(child_schema)
 
       switch (child_schema_type) {
         case 'TextInput':
-          initValue = ""
+          initValue = ''
           break
         case 'JSchemaObject':
           initValue = {}
-          break         
+          break
         case 'NumberInput':
-          initValue = ''          
+          initValue = ''
           break
         case 'Checkbox':
-          initValue = false          
+          initValue = false
           break
         case 'CheckList':
-          initValue = []          
+          initValue = []
           break
         case 'CheckListWithOther':
-          initValue = []          
+          initValue = []
           break
         case 'RadioInput':
-          initValue = ''          
+          initValue = ''
           break
         case 'SelectDate':
-          initValue = ''          
+          initValue = ''
           break
         case 'SelectList':
-          initValue = ''          
+          initValue = ''
           break
         case 'bsRadioInput':
-          initValue = ''          
+          initValue = ''
           break
-      }      
-      
-      this.$set(this.val, child_key, initValue)                       
+      }
+
+      this.$set(this.val, child_key, initValue)
     },
-    getPathVal($path){
+    getPathVal($path) {
       //get value with path like "personal_hx.cigarette.used"
-      let segments = $path.split('.');
-      let val = this.value;
-      for (let seg of segments){
+      let segments = $path.split('.')
+      let val = this.value
+      for (let seg of segments) {
         val = val[seg]
-        if (!val){          
-          return;
+        if (!val) {
+          return
         }
-      }          
-      return val;
+      }
+      return val
     },
     checkVisible($dependsOn) {
       if ($dependsOn.values && $dependsOn.name) {
-        let val = this.getPathVal($dependsOn.name);
-        if (Array.isArray(val)) {          
+        let val = this.getPathVal($dependsOn.name)
+        if (Array.isArray(val)) {
           for (let $dep_val of $dependsOn.values) {
-            if (val.includes($dep_val)) {              
+            if (val.includes($dep_val)) {
               return true
-            } 
-          }          
-          return false;
+            }
+          }
+          return false
         } else {
           if ($dependsOn.values.includes(val)) {
             return true
-          } else {            
+          } else {
             return false
           }
         }
       }
       return true
     }
-  }  
+  }
 }
 </script>
 

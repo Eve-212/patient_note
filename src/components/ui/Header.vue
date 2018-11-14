@@ -1,60 +1,86 @@
 <template>
-    <nav class="navbar fixed-top">
-      <div class="hamburger" v-on:click="toggleExpand()"><i class="fa fa-bars"></i></div>
-      <router-link :to="{name: 'ptlists'}" class="navbar-brand mr-auto" href="#">
-        <img class="logo-sm ml-3 mr-1" src="@/assets/logo-sm.png">病摘
+  <header class="header fixed-top d-flex justify-content-between align-items-center">
+    <div class="header_left d-flex">
+      <!-- Hamburger menu -->
+      <div class="header_handler-box" v-on:click="toggleSideMenu()">
+        <i class="fa fa-bars"></i>
+      </div>
+      <!-- Logo -->
+      <router-link :to="{name: 'dashBoard'}" class="header_logo-box px-4 d-flex justify-content-between align-items-center">
+        <img class="header_logo-box-logo mr-1" src="@/assets/img/logo-sm.png">病摘
       </router-link>
-      <form class="form-inline search-wrap" :class="{hide:hide}">
+    </div>
+    <div class="header_right d-flex align-items-center">
+      <form class="header_search-box" :class="{hideSearch:hide}">
         <input 
           type="text" 
-          class="form-control" 
           v-model="no" 
           v-focus
           placeholder="病歷號/床號/ 身分證">
-        <div class="input-group-append">
-          <button 
-            type="submit" 
-            class="input-group-text search" 
-            @keyup.prevent="load" 
-            @click.prevent="load">
-            <i class="fa fa-search"></i>
-          </button>
-        </div>
+        <button 
+          type="submit" 
+          class="py-2 px-3" 
+          @keyup.enter.prevent="load" 
+          @click.prevent="load">
+          <i class="fa fa-search"></i>
+        </button>
       </form>
-      <div class="actions">
-        <div class="mx-2 ml-sm-4 mr-sm-2">Hi, {{ user }}</div>
-        <router-link class="badge mx-1" :to="{name: 'ptlists'}">
-          <i class="fa fa-bell"></i><span class="mx-1 badge badge-danger text-white">9</span>
-          <span class="sr-only">note lists</span>
-        </router-link>
-        <div class="mx-1 logout" @click="logout">
-          <i class="fa fa-sign-out-alt"></i><span class="ml-sm-1 mb-1">Logout</span>
+      <div class="header_user text-muted">Hi, {{ this.$store.state.user.name }}</div>
+      <!-- Badge and reminder -->
+      <div class="header_badge-box d-flex align-items-center">
+        <div
+          @click="toggleReminder"
+          class="header_badge-box-badge d-flex justify-content-center align-items-center"
+        >
+          <i class="fa fa-bell"></i><span class="badge badge-danger">9</span>
+        </div>
+        <!-- badge reminder box -->
+        <div class="header_badge-box-reminder" :class="{show:showReminder}">
+          <router-link to="" class="d-flex justify-content-between">
+            <span>Admission</span><span class="text-danger font-weight-bold">10</span>
+          </router-link>
+          <router-link to="" class="d-flex justify-content-between">
+            <span>Progress</span><span class="text-danger font-weight-bold">10</span>
+          </router-link>
+          <router-link to="" class="d-flex justify-content-between">
+            <span>Discharge</span><span class="text-danger font-weight-bold">10</span>
+          </router-link>
+          <router-link to="" class="d-flex justify-content-between">
+            <span>Withdrawal</span><span class="text-danger font-weight-bold">10</span>
+          </router-link>
         </div>
       </div>
-    </nav>
+      <!-- Sign Out -->
+      <div 
+        class="header_logout-box d-flex justify-content-center align-items-center" 
+        v-on:click="singOut()">
+        <i class="fa fa-sign-out-alt"></i>
+      </div>
+    </div>
+  </header>
 </template>
 <script>
 export default {
-  props: ['user', 'hide'],
+  props: ['hide'],
   data() {
     return {
-      isExpanded: false,
+      showReminder: false,
       no: '',
       status: ''
     }
   },
   methods: {
-    toggleExpand() {
-      //Side Menu Toggle
-      this.isExpanded = !this.isExpanded
-      this.$emit('isExpanded', this.isExpanded)
+    toggleSideMenu() {
+      this.$store.dispatch('Toogle_Main_Sec')
     },
-    logout() {
-      //Logout
-      let logout = confirm('Sure you want to log out?')
-      if (logout == true) {
-        this.$emit('authenticated', false)
-        this.$router.replace({ name: 'login' })
+    toggleReminder() {
+      this.showReminder = !this.showReminder
+    },
+    singOut() {
+      let singOut = confirm('Sure you want to sign out?')
+      if (singOut) {
+        this.$store.dispatch('Sign_Out')
+        this.$router.replace({ name: 'signIn' })
       }
     },
     load() {
@@ -75,90 +101,125 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '@/assets/global.scss';
+@import '@/assets/sass/main.scss';
 
-
-nav {
-  background: #f4f6f7;
-  padding-left: 10px;
-  padding-right: 10px;
-  width: 100%;
-  font-size: 14px;
-  height: 55px;
-  .hamburger {
+.header {
+  padding: 0 0 0 0.9rem;
+  background-color: $color-grey-light;
+  font-size: $default-font-size;
+  color: $color-black;
+  a {
+    color: $color-black;
+  }
+  &_handler-box {
     border-radius: 50%;
-    margin: 0 11px;
-    @media screen and (max-width: $break-medium) {
-      margin: 0 10px 0 6px;
-    }
+    cursor: pointer;
+    height: 2.5rem;
+    width: 2.5rem;
+    line-height: 2.5rem;
+    background: rgba($color-grey-dark, 0.4);
+    text-align: center;
     i {
-      padding-top: 5px;
-      font-size: 20px;
-      color: dimgrey;
+      color: $color-white;
     }
   }
-  .navbar-brand {
-    &:hover {
-      color: inherit;
-    }
-    img {
-      width: 20px;
-      height: auto;
+  &_logo-box {
+    text-decoration: none;
+    &-logo {
+      width: 1.6rem;
     }
   }
-  .search-wrap {
+  &_search-box {
+    box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
     @media screen and (max-width: $break-small) {
-      &.hide {
+      // hide search function in small device when scroll down
+      &.hideSearch {
         display: none;
       }
     }
+    input,
+    button {
+      border: none;
+    }
+    input {
+      padding: 0.5rem 1.8rem;
+      @media screen and (max-width: $break-small) {
+        padding-right: 0;
+      }
+    }
+    button {
+      color: $color-grey-dark;
+      margin-left: -4px;
+      border-left: none;
+    }
     @media screen and (max-width: $break-small) {
       position: absolute;
-      top: 55px;
-      right: 31px;
+      right: 0;
+      top: 4.5rem;
     }
-    .search {
-      display: flex;
-      justify-content: center;
-      padding: 0;
-      @media screen and (max-width: $break-small) {
-        position: absolute;
-        right: -31px;
-        top: 0;
+  }
+  &_user {
+    margin: 0 1rem 0 2rem;
+    @media screen and (max-width: $break-small) {
+      margin-left: 0;
+    }
+  }
+  &_badge-box {
+    &-badge {
+      @media screen and (min-width: $break-large) {
+        // [hover and show reminder block] only on large device (>1200px)
+        &:hover ~ div {
+          display: block;
+        }
       }
-      i {
-        width: 31px;
-        line-height: 31px;
-        height: 31px;
-        @media screen and (max-width: $break-small) {
-          height: 32px;
-          line-height: 32px;
+      cursor: pointer;
+      width: 4rem;
+      height: 5rem;
+      @media screen and (max-width: $break-small) {
+        width: 3.5rem;
+        height: 4.5rem;
+      }
+      span {
+        padding: 0.3rem;
+      }
+    }
+    &-reminder {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 5rem;
+      width: 17.5rem;
+      background-color: $color-grey-light;
+      padding: 1rem 3rem;
+      box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
+      &:hover {
+        display: block;
+      }
+      @media screen and (max-width: $break-large) {
+        top: 4.5rem;
+        &.show {
+          // [click and show reminder block] only on small device(<1200px)
+          display: block;
+        }
+      }
+      a {
+        cursor: pointer;
+        border-bottom: 1px solid lighten($color-grey-dark, 15%);
+        padding: 0.5rem 0;
+        margin: 0.5rem 0;
+        opacity: 0.6;
+        &:hover {
+          text-decoration: none;
+          opacity: 1;
         }
       }
     }
   }
-
-  .actions {
-    display: flex;
-    align-items: center;
-    .badge {
-      font-weight: normal;
-      &:hover {
-        text-decoration: none;
-        color: inherit;
-      }
-    }
-    .logout {
-      display: flex;
-      align-items: center;
-      span {
-        cursor: pointer;
-      }
-      @media screen and (max-width: $break-medium) {
-        span {
-          display: none;
-        }
-      }
+  &_logout-box {
+    width: 3.5rem;
+    height: 5rem;
+    @media screen and (max-width: $break-small) {
+      height: 4.5rem;
     }
   }
 }

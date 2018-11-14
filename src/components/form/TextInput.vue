@@ -1,6 +1,6 @@
 <template>
 <div :class="getBsColSize">  
-  <div  :id="anchorIdFormat(schema)"  >
+  <div :id="anchorIdFormat(schema)">
     <div v-if="inputGroup">
       <div class="input-group mb-3">
         <div class="input-group-prepend">

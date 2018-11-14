@@ -222,13 +222,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/global.scss';
+@import '../../assets/sass/main.scss';
 
 #labwrap {
-  width: 100%;
   overflow: auto;
-  border-left: 1px solid #dee2e6;
-  border-right: 1px solid #dee2e6;
+  border-left: 1px solid $color-grey-light;
+  border-right: 1px solid $color-grey-light;
   table {
     margin-bottom: 0;
     padding-bottom: 10px;
@@ -237,19 +236,19 @@ export default {
       th {
         font-size: 12px;
         white-space: nowrap;
-        background: #fff;
+        background: $color-white;
       }
     }
     td {
-      background: #fff;
+      background: $color-white;
       font-size: 12px;
       &.low {
-        color: #fff;
-        background: $red-light;
+        color: $color-white;
+        background: $color-secondary-light;
       }
       &.high {
-        color: #fff;
-        background: $blue;
+        color: $color-white;
+        background: $color-primary;
       }
     }
   }
@@ -258,7 +257,7 @@ export default {
     position: sticky;
     top: auto;
     z-index: 1;
-    border: 1px solid #dee2e6;
+    border: 1px solid $color-grey-light;
   }
 }
 </style>

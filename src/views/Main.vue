@@ -1,20 +1,13 @@
 <template>
-  <div class="container-fluid">
-    <header-component 
-      class="navbar fixed-top"
-      @isExpanded="toggleExpand" 
-      :user="user" 
-      :hide="hide">
-    </header-component>
-    <div class="row">
-      <div class="col-2 col-sm-1 px-0">
-        <sidemenu :isExpanded="isExpanded"></sidemenu>
-      </div>
-      <div class="col-sm-10 mb-5">
-        <router-view :isExpanded="isExpanded"></router-view>
+  <div>
+    <header-component :user="user" :hide="hide"></header-component>
+    <main>
+      <sidemenu></sidemenu>
+      <div class="main_content">
+        <router-view></router-view>
       </div>
       <back-to-top @hide="hideSearch"></back-to-top>
-    </div>    
+    </main>    
   </div>
 </template>
 <script>
@@ -22,19 +15,14 @@ import Vue from 'vue'
 Vue.component('header-component', require('@/components/ui/Header.vue').default)
 Vue.component('sidemenu', require('@/components/ui/SideMenu.vue').default)
 Vue.component('back-to-top', require('@/components/ui/BackToTop.vue').default)
-import axios from 'axios'
 export default {
   props: ['user'],
   data() {
     return {
-      isExpanded: false,
       hide: false
     }
   },
   methods: {
-    toggleExpand(status) {
-      this.isExpanded = status
-    },
     hideSearch(status) {
       this.hide = status
     }
@@ -42,8 +30,11 @@ export default {
 }
 </script>
 
-<style>
-.content {
-  margin-top: 80px;
+<style lang="scss" scoped>
+.main_content {
+  margin: 0 6rem 0 8rem;
+  @media screen and (max-width: 768px) {
+    margin: 0 1rem 0 5rem;
+  }
 }
 </style>

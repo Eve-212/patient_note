@@ -30,17 +30,12 @@
 </template>
 
 <script>
-
 import Proto from '@/components/mixins/Proto.js'
-
-
 
 export default {
   name: 'CheckListWithOther',
   mixins: [Proto],
-  components: {
-    
-  },
+  components: {},
   data() {
     return {
       other_val: null      
@@ -52,7 +47,7 @@ export default {
       if (this.other_val){
         this.val.push(this.other_val)
         this.other_val = null
-      }      
+      }
     }
   },
   computed: {
@@ -75,9 +70,9 @@ export default {
     // }
   },
   created: function() {
-    if(!this.schema.attrs.values){
-      if (this.schema.items.enum){
-        this.schema.attrs.values=this.schema.items.enum
+    if (!this.schema.attrs.values) {
+      if (this.schema.items.enum) {
+        this.schema.attrs.values = this.schema.items.enum
       }
     }
     // if (!(this.currentKey in this.value)) {
@@ -92,7 +87,7 @@ export default {
 
 <style>
 .checklist-label {
-  font-size: 1.1rem;  
+  font-size: 1.1rem;
 }
 /* .margin-bot-small {
   margin-bottom: 10px;

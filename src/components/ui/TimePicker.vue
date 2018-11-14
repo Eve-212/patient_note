@@ -54,8 +54,7 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '@/assets/global.scss';
-
+@import '@/assets/sass/main.scss';
 
 .asd__mobile-only {
   display: none;
@@ -67,8 +66,8 @@ export default {
 
 .asd__action-buttons button {
   padding: 5px;
-  border: 1px solid $black;
-  color: $black !important;
+  border: 1px solid $color-black;
+  color: $color-black !important;
 }
 
 .asd__action-buttons button:hover {
@@ -76,7 +75,7 @@ export default {
 }
 
 #datepicker-trigger {
-  background: $blue;
+  background: $color-primary;
   color: white;
   padding: 6px 10px;
   text-align: center;

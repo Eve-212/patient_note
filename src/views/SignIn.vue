@@ -1,16 +1,17 @@
 <template>
-  <div class="login">
+  <div class="signin">
     <h2 class="h2">Login Page</h2>
     <form>
       <fieldset label="User Name" label-for="username">
-        <input id="username" type="text" name="username" v-model="input.username" placeholder="Please enter user name">
+        <input id="username" type="text" name="username" v-model="input.username" placeholder="User name">
         </input>
       </fieldset>
       <fieldset label="Password" label-for="password">
-        <input id="password" type="password" name="password" v-model="input.password" placeholder="Please enter password">
+        <input id="password" type="password" name="password" v-model="input.password" placeholder="Password">
         </input>
       </fieldset>
-      <button class="btn btn-block btn-info" type="button" v-on:click="login()">Login</button>
+      <div class="text-danger">{{message}}</div>
+      <button class="btn btn-block btn-info" type="button" v-on:click="signIn()">Sign In</button>
     </form>
   </div>
 </template>
@@ -18,50 +19,50 @@
 export default {
   data() {
     return {
+      message: '',
       input: {
-        id: '',
         username: '萬小芳',
         password: '11111'
       },
       mockAccount: {
-        id: '456',
         username: '萬小芳',
         password: '11111'
       }
     }
   },
   methods: {
-    login() {
+    signIn() {
       if (this.input.username != '' && this.input.password != '') {
         if (
           this.input.username == this.mockAccount.username &&
           this.input.password == this.mockAccount.password
         ) {
-          this.$emit('authenticated', {
-            status: true,
-            user: this.mockAccount.username
-          })
+          let user = {
+            name: this.input.username
+          }
+          this.$store.dispatch('Sign_In', user)
           this.$router.replace({
-            name: 'ptlists'
+            name: 'dashBoard'
           })
         } else {
-          console.log('The username and / or password is incorrect')
+          this.message = 'The username and / or password is incorrect'
         }
       } else {
-        console.log('A username and password must be present')
+        this.message = 'A username and password must be present'
       }
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-@import '../assets/global.scss';
+@import '@/assets/sass/main.scss';
 
-.login {
-  margin: 130px auto 0 auto;
-  border: 1px solid #ccc;
-  padding: 30px;
-  width: 450px;
+.signin {
+  margin: 10rem auto 0 auto;
+  border: 1px solid lighten($color-grey-dark, 20%);
+  border-radius: 0.2rem;
+  padding: 1.5rem;
+  width: 27rem;
   @media screen and (max-width: $break-medium) {
     width: px-to-vw(550, 800);
   }
@@ -69,12 +70,12 @@ export default {
     width: px-to-vw(400, 450);
   }
   h2 {
-    border-left: 5px solid $blue;
-    padding: 15px 0 15px 30px;
-    margin-left: -30px;
-    margin-bottom: 30px;
+    border-left: 5px solid $color-primary;
+    padding: 1rem 0 1rem 2rem;
+    margin-left: -1.5rem;
+    margin-bottom: 2rem;
     @media screen and (max-width: $break-small) {
-      margin-bottom: 10px;
+      margin-bottom: 1rem;
     }
   }
   input {
@@ -84,13 +85,13 @@ export default {
     border-left: none;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-    margin: 10px 0;
-    padding: 5px 0;
+    margin: 1rem 0;
+    padding: 0.5rem 0;
   }
   button {
-    color: #fff;
-    height: 40px;
-    margin: 20px 0;
+    color: $color-white;
+    height: 2.5rem;
+    margin: 1rem 0;
   }
 }
 </style>
