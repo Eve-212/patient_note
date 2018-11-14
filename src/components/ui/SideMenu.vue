@@ -1,8 +1,8 @@
 <template>
-  <div class="side-menu" :class="{expanded: isExpanded}">
-    <ul style="padding-left: 0">
+  <div class="side-menu" :class="{expanded: $store.state.MainPushed}">
+    <ul>
       <li>
-        <router-link :to="{ name: 'ptlists' }">
+        <router-link :to="{ name: 'dashBoard' }">
           <i class="fa fa-book-open fa-2x"></i>
           <span class="nav-text">Dashboard</span>
         </router-link>
@@ -13,69 +13,62 @@
           <span class="nav-text">Edit</span>
         </router-link>
       </li>
-      <li>
-        <router-link :to="{ name: 'dashboard' }">
-          <i class="fa fa-sticky-note fa-2x"></i>
-          <span class="nav-text">Dashboard</span>
-        </router-link>
-      </li>
     </ul>
   </div>
 </template>
 <script>
-export default {
-  props: ['isExpanded']
-}
+export default {}
 </script>
 <style lang="scss" scoped>
 @import '@/assets/sass/main.scss';
 
 .side-menu {
-  background: #f4f6f7;
-  top: 55px;
-  width: 60px;
+  background: $color-grey-light;
+  position: fixed;
+  top: 5rem;
+  width: 5.5rem;
+  height: 100%;
   overflow: hidden;
   transition: width 0.1s linear;
-  position: fixed;
-  height: 100%;
   z-index: 100;
   &:hover,
   &.expanded {
-    min-width: 220px;
+    width: 20rem;
     overflow: visible;
     box-shadow: 3px 3px 10px -2px rgba(20%, 20%, 40%, 0.5);
+    @media screen and (max-width: $break-small) {
+      width: 17rem;
+    }
   }
-  @media screen and (max-width: $break-medium) {
-    top: 50px;
-    width: 50px;
+  @media screen and (max-width: $break-small) {
+    top: 4.5rem;
+    width: 5rem;
   }
   li {
     display: block;
-    width: 100%;
-    margin: 20px 0;
+    margin: 2rem 0;
     &:hover a {
-      background-color: #fff;
+      background-color: $color-white;
     }
     a {
       display: table;
-      border-collapse: collapse;
-      border-spacing: 0;
-      color: black;
+      color: lighten($color: $color-black, $amount: 10%);
       text-decoration: none;
-      transition: all 0.1s linear;
+      font-size: $default-font-size;
       i {
+        font-size: $default-font-size;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 60px;
-        height: 36px;
-        @media screen and (max-width: $break-medium) {
-          width: 50px;
+        width: 6.5rem;
+        height: 3rem;
+        @media screen and (max-width: $break-small) {
+          width: 6rem;
         }
       }
       span {
         display: table-cell;
-        width: 170px;
+        width: 100%;
       }
     }
   }

@@ -5,16 +5,17 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    
+    MainPushed: false
   },
-  getters: {
-   
-  },
+  getters: {},
   mutations: {
-    
+    Toogle_Main_Sec(state) {
+      this.state.MainPushed = !this.state.MainPushed
+    }
   },
   actions: {
-    
+    Toogle_Main_Sec({ commit }) {
+      commit('Toogle_Main_Sec')
+    }
   }
- 
-});
+})

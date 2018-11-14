@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap" :class="{isExpanded: isExpanded}" v-if="noteSchema">
+  <div :class="{isExpanded: $store.state.MainPushed}" v-if="noteSchema">
     <div class="row">    
       <Form class="col-md-10 mb-5" :schema="noteSchema" :schemaData="data"></Form>
       <SectionNav class="col-md-2 d-none d-md-block mb-5" :schema="noteSchema"></SectionNav>
@@ -15,7 +15,7 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'EditNote',
-  props: ['isExpanded', 'fee_no'],
+  props: ['fee_no'],
   components: {
     Form,
     SectionNav
@@ -215,16 +215,16 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/sass/main.scss';
 
-.wrap {
-  margin: 80px 50px 0 100px;
-  @media screen and (max-width: 1025px) {
-    margin: 80px 10px 0 90px;
-  }
-  @media screen and (max-width: $break-medium) {
-    margin: 120px 10px 0 70px;
-    boj_box {
-      padding: 15px 0 !important;
-    }
-  }
-}
+// .wrap {
+//   margin: 80px 50px 0 100px;
+//   @media screen and (max-width: 1025px) {
+//     margin: 80px 10px 0 90px;
+//   }
+//   @media screen and (max-width: $break-medium) {
+//     margin: 120px 10px 0 70px;
+//     boj_box {
+//       padding: 15px 0 !important;
+//     }
+//   }
+// }
 </style>

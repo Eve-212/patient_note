@@ -42,7 +42,7 @@ export default {
             user: this.mockAccount.username
           })
           this.$router.replace({
-            name: 'ptlists'
+            name: 'dashBoard'
           })
         } else {
           console.log('The username and / or password is incorrect')

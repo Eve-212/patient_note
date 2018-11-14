@@ -15,7 +15,6 @@ html {
 body {
   box-sizing: border-box;
   padding-top: 8rem;
-  padding-left: 5rem;
 }
 
 i.fa {
@@ -27,6 +26,11 @@ i.fa {
   @media screen and (max-width: $break-medium) {
     margin-left: 0;
   }
+}
+
+button,
+input {
+  outline: none;
 }
 
 ::-webkit-input-placeholder {
