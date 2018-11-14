@@ -27,16 +27,14 @@ import Proto from '@/components/mixins/Proto.js'
 
 export default {
   name: 'CheckList',
-  mixins:[Proto],
+  mixins: [Proto],
   data() {
-    return {
-      
-    }
+    return {}
   },
   created: function() {
-    if(!this.schema.attrs.values){
-      if (this.schema.items.enum){
-        this.schema.attrs.values=this.schema.items.enum
+    if (!this.schema.attrs.values) {
+      if (this.schema.items.enum) {
+        this.schema.attrs.values = this.schema.items.enum
       }
     }
     if (!(this.currentKey in this.value)) {
@@ -46,13 +44,12 @@ export default {
       //this.value["keyOnCreate"] = {};
     }
   }
-   
 }
 </script>
 
 <style>
 .checklist-label {
-  font-size: 1.1rem;  
+  font-size: 1.1rem;
 }
 /* .margin-bot-small {
   margin-bottom: 10px;
