@@ -1,7 +1,7 @@
 <template>
   <div class="wrap" :class="{isExpanded: isExpanded}" v-if="noteSchema">    
     <div class="row" v-if="isLoaded">
-      <JSchemaObject class="col-md-10 mb-5" v-model="data" :schema="noteSchema.properties.content"></JSchemaObject>
+      <JSchemaObject v-scroll-spy="{sectionSelector: '.scroll-watch', offset: 100 }" class="col-md-10 mb-5" v-model="data" :schema="noteSchema.properties.content"></JSchemaObject>
       <SectionNav class="col-md-2 d-none d-md-block mb-5" :schema="noteSchema"></SectionNav>
     </div>
   </div>

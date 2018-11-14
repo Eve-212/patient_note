@@ -1,9 +1,9 @@
 <template>
   <div v-if="isReady" class="row">   
-    <h5 :id="anchorIdFormat(schema)">{{ schema.title }}</h5>
-    <div class="obj_box col-md-12">
-      <div class="row">
-        <component 
+    <h5 :id="anchorIdFormat(schema)" >{{ schema.title }}</h5>
+    <div class="obj_box col-md-12" >
+      <div class="row scroll-watch" >
+        <component
           v-for="(field, key) in schema.properties"           
           :rootObj="$rootObj"
           :key="key"
