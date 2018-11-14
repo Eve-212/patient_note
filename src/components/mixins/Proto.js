@@ -20,7 +20,7 @@ export default {
     currentKey: {
       type: String,
       default() {
-        return 'content'
+        return ''
       }
     },
     bsColSize: {

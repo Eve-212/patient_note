@@ -11,7 +11,7 @@
         :id="currentKey"
         type="checkbox"
         :name="currentKey"
-        v-model="value[currentKey]">
+         v-model="val">
     </label>
   </div>
 </div>

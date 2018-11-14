@@ -4,7 +4,7 @@
     <div 
       :id="anchorIdFormat(schema)" 
       :class="[getStyleClass]">
-      <select v-model="value[currentKey]">
+      <select  v-model="val">
         <template v-if="schema.attrs.placeholder">
           <option value="">{{ schema.attrs.placeholder }}</option>
         </template>
