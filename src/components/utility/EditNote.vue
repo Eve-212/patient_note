@@ -1,5 +1,9 @@
 <template>
-  <div class="row scroll-watch" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">    
+<div>
+  <div class="alert alert-success" role="alert">
+    <strong>Well done!</strong> You successfully read this important alert message.
+  </div>
+  <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">    
     <JSchemaObject
       class="col-md-10 mb-5"
       v-model="data" 
@@ -10,6 +14,8 @@
       :schema="noteSchema">
     </SectionNav>
   </div>
+</div>
+  
 </template>
 
 <script>
@@ -32,7 +38,7 @@ export default {
       isLoaded: false
     }
   },
-  methods: {    
+  methods: {
     // package structure of patient data so that it fits our schema
     prepare_data($schema, $data) {
       //let $tmps=$sch;

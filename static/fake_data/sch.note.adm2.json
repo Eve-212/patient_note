@@ -154,7 +154,7 @@
           "title": "Travel History",
           "type": "string",
           "attrs": {
-            "inputGroup": true          
+            "inputGroup": true
           }
         },
         "personal_hx": {
@@ -360,7 +360,7 @@
               "title": "Note",
               "type": "string",
               "attrs": {
-                "inputGroup": true 
+                "inputGroup": true
               }
             }
           }
