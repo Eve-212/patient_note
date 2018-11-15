@@ -7,7 +7,7 @@
         <router-view></router-view>
       </div>
       <back-to-top @hide="hideSearch"></back-to-top>
-    </main>    
+    </main> 
   </div>
 </template>
 <script>

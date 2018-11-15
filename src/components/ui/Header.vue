@@ -1,71 +1,81 @@
 <template>
-  <header class="header fixed-top d-flex justify-content-between align-items-center">
-    <div class="header_left d-flex">
-      <!-- Hamburger menu -->
-      <div class="header_handler-box" v-on:click="toggleSideMenu()">
-        <i class="fa fa-bars"></i>
-      </div>
-      <!-- Logo -->
-      <router-link :to="{name: 'dashBoard'}" class="header_logo-box px-4 d-flex justify-content-between align-items-center">
-        <img class="header_logo-box-logo mr-1" src="@/assets/img/logo-sm.png">病摘
-      </router-link>
-    </div>
-    <div class="header_right d-flex align-items-center">
-      <form class="header_search-box" :class="{hideSearch:hide}">
-        <input 
-          type="text" 
-          v-model="no" 
-          v-focus
-          placeholder="病歷號/床號/ 身分證">
-        <button 
-          type="submit"  
-          @keyup.enter.prevent="load" 
-          @click.prevent="load">
-          <i class="fa fa-search"></i>
-        </button>
-      </form>
-      <div class="header_user text-muted">Hi, {{ this.$store.state.user.name }}</div>
-      <!-- Badge and reminder -->
-      <div class="header_badge-box d-flex align-items-center">
-        <div
-          @click="toggleReminder"
-          class="header_badge-box-badge d-flex justify-content-center align-items-center"
-        >
-          <i class="fa fa-bell"></i><span class="badge badge-danger">9</span>
+  <div>
+    <header class="header fixed-top d-flex justify-content-between align-items-center">
+      <div class="header_left d-flex">
+        <!-- Hamburger menu -->
+        <div class="header_handler-box" v-on:click="toggleSideMenu()">
+          <i class="fa fa-bars"></i>
         </div>
-        <!-- badge reminder box -->
-        <div class="header_badge-box-reminder" :class="{show:showReminder}">
-          <router-link to="" class="d-flex justify-content-between">
-            <span>Admission</span><span class="text-danger font-weight-bold">10</span>
-          </router-link>
-          <router-link to="" class="d-flex justify-content-between">
-            <span>Progress</span><span class="text-danger font-weight-bold">10</span>
-          </router-link>
-          <router-link to="" class="d-flex justify-content-between">
-            <span>Discharge</span><span class="text-danger font-weight-bold">10</span>
-          </router-link>
-          <router-link to="" class="d-flex justify-content-between">
-            <span>Withdrawal</span><span class="text-danger font-weight-bold">10</span>
-          </router-link>
+        <!-- Logo -->
+        <router-link :to="{name: 'dashBoard'}" class="header_logo-box px-4 d-flex justify-content-between align-items-center">
+          <img class="header_logo-box-logo mr-1" src="@/assets/img/logo-sm.png">病摘
+        </router-link>
+      </div>
+      <div class="header_right d-flex align-items-center">
+        <form class="header_search-box" :class="{hideSearch:hide}">
+          <input 
+            type="text" 
+            v-model="no" 
+            v-focus
+            placeholder="病歷號/床號/ 身分證">
+          <button 
+            type="submit"  
+            @keyup.enter.prevent="load" 
+            @click.prevent="load">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+        <div class="header_user text-muted">Hi, {{ this.$store.state.user.name }}</div>
+        <!-- Badge and reminder -->
+        <div class="header_badge-box d-flex align-items-center">
+          <div
+            @click="toggleReminder"
+            class="header_badge-box-badge d-flex justify-content-center align-items-center"
+          >
+            <i class="fa fa-bell"></i><span class="badge badge-danger">9</span>
+          </div>
+          <!-- badge reminder box -->
+          <div class="header_badge-box-reminder" :class="{show:showReminder}">
+            <router-link to="" class="d-flex justify-content-between">
+              <span>Admission</span><span class="text-danger font-weight-bold">10</span>
+            </router-link>
+            <router-link to="" class="d-flex justify-content-between">
+              <span>Progress</span><span class="text-danger font-weight-bold">10</span>
+            </router-link>
+            <router-link to="" class="d-flex justify-content-between">
+              <span>Discharge</span><span class="text-danger font-weight-bold">10</span>
+            </router-link>
+            <router-link to="" class="d-flex justify-content-between">
+              <span>Withdrawal</span><span class="text-danger font-weight-bold">10</span>
+            </router-link>
+          </div>
+        </div>
+        <!-- Sign Out -->
+        <div 
+          class="header_logout-box d-flex justify-content-center align-items-center" 
+          v-on:click="singOut()">
+          <i class="fa fa-sign-out-alt"></i>
         </div>
       </div>
-      <!-- Sign Out -->
-      <div 
-        class="header_logout-box d-flex justify-content-center align-items-center" 
-        v-on:click="singOut()">
-        <i class="fa fa-sign-out-alt"></i>
-      </div>
-    </div>
-  </header>
+    </header>
+    <modal v-if="modalShow" @close="modalShow = false">
+      <div slot="body">{{modalMessage}}</div>
+    </modal>
+  </div>
 </template>
+
 <script>
+import Vue from 'vue'
+Vue.component('modal', require('@/components/ui/Modal.vue').default)
 export default {
   props: ['hide'],
   data() {
     return {
       showReminder: false,
       no: '',
-      status: ''
+      status: '',
+      modalShow: false,
+      modalMessage: ''
     }
   },
   methods: {
@@ -85,20 +95,30 @@ export default {
     load() {
       if (this.no) {
         this.status = ''
-        this.$wf.note.sess({ no: this.no }).then($raw => {
-          let $sess = $raw.data
-          if ($sess.fee_no) {
-            this.$router.push({
-              name: 'edit',
-              params: { fee_no: $sess.fee_no }
-            })
-          }
-        })
+        this.$wf.note
+          .sess({ no: this.no })
+          .then($raw => {
+            let $sess = $raw.data
+            if ($sess.fee_no) {
+              this.$router.push({
+                name: 'edit',
+                params: { fee_no: $sess.fee_no }
+              })
+            }
+          })
+          .catch(error => {
+            let error_code = error.response.status
+            if (error_code == 412) {
+              this.modalShow = true
+              this.modalMessage = `Patient with Id ${this.no} does not exist`
+            }
+          })
       }
     }
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import '@/assets/sass/main.scss';
 
