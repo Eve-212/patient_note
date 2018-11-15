@@ -80,6 +80,9 @@ export default {
   span {
     font-size: 1.5rem;
     font-weight: 400;
+    @media screen and (max-width: $break-medium) {
+      font-size: 1.2rem;
+    }
   }
   small {
     font-size: $default-font-size;
@@ -94,6 +97,10 @@ export default {
     border-left: 4px solid $color-tertiary;
     &.incompleted {
       border-left: 4px solid $color-secondary-light;
+    }
+    @media screen and (max-width: $break-medium) {
+      font-size: 12px;
+      width: 13rem;
     }
     @media screen and (max-width: $break-small) {
       width: 100%;
@@ -110,6 +117,9 @@ export default {
     }
     .card-body {
       padding: 0.9rem 1rem;
+      @media screen and (max-width: $break-medium) {
+        padding: 10px;
+      }
       @media screen and (max-width: $break-small) {
         padding: px-to-vw(18, 450);
       }
