@@ -109,6 +109,7 @@ export default {
       }
     }
     .card-body {
+      padding: 0.9rem 1rem;
       @media screen and (max-width: $break-small) {
         padding: px-to-vw(18, 450);
       }

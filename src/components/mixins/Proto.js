@@ -79,7 +79,7 @@ export default {
       if (this.bsColSize) {
         return `col-md-${this.bsColSize}`
       }
-      return 'col-md-12'
+      return ''
     },
     getStyleClass() {
       if (this.styleClass) {

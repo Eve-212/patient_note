@@ -5,8 +5,8 @@
       :id="anchorIdFormat(schema)" 
       :class="[getStyleClass]">
       <select  v-model="val">
-        <template v-if="schema.attrs.placeholder">
-          <option value="">{{ schema.attrs.placeholder }}</option>
+        <template v-if="placeholder">
+          <option value="">{{ placeholder }}</option>
         </template>
         <option 
           v-for="(item, index) in schema.attrs.values" 

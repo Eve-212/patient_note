@@ -20,7 +20,7 @@
     <div class="form-group row" v-if="!inputGroup">
     
       <label 
-        class="col-md-2 col-form-label"
+        class=" col-form-label"
         :for="getId()">
         {{ schema.title }}
       </label>
@@ -43,26 +43,21 @@
 import Proto from '@/components/mixins/Proto.js'
 export default {
   name: 'TextInput',
-  mixins:[Proto],
-  props:{
-      inputGroup: {
-        default() {
-          return false
-        }
-      }      
+  mixins: [Proto],
+  props: {
+    inputGroup: {
+      default() {
+        return false
+      }
+    }
   },
-  created() {
-    
-  }
+  created() {}
 }
 </script>
 
 <style>
-.text-label {
-  font-size: 1.1rem;
-}
 .w-10 {
-  width: 10%
+  width: 10%;
 }
 </style>
 
