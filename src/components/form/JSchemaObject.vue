@@ -128,6 +128,7 @@ export default {
         boolean: 'radio'
       }
       let $field_com = {
+        textarea: 'quillTextArea',
         text: 'TextInput',
         checklistwithother: 'CheckListWithOther',
         radio: 'bsRadioInput',
@@ -187,6 +188,9 @@ export default {
           initValue = ''
           break
         case 'bsRadioInput':
+          initValue = ''
+          break
+        case 'quillTextArea':
           initValue = ''
           break
       }

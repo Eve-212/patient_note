@@ -1,7 +1,7 @@
 <template>
 <div :class="getBsColSize">  
   <div :id="anchorIdFormat(schema)">
-    <div v-if="inputGroup">
+    <template v-if="inputGroup">    
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <div class="input-group-text text-label" >{{ schema.title }}</div>
@@ -15,7 +15,7 @@
           :placeholder="placeholder">
         <slot name="subTitle" :description="schema.description"></slot>
       </div>
-    </div>
+    </template>
     <div class="form-group row" v-if="!inputGroup">
     
       <label 
