@@ -803,8 +803,14 @@
               "title": "Consciousness",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
-                "bsColSize": 12
+                "inputGroup": true                         
+              }
+            },
+            "testest": {
+              "title": "Testtest",
+              "type": "string",
+              "attrs": {
+                "inputGroup": true                         
               }
             },
             "GCS": {

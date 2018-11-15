@@ -1,5 +1,10 @@
 <template>
-  <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">    
+  <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
+
+    <TextInput :data="data">
+      <slot></slot>
+    </TextInput>
+
     <JSchemaObject
       class="col-md-10 mb-5"
       v-scroll-spy="{sectionSelector: '.scroll-watch', offset: 100}" 
