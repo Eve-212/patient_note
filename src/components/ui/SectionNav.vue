@@ -1,11 +1,11 @@
 <template>
   <div class="section-nav">
-    <ul v-scroll-spy-active="{class: 'customActive'}" class="list-group">
+    <ul class="list-group">
       <li 
         v-for="(item, key) in schema.properties.content.properties"
         :key="key"
         class="list-group-item">
-        <a href="#" v-scroll-to="`#${anchorIdFormat(item)}`">{{ item.title }}</a>
+        <a v-scroll-to href="#" :scroll="`#${anchorIdFormat(item)}`">{{ item.title }}</a>
       </li>
     </ul>
   </div>

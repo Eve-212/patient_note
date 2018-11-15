@@ -270,16 +270,23 @@
               "type": "object",
               "title": "Betel Nuts",
               "attrs": {
-                "styleClass": ["subsection-title"]
+                "styleClass": ["subsection-title"],
+                "rowGroup": true
               },
               "properties": {
                 "used": {
                   "title": "Used：",
-                  "type": "boolean"
+                  "type": "boolean",
+                  "attrs": {
+                    "bsColSize": 12
+                  }
                 },
                 "quitted": {
                   "title": "Quit use：",
-                  "type": "boolean"
+                  "type": "boolean",
+                  "attrs": {
+                    "bsColSize": 12
+                  }
                 },
                 "num_per_day": {
                   "title": "Number per day",

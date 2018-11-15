@@ -14,7 +14,6 @@
           :aria-describedby="helpText(schema)"
           :placeholder="placeholder">
         <slot name="subTitle" :description="schema.description"></slot>
-
       </div>
     </template>
     <div class="form-group row" v-if="!inputGroup">
