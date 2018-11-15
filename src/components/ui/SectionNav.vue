@@ -5,7 +5,7 @@
         v-for="(item, key) in schema.properties.content.properties"
         :key="key"
         class="list-group-item">
-        <a v-scroll-to href="#" :scroll="`#${anchorIdFormat(item)}`">{{ item.title }}</a>
+        <a v-scroll-to v-scroll-watch href="#" :scroll="`#${anchorIdFormat(item)}`">{{ item.title }}</a>
       </li>
     </ul>
   </div>

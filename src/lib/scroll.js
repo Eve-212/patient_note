@@ -1,6 +1,7 @@
 // scroll watch function
-function scrollWatch() {
-  
+function scrollWatch(el) {
+  console.log(el)
+  console.log(el.getAttribute('scroll'))
 }
 
 
@@ -8,6 +9,8 @@ function scrollWatch() {
 function smoothScroll(el, duration, offset) {
   let target = document.querySelector(el.getAttribute('scroll'))
   let targetPosition = target.getBoundingClientRect().top - offset
+  console.log(target.getBoundingClientRect())
+  console.log(targetPosition)
   let startPosition = window.pageYOffset
   let startTime = null
 
@@ -34,6 +37,9 @@ function smoothScroll(el, duration, offset) {
 
 
 
+const VueScrollWatch = function (el) {
+  scrollWatch(el)
+}
 
 
 const VueScrollTo = function (el, duration, offset) {
@@ -42,4 +48,9 @@ const VueScrollTo = function (el, duration, offset) {
   })
 }
 
-export default VueScrollTo
+
+
+export { 
+  VueScrollWatch,
+  VueScrollTo
+}
