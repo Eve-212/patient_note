@@ -32,7 +32,7 @@ export default {
 
 <style lang="scss" scoped>
 .main_content {
-  margin: 0 6rem;
+  margin: 0 6.25rem 0 6.25rem;
   @media screen and (max-width: 768px) {
     margin: 0 1rem 0 4.5rem;
   }

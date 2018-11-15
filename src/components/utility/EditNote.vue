@@ -1,21 +1,55 @@
 <template>
-<div>
-  <div class="alert alert-success" role="alert">
-    <strong>Well done!</strong> You successfully read this important alert message.
+  <div>
+    <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
+      <div class="col-md-10">
+        <div v-if="showAlert" class="alert alert-danger">
+          <strong>
+            是否加入您的病人清單?
+          </strong>
+          <div>
+            <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="yes">Yes</button>
+            <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
+            <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="showLater">Ask me later</button>
+          </div>
+        </div>
+        <div class="alert alert-primary">
+          <ul>
+            <li>
+              <strong>Applied form：</strong>
+              <span>&#35;一般</span>
+              <span>&#35;急性心肌梗塞</span>
+              <span>&#35;一般</span>
+              <span>&#35;急性心肌梗塞</span>
+              <span>&#35;一般</span>
+              <span>&#35;急性心肌梗塞</span>
+              <span>&#35;一般</span>
+              <span>&#35;急性心肌梗塞</span>
+            </li>
+            <li>
+              <strong>Available form：</strong>
+              <span>&#35;一般</span>
+              <span>&#35;急性心肌梗塞</span>
+              <span>&#35;一般</span>
+              <span>&#35;急性心肌梗塞</span>
+              <span>&#35;一般</span>
+              <span>&#35;急性心肌梗塞</span>
+              <span>&#35;一般</span>
+              <span>&#35;急性心肌梗塞</span>
+            </li>
+          </ul>
+        </div>
+      </div>  
+      <JSchemaObject
+        class="col-md-10 mb-5"
+        v-model="data" 
+        :schema="noteSchema.properties.content">
+      </JSchemaObject>
+      <SectionNav 
+        class="col-md-2 d-none d-md-block mb-5" 
+        :schema="noteSchema">
+      </SectionNav>
+    </div>
   </div>
-  <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">    
-    <JSchemaObject
-      class="col-md-10 mb-5"
-      v-model="data" 
-      :schema="noteSchema.properties.content">
-    </JSchemaObject>
-    <SectionNav 
-      class="col-md-2 d-none d-md-block mb-5" 
-      :schema="noteSchema">
-    </SectionNav>
-  </div>
-</div>
-  
 </template>
 
 <script>
@@ -31,6 +65,7 @@ export default {
   },
   data() {
     return {
+      showAlert: true,
       noteSchema: null,
       data: {},
       meta: {},
@@ -137,7 +172,11 @@ export default {
     } /*,
     prepare_schema($sch){
       
-    }*/
+    }*/,
+    closeAlert() {
+      this.showAlert = false
+      console.log(event.target.value)
+    }
   },
   created: function() {
     this.noteSchema = {}
@@ -159,3 +198,57 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+@import '@/assets/sass/main.scss';
+.alert {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 15px;
+  &-primary {
+    ul {
+      list-style: none;
+      margin: auto 0;
+      li {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 8px 0;
+        &:first-child {
+          border-bottom: 1px solid #004085;
+        }
+        span {
+          margin-top: 5px;
+          cursor: pointer;
+          padding: 0 0.3rem;
+          border: 1px solid #004085;
+          border-radius: 3px;
+          margin-right: 0.3rem;
+          font-size: 10px;
+          opacity: 0.7;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+  &-danger {
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: $break-small) {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    button {
+      font-size: 12px;
+      @media screen and (max-width: $break-small) {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+}
+</style>
