@@ -163,8 +163,5 @@ const OneAPI = function ($cfg) {
 
   return api;
 
-
-
-
 }
 export default OneAPI

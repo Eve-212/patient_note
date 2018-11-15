@@ -40,7 +40,6 @@
         </div>
       </div>  
       <JSchemaObject
-        v-scroll-spy="{sectionSelector: '.scroll-watch', offset: 100}" 
         class="col-md-10 mb-5"
         v-model="data" 
         :schema="noteSchema.properties.content">
