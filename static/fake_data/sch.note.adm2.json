@@ -138,9 +138,8 @@
         "cc": {
           "title": "Chief Complaint",
           "type": "string",
-          "attrs": {
-            "inputGroup": true,
-            "placeholder": "test"
+          "attrs": {                        
+            "fieldType": "textarea"
           }
         },
         "pi": {
