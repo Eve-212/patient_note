@@ -179,6 +179,7 @@ export default {
       color: $color-grey-dark;
       margin-left: -4px;
       border-left: none;
+      background: $color-white;
     }
     @media screen and (max-width: $break-small) {
       position: absolute;
@@ -212,7 +213,7 @@ export default {
       position: absolute;
       right: 0;
       top: 3.5rem;
-      width: 12rem;
+      width: 11rem;
       background-color: $color-grey-light;
       padding: 0 2rem;
       box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
