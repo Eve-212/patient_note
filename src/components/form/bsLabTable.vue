@@ -34,7 +34,7 @@ export default {
     return {
       lists: {},
       lab: {
-        blood: [
+        blood: []
           {
             id: 'CREB',
             item: 'CREA',

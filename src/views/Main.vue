@@ -3,7 +3,7 @@
     <header-component :user="user" :hide="hide"></header-component>
     <main style="padding-top: 80px">
       <sidemenu></sidemenu>
-      <div class="container-fluid main_content">
+      <div class="main_content container-fluid">
         <router-view></router-view>
       </div>
       <back-to-top @hide="hideSearch"></back-to-top>
