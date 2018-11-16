@@ -70,4 +70,5 @@ export default {
 .ql-container {
   height: 10rem;
 }
+
 </style>
