@@ -23,14 +23,17 @@ Vue.directive('scroll-to', {
   inserted: function (el) {
     VueScrollTo(el, 500, 79)
     //el, duration, offset
-    
   }
 })
 
 Vue.directive('scroll-watch', {
   bind: function (el) {
     VueScrollWatch(el)
+  },
+  unbind: function(el) {
+    VueScrollWatch(el)
   }
+
 })
 
 Vue.prototype.$http = axios
