@@ -4,10 +4,14 @@ let targets = {}
 
 function scrollWatch(el) {
   let screenHeight = window.innerHeight
-  let docOffsetHeight = el.offsetHeight
+  let docOffsetHeight = document.body.scrollHeight
   let currentPageYOffset = window.pageYOffset
   let anchors = document.querySelectorAll('[scroll]')
   anchors = Array.from(anchors)
+
+  //navigation bar follow main content scroll
+  el.scrollTop = currentPageYOffset / 15
+
 
   for(let item of Object.keys(targets)) {
     if(targets[item] <= currentPageYOffset + 10 ){
@@ -23,7 +27,7 @@ function scrollWatch(el) {
       targetAnchor[0].parentNode.setAttribute('class', 'customActive');
     } 
     // 
-    else if(docOffsetHeight <= currentPageYOffset + screenHeight + 1){
+    else if(docOffsetHeight <= currentPageYOffset + screenHeight){
       let targetAnchor = anchors.filter(function(anchor){
         let anchorScrollValue = anchor.attributes.getNamedItem('scroll').value
         return item === anchorScrollValue
@@ -31,7 +35,6 @@ function scrollWatch(el) {
       if(document.querySelector('.customActive')) {
         document.querySelector('.customActive').setAttribute('class', ' ')
       }
-
       targetAnchor[0].parentNode.setAttribute('class', 'customActive');
     }
   }
@@ -74,6 +77,8 @@ const VueScrollData = function(el, offset, watchElement) {
     let targetOffset = document.querySelector(el.getAttribute('scroll')).getBoundingClientRect().top - offset
     let target = new OffsetData(targetId, targetOffset)
     Object.assign(targets, target)
+    console.log(targets)
+    console.log(document.querySelector(el.getAttribute('scroll')).getBoundingClientRect())
   }
 
 
