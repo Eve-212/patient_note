@@ -1,19 +1,49 @@
-// scroll watch function
+
+let targets = {}
+
+
 function scrollWatch(el) {
-  console.log(el)
-  console.log(el.getAttribute('scroll'))
+  let screenHeight = window.innerHeight
+  let docOffsetHeight = el.offsetHeight
+  let currentPageYOffset = window.pageYOffset
+  let anchors = document.querySelectorAll('[scroll]')
+  anchors = Array.from(anchors)
+
+  for(let item of Object.keys(targets)) {
+    if(targets[item] <= currentPageYOffset + 10 ){
+      let targetAnchor = anchors.filter(function(anchor){
+        // title id === anchorScrollValue
+        let anchorScrollValue = anchor.attributes.getNamedItem('scroll').value
+        return item === anchorScrollValue
+      })
+      if(document.querySelector('.customActive')) {
+        document.querySelector('.customActive').setAttribute('class', ' ')
+      }
+      // add class to tag a parent li
+      targetAnchor[0].parentNode.setAttribute('class', 'customActive');
+    } 
+    // 
+    else if(docOffsetHeight <= currentPageYOffset + screenHeight + 1){
+      let targetAnchor = anchors.filter(function(anchor){
+        let anchorScrollValue = anchor.attributes.getNamedItem('scroll').value
+        return item === anchorScrollValue
+      })
+      if(document.querySelector('.customActive')) {
+        document.querySelector('.customActive').setAttribute('class', ' ')
+      }
+
+      targetAnchor[0].parentNode.setAttribute('class', 'customActive');
+    }
+  }
 }
 
 
-// smooth scroll function
 function smoothScroll(el, duration, offset) {
   let target = document.querySelector(el.getAttribute('scroll'))
   let targetPosition = target.getBoundingClientRect().top - offset
-  console.log(target.getBoundingClientRect())
-  console.log(targetPosition)
   let startPosition = window.pageYOffset
   let startTime = null
-
+  
   function animation(currentTime) {
     if(startTime === null) {
       startTime = currentTime
@@ -31,22 +61,57 @@ function smoothScroll(el, duration, offset) {
   }
 
   requestAnimationFrame(animation)
+}
 
+function OffsetData(targetId, targetOffset) {
+   this[targetId] = targetOffset
 }
 
 
+const VueScrollData = function(el, offset, watchElement) {
+  if(watchElement) {
+    let targetId = el.getAttribute('scroll')
+    let targetOffset = document.querySelector(el.getAttribute('scroll')).getBoundingClientRect().top - offset
+    let target = new OffsetData(targetId, targetOffset)
+    Object.assign(targets, target)
+  }
 
 
-const VueScrollWatch = function (el) {
-  scrollWatch(el)
+}
+
+const VueScrollWatch = function(el) {
+  let ticking = false
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        scrollWatch(el)
+        ticking = false
+      });
+    }
+    ticking = true
+  })
 }
 
 
 const VueScrollTo = function (el, duration, offset) {
+  let watchElement = document.querySelector(el.getAttribute('scroll')) || undefined
+  
+  VueScrollData(el, offset, watchElement)
   el.addEventListener('click', function() {
-    document.querySelector(el.getAttribute('scroll'))? smoothScroll(el, duration, offset): console.log('No data')
+    watchElement? smoothScroll(el, duration, offset): console.log('No data')
   })
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

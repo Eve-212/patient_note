@@ -8,8 +8,8 @@ import axios from 'axios'
 import OneAPI from './lib/oneapi'
 import { store } from './store/store.js'
 // import 'vue-orgchart/dist/style.min.css'
-import { VueScrollTo } from './lib/scroll'
-import { VueScrollWatch } from './lib/scroll'
+import { VueScrollTo, VueScrollWatch } from './lib/scroll'
+
 
 
 
@@ -23,13 +23,13 @@ Vue.directive('scroll-to', {
   inserted: function (el) {
     VueScrollTo(el, 500, 79)
     //el, duration, offset
+    
   }
 })
 
 Vue.directive('scroll-watch', {
-  inserted: function (el) {
+  bind: function (el) {
     VueScrollWatch(el)
-    
   }
 })
 
