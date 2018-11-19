@@ -1,14 +1,14 @@
 <template>
-  <div class="section-nav">
+  <nav class="section-nav">
     <ul class="list-group">
       <li 
         v-for="(item, key) in schema.properties.content.properties"
         :key="key"
         class="list-group-item">
-        <a v-scroll-to href="#" :scroll="`#${anchorIdFormat(item)}`">{{ item.title }}</a>
+         <a v-scroll-to href="#" :scroll="`#${anchorIdFormat(item)}`">{{ item.title }}</a>
       </li>
     </ul>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -30,6 +30,7 @@ ul {
 li {
   border: none;
   padding: 0.125rem 1.5rem;
+  list-style-type: none;
 }
 li a {
   color: #99979c;

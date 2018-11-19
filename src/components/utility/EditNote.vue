@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-fluid" v-scroll-watch>
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
       <div class="col-md-10">
         <div class="row">
