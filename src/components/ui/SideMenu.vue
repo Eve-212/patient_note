@@ -13,6 +13,12 @@
           <span class="nav-text">Edit</span>
         </router-link>
       </li>
+      <li>
+        <router-link :to="{ name: 'search' }">
+          <i class="fa fa-eye fa-2x"></i>
+          <span class="nav-text">Search</span>
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>

@@ -127,8 +127,6 @@ export default {
           this.$wf.note.sess({ no: this.fee_no }).then($raw => {
             if ($raw.data.fee_no) {
               this.sess = $raw.data
-              console.log(this.sess)
-              console.log('888888888888')
               // call load function to load retrieved patient data into component's data object
               this.load()
             }
@@ -179,7 +177,6 @@ export default {
     }*/,
     closeAlert() {
       this.showAlert = false
-      console.log(event.target.value)
     }
   },
   created: function() {
