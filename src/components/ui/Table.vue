@@ -18,7 +18,7 @@
               <td>{{ (currPage-1) * countOfPage + index + 1 }}</th>
               <td>{{item.chr_no}}</td>
               <td>{{item.ipd.name}}</td>
-              <td>{{item.init_time}}</td>
+              <td>{{getDate(item.init_time)}}</td>
               <td class="actions">
                 <i class="fa fa-pen"></i>
                 <i class="fa fa-star"></i>
@@ -74,6 +74,10 @@ export default {
     },
     setCurrPage(val) {
       this.currPage = val
+    },
+    getDate(val) {
+      let res = new Date(val)
+      return res.toLocaleDateString().replace(/\//g, '-')
     }
   },
   mounted() {
