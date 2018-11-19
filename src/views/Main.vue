@@ -3,11 +3,11 @@
     <header-component :user="user" :hide="hide"></header-component>
     <main style="padding-top: 80px">
       <sidemenu></sidemenu>
-      <div class="main_content">
+      <div class="main_content container-fluid">
         <router-view></router-view>
       </div>
       <back-to-top @hide="hideSearch"></back-to-top>
-    </main>    
+    </main> 
   </div>
 </template>
 <script>
@@ -32,9 +32,9 @@ export default {
 
 <style lang="scss" scoped>
 .main_content {
-  margin: 0 6.25rem 0 6.25rem;
+  padding-left: 6rem;
   @media screen and (max-width: 768px) {
-    margin: 0 1rem 0 4.5rem;
+    padding-left: 4.5rem;
   }
 }
 </style>

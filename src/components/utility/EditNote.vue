@@ -2,7 +2,8 @@
   <div class="container-fluid" v-scroll-watch>
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
       <div class="col-md-10">
-        <div v-if="showAlert" class="alert alert-danger">
+        <div class="row">
+        <div v-if="showAlert" class="col-md-12 alert alert-danger">
           <strong>
             是否加入您的病人清單?
           </strong>
@@ -12,7 +13,7 @@
             <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="showLater">Ask me later</button>
           </div>
         </div>
-        <div class="alert alert-primary">
+        <div class="col-md-12 alert alert-primary">
           <ul>
             <li>
               <strong>Applied form：</strong>
@@ -38,12 +39,15 @@
             </li>
           </ul>
         </div>
+
+        <JSchemaObject 
+          class="col-md-12"   
+          v-model="data" 
+          :schema="noteSchema.properties.content">
+        </JSchemaObject>
       </div>  
-      <JSchemaObject
-        class="col-md-10 mb-5"
-        v-model="data" 
-        :schema="noteSchema.properties.content">
-      </JSchemaObject>
+      </div>
+      
       <SectionNav 
         class="col-md-2 d-none d-md-block mb-5" 
         :schema="noteSchema">
@@ -202,7 +206,7 @@ export default {
 <style lang="scss">
 @import '@/assets/sass/main.scss';
 .alert {
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -216,11 +220,9 @@ export default {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        padding: 8px 0;
-        &:first-child {
-          border-bottom: 1px solid #004085;
-        }
+        padding: 3px 0;
         span {
+          letter-spacing: 0.05rem;
           margin-top: 5px;
           cursor: pointer;
           padding: 0 0.3rem;

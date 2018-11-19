@@ -571,7 +571,7 @@
                 "values": ["Couple", "Children", "Other"]
               }
             },
-            "finatial": {
+            "financial": {
               "title": "Financial support：",
               "type": "string",
               "attrs": {
