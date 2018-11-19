@@ -6,7 +6,7 @@
   li {
     margin: 6px;
     list-style: none;
-    padding: 4px;
+    padding: 1px;
     @media screen and (max-width: $break-small) {
       font-size: 12px;
       margin: 0px;
@@ -23,6 +23,9 @@
     &.active a {
       background: $color-primary;
       color: #fff;
+    }
+    &.disabled {
+      display: none;
     }
   }
   .prev,

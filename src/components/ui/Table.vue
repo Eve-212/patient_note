@@ -14,8 +14,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in sortedData.slice(pageStart, pageStart + items.countOfPage)">
-              <td>{{index+1}}</th>
+            <tr v-for="(item, index) in sortedData.slice(pageStart, pageStart + countOfPage)">
+              <td>{{ (currPage-1) * countOfPage + index + 1 }}</th>
               <td>{{item.chr_no}}</td>
               <td>{{item.ipd.name}}</td>
               <td>{{item.init_time}}</td>
@@ -26,8 +26,8 @@
             </tr>
           </tbody>
         </table>
+        <paginate :totalPage=this.totalPage v-on:currPage="setCurrPage"></paginate>
     </div>
-    <paginate></paginate>
   </div>
 </template>
 <script>
@@ -39,14 +39,14 @@ export default {
       status: '',
       rowData: {},
       sortedData: [],
-      countOfPage: 5,
-      currPage: 1,
+      countOfPage: 6,
+      currPage: null,
       totalPage: null
     }
   },
   computed: {
     pageStart() {
-      return (this.items.currPage - 1) * this.items.countOfPage
+      return (this.currPage - 1) * this.countOfPage
     }
   },
   methods: {
@@ -55,7 +55,6 @@ export default {
       this.$wf.ready().then($api => {
         return $api.note.list().then($raw => {
           this.rowData = $raw.data
-          console.log(this.rowData)
           this.sortRawData(id)
         })
       })
@@ -64,6 +63,7 @@ export default {
       this.rowData.forEach(function(item) {
         if (item.ipd.dept_id == id) {
           this.sortedData.push(item)
+          this.totalPage = Math.ceil(this.sortedData.length / this.countOfPage)
         }
       }, this)
       if (this.sortedData.length == 0) {
@@ -71,6 +71,9 @@ export default {
       } else {
         this.status = ''
       }
+    },
+    setCurrPage(val) {
+      this.currPage = val
     }
   },
   mounted() {

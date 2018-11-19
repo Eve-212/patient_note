@@ -3,31 +3,34 @@
     <li 
       class="prev" 
       v-bind:class="{'disabled': (currPage === 1)}" 
-      @click.prevent="setPage(currPage-1)" @><a href="#">Prev</a>
+      @click.prevent="$emit('currPage', currPage-1), setPage(currPage-1)"><a href="#">Prev</a>
     </li>
     <li 
       v-for="n in totalPage" 
       v-bind:class="{'active': (currPage === (n))}" 
-      @click.prevent="setPage(n)"><a href="#">{{n}}</a>
+      @click.prevent="$emit('currPage', n), setPage(n)"><a href="#">{{n}}</a>
     </li>
     <li 
       class="next" 
-      v-bind:class="{'disabled': (currPage === totalPage)}" 
-      @click.prevent="setPage(currPage+1)"><a href="#">Next</a>
+      v-bind:class="{'disabled': (currPage === totalPage)}"
+      @click.prevent="$emit('currPage', currPage+1), setPage(currPage+1)" 
+      ><a href="#">Next</a>
     </li>
   </ul>
 </template>
 <script>
 export default {
+  props: ['totalPage'],
   data() {
     return {
-      countOfPage: 5,
-      currPage: 1,
-      totalPage: 15
+      currPage: 1
     }
   },
+  created() {
+    this.$emit('currPage', this.currPage)
+  },
   methods: {
-    setPage: function(idx) {
+    setPage(idx) {
       if (idx <= 0 || idx > this.totalPage) {
         return
       }
@@ -36,6 +39,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-@import '@/assets/sass/main.scss';
-</style>
