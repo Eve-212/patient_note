@@ -22,7 +22,7 @@
                   <button class="btn btn-sm btn-warning" @click="resetSchema">reset</button>
                   <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != noteSchema.tag" @click="removeSchema($event, tag)">
                     <div>&#35;{{ tag }}</div>
-                  </span>                
+                  </span>              
                 </li>
                 <li>
                   <strong>Available form schemas：</strong>
@@ -32,12 +32,7 @@
                 </li>
               </ul>
             </div>
-
-
           </div>
-          
-          
-
           <JSchemaObject 
             class="col-md-12"   
             v-model="data" 
@@ -45,7 +40,6 @@
           </JSchemaObject>
         </div>  
       </div>
-      
       <SectionNav 
         class="col-md-2 d-none d-md-block mb-5" 
         :schema="currentSchema">
@@ -222,10 +216,15 @@ export default {
       // make api requests to get all available schemas
       // determine available schemas using department of logged in user
 
-      this.availableSchemas.push(require('../../../static/fake_data/sch.note.adm2.json'))
-      this.availableSchemas.push(require('../../../static/fake_data/cardio_schema.json'))
-      this.availableSchemas.push(require('../../../static/fake_data/er_schema.json'))
-      
+      this.availableSchemas.push(
+        require('../../../static/fake_data/sch.note.adm2.json')
+      )
+      this.availableSchemas.push(
+        require('../../../static/fake_data/cardio_schema.json')
+      )
+      this.availableSchemas.push(
+        require('../../../static/fake_data/er_schema.json')
+      )
 
       // TODO
       // apply name of base schema to appliedSchemas
@@ -306,10 +305,10 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/sass/main.scss';
 .alert {
-  font-size: 14px;
+  font-size: $default-font-size;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -327,13 +326,11 @@ export default {
         padding: 3px 0;
         span {
           letter-spacing: 0.05rem;
-          margin-top: 5px;
           cursor: pointer;
           padding: 0 0.3rem;
           border: 1px solid #004085;
           border-radius: 3px;
           margin-right: 0.3rem;
-          font-size: 10px;
           opacity: 0.7;
           &:hover {
             opacity: 1;
@@ -350,7 +347,6 @@ export default {
       flex-direction: column;
     }
     button {
-      font-size: 12px;
       @media screen and (max-width: $break-small) {
         margin-top: 0.5rem;
       }

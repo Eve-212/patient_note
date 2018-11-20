@@ -17,6 +17,7 @@ i.fa {
 
 .isExpanded {
   margin-left: 130px;
+  // margin-right: 10px;
   @media screen and (max-width: $break-medium) {
     margin-left: 0;
   }
