@@ -12,7 +12,6 @@ import { VueScrollTo, VueScrollWatch } from './lib/scroll'
 
 
 
-
 Vue.directive('focus', {
   inserted: function (el) {
     el.focus()

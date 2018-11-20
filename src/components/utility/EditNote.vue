@@ -206,7 +206,7 @@ export default {
   created: function() {    
 
     this.$wf.note.schema({ type: 'admission' }).then($raw => {
-      this.noteSchema = require('../../../static/fake_data/simple_base.json')
+      this.noteSchema = require('../../../static/fake_data/sch.note.adm2.json')
       // this.$set(
       //   this.$data,
       //   'noteSchema',
@@ -218,7 +218,7 @@ export default {
       // make api requests to get all available schemas
       // determine available schemas using department of logged in user      
 
-      this.availableSchemas.push(require('../../../static/fake_data/simple_base.json'))
+      this.availableSchemas.push(require('../../../static/fake_data/sch.note.adm2.json'))
       this.availableSchemas.push(require('../../../static/fake_data/cardio_schema.json'))
       this.availableSchemas.push(require('../../../static/fake_data/er_schema.json'))
       
