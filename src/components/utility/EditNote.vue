@@ -3,33 +3,40 @@
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
       <div class="col-md-10">
         <div class="row">
-          <div v-if="showAlert" class="col-md-12 alert alert-danger">
-            <strong>
-              是否加入您的病人清單?
-            </strong>
-            <div>
-              <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="yes">Yes</button>
-              <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
-              <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="showLater">Ask me later</button>
+          <div class="alert-container col-md-12">
+            <div v-if="showAlert" class="alert alert-danger float-none mr-2">
+              <strong>
+                是否加入您的病人清單?
+              </strong>
+              <div>
+                <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="yes">Yes</button>
+                <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
+                <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="showLater">Ask me later</button>
+              </div>
             </div>
+
+            <div class="alert alert-primary">
+              <ul>
+                <li>
+                  <strong>Applied form schemas：</strong>
+                  <button class="btn btn-sm btn-warning" @click="resetSchema">reset</button>
+                  <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != noteSchema.tag" @click="removeSchema($event, tag)">
+                    <div>&#35;{{ tag }}</div>
+                  </span>                
+                </li>
+                <li>
+                  <strong>Available form schemas：</strong>
+                  <span v-for="schema in availableSchemas" :key="schema.tag" v-if="schema.tag != noteSchema.tag" @click="addSchema($event, schema.tag)">
+                    <div>&#35;{{ schema.tag }}</div>
+                  </span>                
+                </li>
+              </ul>
+            </div>
+
+
           </div>
-          <div class="col-md-12 alert alert-primary">
-            <ul>
-              <li>
-                <strong>Applied form schemas：</strong>
-                <button class="btn btn-sm btn-warning" @click="resetSchema">reset</button>
-                <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != noteSchema.tag" @click="removeSchema($event, tag)">
-                  <div>&#35;{{ tag }}</div>
-                </span>                
-              </li>
-              <li>
-                <strong>Available form schemas：</strong>
-                <span v-for="schema in availableSchemas" :key="schema.tag" v-if="schema.tag != noteSchema.tag" @click="addSchema($event, schema.tag)">
-                  <div>&#35;{{ schema.tag }}</div>
-                </span>                
-              </li>
-            </ul>
-          </div>
+          
+          
 
           <JSchemaObject 
             class="col-md-12"   
@@ -50,9 +57,9 @@
 <script>
 import SectionNav from '@/components/ui/SectionNav.vue'
 import JSchemaObject from '@/components/form/JSchemaObject'
-import mergeWith from "lodash/mergeWith"
-import isArray from "lodash/isArray"
-import cloneDeep from "lodash/cloneDeep"
+import mergeWith from 'lodash/mergeWith'
+import isArray from 'lodash/isArray'
+import cloneDeep from 'lodash/cloneDeep'
 
 export default {
   name: 'EditNote',
@@ -81,18 +88,16 @@ export default {
     // update schema when a tag is clicked
     // https://stackoverflow.com/questions/49079170/how-to-get-values-of-an-item-in-the-loop-in-vue
     addSchema(event, tag) {
-      if (!this.appliedSchemas.includes(tag)) {        
+      if (!this.appliedSchemas.includes(tag)) {
         this.appliedSchemas.push(tag) // adds to list
-      } 
+      }
     },
     removeSchema(event, tag) {
-       if (this.appliedSchemas.includes(tag)) {        
-        this.appliedSchemas = this.appliedSchemas.filter(
-          item => item != tag
-        )
-      } 
-    },    
-    // updateSchema(event, tag) {     
+      if (this.appliedSchemas.includes(tag)) {
+        this.appliedSchemas = this.appliedSchemas.filter(item => item != tag)
+      }
+    },
+    // updateSchema(event, tag) {
     //   if (this.appliedSchemas.includes(tag)) {
     //     // removes from list
     //     this.appliedSchemas = this.appliedSchemas.filter(
@@ -150,7 +155,7 @@ export default {
           // then get patient data from database using fee_no
           this.$wf.note.sess({ no: this.fee_no }).then($raw => {
             if ($raw.data.fee_no) {
-              this.sess = $raw.data              
+              this.sess = $raw.data
               // call load function to load retrieved patient data into component's data object
               this.load()
             }
@@ -203,8 +208,7 @@ export default {
       this.showAlert = false
     }
   },
-  created: function() {    
-
+  created: function() {
     this.$wf.note.schema({ type: 'admission' }).then($raw => {
       this.noteSchema = require('../../../static/fake_data/sch.note.adm2.json')
       // this.$set(
@@ -212,11 +216,11 @@ export default {
       //   'noteSchema',
       //   // require('../../../static/fake_data/sch.note.adm2.json')
       //   require('../../../static/fake_data/simple_base.json')
-      // )      
-      
+      // )
+
       // multiple async requests at once: https://stackoverflow.com/questions/50540079/axios-make-multiple-request-at-once-vue-js
       // make api requests to get all available schemas
-      // determine available schemas using department of logged in user      
+      // determine available schemas using department of logged in user
 
       this.availableSchemas.push(require('../../../static/fake_data/sch.note.adm2.json'))
       this.availableSchemas.push(require('../../../static/fake_data/cardio_schema.json'))
@@ -226,10 +230,10 @@ export default {
       // TODO
       // apply name of base schema to appliedSchemas
       // add base schema to availableSchemas
-      this.appliedSchemas.push(this.noteSchema.tag)      
+      this.appliedSchemas.push(this.noteSchema.tag)
 
       this.$set(this.$data, 'currentSchema', cloneDeep(this.noteSchema))
-      
+
       this.init()
     })
   },
@@ -248,16 +252,16 @@ export default {
     //     }
     //   }
     //   this.$set(this.$data, 'currentSchema', mergeWith(
-    //     {},        
+    //     {},
     //     ...this.availableSchemas.filter((sch) => {
     //       this.appliedSchemas.includes(sch.tag)
     //     }),
     //     customizer
-    //   )) 
+    //   ))
     // }
     appliedSchemas: {
       handler: function() {
-        console.log("APPLIED SCHEMAS WATCH")
+        console.log('APPLIED SCHEMAS WATCH')
 
         function customizer(objValue, srcValue) {
           if (isArray(objValue)) {
@@ -266,31 +270,35 @@ export default {
           }
         }
 
-        this.$set(this.$data, 'currentSchema', mergeWith(
-          {},        
-          ...this.availableSchemas.filter(sch => 
-            this.appliedSchemas.includes(sch.tag)
-          ),
-          customizer
-        )) 
+        this.$set(
+          this.$data,
+          'currentSchema',
+          mergeWith(
+            {},
+            ...this.availableSchemas.filter(sch =>
+              this.appliedSchemas.includes(sch.tag)
+            ),
+            customizer
+          )
+        )
 
         console.log(this.currentSchema)
 
         // this.currentSchema = mergeWith(
-        //   {},        
-        //   ...this.availableSchemas.filter( sch => 
+        //   {},
+        //   ...this.availableSchemas.filter( sch =>
         //     this.appliedSchemas.includes(sch.tag)
         //   ),
         //   customizer
-        // )                
-        
+        // )
+
         // this.$set(this.$data, 'currentSchema', mergeWith(
-        //   {},        
+        //   {},
         //   ...this.availableSchemas.filter((sch) => {
         //     this.appliedSchemas.includes(sch.tag)
         //   }),
         //   customizer
-        // )) 
+        // ))
       },
       deep: true
     }
@@ -307,6 +315,7 @@ export default {
   justify-content: space-between;
   width: 100%;
   padding: 8px 15px;
+  margin: 0 auto 1rem;
   &-primary {
     ul {
       list-style: none;

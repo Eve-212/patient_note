@@ -8,7 +8,7 @@
             v-for="(value, index) in sortTypes"
             :key="index"
             type="button" 
-            class="btn btn-outline-info mr-1"
+            class="btn mr-1"
             :class="{clicked: sortType == value}" 
             @click="switchType(value)">
             <span v-if="value == 'doc_id'">Doctor</span>
@@ -95,9 +95,11 @@ export default {
 button {
   font-size: 14px;
   cursor: pointer;
+  border: 1px solid #1b77ce;
+  color: #1b77ce;
   &.clicked {
     color: #fff;
-    background: #17a2b8;
+    background: #1b77ce;
   }
 }
 </style>

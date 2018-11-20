@@ -71,7 +71,7 @@ export default {
 
 .btn-to-top {
   position: fixed;
-  z-index: 1000;
+  z-index: 99;
   cursor: pointer;
   width: 3rem;
   height: 3rem;
