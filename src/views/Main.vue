@@ -1,13 +1,13 @@
 <template>
   <div>
     <header-component :user="user" :hide="hide"></header-component>
-    <main style="padding-top: 80px">
+    <main>
       <sidemenu></sidemenu>
-      <div class="main_content">
+      <div class="main_content container-fluid">
         <router-view></router-view>
       </div>
       <back-to-top @hide="hideSearch"></back-to-top>
-    </main>    
+    </main> 
   </div>
 </template>
 <script>
@@ -31,10 +31,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main_content {
-  margin: 0 6rem;
-  @media screen and (max-width: 768px) {
-    margin: 0 1rem 0 4.5rem;
+main {
+  padding-top: 5rem;
+  @media screen and (max-width: 576px) {
+    padding: 5rem 0;
+  }
+  .main_content {
+    padding-left: 6rem;
+    @media screen and (max-width: 768px) {
+      padding-left: 4.5rem;
+    }
+    @media screen and (max-width: 576px) {
+      padding: 0 1rem;
+    }
   }
 }
 </style>

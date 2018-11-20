@@ -25,7 +25,7 @@ export default {}
 .side-menu {
   background: $color-grey-light;
   position: fixed;
-  top: 3.5rem;
+  top: 3rem;
   width: 3.5rem;
   height: 100%;
   overflow: hidden;
@@ -36,9 +36,13 @@ export default {}
     width: 13rem;
     overflow: visible;
     box-shadow: 3px 3px 10px -2px rgba(20%, 20%, 40%, 0.5);
+    @media screen and (max-width: $break-small) {
+      display: block;
+      width: 100%;
+    }
   }
   @media screen and (max-width: $break-small) {
-    top: 3.5rem;
+    display: none;
   }
   li {
     display: block;

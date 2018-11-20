@@ -30,6 +30,18 @@ export default {
   data() {
     return {}
   },
+  watch: {
+    schema: {
+      handler: function() {
+        if (!this.schema.attrs.values) {
+          if (this.schema.items.enum) {
+            this.schema.attrs.values = this.schema.items.enum
+          }
+        }
+      },
+      deep: true
+    }
+  },  
   created: function() {
     if (!this.schema.attrs.values) {
       if (this.schema.items.enum) {

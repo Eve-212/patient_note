@@ -1,14 +1,14 @@
 <template>
-  <div class="section-nav">
-    <ul v-scroll-spy-active="{class: 'customActive'}" class="list-group">
+  <nav class="section-nav" v-scroll-watch>
+    <ul class="list-group">
       <li 
         v-for="(item, key) in schema.properties.content.properties"
         :key="key"
         class="list-group-item">
-        <a href="#" v-scroll-to="`#${anchorIdFormat(item)}`">{{ item.title }}</a>
+         <a v-scroll-to href="#" :scroll="`#${anchorIdFormat(item)}`">{{ item.title }}</a>
       </li>
     </ul>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -30,6 +30,7 @@ ul {
 li {
   border: none;
   padding: 0.125rem 1.5rem;
+  list-style-type: none;
 }
 li a {
   color: #99979c;
@@ -42,14 +43,14 @@ li a {
   overflow-y: scroll;
 }
 .customActive {
-  color: #17a2b8; 
+  color: #17a2b8;
   border-left: 1px solid #17a2b8;
   padding-left: 5px;
   transition: all 0.1s;
 }
 
 .customActive a {
-  color: #17a2b8; 
+  color: #17a2b8;
   font-weight: bold;
 }
 </style>

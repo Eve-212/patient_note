@@ -7,13 +7,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios'
 import OneAPI from './lib/oneapi'
 import { store } from './store/store.js'
-import VueScrollTo from 'vue-scrollto'
 // import 'vue-orgchart/dist/style.min.css'
+import { VueScrollTo, VueScrollWatch } from './lib/scroll'
 
-
-import Scrollspy from 'vue2-scrollspy';
-// use default options
-Vue.use(Scrollspy);
 
 
 Vue.directive('focus', {
@@ -22,19 +18,21 @@ Vue.directive('focus', {
   }
 })
 
+Vue.directive('scroll-to', {
+  inserted: function (el) {
+    VueScrollTo(el, 500, 79)
+    //el, duration, offset
+  }
+})
 
-Vue.use(VueScrollTo, {
-  container: 'body',
-  duration: 500,
-  easing: 'ease',
-  offset: -60,
-  force: true,
-  cancelable: true,
-  onStart: false,
-  onDone: false,
-  onCancel: false,
-  x: false,
-  y: true
+Vue.directive('scroll-watch', {
+  bind: function (el) {
+    VueScrollWatch(el)
+  },
+  unbind: function(el) {
+    VueScrollWatch(el)
+  }
+
 })
 
 Vue.prototype.$http = axios

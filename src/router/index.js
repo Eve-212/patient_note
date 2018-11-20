@@ -4,6 +4,7 @@ import MainLayout from '@/views/Main'
 import SignIn from '@/views/SignIn'
 import EditNote from '@/components/utility/EditNote'
 import DashBoard from '@/components/utility/DashBoard'
+import SearchResult from '@/components/utility/SearchResult'
 
 Vue.use(Router)
 
@@ -20,15 +21,21 @@ export default new Router({
       component: MainLayout,
       children: [
         {
+          path: '/DashBoard',
+          name: 'dashBoard',
+          component: DashBoard
+        },
+        {
           path: '/edit/:fee_no?',
           name: 'edit',
           props: true,
           component: EditNote
         },
         {
-          path: '/DashBoard',
-          name: 'dashBoard',
-          component: DashBoard
+          path: '/search/:dept_id?',
+          name: 'search',
+          props: true,
+          component: SearchResult
         }
       ]
     }

@@ -34,5 +34,9 @@ const OneAPI = function ($cfg) {
   }
 
   return api;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7c17c693dc1c4770bf9cbd828c781fbbb68c80d3
 }
 export default OneAPI

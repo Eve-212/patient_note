@@ -26,6 +26,18 @@ import Proto from '@/components/mixins/Proto.js'
 export default {
   name: 'bsRadioInput',
   mixins: [Proto],
+  watch: {
+    schema: {
+      handler: function() {
+        if (!this.schema.attrs.values) {
+          if (this.schema.type == 'boolean') {
+            this.schema.attrs.values = ['Yes', 'No']
+          }
+        }
+      },
+      deep: true
+    }
+  },  
   created() {
     if (!this.schema.attrs.values) {
       if (this.schema.type == 'boolean') {
