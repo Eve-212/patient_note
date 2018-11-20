@@ -32,7 +32,7 @@ export default new Router({
           component: EditNote
         },
         {
-          path: '/search/:id?',
+          path: '/search/:dept_id?',
           name: 'search',
           props: true,
           component: SearchResult

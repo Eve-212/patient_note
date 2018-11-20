@@ -11,7 +11,7 @@
         </input>
       </fieldset>
       <div class="text-danger">{{message}}</div>
-      <button class="btn btn-block btn-info" type="button" v-on:click="signIn()">Sign In</button>
+      <button class="btn btn-block" type="button" v-on:click="signIn()">Sign In</button>
     </form>
   </div>
 </template>
@@ -90,6 +90,7 @@ export default {
   }
   button {
     color: $color-white;
+    background: $color-primary;
     height: 2.5rem;
     margin: 1rem 0;
   }

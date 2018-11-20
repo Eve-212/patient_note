@@ -3,7 +3,7 @@
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
       <div class="col-md-10">
         <div class="row">
-        <div v-if="showAlert" class="col-md-12 alert alert-danger">
+        <div v-if="showAlert" class="my-sm-3 mt-5 col-md-12 alert alert-danger">
           <strong>
             是否加入您的病人清單?
           </strong>

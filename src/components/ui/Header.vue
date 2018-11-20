@@ -1,7 +1,7 @@
 <template>
   <div>
     <header class="header fixed-top d-flex justify-content-between align-items-center">
-      <div class="header_left d-flex">
+      <div class="d-flex">
         <!-- Hamburger menu -->
         <div class="header_handler-box" v-on:click="toggleSideMenu()">
           <i class="fa fa-bars"></i>
@@ -11,25 +11,20 @@
           <img class="header_logo-box-logo mr-1" src="@/assets/img/logo-sm.png">病摘
         </router-link>
       </div>
-      <div class="header_right d-flex align-items-center">
-        <form class="header_search-box" :class="{hideSearch:hide}">
-          <input id="pt" type="radio" value="pt" name="searchKey" v-model="searchKey">
+      <div class="d-flex align-items-center">
+        <span class="header_radio-box mr-2" :class="{hideSearch:hide}">
+          <input id="pt" type="radio" value="pt" name="searchKey" v-model="searchKey" checked>
           <label for="pt">by Patient</label>
           <input id="dept" type="radio" value="dept" name="searchKey" v-model="searchKey">
-          <label for="dept">by Dept</label>
-          <input 
-            type="text" 
-            v-model="no" 
-            v-focus
-            placeholder="病歷號/床號/ 身分證">
-          <button 
-            type="submit"  
-            @keyup.enter.prevent="load" 
-            @click.prevent="load">
+          <label for="dept">by Dept.</label>
+        </span>
+        <form class="header_search-box" :class="{hideSearch:hide}">
+          <input v-focus type="text" v-model="no" :placeholder="holder">
+          <button type="submit" @keyup.enter.prevent="load" @click.prevent="load">
             <i class="fa fa-search"></i>
           </button>
         </form>
-        <div class="header_user text-muted">Hi, {{ this.$store.state.user.name }}</div>
+        <div class="header_user">Hi, {{ this.$store.state.user.name }}</div>
         <!-- Badge and reminder -->
         <div class="header_badge-box d-flex align-items-center">
           <div
@@ -77,9 +72,19 @@ export default {
     return {
       showReminder: false,
       no: '',
+      holder: '病歷號/ 床號/ 身分證',
       searchKey: 'pt',
       modalShow: false,
       modalMessage: ''
+    }
+  },
+  watch: {
+    searchKey() {
+      if (this.searchKey === 'pt') {
+        this.holder = '病歷號/ 床號/ 身分證'
+      } else {
+        this.holder = '科別代號'
+      }
     }
   },
   methods: {
@@ -108,6 +113,7 @@ export default {
                   name: 'edit',
                   params: { fee_no: $sess.fee_no }
                 })
+                this.resetSearch()
               }
             })
             .catch(error => {
@@ -116,17 +122,23 @@ export default {
                 this.modalShow = true
                 this.modalMessage = `Patient with Id ${this.no} does not exist`
               }
+              this.resetSearch()
             })
         } else {
           this.$router.push({
             name: 'search',
-            params: { id: this.no }
+            params: { dept_id: this.no }
           })
+          this.resetSearch()
         }
       } else {
         this.modalShow = true
         this.modalMessage = `Please enter your search keyword`
       }
+    },
+    resetSearch() {
+      this.searchKey = 'pt'
+      this.no = ''
     }
   }
 }
@@ -136,12 +148,12 @@ export default {
 @import '@/assets/sass/main.scss';
 
 .header {
-  padding: 0 0 0 0.9rem;
+  padding-left: 0.9rem;
   background-color: $color-grey-light;
   color: $color-black;
   font-size: $default-font-size;
-  a {
-    color: $color-black;
+  @media screen and (max-width: $break-small) {
+    z-index: 100;
   }
   &_handler-box {
     border-radius: 50%;
@@ -158,13 +170,60 @@ export default {
   }
   &_logo-box {
     text-decoration: none;
+    color: $color-black;
     &-logo {
       width: 1.2rem;
+    }
+  }
+  &_radio-box {
+    input {
+      opacity: 0;
+      position: absolute;
+      &:checked + label:before {
+        background: $color-primary;
+        border: 1px solid $color-primary;
+        box-shadow: inset 0px 0px 0px 3px #fff;
+      }
+    }
+    label {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 5px;
+      cursor: pointer;
+      &:before {
+        content: '';
+        background: #fff;
+        border: 2px solid #ccc;
+        display: inline-block;
+        vertical-align: middle;
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+        text-align: center;
+        border-radius: 50%;
+      }
+    }
+    @media screen and (max-width: $break-small) {
+      background: $color-white;
+      position: absolute;
+      right: 0;
+      top: 3rem;
+      left: 0;
+      box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
+      font-size: 12px;
+      &.hideSearch {
+        display: none;
+      }
     }
   }
   &_search-box {
     box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
     @media screen and (max-width: $break-small) {
+      position: absolute;
+      right: 0;
+      top: 3rem;
+      box-shadow: none;
       // hide search function in small device when scroll down
       &.hideSearch {
         display: none;
@@ -175,17 +234,7 @@ export default {
       border: none;
       padding: 0.3rem 0.8rem;
       @media screen and (max-width: $break-small) {
-        padding: 0.3rem 0.5rem;
-      }
-    }
-    button {
-      @media screen and (max-width: $break-small) {
-        padding-left: 0;
-      }
-    }
-    input {
-      @media screen and (max-width: $break-small) {
-        padding-right: 0;
+        padding: 0.2rem 0.5rem;
       }
     }
     button {
@@ -194,10 +243,10 @@ export default {
       border-left: none;
       background: $color-white;
     }
-    @media screen and (max-width: $break-small) {
-      position: absolute;
-      right: 0;
-      top: 3.5rem;
+    input {
+      @media screen and (max-width: $break-small) {
+        border-left: 1px solid rgba($color-black, 0.1);
+      }
     }
   }
   &_user {
@@ -216,7 +265,7 @@ export default {
       }
       cursor: pointer;
       width: 2.5rem;
-      height: 3.5rem;
+      height: 3rem;
       span {
         padding: 0.2rem;
       }
@@ -225,7 +274,7 @@ export default {
       display: none;
       position: absolute;
       right: 0;
-      top: 3.5rem;
+      top: 3rem;
       width: 11rem;
       background-color: $color-grey-light;
       padding: 0 2rem;
@@ -244,21 +293,17 @@ export default {
         border-bottom: 1px solid lighten($color-grey-dark, 15%);
         padding: 0.5rem 0;
         margin: 0.5rem 0;
-        opacity: 0.6;
+        text-decoration: none;
+        color: $color-black;
         &:hover {
-          text-decoration: none;
-          opacity: 1;
+          border-color: $color-black;
         }
-      }
-      @media screen and (max-width: $break-large) {
-        padding: 0 1.5rem;
-        width: 11.5rem;
       }
     }
   }
   &_logout-box {
     width: 2.5rem;
-    height: 3.5rem;
+    height: 3rem;
   }
 }
 </style>
