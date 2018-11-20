@@ -94,7 +94,6 @@
                 "bsColSize": 4
               }
             },
-
             "admit_time": {
               "title": "Time of Admission",
               "format": "date-time",
@@ -106,7 +105,7 @@
               }
             },
             "evaluate_time": {
-              "title": "Time of History-taking",
+              "title": "Time of Evaluation",
               "format": "date-time",
               "type": "string",
               "attrs": {
@@ -147,7 +146,7 @@
           "title": "Present Illness",
           "type": "string",
           "attrs": {
-            "inputGroup": true
+            
           }
         },
         "travel_contact": {
@@ -226,145 +225,9 @@
                   "type": "boolean"
                 }
               }
-            },
-            "alcohol": {
-              "title": "Alcohol drinking",
-              "type": "object",
-              "attrs": {
-                "styleClass": ["subsection-title"],
-                "rowGroup": true
-              },
-              "properties": {
-                "used": {
-                  "title": "Used：",
-                  "type": "boolean",
-                  "attrs": {
-                    "bsColSize": 12
-                  }
-                },
-                "quitted": {
-                  "title": "Quit use：",
-                  "type": "boolean",
-                  "attrs": {
-                    "bsColSize": 12
-                  }
-                },
-                "vol_per_day": {
-                  "title": "Volumn(ml) per day",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 6
-                  }
-                },
-                "duration": {
-                  "title": "for years",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 6
-                  }
-                }
-              }
-            },
-            "betel_nut": {
-              "type": "object",
-              "title": "Betel Nuts",
-              "attrs": {
-                "styleClass": ["subsection-title"],
-                "rowGroup": true
-              },
-              "properties": {
-                "used": {
-                  "title": "Used：",
-                  "type": "boolean",
-                  "attrs": {
-                    "bsColSize": 12
-                  }
-                },
-                "quitted": {
-                  "title": "Quit use：",
-                  "type": "boolean",
-                  "attrs": {
-                    "bsColSize": 12
-                  }
-                },
-                "num_per_day": {
-                  "title": "Number per day",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 5
-                  }
-                },
-                "duration": {
-                  "title": "for years",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 5
-                  }
-                }
-              }
-            }
-          }
-        },
-        "allergy": {
-          "title": "Allergy",
-          "type": "object",
-          "properties": {
-            "list": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "generic": {
-                    "title": "Gerneric name",
-                    "type": "string"
-                  },
-                  "product": {
-                    "title": "Gerneric name",
-                    "type": "string"
-                  }
-                },
-                "adr": {
-                  "title": "ADR",
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "note": {
-            "title": "Note",
-            "type": "string"
-          }
-        },
-
-        "family_hx": {
-          "title": "Family History",
-          "type": "object",
-          "properties": {
-            "familytree": {
-              "type": "string",
-              "attrs": {
-                "fieldType": "familytree"
-              }
-            }
-          }
-        },
-        "past_hx": {
-          "title": "Past History",
-          "type": "object",
-          "properties": {
-            "note": {
-              "title": "Note",
-              "type": "string",
-              "attrs": {
-                "inputGroup": true
-              }
-            }
-          }
-        },
+            }                       
+          }                       
+        },             
         "review_of_sys": {
           "title": "Review of the System",
           "type": "object",
@@ -583,7 +446,7 @@
             }
           }
         },
-        "psyco": {
+        "psycho": {
           "title": "Psychological Evaluation",
           "type": "string",
           "attrs": {
@@ -598,108 +461,7 @@
               "Other"
             ]
           }
-        },
-        "nutrition": {
-          "title": "Nutritional Evaluation",
-          "type": "object",
-          "attrs": {
-            "rowGroup": true
-          },
-          "properties": {
-            "higth": {
-              "title": "Height(cm)",
-              "type": "number",
-              "attrs": {
-                "inputGroup": true,
-                "bsColSize": 4
-              }
-            },
-            "weight": {
-              "title": "Weight(kg)",
-              "type": "number",
-              "attrs": {
-                "inputGroup": true,
-                "bsColSize": 4
-              }
-            },
-            "bmi": {
-              "title": "Body Mass Index(BMI)",
-              "type": "number",
-              "attrs": {
-                "inputGroup": true,
-                "bsColSize": 4
-              }
-            },
-            "must": {
-              "title": "MUST",
-              "description": "Malnutrition Universal Screening Tool",
-              "type": "object",
-              "attrs": {
-                "styleClass": ["subsection-title"],
-                "rowGroup": true
-              },
-              "properties": {
-                "bmi": {
-                  "title": "BMI",
-                  "type": "number",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 6
-                  }
-                },
-                "bmi_score": {
-                  "title": "BMI Score",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 6
-                  }
-                },
-                "weight_loss": {
-                  "title": "Weight loss",
-                  "description": "Unplanned in 3-6 months",
-                  "type": "number",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 6
-                  }
-                },
-                "weight_loss_score": {
-                  "title": "Weight loss score",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 6
-                  }
-                },
-                "acute_effect": {
-                  "title": "Acutely illness because of poor intake：",
-                  "type": "boolean",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 6
-                  }
-                },
-                "acute_effect_score": {
-                  "title": "Acute disease effect score",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 6
-                  }
-                },
-                "score": {
-                  "title": "Total score",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 6
-                  }
-                }
-              }
-            }
-          }
-        },
+        },        
         "functional_assess": {
           "title": "Functional Assessment",
           "description": "Katz Index of Independence in Activities of Daily Living",
@@ -737,243 +499,7 @@
               "type": "integer"
             }
           }
-        },
-        "pe": {
-          "title": "Physical Examination",
-          "type": "object",
-          "properties": {
-            "looking": {
-              "title": "General looking",
-              "type": "string",
-              "attrs": {
-                "inputGroup": true
-              }
-            },
-            "vitals": {
-              "title": "Vital signs",
-              "type": "object",
-              "attrs": {
-                "styleClass": ["subsection-title"],
-                "rowGroup": true
-              },
-              "properties": {
-                "bt": {
-                  "title": "BT(℃)",
-                  "type": "number",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 3
-                  }
-                },
-                "sbp": {
-                  "title": "SBP(mmHg)",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 3
-                  }
-                },
-                "dbp": {
-                  "title": "DBP(mmHg)",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 3
-                  }
-                },
-                "pr": {
-                  "title": "PR(/min)",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 3
-                  }
-                },
-                "rr": {
-                  "title": "RR(/min)",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 3
-                  }
-                },
-                "pain": {
-                  "title": "Pain score",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 3
-                  }
-                }
-              }
-            },
-            "conscious": {
-              "title": "Consciousness",
-              "type": "string",
-              "attrs": {
-                "inputGroup": true
-              }
-            },
-            "GCS": {
-              "title": "Glasgow Coma Scale",
-              "type": "object",
-              "attrs": {
-                "styleClass": ["subsection-title"],
-                "rowGroup": true
-              },
-              "properties": {
-                "e": {
-                  "title": "E",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 3
-                  }
-                },
-                "v": {
-                  "title": "V",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 3
-                  }
-                },
-                "m": {
-                  "title": "M",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 3
-                  }
-                },
-                "score": {
-                  "title": "Score",
-                  "type": "integer",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 3
-                  }
-                }
-              }
-            },
-            "skin": {
-              "title": "Skin",
-              "type": "object",
-              "attrs": {
-                "styleClass": ["subsection-title"]
-              },
-              "properties": {
-                "intact": {
-                  "title": "Intact：",
-                  "type": "boolean"
-                },
-                "turgor": {
-                  "title": "Turgor：",
-                  "type": "boolean"
-                },
-                "cynosis": {
-                  "title": "Cyanosis：",
-                  "type": "boolean"
-                },
-                "jaundice": {
-                  "title": "Jaundice：",
-                  "type": "boolean"
-                },
-                "petechia": {
-                  "title": "Petechia：",
-                  "type": "boolean"
-                }
-              }
-            },
-            "heent": {
-              "title": "HEENT",
-              "type": "object",
-              "attrs": {
-                "styleClass": ["subsection-title"]
-              },
-              "properties": {
-                "conjuntivae": {
-                  "title": "Conjunctivae",
-                  "type": "string",
-                  "attrs": {
-                    "inputGroup": true
-                  }
-                },
-                "sclera": {
-                  "title": "Sclera",
-                  "type": "string",
-                  "attrs": {
-                    "inputGroup": true
-                  }
-                },
-                "throat": {
-                  "title": "Throat",
-                  "type": "string",
-                  "attrs": {
-                    "inputGroup": true
-                  }
-                }
-              }
-            }
-          }
-        },
-        "lab": {
-          "title": "Lab finding",
-          "type": "object",
-          "properties": {
-            "data": {
-              "title": "Blood",
-              "type": "object",
-              "attrs": {
-                "styleClass": ["subsection-title"]
-              },
-              "properties": {
-                "blood": {
-                  "title": "Blood",
-                  "type": "number",
-                  "attrs": {
-                    "fieldType": "labtable"
-                  }
-                }
-              }
-            },
-            "note": {
-              "title": "Note",
-              "type": "string",
-              "attrs": {
-                "inputGroup": true
-              }
-            }
-          }
-        },
-        "image": {
-          "title": "Image finding",
-          "type": "string",
-          "attrs": {
-            "inputGroup": true
-          }
-        },
-        "ecg": {
-          "title": "ECG finding",
-          "type": "string",
-          "attrs": {
-            "inputGroup": true
-          }
-        },
-        "impression": {
-          "title": "Impressions",
-          "type": "string",
-          "attrs": {
-            "inputGroup": true
-          }
-        },
-        "plan": {
-          "title": "Plan (Management)",
-          "type": "string",
-          "attrs": {
-            "inputGroup": true
-          }
-        }
+        }                                                              
       }
     }
   },

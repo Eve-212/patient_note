@@ -3,54 +3,52 @@
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
       <div class="col-md-10">
         <div class="row">
-        <div v-if="showAlert" class="my-sm-3 mt-5 col-md-12 alert alert-danger">
-          <strong>
-            是否加入您的病人清單?
-          </strong>
-          <div>
-            <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="yes">Yes</button>
-            <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
-            <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="showLater">Ask me later</button>
-          </div>
-        </div>
-        <div class="col-md-12 alert alert-primary">
-          <ul>
-            <li>
-              <strong>Applied form：</strong>
-              <span>&#35;一般</span>
-              <span>&#35;急性心肌梗塞</span>
-              <span>&#35;一般</span>
-              <span>&#35;急性心肌梗塞</span>
-              <span>&#35;一般</span>
-              <span>&#35;急性心肌梗塞</span>
-              <span>&#35;一般</span>
-              <span>&#35;急性心肌梗塞</span>
-            </li>
-            <li>
-              <strong>Available form：</strong>
-              <span>&#35;一般</span>
-              <span>&#35;急性心肌梗塞</span>
-              <span>&#35;一般</span>
-              <span>&#35;急性心肌梗塞</span>
-              <span>&#35;一般</span>
-              <span>&#35;急性心肌梗塞</span>
-              <span>&#35;一般</span>
-              <span>&#35;急性心肌梗塞</span>
-            </li>
-          </ul>
-        </div>
+          <div class="alert-container col-md-12">
+            <div v-if="showAlert" class="alert alert-danger float-none mr-2">
+              <strong>
+                是否加入您的病人清單?
+              </strong>
+              <div>
+                <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="yes">Yes</button>
+                <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
+                <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="showLater">Ask me later</button>
+              </div>
+            </div>
 
-        <JSchemaObject 
-          class="col-md-12"   
-          v-model="data" 
-          :schema="noteSchema.properties.content">
-        </JSchemaObject>
-      </div>  
+            <div class="alert alert-primary">
+              <ul>
+                <li>
+                  <strong>Applied form schemas：</strong>
+                  <button class="btn btn-sm btn-warning" @click="resetSchema">reset</button>
+                  <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != noteSchema.tag" @click="removeSchema($event, tag)">
+                    <div>&#35;{{ tag }}</div>
+                  </span>                
+                </li>
+                <li>
+                  <strong>Available form schemas：</strong>
+                  <span v-for="schema in availableSchemas" :key="schema.tag" v-if="schema.tag != noteSchema.tag" @click="addSchema($event, schema.tag)">
+                    <div>&#35;{{ schema.tag }}</div>
+                  </span>                
+                </li>
+              </ul>
+            </div>
+
+
+          </div>
+          
+          
+
+          <JSchemaObject 
+            class="col-md-12"   
+            v-model="data" 
+            :schema="currentSchema.properties.content">
+          </JSchemaObject>
+        </div>  
       </div>
       
       <SectionNav 
         class="col-md-2 d-none d-md-block mb-5" 
-        :schema="noteSchema">
+        :schema="currentSchema">
       </SectionNav>
     </div>
   </div>
@@ -59,6 +57,9 @@
 <script>
 import SectionNav from '@/components/ui/SectionNav.vue'
 import JSchemaObject from '@/components/form/JSchemaObject'
+import mergeWith from 'lodash/mergeWith'
+import isArray from 'lodash/isArray'
+import cloneDeep from 'lodash/cloneDeep'
 
 export default {
   name: 'EditNote',
@@ -70,14 +71,42 @@ export default {
   data() {
     return {
       showAlert: true,
-      noteSchema: null,
+      noteSchema: {},
       data: {},
       meta: {},
       sess: null,
-      isLoaded: false
+      isLoaded: false,
+      appliedSchemas: [],
+      availableSchemas: [],
+      currentSchema: {}
     }
   },
   methods: {
+    resetSchema() {
+      this.appliedSchemas = [this.noteSchema.tag]
+    },
+    // update schema when a tag is clicked
+    // https://stackoverflow.com/questions/49079170/how-to-get-values-of-an-item-in-the-loop-in-vue
+    addSchema(event, tag) {
+      if (!this.appliedSchemas.includes(tag)) {
+        this.appliedSchemas.push(tag) // adds to list
+      }
+    },
+    removeSchema(event, tag) {
+      if (this.appliedSchemas.includes(tag)) {
+        this.appliedSchemas = this.appliedSchemas.filter(item => item != tag)
+      }
+    },
+    // updateSchema(event, tag) {
+    //   if (this.appliedSchemas.includes(tag)) {
+    //     // removes from list
+    //     this.appliedSchemas = this.appliedSchemas.filter(
+    //       item => item != tag
+    //     )
+    //   } else {
+    //     this.appliedSchemas.push(tag) // adds to list
+    //   }
+    // },
     // package structure of patient data so that it fits our schema
     prepare_data($schema, $data) {
       //let $tmps=$sch;
@@ -142,7 +171,7 @@ export default {
       if (($id = this.sess.admission.id)) {
         // true if this.session.admission.id exists / else false
         this.$wf.note.get({ id: $id }).then($raw => {
-          this.prepare_data(this.noteSchema, $raw.data)
+          this.prepare_data(this.currentSchema, $raw.data)
           this.data = $raw.data.content
           this.meta = $raw.data
           this.isLoaded = true
@@ -152,7 +181,7 @@ export default {
         let $ipd = this.sess.ipd
         this.meta = {
           type: 'admission',
-          sch_ver: this.noteSchema.ver,
+          sch_ver: this.currentSchema.ver ? this.currentSchema.ver : null,
           rev: 0
         }
         // init $data as object containing empty profile object
@@ -165,7 +194,7 @@ export default {
         $data.admit_dept = $ipd.dept_id
         $data.admit_time = $ipd.start
 
-        this.prepare_data(this.noteSchema.properties.content, $data)
+        this.prepare_data(this.currentSchema.properties.content, $data)
 
         this.data = $data
         // Form will not load unless isLoaded is true
@@ -180,14 +209,35 @@ export default {
     }
   },
   created: function() {
-    this.noteSchema = {}
-
     this.$wf.note.schema({ type: 'admission' }).then($raw => {
-      this.$set(
-        this.$data,
-        'noteSchema',
-        require('../../../static/fake_data/sch.note.adm2.json')
+      this.noteSchema = require('../../../static/fake_data/simple_base.json')
+      // this.$set(
+      //   this.$data,
+      //   'noteSchema',
+      //   // require('../../../static/fake_data/sch.note.adm2.json')
+      //   require('../../../static/fake_data/simple_base.json')
+      // )
+
+      // multiple async requests at once: https://stackoverflow.com/questions/50540079/axios-make-multiple-request-at-once-vue-js
+      // make api requests to get all available schemas
+      // determine available schemas using department of logged in user
+
+      this.availableSchemas.push(
+        require('../../../static/fake_data/simple_base.json')
       )
+      this.availableSchemas.push(
+        require('../../../static/fake_data/cardio_schema.json')
+      )
+      this.availableSchemas.push(
+        require('../../../static/fake_data/er_schema.json')
+      )
+
+      // TODO
+      // apply name of base schema to appliedSchemas
+      // add base schema to availableSchemas
+      this.appliedSchemas.push(this.noteSchema.tag)
+
+      this.$set(this.$data, 'currentSchema', cloneDeep(this.noteSchema))
 
       this.init()
     })
@@ -195,6 +245,67 @@ export default {
   watch: {
     fee_no() {
       this.init()
+    },
+    // appliedSchemas() {
+
+    //   console.log("app schemas")
+
+    //   function customizer(objValue, srcValue) {
+    //     if (isArray(objValue)) {
+    //       // use Set to ensure uniqueness
+    //       return new Set(objValue.concat(srcValue))
+    //     }
+    //   }
+    //   this.$set(this.$data, 'currentSchema', mergeWith(
+    //     {},
+    //     ...this.availableSchemas.filter((sch) => {
+    //       this.appliedSchemas.includes(sch.tag)
+    //     }),
+    //     customizer
+    //   ))
+    // }
+    appliedSchemas: {
+      handler: function() {
+        console.log('APPLIED SCHEMAS WATCH')
+
+        function customizer(objValue, srcValue) {
+          if (isArray(objValue)) {
+            // use Set to ensure uniqueness
+            return [...new Set(objValue.concat(srcValue))]
+          }
+        }
+
+        this.$set(
+          this.$data,
+          'currentSchema',
+          mergeWith(
+            {},
+            ...this.availableSchemas.filter(sch =>
+              this.appliedSchemas.includes(sch.tag)
+            ),
+            customizer
+          )
+        )
+
+        console.log(this.currentSchema)
+
+        // this.currentSchema = mergeWith(
+        //   {},
+        //   ...this.availableSchemas.filter( sch =>
+        //     this.appliedSchemas.includes(sch.tag)
+        //   ),
+        //   customizer
+        // )
+
+        // this.$set(this.$data, 'currentSchema', mergeWith(
+        //   {},
+        //   ...this.availableSchemas.filter((sch) => {
+        //     this.appliedSchemas.includes(sch.tag)
+        //   }),
+        //   customizer
+        // ))
+      },
+      deep: true
     }
   }
 }
@@ -209,6 +320,7 @@ export default {
   justify-content: space-between;
   width: 100%;
   padding: 8px 15px;
+  margin: 0 auto 1rem;
   &-primary {
     ul {
       list-style: none;

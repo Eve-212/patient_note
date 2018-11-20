@@ -50,6 +50,18 @@ export default {
       }
     }
   },
+  watch: {
+    schema: {
+      handler: function() {
+        if (!this.schema.attrs.values) {
+          if (this.schema.items.enum) {
+            this.schema.attrs.values = this.schema.items.enum
+          }
+        }
+      },
+      deep: true
+    }
+  },  
   computed: {
     checklistOptions() {
       // if (this.value[this.currentKey]) {

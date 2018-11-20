@@ -37,7 +37,7 @@ main {
     padding: 5rem 0;
   }
   .main_content {
-    padding-left: 6rem;
+    padding-left: 5rem;
     @media screen and (max-width: 768px) {
       padding-left: 4.5rem;
     }
