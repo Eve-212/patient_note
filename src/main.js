@@ -8,7 +8,8 @@ import axios from 'axios'
 import OneAPI from './lib/oneapi'
 import { store } from './store/store.js'
 // import 'vue-orgchart/dist/style.min.css'
-import VueScrollTo from './lib/scroll'
+import { VueScrollTo, VueScrollWatch } from './lib/scroll'
+
 
 
 
@@ -20,9 +21,19 @@ Vue.directive('focus', {
 
 Vue.directive('scroll-to', {
   inserted: function (el) {
-    VueScrollTo(el, 500, 80)
+    VueScrollTo(el, 500, 79)
     //el, duration, offset
   }
+})
+
+Vue.directive('scroll-watch', {
+  bind: function (el) {
+    VueScrollWatch(el)
+  },
+  unbind: function(el) {
+    VueScrollWatch(el)
+  }
+
 })
 
 Vue.prototype.$http = axios

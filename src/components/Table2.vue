@@ -34,7 +34,6 @@
             </tr>
           </tbody>
         </table>
-        <timePicker v-if="this.$route.params.type == 'compeleted'"></timePicker>
       </div>
     </div>
     <ul class="paginate">
@@ -45,11 +44,7 @@
   </div>
 </template>
 <script>
-import TimePicker from './ui/TimePicker'
 export default {
-  components: {
-    TimePicker
-  },
   data() {
     return {
       items: {

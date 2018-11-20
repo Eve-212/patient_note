@@ -1,6 +1,5 @@
 <template>
-  <div>        
-    {{ data }}   
+  <div class="container-fluid">
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
       <div class="col-md-10">
         <div class="row">
@@ -202,7 +201,6 @@ export default {
     }*/,
     closeAlert() {
       this.showAlert = false
-      console.log(event.target.value)
     }
   },
   created: function() {    
@@ -303,7 +301,7 @@ export default {
 <style lang="scss">
 @import '@/assets/sass/main.scss';
 .alert {
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -317,11 +315,9 @@ export default {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        padding: 8px 0;
-        &:first-child {
-          border-bottom: 1px solid #004085;
-        }
+        padding: 3px 0;
         span {
+          letter-spacing: 0.05rem;
           margin-top: 5px;
           cursor: pointer;
           padding: 0 0.3rem;

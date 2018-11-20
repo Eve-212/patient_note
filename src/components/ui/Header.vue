@@ -13,6 +13,10 @@
       </div>
       <div class="header_right d-flex align-items-center">
         <form class="header_search-box" :class="{hideSearch:hide}">
+          <input id="pt" type="radio" value="pt" name="searchKey" v-model="searchKey">
+          <label for="pt">by Patient</label>
+          <input id="dept" type="radio" value="dept" name="searchKey" v-model="searchKey">
+          <label for="dept">by Dept</label>
           <input 
             type="text" 
             v-model="no" 
@@ -73,7 +77,7 @@ export default {
     return {
       showReminder: false,
       no: '',
-      status: '',
+      searchKey: 'pt',
       modalShow: false,
       modalMessage: ''
     }
@@ -94,25 +98,34 @@ export default {
     },
     load() {
       if (this.no) {
-        this.status = ''
-        this.$wf.note
-          .sess({ no: this.no })
-          .then($raw => {
-            let $sess = $raw.data
-            if ($sess.fee_no) {
-              this.$router.push({
-                name: 'edit',
-                params: { fee_no: $sess.fee_no }
-              })
-            }
+        if (this.searchKey == 'pt') {
+          this.$wf.note
+            .sess({ no: this.no })
+            .then($raw => {
+              let $sess = $raw.data
+              if ($sess.fee_no) {
+                this.$router.push({
+                  name: 'edit',
+                  params: { fee_no: $sess.fee_no }
+                })
+              }
+            })
+            .catch(error => {
+              let error_code = error.response.status
+              if (error_code == 412) {
+                this.modalShow = true
+                this.modalMessage = `Patient with Id ${this.no} does not exist`
+              }
+            })
+        } else {
+          this.$router.push({
+            name: 'search',
+            params: { id: this.no }
           })
-          .catch(error => {
-            let error_code = error.response.status
-            if (error_code == 412) {
-              this.modalShow = true
-              this.modalMessage = `Patient with Id ${this.no} does not exist`
-            }
-          })
+        }
+      } else {
+        this.modalShow = true
+        this.modalMessage = `Please enter your search keyword`
       }
     }
   }
@@ -179,6 +192,7 @@ export default {
       color: $color-grey-dark;
       margin-left: -4px;
       border-left: none;
+      background: $color-white;
     }
     @media screen and (max-width: $break-small) {
       position: absolute;
@@ -212,7 +226,7 @@ export default {
       position: absolute;
       right: 0;
       top: 3.5rem;
-      width: 12rem;
+      width: 11rem;
       background-color: $color-grey-light;
       padding: 0 2rem;
       box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);

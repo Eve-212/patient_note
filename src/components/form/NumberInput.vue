@@ -3,7 +3,7 @@
   <div 
     :id="anchorIdFormat(schema)" 
     :class="[getStyleClass]">
-    <div v-if="schema.attrs.inputGroup">
+    <div v-if="inputGroup">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <div class="input-group-text" >{{ schema.title}}</div>
@@ -19,7 +19,7 @@
         <slot name="subTitle" :description="schema.description"></slot>      
       </div>
     </div>
-    <div class="form-group row" v-if="!schema.attrs.inputGroup">
+    <div class="form-group row" v-if="!inputGroup">
     
       <label 
         class="col-md-2 col-form-label"
