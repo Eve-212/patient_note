@@ -212,7 +212,7 @@ export default {
   created: function() {    
 
     this.$wf.note.schema({ type: 'admission' }).then($raw => {
-      this.noteSchema = require('../../../static/fake_data/simple_base.json')
+      this.noteSchema = require('../../../static/fake_data/sch.note.adm2.json')
       // this.$set(
       //   this.$data,
       //   'noteSchema',

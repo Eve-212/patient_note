@@ -9,9 +9,12 @@
           </div>
           <input 
             :id="getId()" 
-            type="date" 
+            type="date"
             :name="currentKey" 
-            v-model="val">
+            v-model="val"
+            :aria-describedby="helpText(schema)"
+            class="form-control">
+        <slot name="subTitle" :description="schema.description"></slot>
         </div>
       </div>
       <div class="form-group row" v-if="!inputGroup">
@@ -21,7 +24,7 @@
           {{ schema.title }}
         </label>
         <input 
-          id="getId()" 
+          :id="getId()" 
           type="date" 
           :name="currentKey"  
           v-model="val"
@@ -44,7 +47,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+input[type="date"] {
+  display:block;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  min-height: 1.2em;
+}
+  
 </style>
 
 
