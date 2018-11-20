@@ -216,8 +216,10 @@ export default {
       // make api requests to get all available schemas
       // determine available schemas using department of logged in user
 
+      // FIXME: use admit_dept of patient to determine which schemas should added to available schemas list
+
       this.availableSchemas.push(
-        require('../../../static/fake_data/sch.note.adm2.json')
+        require('../../../static/fake_data/simple_base.json')
       )
       this.availableSchemas.push(
         require('../../../static/fake_data/cardio_schema.json')
