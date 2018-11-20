@@ -95,11 +95,11 @@ export default {
 button {
   font-size: 14px;
   cursor: pointer;
-  border: 1px solid #1b77ce;
-  color: #1b77ce;
+  border: 1px solid #17a2b8;
+  color: #17a2b8;
   &.clicked {
     color: #fff;
-    background: #1b77ce;
+    background: #17a2b8;
   }
 }
 </style>

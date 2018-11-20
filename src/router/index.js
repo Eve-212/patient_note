@@ -4,7 +4,7 @@ import MainLayout from '@/views/Main'
 import SignIn from '@/views/SignIn'
 import EditNote from '@/components/utility/EditNote'
 import DashBoard from '@/components/utility/DashBoard'
-import SearchResult from '@/components/ui/SearchResult'
+import SearchResult from '@/components/utility/SearchResult'
 
 Vue.use(Router)
 
