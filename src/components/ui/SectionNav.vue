@@ -43,14 +43,14 @@ li a {
   overflow-y: scroll;
 }
 .customActive {
-  color: #1b77ce;
-  border-left: 1px solid #1b77ce;
+  color: #17a2b8;
+  border-left: 1px solid #17a2b8;
   padding-left: 5px;
   transition: all 0.1s;
 }
 
 .customActive a {
-  color: #1b77ce;
+  color: #17a2b8;
   font-weight: bold;
 }
 </style>

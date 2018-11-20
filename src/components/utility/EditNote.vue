@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
-      <div class="col-md-10">
+      <div class="col-md-10 my-sm-3 mt-4">
         <div class="row">
           <div class="alert-container col-md-12">
             <div v-if="showAlert" class="alert alert-danger float-none mr-2">
