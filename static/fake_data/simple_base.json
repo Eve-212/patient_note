@@ -146,7 +146,7 @@
           "title": "Present Illness",
           "type": "string",
           "attrs": {
-            "inputGroup": true
+            
           }
         },
         "travel_contact": {

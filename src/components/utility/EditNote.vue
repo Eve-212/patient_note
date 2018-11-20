@@ -3,33 +3,40 @@
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
       <div class="col-md-10">
         <div class="row">
-          <div v-if="showAlert" class="col-md-12 alert alert-danger">
-            <strong>
-              是否加入您的病人清單?
-            </strong>
-            <div>
-              <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="yes">Yes</button>
-              <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
-              <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="showLater">Ask me later</button>
+          <div class="alert-container col-md-12">
+            <div v-if="showAlert" class="alert alert-danger float-none mr-2">
+              <strong>
+                是否加入您的病人清單?
+              </strong>
+              <div>
+                <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="yes">Yes</button>
+                <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
+                <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="showLater">Ask me later</button>
+              </div>
             </div>
+
+            <div class="alert alert-primary">
+              <ul>
+                <li>
+                  <strong>Applied form schemas：</strong>
+                  <button class="btn btn-sm btn-warning" @click="resetSchema">reset</button>
+                  <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != noteSchema.tag" @click="removeSchema($event, tag)">
+                    <div>&#35;{{ tag }}</div>
+                  </span>                
+                </li>
+                <li>
+                  <strong>Available form schemas：</strong>
+                  <span v-for="schema in availableSchemas" :key="schema.tag" v-if="schema.tag != noteSchema.tag" @click="addSchema($event, schema.tag)">
+                    <div>&#35;{{ schema.tag }}</div>
+                  </span>                
+                </li>
+              </ul>
+            </div>
+
+
           </div>
-          <div class="col-md-12 alert alert-primary">
-            <ul>
-              <li>
-                <strong>Applied form schemas：</strong>
-                <button class="btn btn-sm btn-warning" @click="resetSchema">reset</button>
-                <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != noteSchema.tag" @click="removeSchema($event, tag)">
-                  <div>&#35;{{ tag }}</div>
-                </span>                
-              </li>
-              <li>
-                <strong>Available form schemas：</strong>
-                <span v-for="schema in availableSchemas" :key="schema.tag" v-if="schema.tag != noteSchema.tag" @click="addSchema($event, schema.tag)">
-                  <div>&#35;{{ schema.tag }}</div>
-                </span>                
-              </li>
-            </ul>
-          </div>
+          
+          
 
           <JSchemaObject 
             class="col-md-12"   
@@ -307,6 +314,7 @@ export default {
   justify-content: space-between;
   width: 100%;
   padding: 8px 15px;
+  margin: 0 auto 1rem;
   &-primary {
     ul {
       list-style: none;

@@ -32,7 +32,7 @@ export default {
 
 <style lang="scss" scoped>
 .main_content {
-  padding-left: 6rem;
+  padding-left: 5rem;
   @media screen and (max-width: 768px) {
     padding-left: 4.5rem;
   }
