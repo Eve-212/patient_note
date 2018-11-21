@@ -24,7 +24,7 @@
             <i class="fa fa-search"></i>
           </button>
         </form>
-        <div class="header_user">Hi, {{ this.$store.state.user.name }}</div>
+        <div class="header_user">Hi, {{ user.name }}</div>
         <!-- Badge and reminder -->
         <div class="header_badge-box d-flex align-items-center">
           <div
@@ -74,6 +74,7 @@ export default {
       no: '',
       holder: '病歷號/ 床號/ 身分證',
       searchKey: 'pt',
+      user: {},
       modalShow: false,
       modalMessage: ''
     }
@@ -140,6 +141,9 @@ export default {
       this.searchKey = 'pt'
       this.no = ''
     }
+  },
+  mounted() {
+    this.user = JSON.parse(window.localStorage.getItem('user'))
   }
 }
 </script>

@@ -109,7 +109,7 @@ export default {
     &.incompleted {
       border-left: 4px solid $color-secondary-light;
     }
-    @media screen and (max-width: $break-medium) {
+    @media screen and (max-width: $break-large) {
       font-size: 12px;
       width: 13rem;
     }

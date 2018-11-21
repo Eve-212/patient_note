@@ -139,7 +139,7 @@
         "cc": {
           "title": "Chief Complaint",
           "type": "string",
-          "attrs": {                        
+          "attrs": {
             "fieldType": "textarea"
           }
         },

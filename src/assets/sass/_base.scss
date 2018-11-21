@@ -1,8 +1,6 @@
 *,
 *::after,
 *::before {
-  margin: 0;
-  padding: 0;
   /* padding or border will not add extra width or height to the box */
   box-sizing: inherit;
 }
@@ -18,7 +16,7 @@ i.fa {
 .isExpanded {
   margin-left: 130px;
   // margin-right: 10px;
-  @media screen and (max-width: $break-medium) {
+  @media screen and (max-width: $break-large) {
     margin-left: 0;
   }
 }

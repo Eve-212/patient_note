@@ -3,15 +3,15 @@
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
       <div class="col-md-10 my-sm-3 mt-4">
         <div class="row">
-          <div class="alert-container col-md-12">
-            <div v-if="showAlert" class="alert alert-danger float-none mr-2">
+          <div class="col-md-12">
+            <div v-if="showAlert" class="alert alert-danger">
               <strong>
                 是否加入您的病人清單?
               </strong>
               <div>
-                <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="yes">Yes</button>
-                <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
-                <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="showLater">Ask me later</button>
+                <button @click="closeAlert" class="btn btn-sm btn-danger px-1" type="button" value="yes">Yes</button>
+                <button @click="closeAlert" class="btn btn-sm btn-danger px-1" type="button" value="no">No</button>
+                <button @click="closeAlert" class="btn btn-sm btn-danger px-1" type="button" value="showLater">Ask me later</button>
               </div>
             </div>
 
@@ -19,7 +19,7 @@
               <ul>
                 <li>
                   <strong>Applied form schemas：</strong>
-                  <button class="btn btn-sm btn-secondary reset" @click="resetSchema">reset</button>
+                  <span @click="resetSchema">reset</span>
                   <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != noteSchema.tag" @click="removeSchema($event, tag)">
                     <div>&#35;{{ tag }}</div>
                   </span>              
@@ -217,11 +217,16 @@ export default {
       // determine available schemas using department of logged in user
 
       // FIXME: use admit_dept of patient to determine which schemas should added to available schemas list
-      
-      this.availableSchemas.push(require('../../../static/fake_data/sch.note.adm2.json'))
-      this.availableSchemas.push(require('../../../static/fake_data/cardio_schema.json'))
-      this.availableSchemas.push(require('../../../static/fake_data/er_schema.json'))
-      
+
+      this.availableSchemas.push(
+        require('../../../static/fake_data/sch.note.adm2.json')
+      )
+      this.availableSchemas.push(
+        require('../../../static/fake_data/cardio_schema.json')
+      )
+      this.availableSchemas.push(
+        require('../../../static/fake_data/er_schema.json')
+      )
 
       // TODO
       // apply name of base schema to appliedSchemas
@@ -257,8 +262,6 @@ export default {
     // }
     appliedSchemas: {
       handler: function() {
-        console.log('APPLIED SCHEMAS WATCH')
-
         function customizer(objValue, srcValue) {
           if (isArray(objValue)) {
             // use Set to ensure uniqueness
@@ -277,8 +280,6 @@ export default {
             customizer
           )
         )
-
-        console.log(this.currentSchema)
 
         // this.currentSchema = mergeWith(
         //   {},
@@ -319,8 +320,10 @@ export default {
   width: 100%;
   padding: 8px 15px;
   margin: 0 auto 1rem;
+  float: none;
   &-primary {
     ul {
+      padding-left: 0;
       list-style: none;
       margin: auto 0;
       li {
