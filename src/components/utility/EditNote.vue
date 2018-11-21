@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div>
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
       <div class="col-md-10 my-sm-3 mt-4">
         <div class="row">
@@ -17,9 +17,9 @@
 
             <div class="alert alert-primary">
               <ul>
-                <li>
+                <li class="reset-btn-container">
                   <strong>Applied form schemas：</strong>
-                  <button class="btn btn-sm btn-secondary reset" @click="resetSchema">reset</button>
+                  <button class="btn btn-sm btn-secondary reset-btn" @click="resetSchema">reset</button>
                   <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != noteSchema.tag" @click="removeSchema($event, tag)">
                     <div>&#35;{{ tag }}</div>
                   </span>              
@@ -261,7 +261,7 @@ export default {
 
         function customizer(objValue, srcValue) {
           if (isArray(objValue)) {
-            // use Set to ensure uniqueness
+            // use Set to ensure uniqueness            
             return [...new Set(objValue.concat(srcValue))]
           }
         }
@@ -304,7 +304,8 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/sass/main.scss';
-.reset {
+
+.reset-btn {
   margin-right: 5px;
   padding: 0 3px;
   background-color: #cccccc !important;
@@ -313,7 +314,8 @@ export default {
 
 .alert-container {
   width: 100%;
-  margin-right: 10px !important;
+  margin-right: 0.95rem !important;
+  padding-right: 5px;
 }
 
 .alert {

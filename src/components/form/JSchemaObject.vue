@@ -2,7 +2,7 @@
   <div v-if="isReady">   
     <h5 :id="anchorIdFormat(schema)" >{{ schema.title }}</h5>
     <div class="col-md-12">
-      <div class="row scroll-watch">      
+      <div class="row">      
         <component
           v-for="(field, key) in schema.properties"           
           :rootObj="$rootObj"
