@@ -19,7 +19,7 @@
               <ul>
                 <li>
                   <strong>Applied form schemas：</strong>
-                  <button class="btn btn-sm btn-warning" @click="resetSchema">reset</button>
+                  <button class="btn btn-sm btn-secondary reset" @click="resetSchema">reset</button>
                   <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != noteSchema.tag" @click="removeSchema($event, tag)">
                     <div>&#35;{{ tag }}</div>
                   </span>                
@@ -226,7 +226,7 @@ export default {
 
       // FIXME: use admit_dept of patient to determine which schemas should added to available schemas list
       
-      this.availableSchemas.push(require('../../../static/fake_data/simple_base.json'))
+      this.availableSchemas.push(require('../../../static/fake_data/sch.note.adm2.json'))
       this.availableSchemas.push(require('../../../static/fake_data/cardio_schema.json'))
       this.availableSchemas.push(require('../../../static/fake_data/er_schema.json'))
       
@@ -308,6 +308,13 @@ export default {
 
 <style lang="scss">
 @import '@/assets/sass/main.scss';
+.reset {
+  margin-right: 5px;
+  padding: 0 3px;
+  background-color: #cccccc !important;
+  color: teal !important;
+}
+
 .alert {
   font-size: 14px;
   display: flex;
