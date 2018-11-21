@@ -314,7 +314,7 @@
           "type": "object",
           "properties": {
             "list": {
-              "type": "array",
+              "type": "string",
               "items": {
                 "type": "object",
                 "properties": {
@@ -340,18 +340,7 @@
           }
         },
 
-        "family_hx": {
-          "title": "Family History",
-          "type": "object",
-          "properties": {
-            "familytree": {
-              "type": "string",
-              "attrs": {
-                "fieldType": "familytree"
-              }
-            }
-          }
-        },
+
         "past_hx": {
           "title": "Past History",
           "type": "object",
@@ -913,35 +902,6 @@
                     "inputGroup": true
                   }
                 }
-              }
-            }
-          }
-        },
-        "lab": {
-          "title": "Lab finding",
-          "type": "object",
-          "properties": {
-            "data": {
-              "title": "Blood",
-              "type": "object",
-              "attrs": {
-                "styleClass": ["subsection-title"]
-              },
-              "properties": {
-                "blood": {
-                  "title": "Blood",
-                  "type": "number",
-                  "attrs": {
-                    "fieldType": "labtable"
-                  }
-                }
-              }
-            },
-            "note": {
-              "title": "Note",
-              "type": "string",
-              "attrs": {
-                "inputGroup": true
               }
             }
           }
