@@ -314,7 +314,7 @@
           "type": "object",
           "properties": {
             "list": {
-              "type": "array",
+              "type": "string",
               "items": {
                 "type": "object",
                 "properties": {

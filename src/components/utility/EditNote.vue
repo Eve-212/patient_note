@@ -3,8 +3,8 @@
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
       <div class="col-md-10 my-sm-3 mt-4">
         <div class="row">
-          <div class="alert-container col-md-12">
-            <div v-if="showAlert" class="alert alert-danger float-none mr-2">
+          <div class="alert-container">
+            <div v-if="showAlert" class="alert alert-danger">
               <strong>
                 是否加入您的病人清單?
               </strong>
@@ -309,6 +309,11 @@ export default {
   padding: 0 3px;
   background-color: #cccccc !important;
   color: teal !important;
+}
+
+.alert-container {
+  width: 100%;
+  margin-right: 10px !important;
 }
 
 .alert {

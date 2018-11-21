@@ -1,5 +1,5 @@
 <template>
-<div :class="getBsColSize">
+<div :class="getBsColSize">  
   <div class="tree-style">   
     <tree-charter :json="treeData"></tree-charter>
   </div> 
