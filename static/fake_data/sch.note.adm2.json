@@ -139,7 +139,7 @@
         "cc": {
           "title": "Chief Complaint",
           "type": "string",
-          "attrs": {                        
+          "attrs": {
             "fieldType": "textarea"
           }
         },
@@ -340,18 +340,7 @@
           }
         },
 
-        "family_hx": {
-          "title": "Family History",
-          "type": "object",
-          "properties": {
-            "familytree": {
-              "type": "string",
-              "attrs": {
-                "fieldType": "familytree"
-              }
-            }
-          }
-        },
+
         "past_hx": {
           "title": "Past History",
           "type": "object",

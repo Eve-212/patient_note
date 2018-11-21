@@ -16,11 +16,22 @@
           <tbody>
             <tr v-for="(item, index) in sortedData.slice(pageStart, pageStart + countOfPage)">
               <td>{{ (currPage-1) * countOfPage + index + 1 }}</th>
-              <td>{{item.chr_no}}</td>
-              <td>{{item.ipd.name}}</td>
+              <td>
+                <router-link 
+                  :to="{ name: 'edit', params: { fee_no: item.fee_no }}">{{item.chr_no}}
+                </router-link>
+              </td>
+              <td>
+                <router-link 
+                  class="font-weight-bold"
+                  :to="{ name: 'edit', params: { fee_no: item.fee_no }}">{{item.ipd.name}}
+                </router-link>
+              </td>
               <td>{{getDate(item.init_time)}}</td>
               <td class="actions">
-                <i class="fa fa-pen"></i>
+                <router-link 
+                  :to="{ name: 'edit', params: { fee_no: item.fee_no }}"><i class="fa fa-pen"></i>
+                </router-link>
                 <i class="fa fa-star"></i>
               </td>
             </tr>
@@ -93,3 +104,97 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+@import '@/assets/sass/main.scss';
+.wrap {
+  width: 90%;
+  margin: 0 auto;
+  @media screen and (max-width: $break-medium) {
+    width: 100%;
+  }
+  .table {
+    a {
+      color: $color-black;
+      text-decoration: underline;
+    }
+    .actions {
+      i {
+        color: $color-primary;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+      }
+    }
+    @media screen and (max-width: $break-small) {
+      thead {
+        display: none;
+      }
+
+      th,
+      td {
+        display: block;
+      }
+
+      tr {
+        display: block;
+        position: relative;
+        margin: 1.5em 0;
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      td:nth-child(1),
+      td:nth-child(4) {
+        display: none;
+      }
+
+      td:nth-child(2):before,
+      td:nth-child(3):before {
+        position: absolute;
+        left: 0.5em;
+      }
+
+      td:nth-child(2):before {
+        content: 'Id';
+      }
+
+      td:nth-child(3):before {
+        content: 'Name';
+      }
+
+      td:nth-child(2),
+      td:nth-child(3) {
+        padding-left: 35%;
+      }
+
+      td:nth-child(2) {
+        background: $color-primary;
+        color: $color-white;
+        a {
+          color: $color-white;
+          text-decoration: none;
+        }
+      }
+
+      td:nth-child(3) {
+        border: 1px solid #ccc;
+      }
+
+      td.actions {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: none;
+        background: none;
+
+        i {
+          color: $color-white;
+        }
+      }
+    }
+  }
+}
+</style>

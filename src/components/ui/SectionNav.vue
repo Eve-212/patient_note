@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 ul {
   margin-top: 20px;
 }
@@ -41,6 +41,9 @@ li a {
   height: 80vh;
   border-left: 1px solid #eee;
   overflow-y: scroll;
+  @media screen and (min-width: 1025px) {
+    max-width: 15%;
+  }
 }
 .customActive {
   color: #17a2b8;

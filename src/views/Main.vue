@@ -38,12 +38,10 @@ main {
   }
   .main_content {
     padding-left: 6rem;
-    @media screen and (max-width: 768px) {
-      padding-left: 4.5rem;
+    @media screen and (max-width: 1024px) {
+      padding-left: 15px;
     }
-    @media screen and (max-width: 576px) {
-      padding: 0 1rem;
-    }
+
   }
 }
 </style>
