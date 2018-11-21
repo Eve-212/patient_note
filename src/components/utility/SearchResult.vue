@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div class="wrap" :class="{isExpanded: $store.state.sideExpanded}">
     {{this.status}}
     <div v-if="sortedData.length > 0">
       <h3 class="title my-4">Department：{{$route.params.dept_id}}</h3> 
@@ -93,5 +93,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">

@@ -22,7 +22,7 @@
                   <button class="btn btn-sm btn-secondary reset" @click="resetSchema">reset</button>
                   <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != noteSchema.tag" @click="removeSchema($event, tag)">
                     <div>&#35;{{ tag }}</div>
-                  </span>                
+                  </span>              
                 </li>
                 <li>
                   <strong>Available form schemas：</strong>
@@ -32,11 +32,7 @@
                 </li>
               </ul>
             </div>
-
           </div>
-          
-          
-
           <JSchemaObject 
             class="col-md-12"   
             v-model="data" 
@@ -44,7 +40,6 @@
           </JSchemaObject>
         </div>  
       </div>
-      
       <SectionNav 
         class="col-md-2 d-none d-md-block mb-5" 
         :schema="currentSchema">
@@ -56,9 +51,9 @@
 <script>
 import SectionNav from '@/components/ui/SectionNav.vue'
 import JSchemaObject from '@/components/form/JSchemaObject'
-import mergeWith from "lodash/mergeWith"
-import isArray from "lodash/isArray"
-import cloneDeep from "lodash/cloneDeep"
+import mergeWith from 'lodash/mergeWith'
+import isArray from 'lodash/isArray'
+import cloneDeep from 'lodash/cloneDeep'
 
 export default {
   name: 'EditNote',
@@ -87,18 +82,16 @@ export default {
     // update schema when a tag is clicked
     // https://stackoverflow.com/questions/49079170/how-to-get-values-of-an-item-in-the-loop-in-vue
     addSchema(event, tag) {
-      if (!this.appliedSchemas.includes(tag)) {        
+      if (!this.appliedSchemas.includes(tag)) {
         this.appliedSchemas.push(tag) // adds to list
-      } 
+      }
     },
     removeSchema(event, tag) {
-       if (this.appliedSchemas.includes(tag)) {        
-        this.appliedSchemas = this.appliedSchemas.filter(
-          item => item != tag
-        )
-      } 
-    },    
-    // updateSchema(event, tag) {     
+      if (this.appliedSchemas.includes(tag)) {
+        this.appliedSchemas = this.appliedSchemas.filter(item => item != tag)
+      }
+    },
+    // updateSchema(event, tag) {
     //   if (this.appliedSchemas.includes(tag)) {
     //     // removes from list
     //     this.appliedSchemas = this.appliedSchemas.filter(
@@ -156,7 +149,7 @@ export default {
           // then get patient data from database using fee_no
           this.$wf.note.sess({ no: this.fee_no }).then($raw => {
             if ($raw.data.fee_no) {
-              this.sess = $raw.data              
+              this.sess = $raw.data
               // call load function to load retrieved patient data into component's data object
               this.load()
             }
@@ -209,8 +202,7 @@ export default {
       this.showAlert = false
     }
   },
-  created: function() {    
-
+  created: function() {
     this.$wf.note.schema({ type: 'admission' }).then($raw => {
       this.noteSchema = require('../../../static/fake_data/sch.note.adm2.json')
       // this.$set(
@@ -218,11 +210,11 @@ export default {
       //   'noteSchema',
       //   // require('../../../static/fake_data/sch.note.adm2.json')
       //   require('../../../static/fake_data/simple_base.json')
-      // )      
-      
+      // )
+
       // multiple async requests at once: https://stackoverflow.com/questions/50540079/axios-make-multiple-request-at-once-vue-js
       // make api requests to get all available schemas
-      // determine available schemas using department of logged in user      
+      // determine available schemas using department of logged in user
 
       // FIXME: use admit_dept of patient to determine which schemas should added to available schemas list
       
@@ -234,10 +226,10 @@ export default {
       // TODO
       // apply name of base schema to appliedSchemas
       // add base schema to availableSchemas
-      this.appliedSchemas.push(this.noteSchema.tag)      
+      this.appliedSchemas.push(this.noteSchema.tag)
 
       this.$set(this.$data, 'currentSchema', cloneDeep(this.noteSchema))
-      
+
       this.init()
     })
   },
@@ -256,16 +248,16 @@ export default {
     //     }
     //   }
     //   this.$set(this.$data, 'currentSchema', mergeWith(
-    //     {},        
+    //     {},
     //     ...this.availableSchemas.filter((sch) => {
     //       this.appliedSchemas.includes(sch.tag)
     //     }),
     //     customizer
-    //   )) 
+    //   ))
     // }
     appliedSchemas: {
       handler: function() {
-        console.log("APPLIED SCHEMAS WATCH")
+        console.log('APPLIED SCHEMAS WATCH')
 
         function customizer(objValue, srcValue) {
           if (isArray(objValue)) {
@@ -274,31 +266,35 @@ export default {
           }
         }
 
-        this.$set(this.$data, 'currentSchema', mergeWith(
-          {},        
-          ...this.availableSchemas.filter(sch => 
-            this.appliedSchemas.includes(sch.tag)
-          ),
-          customizer
-        )) 
+        this.$set(
+          this.$data,
+          'currentSchema',
+          mergeWith(
+            {},
+            ...this.availableSchemas.filter(sch =>
+              this.appliedSchemas.includes(sch.tag)
+            ),
+            customizer
+          )
+        )
 
         console.log(this.currentSchema)
 
         // this.currentSchema = mergeWith(
-        //   {},        
-        //   ...this.availableSchemas.filter( sch => 
+        //   {},
+        //   ...this.availableSchemas.filter( sch =>
         //     this.appliedSchemas.includes(sch.tag)
         //   ),
         //   customizer
-        // )                
-        
+        // )
+
         // this.$set(this.$data, 'currentSchema', mergeWith(
-        //   {},        
+        //   {},
         //   ...this.availableSchemas.filter((sch) => {
         //     this.appliedSchemas.includes(sch.tag)
         //   }),
         //   customizer
-        // )) 
+        // ))
       },
       deep: true
     }
@@ -306,7 +302,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/sass/main.scss';
 .reset {
   margin-right: 5px;
@@ -316,7 +312,7 @@ export default {
 }
 
 .alert {
-  font-size: 14px;
+  font-size: $default-font-size;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -334,13 +330,11 @@ export default {
         padding: 3px 0;
         span {
           letter-spacing: 0.05rem;
-          margin-top: 5px;
           cursor: pointer;
           padding: 0 0.3rem;
           border: 1px solid #004085;
           border-radius: 3px;
           margin-right: 0.3rem;
-          font-size: 10px;
           opacity: 0.7;
           &:hover {
             opacity: 1;
@@ -357,7 +351,6 @@ export default {
       flex-direction: column;
     }
     button {
-      font-size: 12px;
       @media screen and (max-width: $break-small) {
         margin-top: 0.5rem;
       }

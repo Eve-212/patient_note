@@ -2,141 +2,13 @@ import APIClient from 'moleculer-openapi-client'
 import lscache from 'lscache'
 //import  from 'lscache'
 import debounce from 'lodash/debounce'
-
+import note from './api_plugins/note'
+import emp from './api_plugins/emp'
+import icd from './api_plugins/icd'
 let Plugins = {
-  note($sc) {
-    $sc._list = $sc.list;
-    $sc._sess = $sc.sess;
-    Object.assign($sc, {
-      sess_cache: {},
-      list($param) {
-        return this._list($param).then($raw => {
-          for (let $sess in $raw.data) {
-            this.sess_cache[$sess.fee_no] = $sess;
-          }
-          return $raw;
-        });
-      },
-      sess($param) {
-        return this._sess($param).then($raw => {
-          let $sess = $raw.data;
-          if ($sess.fee_no) {
-            this.sess_cache[$sess.fee_no] = $sess;
-          }
-          return $raw;
-        });
-      }
-    })
-  },
-  emp($sc){
-    Object.assign($sc, {
-		cache: {},
-		id_queue: [],
-		event_queue: [],
-		bulk_list() {
-		  this.list({
-			ids: this.id_queue
-		  }).then(({
-			data: $emps
-		  }) => {
-			for (let $emp of $emps) {
-			  this.cache[$emp.id] = $emp;
-			}
-			for (let $evt of this.event_queue) {
-			  $evt();
-			}
-			this.event_queue = [];
-		  });
-		  this.emp_queue = [];
-		},
-		local_get($id) {
-		  return new Promise((res, rej) => {
-			if ($id) {
-			  //$icd = this.format_code($icd);
-			  if (this.cache[$id]) {
-				res(this.cache[$id]);
-			  } else {
-				this.id_queue.push($id);
-				this.event_queue.push(() => {
-				  if (this.cache[$id]) {
-					res(this.cache[$id])
-				  } else {
-					res({
-					  name: ""
-					})
-				  }
-  
-				})
-				this.db_bulk_list();
-				//return this.list({codes:[$icd]}).then($icds=>{});
-			  }
-			} else {
-			  //return nothing
-			  res({});
-			}
-		  });
-		}
-  
-	  });
-	  $sc.db_bulk_list = debounce($sc.bulk_list, 100);
-  },
-  icd($sc) {
-    //$sc.db_list=debounce($sc.list,100);
-    Object.assign($sc, {
-      cache: {},
-      format_code($raw_code) {
-        //remove .
-        return $raw_code.replace(".", "");
-      },
-      icd_queue: [],
-      event_queue: [],
-      bulk_list() {
-        this.list({
-          codes: this.icd_queue
-        }).then(({
-          data: $icds
-        }) => {
-          for (let $icd of $icds) {
-            this.cache[$icd.code] = $icd;
-          }
-          for (let $evt of this.event_queue) {
-            $evt();
-          }
-          this.event_queue = [];
-        });
-        this.icd_queue = [];
-      },
-      local_get($icd) {
-        return new Promise((res, rej) => {
-          if ($icd) {
-            $icd = this.format_code($icd);
-            if (this.cache[$icd]) {
-              res(this.cache[$icd]);
-            } else {
-              this.icd_queue.push($icd);
-              this.event_queue.push(() => {
-                if (this.cache[$icd]) {
-                  res(this.cache[$icd])
-                } else {
-                  res({
-                    label: ""
-                  })
-                }
-
-              })
-              this.db_bulk_list();
-              //return this.list({codes:[$icd]}).then($icds=>{});
-            }
-          } else {
-            //return nothing
-            res({});
-          }
-        });
-      }
-
-    });
-    $sc.db_bulk_list = debounce($sc.bulk_list, 100);
-  }
+  note,
+  emp,
+  icd
 }
 
 const OneAPI = function ($cfg) {
@@ -162,6 +34,5 @@ const OneAPI = function ($cfg) {
   }
 
   return api;
-
 }
 export default OneAPI
