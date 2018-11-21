@@ -41,6 +41,7 @@ li a {
   height: 80vh;
   border-left: 1px solid #eee;
   overflow-y: scroll;
+  max-width: 15%;
 }
 .customActive {
   color: #17a2b8;
