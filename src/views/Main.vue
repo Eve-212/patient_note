@@ -41,6 +41,7 @@ main {
     @media screen and (max-width: 1024px) {
       padding-left: 15px;
     }
+
   }
 }
 </style>

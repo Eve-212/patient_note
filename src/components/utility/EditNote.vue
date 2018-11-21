@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
 
-      <div class="col-md-10 my-sm-3 mt-4">
+      <div class="col-md-9 col-lg-10 my-sm-3 mt-4">
           <div class="row">
             <div class="col-md-12">
               <div v-if="showAlert" class="alert alert-danger">
@@ -45,7 +45,7 @@
       </div>
       
       <SectionNav 
-        class="col-md-2 d-none d-md-block mb-5" 
+        class="col-md-3 col-lg-2 d-none d-md-block mb-5" 
         :schema="currentSchema">
       </SectionNav>
 
