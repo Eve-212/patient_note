@@ -1,6 +1,20 @@
 let targets = {}
+let navElement
 
-function scrollWatch(el) {
+// avoid anonymous function for eventlistener
+let watchEvent = function() {
+  let ticking = false
+  if (!ticking) {
+    window.requestAnimationFrame(function() {
+      scrollWatch(navElement)
+      ticking = false
+    })
+  }
+  ticking = true
+}
+
+
+function scrollWatch(navElement) {
   let screenHeight = window.innerHeight
   let docOffsetHeight = document.body.scrollHeight
   let currentPageYOffset = window.pageYOffset
@@ -8,7 +22,7 @@ function scrollWatch(el) {
   anchors = Array.from(anchors)
 
   //navigation bar follow main content scroll
-  el.scrollTop = currentPageYOffset / 15
+  navElement.scrollTop = currentPageYOffset / 15
 
   for (let item of Object.keys(targets)) {
     if (targets[item] <= currentPageYOffset + 10) {
@@ -66,6 +80,8 @@ function OffsetData(targetId, targetOffset) {
   this[targetId] = targetOffset
 }
 
+
+
 const vueScrollData = function(el, offset, watchElement) {
   if (watchElement) {
     let targetId = el.getAttribute('scroll')
@@ -78,18 +94,17 @@ const vueScrollData = function(el, offset, watchElement) {
 }
 
 const VueScrollWatch = function(el) {
-  let ticking = false
-  el.querySelector('li:first-child').setAttribute('class', 'customActive')
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      window.requestAnimationFrame(function() {
-        scrollWatch(el)
-        ticking = false
-      })
-    }
-    ticking = true
-  })
+  navElement = el
+  navElement.querySelector('li:first-child').setAttribute('class', 'customActive')
+  window.addEventListener('scroll', watchEvent)
+
 }
+
+
+const RemoveListener = function() {
+  window.removeEventListener('scroll', watchEvent)
+}
+
 
 const VueScrollTo = function(el, duration, offset) {
   let watchElement =
@@ -101,4 +116,4 @@ const VueScrollTo = function(el, duration, offset) {
   })
 }
 
-export { VueScrollWatch, VueScrollTo }
+export { VueScrollWatch, VueScrollTo, RemoveListener }
