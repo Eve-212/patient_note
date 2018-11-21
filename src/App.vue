@@ -7,7 +7,7 @@
 export default {
   name: 'App',
   mounted() {
-    if (!window.localStorage.user) {
+    if (!window.sessionStorage.user) {
       this.$router.replace({ name: 'signIn' })
     }
   }

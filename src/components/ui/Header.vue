@@ -3,11 +3,14 @@
     <header class="header fixed-top d-flex justify-content-between align-items-center">
       <div class="d-flex">
         <!-- Hamburger menu -->
-        <div class="header_handler-box" v-on:click="toggleSideMenu()">
+        <div class="header_handler-box" @click="toggleSideMenu">
           <i class="fa fa-bars"></i>
         </div>
         <!-- Logo -->
-        <router-link :to="{name: 'dashBoard'}" class="header_logo-box px-4 d-flex justify-content-between align-items-center">
+        <router-link 
+          @click.native="resetSearch"
+          :to="{name: 'dashBoard'}" 
+          class="header_logo-box px-4 d-flex justify-content-between align-items-center">
           <img class="header_logo-box-logo mr-1" src="@/assets/img/logo-sm.png">病摘
         </router-link>
       </div>
@@ -143,7 +146,7 @@ export default {
     }
   },
   mounted() {
-    this.user = JSON.parse(window.localStorage.getItem('user'))
+    this.user = JSON.parse(window.sessionStorage.getItem('user'))
   }
 }
 </script>
