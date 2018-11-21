@@ -96,8 +96,8 @@ export default {
       this.showReminder = !this.showReminder
     },
     singOut() {
-      let singOut = confirm('Sure you want to sign out?')
-      if (singOut) {
+      let signOut = confirm('Sure you want to sign out?')
+      if (signOut) {
         this.$store.dispatch('Sign_Out')
         this.$router.replace({ name: 'signIn' })
       }
