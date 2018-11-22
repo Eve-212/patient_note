@@ -1,12 +1,10 @@
-<template>
-  <div>
-    
+<template>      
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
-      <div class="col-md-12 position-fixed">
+      <div class="editor-toolbar col-md-12 position-fixed">
         <Toolbar></Toolbar>
       </div>
       
-      <div class="col-md-9 col-lg-10 my-sm-3 mt-4">
+      <div class="col-md-9 col-lg-10 my-sm-3 mt-4 editor-main">
           <div class="row">
             <div class="col-md-12">
               
@@ -21,7 +19,7 @@
                 </div>
               </div>
 
-              <div class="alert alert-primary">
+              <!-- <div class="alert alert-primary">
                 <ul>
                   <li>
                     <strong>Applied form schemas：</strong>
@@ -37,7 +35,7 @@
                     </span>                
                   </li>
                 </ul>
-              </div>
+              </div> -->
             </div>
 
             <JSchemaObject 
@@ -355,6 +353,29 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/sass/main.scss';
+.editor-toolbar {
+  // margin-top: -8px;
+  margin-top: -8px;
+  z-index: 99;
+  @media screen and (max-width: $break-medium) {
+        margin-top: 0;
+      }
+  
+   @media screen and (max-width: $break-small) {
+        margin-top: 0;
+      }
+}
+
+.editor-main {
+  padding-top: 4.5rem;
+  @media screen and (max-width: $break-medium) {
+        padding-top: 5.5rem;
+      }
+
+  @media screen and (max-width: $break-small) {
+        margin-top: 0;
+      }
+}
 
 .reset-btn {
   margin-right: 5px;
