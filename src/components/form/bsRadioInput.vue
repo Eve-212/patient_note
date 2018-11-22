@@ -57,6 +57,12 @@ export default {
 </script>
 
 <style scoped>
+.form-check-input {
+  margin-top: .2rem;
+}
+.form-check-label {
+  margin-top: .4rem;
 
+}
 
 </style>
