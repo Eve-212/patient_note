@@ -42,9 +42,10 @@ export default {}
       width: 30%;
     }
     @media screen and (max-width: $break-medium) {
-      width: 30%;
+      width: 50%;
     }
     @media screen and (max-width: $break-small) {
+      top: 3rem;
       width: 100%;
     }
   }
