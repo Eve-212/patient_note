@@ -32,14 +32,14 @@ export default {
 
 <style lang="scss" scoped>
 main {
-  padding-top: 5rem;
+  padding-top: 4rem;
   @media screen and (max-width: 576px) {
     padding: 5rem 0;
   }
   .main_content {
-    padding-left: 6rem;
+    padding-left: 5.9rem;
     @media screen and (max-width: 1024px) {
-      padding-left: 15px;
+      padding-left: 16px;
     }
 
   }

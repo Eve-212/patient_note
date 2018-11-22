@@ -41,7 +41,7 @@ let $wf=OneAPI({
   server_url:"http://10.65.1.228:3000/api"  
 })
 Vue.prototype.$wf =  $wf
-window.$wf=$wf
+// window.$wf=$wf
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

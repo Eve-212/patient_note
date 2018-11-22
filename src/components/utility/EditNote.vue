@@ -1,10 +1,15 @@
 <template>
   <div>
+    
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
-
+      <div class="col-md-12 position-fixed">
+        <Toolbar></Toolbar>
+      </div>
+      
       <div class="col-md-9 col-lg-10 my-sm-3 mt-4">
           <div class="row">
             <div class="col-md-12">
+              
               <div v-if="showAlert" class="alert alert-danger">
                 <strong>
                   是否加入您的病人清單?
@@ -16,24 +21,6 @@
                 </div>
               </div>
 
-<<<<<<< HEAD
-            <div class="alert alert-primary">
-              <ul>
-                <li class="reset-btn-container">
-                  <strong>Applied form schemas：</strong>
-                  <button class="btn btn-sm btn-secondary reset-btn" @click="resetSchema">reset</button>
-                  <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != noteSchema.tag" @click="removeSchema($event, tag)">
-                    <div>&#35;{{ tag }}</div>
-                  </span>              
-                </li>
-                <li>
-                  <strong>Available form schemas：</strong>
-                  <span v-for="schema in availableSchemas" :key="schema.tag" v-if="schema.tag != noteSchema.tag" @click="addSchema($event, schema.tag)">
-                    <div>&#35;{{ schema.tag }}</div>
-                  </span>                
-                </li>
-              </ul>
-=======
               <div class="alert alert-primary">
                 <ul>
                   <li>
@@ -51,7 +38,6 @@
                   </li>
                 </ul>
               </div>
->>>>>>> d62894b6d10835296a081ce7e2e2b2c78ae0cef4
             </div>
 
             <JSchemaObject 
@@ -78,13 +64,15 @@ import JSchemaObject from '@/components/form/JSchemaObject'
 import mergeWith from 'lodash/mergeWith'
 import isArray from 'lodash/isArray'
 import cloneDeep from 'lodash/cloneDeep'
+import Toolbar from './Toolbar.vue'
 
 export default {
   name: 'EditNote',
   props: ['fee_no'],
   components: {
     SectionNav,
-    JSchemaObject
+    JSchemaObject,
+    Toolbar
   },
   data() {
     return {
