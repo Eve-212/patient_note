@@ -751,7 +751,7 @@
                   "type": "number",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "sbp": {
@@ -759,7 +759,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "dbp": {
@@ -767,7 +767,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "pr": {
@@ -775,7 +775,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "rr": {
@@ -783,7 +783,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "pain": {
@@ -791,7 +791,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 }
               }

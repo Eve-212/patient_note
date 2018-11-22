@@ -24,6 +24,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/sass/main.scss';
+
 ul {
   margin-top: 20px;
 }
@@ -31,6 +33,7 @@ li {
   border: none;
   padding: 0.125rem 1.5rem;
   list-style-type: none;
+  background-color: #f4f6f7; 
 }
 li a {
   color: #99979c;
@@ -39,9 +42,9 @@ li a {
   position: fixed;
   right: 0;
   height: 80vh;
-  border-left: 1px solid #eee;
+  border-left: 1px solid #ced4da;
   overflow-y: scroll;
-  @media screen and (min-width: 1025px) {
+  @media screen and (min-width: $break-large + 1) {
     max-width: 15%;
   }
 }
