@@ -1,7 +1,7 @@
 <template>
   <div :class="{isExpanded: $store.state.sideExpanded}">
       <span>{{status}}</span>
-      <div class="switch my-sm-3 mt-5 mb-4 d-flex align-items-center justify-content-sm-end">
+      <div v-if="Object.keys(sortedData).length > 0" class="switch my-md-3 mt-5 mb-4 d-flex align-items-center justify-content-xl-end">
         <span class="h5 my-0" >Group By：</span>
         <div>
           <button

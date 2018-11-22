@@ -3,27 +3,32 @@
     <header class="header fixed-top d-flex justify-content-between align-items-center">
       <div class="d-flex">
         <!-- Hamburger menu -->
-        <div class="header_handler-box" v-on:click="toggleSideMenu()">
+        <div class="header_handler-box" @click="toggleSideMenu">
           <i class="fa fa-bars"></i>
         </div>
         <!-- Logo -->
-        <router-link :to="{name: 'dashBoard'}" class="header_logo-box px-4 d-flex justify-content-between align-items-center">
+        <router-link 
+          @click.native="resetSearch"
+          :to="{name: 'dashBoard'}" 
+          class="header_logo-box px-4 d-flex justify-content-between align-items-center">
           <img class="header_logo-box-logo mr-1" src="@/assets/img/logo-sm.png">病摘
         </router-link>
       </div>
       <div class="d-flex align-items-center">
-        <span class="header_radio-box mr-2" :class="{hideSearch:hide}">
-          <input id="pt" type="radio" value="pt" name="searchKey" v-model="searchKey" checked>
-          <label for="pt">by Patient</label>
-          <input id="dept" type="radio" value="dept" name="searchKey" v-model="searchKey">
-          <label for="dept">by Dept.</label>
-        </span>
-        <form class="header_search-box" :class="{hideSearch:hide}">
-          <input v-focus type="text" v-model="no" :placeholder="holder">
-          <button type="submit" @keyup.enter.prevent="load" @click.prevent="load">
-            <i class="fa fa-search"></i>
-          </button>
-        </form>
+        <div class="header_search-wrap d-flex align-items-center" :class="{hideSearch:hide}">
+          <span class="radio-box">
+            <input id="pt" type="radio" value="pt" name="searchKey" v-model="searchKey" checked>
+            <label for="pt">by Patient</label>
+            <input id="dept" type="radio" value="dept" name="searchKey" v-model="searchKey">
+            <label for="dept">by Dept.</label>
+          </span>
+          <form class="search-box">
+            <input v-focus type="text" v-model="no" :placeholder="holder">
+            <button type="submit" @keyup.enter.prevent="load" @click.prevent="load">
+              <i class="fa fa-search"></i>
+            </button>
+          </form>
+        </div>
         <div class="header_user">Hi, {{ user.name }}</div>
         <!-- Badge and reminder -->
         <div class="header_badge-box d-flex align-items-center">
@@ -143,7 +148,7 @@ export default {
     }
   },
   mounted() {
-    this.user = JSON.parse(window.localStorage.getItem('user'))
+    this.user = JSON.parse(window.sessionStorage.getItem('user'))
   }
 }
 </script>
@@ -153,24 +158,20 @@ export default {
 
 .header {
   padding-left: 0.9rem;
-  background-color: $color-grey-light;
+  background-color: $color-white;
   color: $color-black;
   font-size: $default-font-size;
+  border-bottom: 1px solid #e0e0e0;
   @media screen and (max-width: $break-small) {
     z-index: 100;
   }
   &_handler-box {
-    border-radius: 50%;
     cursor: pointer;
     height: 2rem;
-    width: 2rem;
+    width: 1.8rem;
     line-height: 2rem;
-    background: rgba($color-grey-dark, 0.4);
     text-align: center;
-    font-size: 1rem;
-    i {
-      color: $color-white;
-    }
+    font-size: 1.2rem;
   }
   &_logo-box {
     text-decoration: none;
@@ -179,80 +180,87 @@ export default {
       width: 1.2rem;
     }
   }
-  &_radio-box {
-    input {
-      opacity: 0;
+  &_search-wrap {
+    background: $color-white;
+    padding: 5px;
+    @media screen and (max-width: $break-medium) {
+      justify-content: space-between;
+      width: 100%;
       position: absolute;
-      &:checked + label:before {
-        background: $color-primary;
-        border: 1px solid $color-primary;
-        box-shadow: inset 0px 0px 0px 3px #fff;
-      }
-    }
-    label {
-      position: relative;
-      display: inline-block;
-      vertical-align: middle;
-      margin: 5px;
-      cursor: pointer;
-      &:before {
-        content: '';
-        background: #fff;
-        border: 2px solid #ccc;
-        display: inline-block;
-        vertical-align: middle;
-        width: 15px;
-        height: 15px;
-        margin-right: 5px;
-        text-align: center;
-        border-radius: 50%;
-      }
-    }
-    @media screen and (max-width: $break-small) {
-      background: $color-white;
-      position: absolute;
-      right: 0;
-      top: 3rem;
       left: 0;
+      top: 3.7rem;
       box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
       font-size: 12px;
       &.hideSearch {
-        display: none;
+        opacity: 0;
       }
     }
-  }
-  &_search-box {
-    box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
     @media screen and (max-width: $break-small) {
-      position: absolute;
-      right: 0;
-      top: 3rem;
-      box-shadow: none;
-      // hide search function in small device when scroll down
-      &.hideSearch {
-        display: none;
+      top: 3.2rem;
+    }
+    .radio-box {
+      margin-right: 8px;
+      @media screen and (max-width: $break-medium) {
+        margin-right: 0;
+      }
+      input {
+        opacity: 0;
+        position: absolute;
+        &:checked + label:before {
+          background: $color-primary;
+          border: 1px solid $color-primary;
+          box-shadow: inset 0px 0px 0px 3px $color-white;
+        }
+      }
+      label {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 5px;
+        cursor: pointer;
+        @media screen and (max-width: $break-medium) {
+          margin-left: 0;
+        }
+        &:before {
+          content: '';
+          background: #fff;
+          border: 2px solid #ccc;
+          display: inline-block;
+          vertical-align: middle;
+          width: 15px;
+          height: 15px;
+          margin-right: 5px;
+          text-align: center;
+          border-radius: 50%;
+        }
       }
     }
-    input,
-    button {
-      border: none;
-      padding: 0.3rem 0.8rem;
-      @media screen and (max-width: $break-small) {
-        padding: 0.2rem 0.5rem;
+    .search-box {
+      box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
+      @media screen and (max-width: $break-medium) {
+        box-shadow: none;
+        border-bottom: 1px solid $color-grey-dark;
       }
-    }
-    button {
-      color: $color-grey-dark;
-      margin-left: -4px;
-      border-left: none;
-      background: $color-white;
-    }
-    input {
-      @media screen and (max-width: $break-small) {
-        border-left: 1px solid rgba($color-black, 0.1);
+      input,
+      button {
+        border: none;
+        padding: 0.2rem 1rem;
+      }
+      input {
+        @media screen and (max-width: $break-medium) {
+          padding: 0.2rem;
+        }
+      }
+      button {
+        color: $color-grey-dark;
+        background: $color-white;
+        @media screen and (max-width: $break-medium) {
+          padding: 0.2rem 0.5rem;
+        }
       }
     }
   }
+
   &_user {
     margin: 0 0.8rem 0 1.5rem;
     @media screen and (max-width: $break-small) {
@@ -267,9 +275,12 @@ export default {
           display: block;
         }
       }
+      @media screen and (max-width: $break-small) {
+        height: 3rem;
+      }
       cursor: pointer;
       width: 2.5rem;
-      height: 3rem;
+      height: 3.5rem;
       span {
         padding: 0.2rem;
       }
@@ -278,9 +289,9 @@ export default {
       display: none;
       position: absolute;
       right: 0;
-      top: 3rem;
+      top: 3.5rem;
       width: 11rem;
-      background-color: $color-grey-light;
+      background-color: $color-white;
       padding: 0 2rem;
       box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
       &:hover {
@@ -307,7 +318,10 @@ export default {
   }
   &_logout-box {
     width: 2.5rem;
-    height: 3rem;
+    height: 3.5rem;
+    @media screen and (max-width: $break-small) {
+      height: 3rem;
+    }
   }
 }
 </style>

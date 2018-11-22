@@ -15,11 +15,11 @@ export const store = new Vuex.Store({
     },
     Sign_In(state, user_payload) {
       state.user = user_payload
-      localStorage.setItem('user', JSON.stringify(user_payload))
+      sessionStorage.setItem('user', JSON.stringify(user_payload))
     },
     Sign_Out(state) {
       state.user = {}
-      localStorage.setItem('user', '')
+      sessionStorage.setItem('user', '')
     }
   },
   actions: {

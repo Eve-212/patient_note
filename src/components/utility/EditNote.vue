@@ -53,7 +53,6 @@
         class="col-md-3 col-lg-2 d-none d-md-block mb-5" 
         :schema="currentSchema">
       </SectionNav>
-
     </div>
   </div>
 </template>
@@ -84,7 +83,8 @@ export default {
       isLoaded: false,
       appliedSchemas: [],
       availableSchemas: [],
-      currentSchema: {}
+      currentSchema: {},
+      status: ''
     }
   },
   methods: {
@@ -215,40 +215,78 @@ export default {
     }
   },
   created: function() {
-    this.$wf.note.schema({ type: 'admission' }).then($raw => {
-      this.noteSchema = require('../../../static/fake_data/sch.note.adm2.json')
-      // this.$set(
-      //   this.$data,
-      //   'noteSchema',
-      //   // require('../../../static/fake_data/sch.note.adm2.json')
-      //   require('../../../static/fake_data/simple_base.json')
-      // )
+    this.status = 'Loading...'
+    this.$wf.ready().then($api => {
+      return $api.note.schema({ type: 'admission' }).then($raw => {
+        this.noteSchema = require('../../../static/fake_data/sch.note.adm2.json')
+        // this.$set(
+        //   this.$data,
+        //   'noteSchema',
+        //   // require('../../../static/fake_data/sch.note.adm2.json')
+        //   require('../../../static/fake_data/simple_base.json')
+        // )
 
-      // multiple async requests at once: https://stackoverflow.com/questions/50540079/axios-make-multiple-request-at-once-vue-js
-      // make api requests to get all available schemas
-      // determine available schemas using department of logged in user
+        // multiple async requests at once: https://stackoverflow.com/questions/50540079/axios-make-multiple-request-at-once-vue-js
+        // make api requests to get all available schemas
+        // determine available schemas using department of logged in user
 
-      // FIXME: use admit_dept of patient to determine which schemas should added to available schemas list
+        // FIXME: use admit_dept of patient to determine which schemas should added to available schemas list
 
-      this.availableSchemas.push(
-        require('../../../static/fake_data/sch.note.adm2.json')
-      )
-      this.availableSchemas.push(
-        require('../../../static/fake_data/cardio_schema.json')
-      )
-      this.availableSchemas.push(
-        require('../../../static/fake_data/er_schema.json')
-      )
+        this.availableSchemas.push(
+          require('../../../static/fake_data/sch.note.adm2.json')
+        )
+        this.availableSchemas.push(
+          require('../../../static/fake_data/cardio_schema.json')
+        )
+        this.availableSchemas.push(
+          require('../../../static/fake_data/er_schema.json')
+        )
 
-      // TODO
-      // apply name of base schema to appliedSchemas
-      // add base schema to availableSchemas
-      this.appliedSchemas.push(this.noteSchema.tag)
+        // TODO
+        // apply name of base schema to appliedSchemas
+        // add base schema to availableSchemas
+        this.appliedSchemas.push(this.noteSchema.tag)
 
-      this.$set(this.$data, 'currentSchema', cloneDeep(this.noteSchema))
+        this.$set(this.$data, 'currentSchema', cloneDeep(this.noteSchema))
 
-      this.init()
+        this.init()
+        this.status = ''
+      })
     })
+    // this.$wf.note.schema({ type: 'admission' }).then($raw => {
+    //   this.noteSchema = require('../../../static/fake_data/sch.note.adm2.json')
+    //   // this.$set(
+    //   //   this.$data,
+    //   //   'noteSchema',
+    //   //   // require('../../../static/fake_data/sch.note.adm2.json')
+    //   //   require('../../../static/fake_data/simple_base.json')
+    //   // )
+
+    //   // multiple async requests at once: https://stackoverflow.com/questions/50540079/axios-make-multiple-request-at-once-vue-js
+    //   // make api requests to get all available schemas
+    //   // determine available schemas using department of logged in user
+
+    //   // FIXME: use admit_dept of patient to determine which schemas should added to available schemas list
+
+    //   this.availableSchemas.push(
+    //     require('../../../static/fake_data/sch.note.adm2.json')
+    //   )
+    //   this.availableSchemas.push(
+    //     require('../../../static/fake_data/cardio_schema.json')
+    //   )
+    //   this.availableSchemas.push(
+    //     require('../../../static/fake_data/er_schema.json')
+    //   )
+
+    //   // TODO
+    //   // apply name of base schema to appliedSchemas
+    //   // add base schema to availableSchemas
+    //   this.appliedSchemas.push(this.noteSchema.tag)
+
+    //   this.$set(this.$data, 'currentSchema', cloneDeep(this.noteSchema))
+
+    //   this.init()
+    // })
   },
   watch: {
     fee_no() {

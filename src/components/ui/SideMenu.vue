@@ -1,13 +1,13 @@
 <template>
   <div class="side-menu" :class="{expanded: $store.state.sideExpanded}">
     <ul>
-      <li>
+      <li :class="{currentPage : $route.name == 'dashBoard'}">
         <router-link :to="{ name: 'dashBoard' }">
           <i class="fa fa-book-open fa-2x"></i>
           <span class="nav-text">Dashboard</span>
         </router-link>
       </li>
-     <li>
+      <li :class="{currentPage : $route.name == 'edit'}">
         <router-link :to="{ name: 'edit' }">
           <i class="fa fa-pen fa-2x"></i>
           <span class="nav-text">Edit</span>
@@ -23,19 +23,20 @@ export default {}
 @import '@/assets/sass/main.scss';
 
 .side-menu {
-  background: $color-grey-light;
+  background: $color-white;
   position: fixed;
-  top: 3rem;
+  top: 3.5rem;
   width: 3.5rem;
   height: 100%;
   overflow: hidden;
   transition: width 0.1s linear;
   z-index: 100;
+  border-right: 1px solid #e0e0e0;
   &:hover,
   &.expanded {
     width: 13rem;
     overflow: visible;
-    box-shadow: 3px 3px 10px -2px rgba(20%, 20%, 40%, 0.5);
+    box-shadow: 1px 1px 10px -3px rgba(20%, 20%, 40%, 0.5);
     @media screen and (max-width: $break-large) {
       display: block;
       width: 30%;
@@ -55,8 +56,18 @@ export default {}
     li {
       display: block;
       margin: 1rem 0 0.5rem 0;
+      &.currentPage {
+        i {
+          background: $color-primary;
+          border-radius: 50%;
+          width: 2rem;
+          height: 2rem;
+          margin: 0 12px;
+          color: $color-white;
+        }
+      }
       &:hover a {
-        background-color: $color-white;
+        background-color: $color-grey-light;
       }
       a {
         display: table;
