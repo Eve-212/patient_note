@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="header fixed-top d-flex justify-content-between align-items-center">
+    <header class="header fixed-top d-flex justify-content-between align-items-center" :class="{hideSearch:hide}">
       <div class="d-flex">
         <!-- Hamburger menu -->
         <div class="header_handler-box" @click="toggleSideMenu">
@@ -10,7 +10,7 @@
         <router-link 
           @click.native="resetSearch"
           :to="{name: 'dashBoard'}" 
-          class="header_logo-box px-4 d-flex justify-content-between align-items-center">
+          class="header_logo-box d-flex justify-content-between align-items-center">
           <img class="header_logo-box-logo mr-1" src="@/assets/img/logo-sm.png">病摘
         </router-link>
       </div>
@@ -157,21 +157,28 @@ export default {
 @import '@/assets/sass/main.scss';
 
 .header {
-  padding-left: 0.9rem;
   background-color: $color-white;
   color: $color-black;
   font-size: $default-font-size;
   border-bottom: 1px solid #e0e0e0;
-  @media screen and (max-width: $break-small) {
+  &.hideSearch {
+    box-shadow: 0 5px 5px -1px rgba(0, 0, 0, 0.1);
+  }
+  @media screen and (max-width: $break-medium) {
     z-index: 100;
   }
   &_handler-box {
+    width: 3.5rem;
+    height: 3.5rem;
+    line-height: 3.5rem;
     cursor: pointer;
-    height: 2rem;
-    width: 1.8rem;
-    line-height: 2rem;
     text-align: center;
     font-size: 1.2rem;
+    @media screen and (max-width: $break-small) {
+      height: 3rem;
+      line-height: 3rem;
+      width: 2.5rem;
+    }
   }
   &_logo-box {
     text-decoration: none;
@@ -188,15 +195,16 @@ export default {
       width: 100%;
       position: absolute;
       left: 0;
-      top: 3.7rem;
+      top: 3.5rem;
       box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
       font-size: 12px;
+      border-top: 1px solid $color-grey-light;
       &.hideSearch {
         opacity: 0;
       }
     }
     @media screen and (max-width: $break-small) {
-      top: 3.2rem;
+      top: 3rem;
     }
     .radio-box {
       margin-right: 8px;
@@ -215,7 +223,6 @@ export default {
       label {
         position: relative;
         display: inline-block;
-        vertical-align: middle;
         margin: 0 5px;
         cursor: pointer;
         @media screen and (max-width: $break-medium) {
@@ -226,7 +233,7 @@ export default {
           background: #fff;
           border: 2px solid #ccc;
           display: inline-block;
-          vertical-align: middle;
+          vertical-align: sub;
           width: 15px;
           height: 15px;
           margin-right: 5px;
@@ -250,6 +257,9 @@ export default {
         @media screen and (max-width: $break-medium) {
           padding: 0.2rem;
         }
+        @media screen and (max-width: $break-small) {
+          padding: 0.1rem;
+        }
       }
       button {
         color: $color-grey-dark;
@@ -257,10 +267,12 @@ export default {
         @media screen and (max-width: $break-medium) {
           padding: 0.2rem 0.5rem;
         }
+        @media screen and (max-width: $break-small) {
+          padding: 0.1rem;
+        }
       }
     }
   }
-
   &_user {
     margin: 0 0.8rem 0 1.5rem;
     @media screen and (max-width: $break-small) {
@@ -302,6 +314,9 @@ export default {
           // [click and show reminder block] only on small device(<1200px)
           display: block;
         }
+      }
+      @media screen and (max-width: $break-small) {
+        top: 3rem;
       }
       a {
         cursor: pointer;

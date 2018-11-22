@@ -59,10 +59,10 @@ export default {
 
 .signin {
   margin: 120px auto 0 auto;
-  border: 1px solid lighten($color-grey-dark, 20%);
   border-radius: 0.2rem;
   padding: 1.5rem;
   width: 27rem;
+  background: $color-white;
   @media screen and (max-width: $break-medium) {
     width: px-to-vw(550, 800);
   }

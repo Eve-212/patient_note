@@ -1,7 +1,7 @@
 <template>
   <div class="wrap" :class="{isExpanded: $store.state.sideExpanded}">
     {{this.status}}
-    <div v-if="sortedData.length > 0">
+    <div class="my-md-3 mt-5 mb-4" v-if="sortedData.length > 0">
       <h3 class="title my-4">Department：{{$route.params.dept_id}}</h3> 
         <table class="table table-sm">   
           <thead>
