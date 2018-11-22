@@ -666,7 +666,7 @@
                   "type": "boolean",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 6
+                    "bsColSize": 12
                   }
                 },
                 "acute_effect_score": {
