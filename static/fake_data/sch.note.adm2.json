@@ -340,7 +340,6 @@
           }
         },
 
-
         "past_hx": {
           "title": "Past History",
           "type": "object",

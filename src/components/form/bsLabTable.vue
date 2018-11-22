@@ -215,6 +215,18 @@ export default {
       sortedData[v.date].push(v)
     })
     this.lists = sortedData
+  },
+  methods: {
+    load() {
+      this.$wf.ready().then($api => {
+        // return $api.lab.then($raw => {
+        //   console.log($raw.data)
+        // })
+      })
+    }
+  },
+  mounted() {
+    this.load()
   }
 }
 </script>

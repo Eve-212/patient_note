@@ -15,7 +15,6 @@ import TreeCharter from '@/components/form/TreeCharter.vue'
 import JSchemaObject from '@/components/form/JSchemaObject'
 import quillTextArea from '@/components/form/quillTextArea'
 
-
 export {
   bsLabTable,
   bsRadioInput,

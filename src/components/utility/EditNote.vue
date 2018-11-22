@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     {{status}}
-    <div class="row my-md-3 mt-5 mb-4" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
+    <div class="row my-lg-3  my-5" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
       <div class="col-md-9 col-lg-10">
           <div class="row">
             <div class="col-md-12">
@@ -186,10 +186,9 @@ export default {
         // init $data as object containing empty profile object
         let $data = { profile: {} }
         // populate profile field
-        for (let $col of ['name', 'fee_no', 'birthdate', 'sex']) {
+        for (let $col of ['chr_no', 'name', 'fee_no', 'birthdate', 'sex']) {
           $data.profile[$col] = $ipd[$col]
         }
-
         $data.admit_dept = $ipd.dept_id
         $data.admit_time = $ipd.start
 
