@@ -186,10 +186,9 @@ export default {
         // init $data as object containing empty profile object
         let $data = { profile: {} }
         // populate profile field
-        for (let $col of ['name', 'fee_no', 'birthdate', 'sex']) {
+        for (let $col of ['chr_no', 'name', 'fee_no', 'birthdate', 'sex']) {
           $data.profile[$col] = $ipd[$col]
         }
-
         $data.admit_dept = $ipd.dept_id
         $data.admit_time = $ipd.start
 

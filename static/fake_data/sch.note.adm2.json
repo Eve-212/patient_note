@@ -340,7 +340,6 @@
           }
         },
 
-
         "past_hx": {
           "title": "Past History",
           "type": "object",
@@ -902,6 +901,36 @@
                     "inputGroup": true
                   }
                 }
+              }
+            }
+          }
+        },
+        "lab": {
+          "title": "Lab finding",
+          "type": "object",
+          "properties": {
+            "data": {
+              "title": "Blood",
+              "type": "object",
+              "attrs": {
+                "styleClass": ["subsection-title"]
+              },
+              "properties": {
+                "blood": {
+                  "title": "Blood",
+                  "type": "number",
+                  "attrs": {
+                    "fieldType": "labtable"
+                  }
+                }
+              }
+            },
+            "note": {
+              "title": "Note",
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 12
               }
             }
           }
