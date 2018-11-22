@@ -101,7 +101,7 @@ export default {
   flex-wrap: wrap;
   font-size: $default-font-size;
   .card {
-    width: 15rem;
+    width: 16rem;
     border-left: 4px solid $color-tertiary;
     transition: all 0.3s ease;
     &:hover {
@@ -112,8 +112,8 @@ export default {
       border-left: 4px solid $color-secondary-light;
     }
     @media screen and (max-width: $break-large) {
-      font-size: 12px;
-      width: 13rem;
+      font-size: 13px;
+      width: 14rem;
     }
     @media screen and (max-width: $break-small) {
       width: 100%;
