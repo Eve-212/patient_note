@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(value, key, index) in list" :key="index">
+    <div v-for="(value, key, index) in lists" :key="index">
       <!-- Card Title -->
       <template v-if="sortType === 'completion'">
         <h3 v-if="key === 'incompleted'" class="card_title">未完成</h3>
@@ -19,7 +19,11 @@
       </template>
       <!-- Card Content -->
       <div class="card_wrap mb-4">
-        <div class="card mt-2 mr-sm-2 mr-0" v-for="(v, index) in value" :key="index">
+        <div 
+          class="card mt-3 mr-sm-3 mr-0" 
+          v-for="(v, index) in value" 
+          :key="index" >
+          <div class="card-delete" style="position: absolute">&times;</div>
           <div class="card-header d-flex align-items-center">
             <span class="bed_no px-1 py-1" :class="{ female: v.ipd.sex == '0' }">{{v.ipd.bed_no}}</span>｜
             <router-link 
@@ -67,7 +71,7 @@ export default {
     ICDSpan,
     EmpSpan
   },
-  props: ['sortType', 'list'],
+  props: ['sortType', 'lists'],
   methods: {
     sex(value) {
       return value ? 'male' : 'female'
@@ -101,12 +105,15 @@ export default {
   flex-wrap: wrap;
   font-size: $default-font-size;
   .card {
-    width: 16rem;
+    width: 15rem;
     border-left: 4px solid $color-tertiary;
     transition: all 0.3s ease;
+    position: relative;
     &:hover {
-      box-shadow: 0 4px 8px 0 rgba(138, 57, 3, 0.1),
-        0 4px 8px 0 rgba(0, 0, 0, 0.1);
+      box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.1);
+      .card-delete {
+        opacity: 1;
+      }
     }
     &.incompleted {
       border-left: 4px solid $color-secondary-light;
@@ -118,7 +125,22 @@ export default {
     @media screen and (max-width: $break-small) {
       width: 100%;
     }
-    .card-header {
+    &-delete {
+      cursor: pointer;
+      top: -10px;
+      right: -10px;
+      width: 25px;
+      height: 25px;
+      line-height: 22px;
+      border-radius: 50%;
+      text-align: center;
+      background: $color-white;
+      border: 1px solid lighten($color-grey-dark, 15%);
+      color: $color-grey-dark;
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+    &-header {
       a {
         color: $color-black;
         text-decoration: underline;
@@ -132,7 +154,7 @@ export default {
         }
       }
     }
-    .card-body {
+    &-body {
       padding: 0.5rem 1rem;
       @media screen and (max-width: $break-medium) {
         padding: 10px;
