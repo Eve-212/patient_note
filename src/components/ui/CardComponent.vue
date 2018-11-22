@@ -17,7 +17,6 @@
           <small class="text-muted">樓</small>
         </h3>
       </template>
-
       <!-- Card Content -->
       <div class="card_wrap mb-4">
         <div class="card mt-2 mr-sm-2 mr-0" v-for="(v, index) in value" :key="index">
@@ -85,8 +84,6 @@ export default {
 <style lang="scss">
 @import '@/assets/sass/main.scss';
 .card_title {
-  border-bottom: 1px lighten($color-grey-dark, 20%) solid;
-  padding-bottom: 5px;
   text-transform: capitalize;
   span {
     font-size: 1.5rem;
@@ -106,6 +103,11 @@ export default {
   .card {
     width: 15rem;
     border-left: 4px solid $color-tertiary;
+    transition: all 0.3s ease;
+    &:hover {
+      box-shadow: 0 4px 8px 0 rgba(138, 57, 3, 0.1),
+        0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    }
     &.incompleted {
       border-left: 4px solid $color-secondary-light;
     }
