@@ -2,20 +2,25 @@
 <div :class="getBsColSize">
   <div 
     :id="anchorIdFormat(schema)" 
-    :class="[getStyleClass]">    
-    <label class="radio-label">{{ schema.title }}</label>
-    <div 
-      v-for="(item, index) in schema.attrs.values" 
-      :key="index"
-      class="form-check form-check-inline">
-      <input 
-        type="radio" 
-        class="form-check-input"
-        :id="getId(index)" 
-        :value="item" 
-        v-model="val">
-      <label class="form-check-label"  :for="getId(index)">{{ item }}</label>
-    </div>
+    :class="[getStyleClass]"
+    class="form-group">
+    <div class="row">
+      <label class="col-form-label col-lg-2 col-sm-4">{{ schema.title }}</label>
+      <div class="col-lg-10 col-sm-8">
+        <div 
+          v-for="(item, index) in schema.attrs.values" 
+          :key="index"
+          class="form-check form-check-inline">
+          <input 
+            type="radio" 
+            class="form-check-input"
+            :id="getId(index)" 
+            :value="item" 
+            v-model="val">
+          <label class="form-check-label" :for="getId(index)">{{ item }}</label>
+        </div>
+      </div>
+    </div>    
   </div>
 </div>
 </template>
@@ -52,7 +57,12 @@ export default {
 </script>
 
 <style scoped>
+.form-check-input {
+  margin-top: .2rem;
+}
+.form-check-label {
+  margin-top: .4rem;
 
-
+}
 
 </style>

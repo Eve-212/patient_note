@@ -13,7 +13,8 @@
           v-bind="field.attrs" 
           :path="path.concat(key)"           
           v-model="val[key]"
-          v-if="isVisible[key]">          
+          v-if="isVisible[key]"
+          class="object-width">          
           <template slot="subTitle" slot-scope="{ description }">
             <small 
               v-if="description" 
@@ -236,6 +237,9 @@ export default {
 </script>
 
 <style>
+.object-width {
+  width: 100%;
+}
 .obj_box {
   padding: 1rem;
 }

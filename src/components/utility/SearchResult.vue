@@ -1,7 +1,7 @@
 <template>
   <div class="wrap" :class="{isExpanded: $store.state.sideExpanded}">
     {{this.status}}
-    <div class="my-md-3 mt-5 mb-4" v-if="sortedData.length > 0">
+    <div class="my-lg-3 my-5" v-if="sortedData.length > 0">
       <h3 class="title my-4">Department：{{$route.params.dept_id}}</h3> 
         <table class="table table-sm">   
           <thead>
@@ -108,8 +108,6 @@ export default {
 <style lang="scss">
 @import '@/assets/sass/main.scss';
 .wrap {
-  width: 90%;
-  margin: 0 auto;
   @media screen and (max-width: $break-medium) {
     width: 100%;
   }

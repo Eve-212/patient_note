@@ -340,7 +340,6 @@
           }
         },
 
-
         "past_hx": {
           "title": "Past History",
           "type": "object",
@@ -666,7 +665,7 @@
                   "type": "boolean",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 6
+                    "bsColSize": 12
                   }
                 },
                 "acute_effect_score": {
@@ -906,7 +905,40 @@
             }
           }
         },
+<<<<<<< HEAD
        
+=======
+        "lab": {
+          "title": "Lab finding",
+          "type": "object",
+          "properties": {
+            "data": {
+              "title": "Blood",
+              "type": "object",
+              "attrs": {
+                "styleClass": ["subsection-title"]
+              },
+              "properties": {
+                "blood": {
+                  "title": "Blood",
+                  "type": "number",
+                  "attrs": {
+                    "fieldType": "labtable"
+                  }
+                }
+              }
+            },
+            "note": {
+              "title": "Note",
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 12
+              }
+            }
+          }
+        },
+>>>>>>> 9acefe1bd1ad8eba4fc398decc00778d7489e78d
         "image": {
           "title": "Image finding",
           "type": "string",
