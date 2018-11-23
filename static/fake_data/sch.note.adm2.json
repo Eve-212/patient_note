@@ -905,9 +905,6 @@
             }
           }
         },
-<<<<<<< HEAD
-       
-=======
         "lab": {
           "title": "Lab finding",
           "type": "object",
@@ -938,7 +935,6 @@
             }
           }
         },
->>>>>>> 9acefe1bd1ad8eba4fc398decc00778d7489e78d
         "image": {
           "title": "Image finding",
           "type": "string",

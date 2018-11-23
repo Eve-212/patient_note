@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <template>      
  
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
@@ -7,13 +6,6 @@
       </div>
       
       <div class="col-md-9 col-lg-10 my-sm-3 mt-4 editor-main">
-=======
-<template>
-  <div class="container-fluid">
-    {{status}}
-    <div class="row my-lg-3  my-5" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
-      <div class="col-md-9 col-lg-10">
->>>>>>> 9acefe1bd1ad8eba4fc398decc00778d7489e78d
           <div class="row">
             <div class="col-md-12">
               
