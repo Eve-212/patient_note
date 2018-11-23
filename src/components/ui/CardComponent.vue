@@ -1,60 +1,58 @@
 <template>
-  <div>
-    <div v-for="(value, key, index) in lists" :key="index">
-      <!-- Card Title -->
-      <template v-if="sortType === 'completion'">
-        <h3 v-if="key === 'incompleted'" class="card_title">未完成</h3>
-        <h3 v-else class="card_title">已完成</h3> 
-      </template>
-      <template v-else-if="sortType === 'doc_id'">
-        <h3 class="card_title">
-          <emp-span class="mr-1" :id="key" :hide_id="true"></emp-span>
-          <small class="text-muted">醫師</small>
-        </h3> 
-      </template>
-      <template v-else="sortType === 'bed_no'">
-        <h3 class="card_title"><span>{{key}}</span> 
-          <small class="text-muted">樓</small>
-        </h3>
-      </template>
-      <!-- Card Content -->
-      <div class="card_wrap mb-4">
-        <div 
-          class="card mt-3 mr-sm-3 mr-0" 
-          v-for="(v, index) in value" 
-          :key="index" >
-          <div class="card-delete" style="position: absolute">&times;</div>
-          <div class="card-header d-flex align-items-center">
-            <span class="bed_no px-1 py-1" :class="{ female: v.ipd.sex == '0' }">{{v.ipd.bed_no}}</span>｜
-            <router-link 
-              class="font-weight-bold" 
-              :to="{ name: 'edit', params: { fee_no: v.fee_no }}"
-            >{{v.ipd.name}}</router-link>
-            <small class="text-muted ml-auto" >{{v.ipd.chr_no}}</small>
+  <div v-if="lists.length>0">
+    <!-- Card Title -->
+    <!-- <template v-if="sortType === 'completion'">
+      <h3 v-if="key === 'incompleted'" class="card_title">未完成</h3>
+      <h3 v-else class="card_title">已完成</h3> 
+    </template> -->
+    <div v-if="sortType === 'doc_id'">
+      <h3 class="card_title">
+        <emp-span class="mr-1" :id="title" :hide_id="true"></emp-span>
+        <small class="text-muted">醫師</small>
+      </h3> 
+    </div>
+    <div v-else="sortType === 'bed_no'">
+      <h3 class="card_title"><span>{{title}}</span> 
+        <small class="text-muted">樓</small>
+      </h3>
+    </div>
+    <!-- Card Content -->
+    <div class="card_wrap mb-4">
+      <div class="card mt-3 mr-sm-3 mr-0" v-for="(pt, ptIndex) in lists" :key="ptIndex">      
+        <div class="card-header">
+          <div 
+            class="card-delete"  
+            @click="$emit('deletePt', [title, ptIndex, pt.fee_no])">&times;
           </div>
-          <div class="card-body">
-            <p class="mb-0">{{ age(v.ipd.birthdate) }} y/o, {{sex(v.ipd.sex)}}</p>
-            <div v-if="v.ipd.icd10_in[0]"><ICDSpan :icd="v.ipd.icd10_in[0]"></ICDSpan></div>
-            <p>主責醫師：<EmpSpan class="mr-1" :id="v.ipd.doc_id" :hide_id="true"></EmpSpan></p>
-            <div class="d-flex">
-              <router-link 
-                :to="{ name: 'edit', params: { fee_no: v.fee_no }}"
-                :class="{disabled:v.admission.status != 'init'}">住院
-              </router-link>
-              <!-- <button 
-                class="btn btn-sm" value="[1,2]"
-                :class="{hint:v.progress.length != 0, disabled:v.progress.length == 0}">
-                Prog.</button> -->
-              <router-link
-                :to="{ name: 'edit', params: { fee_no: v.fee_no }}" 
-                class="btn btn-sm hint" 
-                value="[1,2]">Prog.
-              </router-link>
-              <router-link
-                :to="{ name: 'edit', params: { fee_no: v.fee_no }}"
-                :class="{disabled:v.discharge.status != 'init'}">出院
-              </router-link>
-            </div>
+          <span class="bed_no px-1 py-1" :class="{ female: pt.ipd.sex == '0' }">{{pt.ipd.bed_no}}</span>｜
+          <router-link 
+            class="font-weight-bold" 
+            :to="{ name: 'edit', params: { fee_no: pt.fee_no }}"
+          >{{pt.ipd.name}}</router-link>
+          <small class="text-muted ml-auto" >{{pt.ipd.chr_no}}</small>
+        </div>
+        <div class="card-body">
+          <p class="mb-0">{{ age(pt.ipd.birthdate) }} y/o, {{sex(pt.ipd.sex)}}</p>
+          <div v-if="pt.ipd.icd10_in[0]"><ICDSpan :icd="pt.ipd.icd10_in[0]"></ICDSpan></div>
+          <p>主責醫師：<EmpSpan class="mr-1" :id="pt.ipd.doc_id" :hide_id="true"></EmpSpan></p>
+          <div class="d-flex">
+            <router-link 
+              :to="{ name: 'edit', params: { fee_no: pt.fee_no }}"
+              :class="{disabled:pt.admission.status != 'init'}">住院
+            </router-link>
+            <!-- <button 
+              class="btn btn-sm" value="[1,2]"
+              :class="{hint:list.progress.length != 0, disabled:list.progress.length == 0}">
+              Prog.</button> -->
+            <router-link
+              :to="{ name: 'edit', params: { fee_no: pt.fee_no }}" 
+              class="btn btn-sm hint" 
+              value="[1,2]">Prog.
+            </router-link>
+            <router-link
+              :to="{ name: 'edit', params: { fee_no: pt.fee_no }}"
+              :class="{disabled:pt.discharge.status != 'init'}">出院
+            </router-link>
           </div>
         </div>
       </div>
@@ -71,7 +69,7 @@ export default {
     ICDSpan,
     EmpSpan
   },
-  props: ['sortType', 'lists'],
+  props: ['sortType', 'lists', 'title'],
   methods: {
     sex(value) {
       return value ? 'male' : 'female'
@@ -84,7 +82,6 @@ export default {
   }
 }
 </script>
-
 <style lang="scss">
 @import '@/assets/sass/main.scss';
 .card_title {
@@ -126,6 +123,7 @@ export default {
       width: 100%;
     }
     &-delete {
+      position: absolute;
       cursor: pointer;
       top: -10px;
       right: -10px;
@@ -141,6 +139,8 @@ export default {
       transition: all 0.5s ease;
     }
     &-header {
+      display: flex;
+      align-items: center;
       a {
         color: $color-black;
         text-decoration: underline;

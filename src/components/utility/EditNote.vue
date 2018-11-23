@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
-    {{status}}
-    <div class="row my-lg-3  my-5" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
+    <div class="my-lg-3 my-5">{{this.status}}</div>
+    <div class="row mb-3" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
       <div class="col-md-9 col-lg-10">
           <div class="row">
             <div class="col-md-12">

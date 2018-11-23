@@ -3,15 +3,15 @@
     <div class="modal">
       <div class="modal-wrapper">
         <div class="modal-container">
+          <div class="modal-close">
+            <slot name="close">
+              <div @click="$emit('close')">
+                &times;
+              </div>
+            </slot>
+          </div>
           <div class="modal-body">
             <slot name="body"></slot>
-          </div>
-          <div class="modal-footer">
-            <slot name="footer">
-              <button class="btn btn-sm btn-info modal-default-button" @click="$emit('close')">
-                OK
-              </button>
-            </slot>
           </div>
         </div>
       </div>
@@ -39,19 +39,32 @@ export default {}
     vertical-align: middle;
   }
   &-container {
-    width: 300px;
-    margin: 0px auto;
-    padding: 20px 30px;
+    width: 350px;
+    margin: 0 auto;
+    padding: 15px;
     background-color: #fff;
     border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
+    position: relative;
+    border-radius: 5px;
+  }
+  &-close {
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    line-height: 22px;
+    border-radius: 50%;
+    text-align: center;
+    background: #fff;
+    border: 1px solid lighten(#aaacac, 15%);
+    color: #aaacac;
   }
   &-body {
     margin: 20px 0;
-  }
-  &-footer {
-    border-top: none;
   }
 }
 /* auto-applied to elements with transition="modal" by Vue.js. */
