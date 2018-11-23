@@ -34,9 +34,9 @@ export default {
 main {
   padding-top: 4rem;
   .main_content {
-    padding-left: 6rem;
+    padding-left: 5.9rem;
     @media screen and (max-width: 1024px) {
-      padding-left: 15px;
+      padding-left: 16px;
     }
   }
 }

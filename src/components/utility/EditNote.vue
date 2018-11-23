@@ -1,11 +1,15 @@
 <template>
-  <div class="container-fluid">
+  <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">
     <div class="my-lg-3 my-5">{{this.status}}</div>
-    <div class="row mb-3" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
-      <div class="col-md-9 col-lg-10">
+    <div class="editor-toolbar col-md-10 position-fixed">
+      <Toolbar></Toolbar>
+    </div>
+      <div class="col-md-9 col-lg-10 my-sm-3 mt-4 editor-main">
           <div class="row">
             <div class="col-md-12">
-              <div v-if="showAlert" class="alert alert-danger">
+              
+              
+              <!-- <div v-if="showAlert" class="alert alert-danger">
                 <strong>
                   是否加入您的病人清單?
                 </strong>
@@ -14,9 +18,9 @@
                   <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
                   <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="showLater">Ask me later</button>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="alert alert-primary">
+              <!-- <div class="alert alert-primary">
                 <ul>
                   <li>
                     <strong>Applied form schemas：</strong>
@@ -32,7 +36,7 @@
                     </span>                
                   </li>
                 </ul>
-              </div>
+              </div> -->
             </div>
 
             <JSchemaObject 
@@ -49,7 +53,7 @@
         :schema="currentSchema">
       </SectionNav>
     </div>
-  </div>
+  
 </template>
 
 <script>
@@ -58,13 +62,15 @@ import JSchemaObject from '@/components/form/JSchemaObject'
 import mergeWith from 'lodash/mergeWith'
 import isArray from 'lodash/isArray'
 import cloneDeep from 'lodash/cloneDeep'
+import Toolbar from './Toolbar.vue'
 
 export default {
   name: 'EditNote',
   props: ['fee_no'],
   components: {
     SectionNav,
-    JSchemaObject
+    JSchemaObject,
+    Toolbar
   },
   data() {
     return {
@@ -347,7 +353,31 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/sass/main.scss';
-.reset {
+.editor-toolbar {
+  // margin-top: -8px;
+  margin-top: 0px;
+
+  z-index: 99;
+  @media screen and (max-width: $break-medium) {
+    margin-top: 38px;
+  }
+
+  @media screen and (max-width: $break-small) {
+    margin-top: 28px;
+  }
+}
+
+.editor-main {
+  padding-top: 4rem;
+  @media screen and (max-width: $break-medium) {
+    padding-top: 9rem;
+  }
+
+  @media screen and (max-width: $break-small) {
+  }
+}
+
+.reset-btn {
   margin-right: 5px;
   padding: 0 3px;
   background-color: #cccccc !important;
@@ -356,7 +386,8 @@ export default {
 
 .alert-container {
   width: 100%;
-  margin-right: 10px !important;
+  margin-right: 0.95rem !important;
+  padding-right: 5px;
 }
 
 .alert {
