@@ -1,14 +1,14 @@
 <template>
+<div>
+  <div class="my-lg-3 my-5">{{this.status}}</div>
   <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">
-    <div class="my-lg-3 my-5">{{this.status}}</div>
     <div class="editor-toolbar col-md-10 position-fixed">
       <Toolbar></Toolbar>
     </div>
-      <div class="col-md-9 col-lg-10 my-sm-3 mt-4 editor-main">
+    
+      <div class="col-md-9 col-lg-10 editor-main">
           <div class="row">
             <div class="col-md-12">
-              
-              
               <!-- <div v-if="showAlert" class="alert alert-danger">
                 <strong>
                   是否加入您的病人清單?
@@ -53,7 +53,7 @@
         :schema="currentSchema">
       </SectionNav>
     </div>
-  
+  </div>
 </template>
 
 <script>
@@ -83,7 +83,7 @@ export default {
       appliedSchemas: [],
       availableSchemas: [],
       currentSchema: {},
-      status: ''
+      status: 'qger'
     }
   },
   methods: {
