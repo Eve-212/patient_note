@@ -33,12 +33,6 @@ export default {
 <style lang="scss" scoped>
 main {
   padding-top: 4rem;
-<<<<<<< HEAD
-  @media screen and (max-width: 576px) {
-    padding: 5rem 0;
-  }
-=======
->>>>>>> 6922874d9534027d2dc0220a3473c7deaaab4f22
   .main_content {
     padding-left: 5.9rem;
     @media screen and (max-width: 1024px) {

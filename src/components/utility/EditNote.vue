@@ -1,6 +1,7 @@
 <template>      
+ 
     <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
-      <div class="editor-toolbar col-md-12 position-fixed">
+      <div class="editor-toolbar col-md-10 position-fixed">
         <Toolbar></Toolbar>
       </div>
       
@@ -8,7 +9,8 @@
           <div class="row">
             <div class="col-md-12">
               
-              <div v-if="showAlert" class="alert alert-danger">
+              
+              <!-- <div v-if="showAlert" class="alert alert-danger">
                 <strong>
                   是否加入您的病人清單?
                 </strong>
@@ -17,7 +19,7 @@
                   <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
                   <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="showLater">Ask me later</button>
                 </div>
-              </div>
+              </div> -->
 
               <!-- <div class="alert alert-primary">
                 <ul>
@@ -52,7 +54,7 @@
         :schema="currentSchema">
       </SectionNav>
     </div>
-  </div>
+  
 </template>
 
 <script>
@@ -355,25 +357,26 @@ export default {
 @import '@/assets/sass/main.scss';
 .editor-toolbar {
   // margin-top: -8px;
-  margin-top: -8px;
+  margin-top: 0px;
+  
   z-index: 99;
   @media screen and (max-width: $break-medium) {
-        margin-top: 0;
+        margin-top: 38px;
       }
   
    @media screen and (max-width: $break-small) {
-        margin-top: 0;
+        margin-top: 28px;
       }
 }
 
 .editor-main {
-  padding-top: 4.5rem;
+  padding-top: 4rem;
   @media screen and (max-width: $break-medium) {
-        padding-top: 5.5rem;
+        padding-top: 9rem;
       }
 
   @media screen and (max-width: $break-small) {
-        margin-top: 0;
+        
       }
 }
 
