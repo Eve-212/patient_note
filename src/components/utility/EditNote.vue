@@ -1,7 +1,7 @@
 <template>
 <div>
-  <div class="my-lg-3 my-5">{{this.status}}</div>
-  <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">
+  <div v-if="status" class="loading"><p>{{status}}</p></div>
+  <div class="row my-md-4 mt-5 mb-3" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">
     <div class="editor-toolbar col-md-10 position-fixed">
       <Toolbar></Toolbar>
     </div>
@@ -83,7 +83,7 @@ export default {
       appliedSchemas: [],
       availableSchemas: [],
       currentSchema: {},
-      status: 'qger'
+      status: null
     }
   },
   methods: {
@@ -213,7 +213,7 @@ export default {
     }
   },
   created: function() {
-    this.status = 'Loading...'
+    this.status = 'loading'
     this.$wf.ready().then($api => {
       return $api.note.schema({ type: 'admission' }).then($raw => {
         this.noteSchema = require('../../../static/fake_data/sch.note.adm2.json')
