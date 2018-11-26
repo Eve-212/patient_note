@@ -1,6 +1,5 @@
 <template>
   <div class="container-fluid">
-    {{status}}
     <div class="row my-lg-3  my-5" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">  
       <div class="col-md-9 col-lg-10">
           <div class="row">
