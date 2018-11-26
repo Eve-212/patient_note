@@ -64,6 +64,17 @@ export default {
       isVisible: {},
       child_key: null // for clarity, use child_key in obj comp and currentKey in input components
     }
+  },  
+  updated() {
+    // console.log("UPDATED")
+  },
+  watch: {
+    schema: {
+      handler: function() {
+        this.setVisible()
+      },
+      deep: true
+    }    
   },
   created() {
     this.child_key = this.currentKey
@@ -200,6 +211,40 @@ export default {
 
       this.$set(this.val, child_key, initValue)
     },
+    setVisible() {
+      for (let $child_key in this.schema.properties) {
+        let $child_schema = this.schema.properties[$child_key]
+        let $this = this
+        this.$set(this.isVisible, $child_key, true)
+        if ($child_schema.attrs) {
+          if ($child_schema.attrs.dependsOn) {
+            // render initial visibility tracker object
+            let $vis = this.$rootObj.checkVisible($child_schema.attrs.dependsOn)
+            if (!$vis) {
+              this.$set(this.isVisible, $child_key, $vis) // $vis === false here
+            }
+            // set up watch for values in dependsOn
+            // how to add watchers dynamically:
+            // https://codingexplained.com/coding/front-end/vue-js/adding-removing-watchers-dynamically
+            this.$rootObj.$watch(
+              'value.' + $child_schema.attrs.dependsOn.name,
+              function($oldVal, $newVal) {
+                console.log('Change', $child_schema.attrs.dependsOn.name)
+                let visibility = this.checkVisible($child_schema.attrs.dependsOn)
+                $this.$set($this.isVisible, $child_key, visibility)
+
+                console.log($child_schema)
+
+                // if corrresponding isVisible value is false then clear data
+                if (!visibility) {
+                  $this.clearInput($child_key, $child_schema)
+                }
+              }
+            )
+          }
+        }
+      }
+    },    
     getPathVal($path) {
       //get value with path like "personal_hx.cigarette.used"
       let segments = $path.split('.')

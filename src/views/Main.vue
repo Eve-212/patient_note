@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     hideSearch(status) {
-      this.hide = status
+      // this.hide = status
     }
   }
 }
