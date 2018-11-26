@@ -81,7 +81,7 @@
         :schema="currentSchema">
       </SectionNav>
     </div>
-  
+  </div>
 </template>
 
 <script>
@@ -359,8 +359,7 @@ export default {
       }
 
   @media screen and (max-width: $break-small) {
-        
-      }
+  }
 }
 
 .reset-btn {
