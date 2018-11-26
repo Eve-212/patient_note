@@ -63,10 +63,6 @@ export default {
     load() {
       this.status = 'loading'
       this.$wf.ready().then($api => {
-        console.log($api)
-        // $api.surgery.list().then($raw => {
-        //   console.log($raw)
-        // })
         return $api.note.list().then($raw => {
           this.rowData = $raw.data
           this.status = ''
