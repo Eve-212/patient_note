@@ -37,7 +37,8 @@
           <p>主責醫師：<EmpSpan class="mr-1" :id="pt.ipd.doc_id" :hide_id="true"></EmpSpan></p>
           <div class="d-flex">
             <router-link 
-              :to="{ name: 'edit', params: { fee_no: pt.fee_no }}"
+              v-if="pt.adm"
+              :to="{ name: 'edit', params: { id: pt.adm.id }}"
               :class="{disabled:pt.admission.status != 'init'}">住院
             </router-link>
             <!-- <button 
