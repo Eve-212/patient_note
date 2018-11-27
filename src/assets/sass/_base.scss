@@ -26,6 +26,49 @@ input {
   outline: none;
 }
 
+.loading {
+  margin: 0 auto;
+  position: relative;
+  text-transform: uppercase;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  &::after {
+    content: '';
+    border-radius: 2px;
+    animation: wormsPong cubic-bezier(0.77, 0, 0.175, 1) 1s infinite;
+    background-color: $color-primary;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+  }
+}
+
+@keyframes wormsPong {
+  25% {
+    width: 100%;
+  }
+
+  50% {
+    width: 0;
+    left: auto;
+    right: 0;
+  }
+
+  75% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+    right: auto;
+    left: 0;
+  }
+}
+
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   font-size: 12px;

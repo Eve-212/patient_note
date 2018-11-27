@@ -140,7 +140,7 @@ export default {
         }
       } else {
         this.modalShow = true
-        this.modalMessage = `Please enter your search keyword`
+        this.modalMessage = `Please enter keywords for searching..`
       }
     },
     resetSearch() {
@@ -305,8 +305,9 @@ export default {
       top: 3.5rem;
       width: 11rem;
       background-color: $color-white;
-      padding: 0 2rem;
+      padding: 0;
       box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
+      border-top: 1px solid $color-black;
       &:hover {
         display: block;
       }
@@ -321,13 +322,11 @@ export default {
       }
       a {
         cursor: pointer;
-        border-bottom: 1px solid lighten($color-grey-dark, 15%);
-        padding: 0.5rem 0;
-        margin: 0.5rem 0;
+        padding: 0.5rem 1.5rem;
         text-decoration: none;
         color: $color-black;
         &:hover {
-          border-color: $color-black;
+          background-color: darken($color-grey-light, 5%);
         }
       }
     }

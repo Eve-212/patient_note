@@ -1,7 +1,7 @@
 <template>
   <div :class="{isExpanded: $store.state.sideExpanded}">
-    <div class="my-lg-3 my-5">{{this.status}}</div>
-    <div v-if="Object.keys(sortedData).length > 0" class="mb-3 d-flex align-items-center justify-content-xl-end">
+    <div v-if="status" class="loading"><p>{{status}}</p></div>
+    <div v-if="Object.keys(sortedData).length > 0" class="my-md-4 mt-5 mb-3 d-flex align-items-center justify-content-xl-end">
       <span class="h5 my-0" >Group By：</span>
       <div>
         <button
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     load() {
-      this.status = 'Loading...'
+      this.status = 'loading'
       this.$wf.ready().then($api => {
         return $api.note.list().then($raw => {
           this.rowData = $raw.data

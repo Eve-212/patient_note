@@ -1,7 +1,7 @@
 <template>
   <div class="wrap" :class="{isExpanded: $store.state.sideExpanded}">
-    <div class="my-lg-3 my-5">{{this.status}}</div>
-    <div class="mb-3" v-if="sortedData.length > 0">
+    <div v-if="status" class="loading"><p>{{status}}</p></div>
+    <div class="my-md-4 mt-5 mb-3" v-if="sortedData.length > 0">
       <h3 class="title my-4">Department：{{$route.params.dept_id}}</h3> 
         <table class="table table-sm">   
           <thead>
@@ -49,7 +49,7 @@ export default {
   props: ['dept_id'],
   data() {
     return {
-      status: '',
+      status: null,
       rowData: {},
       sortedData: [],
       countOfPage: 6,
@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     load(dept_id) {
-      this.status = 'Loading...'
+      this.status = 'loading'
       this.$wf.ready().then($api => {
         return $api.note.list().then($raw => {
           this.rowData = $raw.data

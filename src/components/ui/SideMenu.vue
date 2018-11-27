@@ -58,17 +58,20 @@ export default {}
       display: block;
       margin: 1rem 0 0.5rem 0;
       &.currentPage {
-        i {
-          background: $color-primary;
-          border-radius: 50%;
-          width: 2rem;
-          height: 2rem;
-          margin: 0 12px;
-          color: $color-white;
+        a {
+          padding: 0.3rem 0;
+          i {
+            background: $color-primary;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            margin: 0 12px;
+            color: $color-white;
+          }
         }
       }
       &:hover a {
-        background-color: $color-grey-light;
+        background-color: darken($color-grey-light, 5%);
       }
       a {
         display: table;

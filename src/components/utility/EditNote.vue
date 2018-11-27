@@ -1,5 +1,8 @@
-<template>      
-    <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded"> 
+<template>  
+  <div>    
+    <div v-if="status" class="loading"><p>{{status}}</p></div>
+    <div class="row my-md-4 mt-5 mb-3" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded"> 
+      
       <div class="editor-toolbar col-md-9 col-lg-10 position-fixed">
         <div class="row">
           <div class="col-md-12">
@@ -109,8 +112,8 @@ export default {
       // appliedSchemas: [],
       // availableSchemas: [],
       currentSchema: null,
-      status: '',
-      showSchemaSelect: false
+      showSchemaSelect: false,
+      status: null
     }
   },
   methods: {
@@ -255,8 +258,7 @@ export default {
     }
   },
   created: function() {
-    this.status = 'Loading...'
-
+    this.status = 'loading'
     this.$wf.ready().then($api => {
       return $api.note.schema({ type: 'admission' }).then($raw => {
         this.noteSchema = require('../../../static/fake_data/sch.note.adm2.json')
@@ -293,7 +295,6 @@ export default {
         this.status = ''
       })
     })
-    
   },
   watch: {
     id() {
@@ -306,19 +307,16 @@ export default {
         // this.$nextTick(this.$forceUpdate())
       },
       deep: true
-    }    
+    }
     // appliedSchemas: {
     //   handler: function() {
     //     function customizer(objValue, srcValue) {
     //       if (isArray(objValue)) {
-    //         // use Set to ensure uniqueness            
+    //         // use Set to ensure uniqueness
     //         return [...new Set(objValue.concat(srcValue))]
     //       }
     //     }
 
-          
-
-          
     //     this.$set(
     //       this.$data,
     //       'currentSchema',
@@ -329,7 +327,7 @@ export default {
     //         ),
     //         customizer
     //       )
-    //     )        
+    //     )
     //   },
     //   deep: true
     // }
@@ -346,24 +344,23 @@ export default {
   // background-color: $color-grey-light;
   
   max-width: 78%;
-  
-  
+
   z-index: 99;
   @media screen and (max-width: $break-medium) {
-        margin-top: 30px;        
-        max-width: 74%;
-      }
-  
-   @media screen and (max-width: $break-small) {
-        margin-top: 28px;
-      }
+    margin-top: 30px;
+    max-width: 74%;
+  }
+
+  @media screen and (max-width: $break-small) {
+    margin-top: 28px;
+  }
 }
 
 .editor-main {
   padding-top: 2rem;
   @media screen and (max-width: $break-medium) {
-        padding-top: 3rem;
-      }
+    padding-top: 3rem;
+  }
 
   @media screen and (max-width: $break-small) {
   }
@@ -391,8 +388,8 @@ export default {
   padding: 8px 15px;
   margin: 0 auto 0.5rem;
   @media screen and (max-width: $break-medium) {
-        margin: 1rem auto 0rem;
-      }
+    margin: 1rem auto 0rem;
+  }
   float: none;
   &-primary {
     ul {
