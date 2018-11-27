@@ -313,7 +313,7 @@
           "type": "object",
           "properties": {
             "list": {
-              "type": "string",
+              "type": "array",
               "items": {
                 "type": "object",
                 "properties": {

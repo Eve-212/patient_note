@@ -15,6 +15,7 @@ const OneAPI = function ($cfg) {
 
   let api = new APIClient($cfg);
   //assing plugins
+  
   api.api_loader = api.loader.then(() => {
 
     for (let service in Plugins) {

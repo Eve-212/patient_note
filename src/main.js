@@ -10,6 +10,9 @@ import { store } from './store/store.js'
 // import 'vue-orgchart/dist/style.min.css'
 import { VueScrollTo, VueScrollWatch, RemoveListener } from './lib/scroll'
 
+
+
+
 Vue.directive('focus', {
   inserted: function(el) {
     el.focus()
@@ -18,7 +21,7 @@ Vue.directive('focus', {
 
 Vue.directive('scroll-to', {
   inserted: function(el) {
-    VueScrollTo(el, 500, 79)
+    VueScrollTo(el, 500, 110)
     //el, duration, offset
   }
 })
@@ -33,19 +36,19 @@ Vue.directive('scroll-watch', {
 })
 
 Vue.prototype.$http = axios
-let $wf = OneAPI({
-  spec_url: 'http://10.65.1.228:3000/api/spec.get',
-  server_url: 'http://10.65.1.228:3000/api'
+let $wf=OneAPI({
+  spec_url:"http://10.65.1.228:3000/api/spec.get",
+  server_url:"http://10.65.1.228:3000/api"  
 })
-Vue.prototype.$wf = $wf
-window.$wf = $wf
+Vue.prototype.$wf =  $wf
+window.$wf=$wf
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  // el: '#app',
-  router,
-  store,
+  // el: '#app',  
+  router,  
+  store,   
   // components: { App },
   // template: '<App/>'
   render: h => h(App)

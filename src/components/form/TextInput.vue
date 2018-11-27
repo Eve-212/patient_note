@@ -1,6 +1,6 @@
 <template>
 <div :class="getBsColSize">  
-  <div :id="anchorIdFormat(schema)">
+  <div :id="anchorIdFormat(schema)">   
     <template v-if="inputGroup">    
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -50,7 +50,18 @@ export default {
       }
     }
   },
-  created() {}
+  // watch: {
+  //   schema: {     
+  //     handler: function() {
+  //       console.log("TEXTINPUT")
+  //       console.log(this.schema)
+  //     },
+  //     deep: true
+  //   }
+  // },
+  // created() {
+  //   console.log("CREATED")
+  // }
 }
 </script>
 

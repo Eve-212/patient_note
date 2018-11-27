@@ -26,7 +26,7 @@ export default new Router({
           component: DashBoard
         },
         {
-          path: '/edit/:fee_no?',
+          path: '/edit/:id?',
           name: 'edit',
           props: true,
           component: EditNote

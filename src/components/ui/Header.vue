@@ -113,11 +113,12 @@ export default {
           this.$wf.note
             .sess({ no: this.no })
             .then($raw => {
+              console.log($raw)
               let $sess = $raw.data
-              if ($sess.fee_no) {
+              if ($sess.adm.id) {
                 this.$router.push({
                   name: 'edit',
-                  params: { fee_no: $sess.fee_no }
+                  params: { id: $sess.adm.id }
                 })
                 this.resetSearch()
               }
