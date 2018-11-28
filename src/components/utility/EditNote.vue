@@ -1,16 +1,20 @@
-<template>  
-  <div>    
-    <div v-if="status" class="loading"><p>{{status}}</p></div>
-    <div class="row my-md-4 mt-5 mb-3" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded"> 
-      
+<template>
+  <div>
+    <div v-if="status" class="loading">
+      <p>{{status}}</p>
+    </div>
+    <div
+      class="row my-md-4 mt-5 mb-3"
+      :class="{isExpanded: $store.state.sideExpanded}"
+      v-if="isLoaded"
+    >
       <div class="editor-toolbar col-md-9 col-lg-10 position-fixed">
         <div class="row">
           <div class="col-md-12">
             <Toolbar v-model="currentSchema" :base="noteSchema" @saveData="updateData"></Toolbar>
           </div>
         </div>
-        
-        
+
         <!-- <div v-if="showSchemaSelect" class="alert alert-primary col-md-2">
                 <ul>
                   <li>
@@ -27,16 +31,13 @@
                     </span>                
                   </li>
                 </ul>
-              </div> -->
-
+        </div>-->
       </div>
 
-      
-      
-      <div class="col-md-9 col-lg-10 my-sm-3 mt-4 editor-main">        
-          <div class="row">
-            <div class="col-md-12">                                       
-              <!-- <div v-if="showSchemaSelect" class="alert alert-primary">
+      <div class="col-md-9 col-lg-10 my-sm-3 mt-4 editor-main">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- <div v-if="showSchemaSelect" class="alert alert-primary">
                 <ul>
                   <li>
                     <strong>Applied form schemas：</strong>
@@ -52,33 +53,41 @@
                     </span>                
                   </li>
                 </ul>
-              </div> -->
-              
-              <div v-if="showAlert" class="alert alert-danger">
-                <strong>
-                  是否加入您的病人清單?
-                </strong>
-                <div>
-                  <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="yes">Yes</button>
-                  <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
-                  <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="showLater">Ask me later</button>
-                </div>
+            </div>-->
+            <div v-if="showAlert" class="alert alert-danger">
+              <strong>是否加入您的病人清單?</strong>
+              <div>
+                <button
+                  @click="closeAlert"
+                  class="btn btn-sm btn-danger"
+                  type="button"
+                  value="yes"
+                >Yes</button>
+                <button
+                  @click="closeAlert"
+                  class="btn btn-sm btn-danger"
+                  type="button"
+                  value="no"
+                >No</button>
+                <button
+                  @click="closeAlert"
+                  class="btn btn-sm btn-danger"
+                  type="button"
+                  value="showLater"
+                >Ask me later</button>
               </div>
             </div>
-
-            <JSchemaObject 
-              class="col-md-12"   
-              v-model="data" 
-              :schema="currentSchema.properties.content">
-            </JSchemaObject>
-
           </div>
+
+          <JSchemaObject
+            class="col-md-12"
+            v-model="data"
+            :schema="currentSchema.properties.content"
+          ></JSchemaObject>
+        </div>
       </div>
-      
-      <SectionNav 
-        class="col-md-3 col-lg-2 d-none d-md-block mb-5" 
-        :schema="currentSchema">
-      </SectionNav>
+
+      <SectionNav class="col-md-3 col-lg-2 d-none d-md-block mb-5" :schema="currentSchema"></SectionNav>
     </div>
   </div>
 </template>
@@ -95,7 +104,7 @@ import Toolbar from './Toolbar.vue'
 
 export default {
   name: 'EditNote',
-  props: ['id'],
+  props: ['id', 'fee_no'],
   components: {
     SectionNav,
     JSchemaObject,
@@ -117,19 +126,21 @@ export default {
     }
   },
   methods: {
-    updateData(){
+    updateData() {
       console.log(this.$wf)
       this.$wf.ready().then($api => {
         console.log(this.data)
-         $api.note.update({ 
-          id: this.id, 
-          content: this.data, 
-          }).then($api => {
-          console.log($api)
-        }).catch(err => {
-          console.log(err)
-        })
-        
+        $api.note
+          .update({
+            id: this.id,
+            content: this.data
+          })
+          .then($api => {
+            console.log($api)
+          })
+          .catch(err => {
+            console.log(err)
+          })
       })
     },
     // resetSchema() {
@@ -197,37 +208,43 @@ export default {
     // use fee_no to get patient data
     // FIXME: need to handle error when no fee_no
     init() {
-      if (this.id) {
-        // attempt to get patient data from sess_cache using fee_no
-        this.sess = this.$wf.note.get[this.id]
-        if (!this.sess) {
-          // if patient data does not exist in sess_cache
-          // then get patient data from database using fee_no
-          this.$wf.note.get({ id: this.id }).then($raw => {
-            if ($raw.data.id) {
-              this.sess = $raw.data
-              // call load function to load retrieved patient data into component's data object
-              this.load()
-            }
+      //no note
+      if (this.fee_no && this.id) {
+        this.$wf.note
+          .sess({ no: this.fee_no })
+          .then(res => {
+            this.sess = res.data
+            this.load()
           })
-        } else {
-          // use load function to load patient data retrieved from sess_cache into component's data object
+          .catch(error => {
+            console.log(error)
+          })
+      } else {
+        //get note data
+        this.$wf.note.get({ id: this.id }).then(res => {
+          this.sess = res.data
           this.load()
-        }
+        })
       }
     },
     load() {
       let $id
-      if (($id = this.sess.id)) {
+      // if have note then print exsist data
+      if (($id = this.id) && !this.fee_no) {
         // true if this.session.admission.id exists / else false
-        this.$wf.note.get({ id: $id }).then($raw => {
-          this.prepare_data(this.currentSchema, $raw.data)
-          this.data = $raw.data.content
-          this.meta = $raw.data
-          this.isLoaded = true
-        })
+        this.$wf.note
+          .get({ id: $id })
+          .then($raw => {
+            this.prepare_data(this.currentSchema, $raw.data)
+            this.data = $raw.data.content
+            this.meta = $raw.data
+            this.isLoaded = true
+          })
+          .catch(error => {
+            console.log(error)
+          })
       } else {
-        // set $ipd to retrieved patient ipd (inpatient data)
+        //no note then get ipd data for new note
         let $ipd = this.sess.ipd
         this.meta = {
           type: 'admission',
@@ -247,6 +264,8 @@ export default {
 
         this.data = $data
         // Form will not load unless isLoaded is true
+        // Save data first
+        this.updateData()
         this.isLoaded = true
       }
     } /*,
@@ -259,6 +278,7 @@ export default {
   },
   created: function() {
     this.status = 'loading'
+
     this.$wf.ready().then($api => {
       return $api.note.schema({ type: 'admission' }).then($raw => {
         this.noteSchema = require('../../../static/fake_data/sch.note.adm2.json')
@@ -291,6 +311,7 @@ export default {
         // this.appliedSchemas.push(this.noteSchema.tag)
 
         this.$set(this.$data, 'currentSchema', cloneDeep(this.noteSchema))
+
         this.init()
         this.status = ''
       })
@@ -301,11 +322,7 @@ export default {
       this.init()
     },
     currentSchema: {
-      handler: function() {
-
-        // this.init()
-        // this.$nextTick(this.$forceUpdate())
-      },
+      handler: function() {},
       deep: true
     }
     // appliedSchemas: {
@@ -342,13 +359,14 @@ export default {
   // margin-top: 0px;
 
   // background-color: $color-grey-light;
-  
-  max-width: 78%;
+  // background-color: red;
+
+  // max-width: 78%;
 
   z-index: 99;
   @media screen and (max-width: $break-medium) {
     margin-top: 30px;
-    max-width: 74%;
+    // max-width: 74%;
   }
 
   @media screen and (max-width: $break-small) {

@@ -2,16 +2,19 @@
   <div class="signin">
     <h2 class="h2">Login Page</h2>
     <form>
-      <fieldset label="User Name" label-for="username">
-        <input id="username" type="text" name="username" v-model="input.username" placeholder="User name">
-        </input>
+      <fieldset label="User id" label-for="id">
+        <input id="id" type="text" v-model="input.id" placeholder=" User id" v-focus ref="id">
       </fieldset>
-      <fieldset label="Password" label-for="password">
-        <input id="password" type="password" name="password" v-model="input.password" placeholder="Password">
-        </input>
+      <fieldset label="pw" label-for="pw">
+        <input id="pw" type="password" v-model="input.pw" placeholder=" Password" ref="pw">
       </fieldset>
       <div class="text-danger">{{message}}</div>
-      <button class="btn btn-block" type="button" v-on:click="signIn()">Sign In</button>
+      <button
+        class="btn btn-block"
+        type="submit"
+        @keyup.enter.prevent="signIn"
+        @click.prevent="signIn"
+      >Sign In</button>
     </form>
   </div>
 </template>
@@ -21,39 +24,79 @@ export default {
     return {
       message: '',
       input: {
-        username: '萬小芳',
-        password: '11111'
-      },
-      mockAccount: {
-        username: '萬小芳',
-        password: '11111'
+        id: '99356',
+        pw: '0000000'
       }
+    }
+  },
+  watch: {
+    input: {
+      handler() {
+        this.message = ''
+      },
+      deep: true
     }
   },
   methods: {
     signIn() {
-      if (this.input.username != '' && this.input.password != '') {
-        if (
-          this.input.username == this.mockAccount.username &&
-          this.input.password == this.mockAccount.password
-        ) {
-          let user = {
-            name: this.input.username
-          }
-          this.$store.dispatch('Sign_In', user)
-          this.$router.replace({
-            name: 'dashBoard'
+      if (this.input.id && this.input.pw) {
+        $wf.auth
+          .login({
+            //id:'99356',pw:'0000000'
+            id: this.input.id,
+            pw: this.input.pw
           })
-        } else {
-          this.message = 'The username and / or password is incorrect'
-        }
+          .then($raw => {
+            let login_status = $raw.data.auth
+            if (login_status) {
+              this.$router.replace({
+                name: 'dashBoard'
+              })
+              let user_info = $raw.data
+              this.$store.dispatch('Sign_In', user_info)
+            } else {
+              this.message =
+                'Either username or password is incorrect, please try again!'
+            }
+          })
       } else {
-        this.message = 'A username and password must be present'
+        if (!this.input.id) {
+          this.message = 'A user Id must be present'
+          this.setFocus('id')
+        } else {
+          this.message = 'A password must be present'
+          this.setFocus('pw')
+        }
       }
+
+      // if (this.input.username != '' && this.input.password != '') {
+      //   if (
+      //     this.input.username == this.mockAccount.username &&
+      //     this.input.password == this.mockAccount.password
+      //   ) {
+      //     let user = {
+      //       name: this.input.username
+      //     }
+      //     this.$store.dispatch('Sign_In', user)
+      //     this.$router.replace({
+      //       name: 'dashBoard'
+      //     })
+      //   } else {
+      //     this.message = 'The username and / or password is incorrect'
+      //   }
+      // } else {
+      //   this.message = 'A username and password must be present'
+      // }
+    },
+    setFocus(el) {
+      this.$nextTick(() => {
+        this.$refs[el].focus()
+      })
     }
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import '@/assets/sass/main.scss';
 

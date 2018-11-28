@@ -38,7 +38,7 @@ li {
 li a {
   color: #99979c;
 }
-.section-nav {
+.section-nav {  
   position: fixed;
   right: 0;
   height: 80vh;

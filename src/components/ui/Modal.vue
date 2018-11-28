@@ -1,13 +1,11 @@
 <template>
   <transition name="modal">
-    <div class="modal">
+    <div class="modal" @click="$emit('close')">
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-container" @click.stop>
           <div class="modal-close">
             <slot name="close">
-              <div @click="$emit('close')">
-                &times;
-              </div>
+              <div @click="$emit('close')">&times;</div>
             </slot>
           </div>
           <div class="modal-body">
@@ -39,7 +37,7 @@ export default {}
     vertical-align: middle;
   }
   &-container {
-    width: 350px;
+    width: 400px;
     margin: 0 auto;
     padding: 15px;
     background-color: #fff;
