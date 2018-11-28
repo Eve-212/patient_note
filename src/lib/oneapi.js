@@ -31,6 +31,8 @@ const OneAPI = function ($cfg={}) {
         this.jwt_token=token;
         this.auth.data=jwt_decode(token);
         lscache.set('jwt_token',token);
+      }else{
+        this.auth.data={auth:false};
       }
       
     };
