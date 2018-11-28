@@ -95,7 +95,7 @@ import Toolbar from './Toolbar.vue'
 
 export default {
   name: 'EditNote',
-  props: ['id'],
+  props: ['id', 'fee_no'],
   components: {
     SectionNav,
     JSchemaObject,
@@ -197,37 +197,37 @@ export default {
     // use fee_no to get patient data
     // FIXME: need to handle error when no fee_no
     init() {
-      if (this.id) {
-        // attempt to get patient data from sess_cache using fee_no
-        this.sess = this.$wf.note.get[this.id]
-        if (!this.sess) {
-          // if patient data does not exist in sess_cache
-          // then get patient data from database using fee_no
-          this.$wf.note.get({ id: this.id }).then($raw => {
-            if ($raw.data.id) {
-              this.sess = $raw.data
-              // call load function to load retrieved patient data into component's data object
-              this.load()
-            }
-          })
-        } else {
-          // use load function to load patient data retrieved from sess_cache into component's data object
+      //no note
+      if (this.fee_no && this.id) {
+        this.$wf.note.sess({ no: this.fee_no }).then(res => {
+          this.sess = res.data
           this.load()
-        }
+        }).catch(error => {
+          console.log(error)
+        })
+      }else {
+        //get note data
+        this.$wf.note.get({ id: this.id}).then(res => {
+          this.sess = res.data
+          this.load()
+        })
       }
     },
     load() {
       let $id
-      if (($id = this.sess.id)) {
+      // if have note then print exsist data
+      if (($id = this.id) && !this.fee_no) {
         // true if this.session.admission.id exists / else false
         this.$wf.note.get({ id: $id }).then($raw => {
           this.prepare_data(this.currentSchema, $raw.data)
           this.data = $raw.data.content
           this.meta = $raw.data
           this.isLoaded = true
+        }).catch(error => {
+          console.log(error)
         })
       } else {
-        // set $ipd to retrieved patient ipd (inpatient data)
+        //no note then get ipd data for new note
         let $ipd = this.sess.ipd
         this.meta = {
           type: 'admission',
@@ -247,6 +247,8 @@ export default {
 
         this.data = $data
         // Form will not load unless isLoaded is true
+        // Save data first
+        this.updateData()
         this.isLoaded = true
       }
     } /*,

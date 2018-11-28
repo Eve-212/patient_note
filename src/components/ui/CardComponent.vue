@@ -35,15 +35,25 @@
           </p>
         </div>
         <div class="d-flex card-bottom">
-          <router-link v-if="pt.adm" :to="{ name: 'edit', params: { id: pt.adm.id }}" class="btn btn-sm" :class="{disabled:pt.admission.status != 'init'}">住院
+          <router-link 
+            v-if="pt.adm" 
+            :to="{ name: 'edit', params: { id: pt.adm.id }}" 
+            class="btn btn-sm" 
+            :class="{disabled:pt.admission.status != 'init'}">住院
           </router-link>
           <!-- <button 
               class="btn btn-sm" value="[1,2]"
               :class="{hint:list.progress.length != 0, disabled:list.progress.length == 0}">
               Prog.</button> -->
-          <router-link :to="{ name: 'edit', params: { fee_no: pt.fee_no }}" class="btn btn-sm hint" value="[1,2]">Prog.
+          <router-link 
+            :to="{ name: 'edit', params: { fee_no: pt.fee_no }}" 
+            class="btn btn-sm hint" 
+            value="[1,2]">Prog.
           </router-link>
-          <router-link :to="{ name: 'edit', params: { fee_no: pt.fee_no }}" class="btn btn-sm" :class="{disabled:pt.discharge.status != 'init'}">出院
+          <router-link 
+            :to="{ name: 'edit', params: { fee_no: pt.fee_no }}" 
+            class="btn btn-sm" 
+            :class="{disabled:pt.discharge.status != 'init'}">出院
           </router-link>
         </div>
       </div>

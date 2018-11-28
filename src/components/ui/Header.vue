@@ -128,15 +128,25 @@ export default {
         if (this.searchKey == 'pt') {
           this.$wf.note
             .sess({ no: this.no })
-            .then($raw => {
-              let $sess = $raw.data
-              console.log($sess)
-              if ($sess.adm.id) {
+            .then(res => {
+              let $sess = res.data
+              if ($sess.adm) {
                 this.$router.push({
                   name: 'edit',
                   params: { id: $sess.adm.id }
                 })
                 this.resetSearch()
+              }
+              else {
+                this.$wf.note.get({ fee_no: this.no, type: 'adm'}).then( res  => {
+                  $sess = res.data
+                  this.$router.push({
+                    name: 'edit',
+                    params: { id: $sess.id, fee_no: this.no }
+                  })
+                }).catch(error => {
+                  console.log(error)
+                })
               }
             })
             .catch(error => {
