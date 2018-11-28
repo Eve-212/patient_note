@@ -55,8 +55,7 @@
                 "bsColSize": 4,
                 "placeholder": "Patient Name"
               }
-            },
-            
+            },            
             "birthdate": {
               "title": "Birth Date",
               "format": "date",
@@ -117,7 +116,7 @@
               }
             },
             "evaluate_time": {
-              "title": "Time of History-taking",
+              "title": "Time of Evaluation",
               "format": "date-time",
               "type": "string",
               "attrs": {
@@ -188,7 +187,7 @@
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "enum": ["Cigarettes", "Electronic cigarettes"]
+                    "enum": ["Cigarettes", "Electronic cigarettes", "Cigar"]
                   },
                   "attrs": {
                     "dependsOn": {

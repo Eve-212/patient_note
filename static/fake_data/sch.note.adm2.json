@@ -106,7 +106,7 @@
               }
             },
             "evaluate_time": {
-              "title": "Time of History-taking",
+              "title": "Time of Evaluation",
               "format": "date-time",
               "type": "string",
               "attrs": {
@@ -169,7 +169,7 @@
               },
               "properties": {
                 "used": {
-                  "title": "Used：",
+                  "title": "Used",
                   "type": "boolean"
                 },
                 "type": {
@@ -209,7 +209,7 @@
                     }
                   }
                 },
-                "duration": {
+                "years_smoked": {
                   "title": "for years",
                   "type": "number",
                   "attrs": {
@@ -224,6 +224,18 @@
                 "passive_expose": {
                   "title": "Passive smoking：",
                   "type": "boolean"
+                },
+                "years_exposed": {
+                  "title": "for years",
+                  "type": "number",
+                  "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 3,
+                    "dependsOn": {
+                      "name": "personal_hx.cigarette.passive_expose",
+                      "values": ["Yes"]
+                    }
+                  }
                 }
               }
             },
@@ -283,10 +295,22 @@
                   }
                 },
                 "quitted": {
-                  "title": "Quit use：",
+                  "title": "Quit use",
                   "type": "boolean",
                   "attrs": {
                     "bsColSize": 12
+                  }
+                },
+                "last_used": {
+                  "title": "Last used (years ago)",
+                  "type": "number",
+                  "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 3,
+                    "dependsOn": {
+                      "name": "personal_hx.betel_nut.quitted",
+                      "values": ["Yes"]
+                    }
                   }
                 },
                 "num_per_day": {
@@ -939,7 +963,7 @@
           "title": "Image finding",
           "type": "string",
           "attrs": {
-            "inputGroup": true
+            
           }
         },
         "ecg": {

@@ -28,7 +28,7 @@
       </label>
       <div class="col-md-10">
         <input 
-          id="text-input" 
+          :id="getId()"
           type="number" 
           :name="currentKey" 
            v-model="val"

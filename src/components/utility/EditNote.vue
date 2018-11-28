@@ -246,6 +246,9 @@ export default {
   },
   created: function() {
     this.status = 'loading'
+
+
+
     this.$wf.ready().then($api => {
       return $api.note.schema({ type: 'admission' }).then($raw => {
         this.noteSchema = require('../../../static/fake_data/sch.note.adm2.json')
@@ -333,14 +336,14 @@ export default {
   // margin-top: 0px;
 
   // background-color: $color-grey-light;
-  background-color: red;
+  // background-color: red;
 
-  max-width: 78%;
+  // max-width: 78%;
 
   z-index: 99;
   @media screen and (max-width: $break-medium) {
     margin-top: 30px;
-    max-width: 74%;
+    // max-width: 74%;
   }
 
   @media screen and (max-width: $break-small) {
