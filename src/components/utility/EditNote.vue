@@ -1,16 +1,20 @@
-<template>  
-  <div>    
-    <div v-if="status" class="loading"><p>{{status}}</p></div>
-    <div class="row my-md-4 mt-5 mb-3" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded"> 
-      
+<template>
+  <div>
+    <div v-if="status" class="loading">
+      <p>{{status}}</p>
+    </div>
+    <div
+      class="row my-md-4 mt-5 mb-3"
+      :class="{isExpanded: $store.state.sideExpanded}"
+      v-if="isLoaded"
+    >
       <div class="editor-toolbar col-md-9 col-lg-10 position-fixed">
         <div class="row">
           <div class="col-md-12">
             <Toolbar v-model="currentSchema" :base="noteSchema" @saveData="updateData"></Toolbar>
           </div>
         </div>
-        
-        
+
         <!-- <div v-if="showSchemaSelect" class="alert alert-primary col-md-2">
                 <ul>
                   <li>
@@ -27,16 +31,13 @@
                     </span>                
                   </li>
                 </ul>
-              </div> -->
-
+        </div>-->
       </div>
 
-      
-      
-      <div class="col-md-9 col-lg-10 my-sm-3 mt-4 editor-main">        
-          <div class="row">
-            <div class="col-md-12">                                       
-              <!-- <div v-if="showSchemaSelect" class="alert alert-primary">
+      <div class="col-md-9 col-lg-10 my-sm-3 mt-4 editor-main">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- <div v-if="showSchemaSelect" class="alert alert-primary">
                 <ul>
                   <li>
                     <strong>Applied form schemas：</strong>
@@ -52,33 +53,41 @@
                     </span>                
                   </li>
                 </ul>
-              </div> -->
-              
-              <div v-if="showAlert" class="alert alert-danger">
-                <strong>
-                  是否加入您的病人清單?
-                </strong>
-                <div>
-                  <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="yes">Yes</button>
-                  <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
-                  <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="showLater">Ask me later</button>
-                </div>
+            </div>-->
+            <div v-if="showAlert" class="alert alert-danger">
+              <strong>是否加入您的病人清單?</strong>
+              <div>
+                <button
+                  @click="closeAlert"
+                  class="btn btn-sm btn-danger"
+                  type="button"
+                  value="yes"
+                >Yes</button>
+                <button
+                  @click="closeAlert"
+                  class="btn btn-sm btn-danger"
+                  type="button"
+                  value="no"
+                >No</button>
+                <button
+                  @click="closeAlert"
+                  class="btn btn-sm btn-danger"
+                  type="button"
+                  value="showLater"
+                >Ask me later</button>
               </div>
             </div>
-
-            <JSchemaObject 
-              class="col-md-12"   
-              v-model="data" 
-              :schema="currentSchema.properties.content">
-            </JSchemaObject>
-
           </div>
+
+          <JSchemaObject
+            class="col-md-12"
+            v-model="data"
+            :schema="currentSchema.properties.content"
+          ></JSchemaObject>
+        </div>
       </div>
-      
-      <SectionNav 
-        class="col-md-3 col-lg-2 d-none d-md-block mb-5" 
-        :schema="currentSchema">
-      </SectionNav>
+
+      <SectionNav class="col-md-3 col-lg-2 d-none d-md-block mb-5" :schema="currentSchema"></SectionNav>
     </div>
   </div>
 </template>
@@ -117,19 +126,21 @@ export default {
     }
   },
   methods: {
-    updateData(){
+    updateData() {
       console.log(this.$wf)
       this.$wf.ready().then($api => {
         console.log(this.data)
-         $api.note.update({ 
-          id: this.id, 
-          content: this.data, 
-          }).then($api => {
-          console.log($api)
-        }).catch(err => {
-          console.log(err)
-        })
-        
+        $api.note
+          .update({
+            id: this.id,
+            content: this.data
+          })
+          .then($api => {
+            console.log($api)
+          })
+          .catch(err => {
+            console.log(err)
+          })
       })
     },
     // resetSchema() {
@@ -302,7 +313,6 @@ export default {
     },
     currentSchema: {
       handler: function() {
-
         // this.init()
         // this.$nextTick(this.$forceUpdate())
       },
@@ -342,7 +352,7 @@ export default {
   // margin-top: 0px;
 
   // background-color: $color-grey-light;
-  
+
   max-width: 78%;
 
   z-index: 99;
