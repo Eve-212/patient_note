@@ -39,6 +39,8 @@ function register(name) {
 }
 for (let importField in fields) {
   register(importField)
+  console.log("--------------")
+  console.log(importField)
 }
 
 export default {
@@ -64,10 +66,7 @@ export default {
       isVisible: {},
       child_key: null // for clarity, use child_key in obj comp and currentKey in input components
     }
-  },  
-  updated() {
-    // console.log("UPDATED")
-  },
+  },    
   watch: {
     schema: {
       handler: function() {
@@ -106,11 +105,11 @@ export default {
           this.$rootObj.$watch(
             'value.' + $child_schema.attrs.dependsOn.name,
             function($oldVal, $newVal) {
-              console.log('Change', $child_schema.attrs.dependsOn.name)
+              // console.log('Change', $child_schema.attrs.dependsOn.name)
               let visibility = this.checkVisible($child_schema.attrs.dependsOn)
               $this.$set($this.isVisible, $child_key, visibility)
 
-              console.log($child_schema)
+              
 
               // if corrresponding isVisible value is false then clear data
               if (!visibility) {
@@ -142,7 +141,7 @@ export default {
         boolean: 'radio'
       }
       let $field_com = {
-        textarea: 'quillTextArea',
+        textarea: 'TextArea',
         text: 'TextInput',
         checklistwithother: 'CheckListWithOther',
         radio: 'bsRadioInput',
@@ -204,7 +203,7 @@ export default {
         case 'bsRadioInput':
           initValue = ''
           break
-        case 'quillTextArea':
+        case 'TextArea':
           initValue = ''
           break
       }
@@ -229,11 +228,11 @@ export default {
             this.$rootObj.$watch(
               'value.' + $child_schema.attrs.dependsOn.name,
               function($oldVal, $newVal) {
-                console.log('Change', $child_schema.attrs.dependsOn.name)
+                // console.log('Change', $child_schema.attrs.dependsOn.name)
                 let visibility = this.checkVisible($child_schema.attrs.dependsOn)
                 $this.$set($this.isVisible, $child_key, visibility)
 
-                console.log($child_schema)
+                
 
                 // if corrresponding isVisible value is false then clear data
                 if (!visibility) {

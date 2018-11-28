@@ -49,19 +49,7 @@ export default {
         return false
       }
     }
-  },
-  // watch: {
-  //   schema: {     
-  //     handler: function() {
-  //       console.log("TEXTINPUT")
-  //       console.log(this.schema)
-  //     },
-  //     deep: true
-  //   }
-  // },
-  // created() {
-  //   console.log("CREATED")
-  // }
+  }    
 }
 </script>
 

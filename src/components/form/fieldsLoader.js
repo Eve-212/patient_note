@@ -13,7 +13,7 @@ import SelectList from '@/components/form/SelectList.vue'
 import TextInput from '@/components/form/TextInput.vue'
 import TreeCharter from '@/components/form/TreeCharter.vue'
 import JSchemaObject from '@/components/form/JSchemaObject'
-import quillTextArea from '@/components/form/quillTextArea'
+import TextArea from '@/components/form/TextArea'
 
 export {
   bsLabTable,
@@ -24,7 +24,7 @@ export {
   FamilyTree,
   FuncAssess,
   NumberInput,
-  quillTextArea,
+  TextArea,
   JSchemaObject,
   OrgChart,
   RadioInput,

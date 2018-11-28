@@ -37,7 +37,7 @@ export default {}
     vertical-align: middle;
   }
   &-container {
-    width: 350px;
+    width: 400px;
     margin: 0 auto;
     padding: 15px;
     background-color: #fff;
