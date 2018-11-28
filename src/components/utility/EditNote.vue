@@ -281,7 +281,7 @@ export default {
         // this.appliedSchemas.push(this.noteSchema.tag)
 
         this.$set(this.$data, 'currentSchema', cloneDeep(this.noteSchema))
-        console.log(this)
+        
         this.init()
         this.status = ''
       })
@@ -293,12 +293,7 @@ export default {
     },
     currentSchema: {
       handler: function() {
-        console.log('CHANGE IN IN')
-
-        console.log(this.currentSchema)
-        console.log(this)
-        // this.init()
-        // this.$nextTick(this.$forceUpdate())
+        
       },
       deep: true
     }

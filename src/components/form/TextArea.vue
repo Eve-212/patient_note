@@ -1,13 +1,12 @@
 <template>
-  <div :class="getBsColSize">
-    HELLO
+  <div :class="getBsColSize">    
     <div 
     :id="anchorIdFormat(schema)" 
     :class="[getStyleClass]">
       <label           
         :for="currentKey">{{ schema.title }}
       </label>     
-      
+            
       <textarea :id="getId()" 
                 :name="currentKey" 
                 v-model="val" 
@@ -24,18 +23,12 @@ import Proto from '@/components/mixins/Proto.js'
 
 export default {
   name: 'TextArea',
-  mixins: [Proto],
-  props: {
-    
-  },
+  mixins: [Proto], 
   data() {
     return {
       placeholder: "Insert text here ..."
     }
-  },
-  methods: {
-
-  },
+  }, 
   created() {
     console.log("TEXTAREA CREATED")
   }
