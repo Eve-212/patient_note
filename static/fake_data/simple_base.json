@@ -49,7 +49,6 @@
             "name": {
               "title": "Name",
               "type": "string",
-              "description": "Patient Name",
               "attrs": {
                 "inputGroup": true,
                 "bsColSize": 4,

@@ -20,7 +20,7 @@
 
     <!-- add Other input box -->
     <input type="text" placeholder="Other..." @keyup.enter="add_item" v-model="other_val">
-    <button v-if="other_val" v-on:click="add_item">+</button>
+    <button v-if="other_val" @click="add_item">+</button>
     
   </div>
   {{ currentKey }}

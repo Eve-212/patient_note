@@ -117,6 +117,19 @@ export default {
       this.modalShow = false
       this.modalMessage = ''
       Vue.delete(this.selectedPt[0], this.selectedPt[1])
+      this.$wf.ready().then($api => {
+         $api.note.update({ 
+          id: 'I0724474', 
+          content: {}, 
+          type: 'admission',
+          sch_ver: '0' 
+          }).then($api => {
+          console.log($api)
+        }).catch(err => {
+          console.log(err)
+        })
+        
+      })
     },
     cancelDelete() {
       this.modalShow = false

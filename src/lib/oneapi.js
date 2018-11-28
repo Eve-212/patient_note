@@ -1,4 +1,5 @@
-import APIClient from 'moleculer-openapi-client'
+import APIClient from './moleculer-api-client'
+
 import lscache from 'lscache'
 //import  from 'lscache'
 import debounce from 'lodash/debounce'
@@ -11,10 +12,11 @@ let Plugins = {
   icd
 }
 
-const OneAPI = function ($cfg) {
-
+const OneAPI = function ($cfg={}) {
+  $cfg.spec_url=$cfg.server_url+'/~node/actions'
   let api = new APIClient($cfg);
   //assing plugins
+  
   api.api_loader = api.loader.then(() => {
 
     for (let service in Plugins) {

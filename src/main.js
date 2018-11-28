@@ -21,7 +21,7 @@ Vue.directive('focus', {
 
 Vue.directive('scroll-to', {
   inserted: function(el) {
-    VueScrollTo(el, 500, 79)
+    VueScrollTo(el, 500, 110)
     //el, duration, offset
   }
 })
@@ -41,7 +41,7 @@ let $wf=OneAPI({
   server_url:"http://10.65.1.228:3000/api"  
 })
 Vue.prototype.$wf =  $wf
-// window.$wf=$wf
+window.$wf=$wf
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
