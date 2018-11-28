@@ -1,29 +1,34 @@
 <template>
   <div>
-    <header class="header fixed-top d-flex justify-content-between align-items-center" :class="{hideSearch:hide}">
+    <header
+      class="header fixed-top d-flex justify-content-between align-items-center"
+      :class="{hideSearch:hide}"
+    >
       <div class="d-flex">
         <!-- Hamburger menu -->
         <div class="header_handler-box" @click="toggleSideMenu">
           <i class="fa fa-bars"></i>
         </div>
         <!-- Logo -->
-        <router-link 
+        <router-link
           @click.native="resetSearch"
-          :to="{name: 'dashBoard'}" 
-          class="header_logo-box d-flex justify-content-between align-items-center">
+          :to="{name: 'dashBoard'}"
+          class="header_logo-box d-flex justify-content-between align-items-center"
+        >
           <img class="header_logo-box-logo mr-1" src="@/assets/img/logo-sm.png">病摘
         </router-link>
       </div>
+      <!-- Search -->
       <div class="d-flex align-items-center">
         <div class="header_search-wrap d-flex align-items-center" :class="{hideSearch:hide}">
           <span class="radio-box">
             <input id="pt" type="radio" value="pt" name="searchKey" v-model="searchKey" checked>
-            <label for="pt">by Patient</label>
+            <label for="pt" onmousedown="event.preventDefault()">by Patient</label>
             <input id="dept" type="radio" value="dept" name="searchKey" v-model="searchKey">
-            <label for="dept">by Dept.</label>
+            <label for="dept" onmousedown="event.preventDefault()">by Dept.</label>
           </span>
           <form class="search-box">
-            <input v-focus type="text" v-model="no" :placeholder="holder">
+            <input type="text" v-model="no" :placeholder="holder" v-focus ref="searchInput">
             <button type="submit" @keyup.enter.prevent="load" @click.prevent="load">
               <i class="fa fa-search"></i>
             </button>
@@ -36,28 +41,34 @@
             @click="toggleReminder"
             class="header_badge-box-badge d-flex justify-content-center align-items-center"
           >
-            <i class="fa fa-bell"></i><span class="badge badge-danger">9</span>
+            <i class="fa fa-bell"></i>
+            <span class="badge badge-danger">9</span>
           </div>
           <!-- badge reminder box -->
           <div class="header_badge-box-reminder" :class="{show:showReminder}">
-            <router-link to="" class="d-flex justify-content-between">
-              <span>Admission</span><span class="text-danger font-weight-bold">10</span>
+            <router-link to class="d-flex justify-content-between">
+              <span>Admission</span>
+              <span class="text-danger font-weight-bold">10</span>
             </router-link>
-            <router-link to="" class="d-flex justify-content-between">
-              <span>Progress</span><span class="text-danger font-weight-bold">10</span>
+            <router-link to class="d-flex justify-content-between">
+              <span>Progress</span>
+              <span class="text-danger font-weight-bold">10</span>
             </router-link>
-            <router-link to="" class="d-flex justify-content-between">
-              <span>Discharge</span><span class="text-danger font-weight-bold">10</span>
+            <router-link to class="d-flex justify-content-between">
+              <span>Discharge</span>
+              <span class="text-danger font-weight-bold">10</span>
             </router-link>
-            <router-link to="" class="d-flex justify-content-between">
-              <span>Withdrawal</span><span class="text-danger font-weight-bold">10</span>
+            <router-link to class="d-flex justify-content-between">
+              <span>Withdrawal</span>
+              <span class="text-danger font-weight-bold">10</span>
             </router-link>
           </div>
         </div>
         <!-- Sign Out -->
-        <div 
-          class="header_logout-box d-flex justify-content-center align-items-center" 
-          v-on:click="singOut()">
+        <div
+          class="header_logout-box d-flex justify-content-center align-items-center"
+          v-on:click="singOut()"
+        >
           <i class="fa fa-sign-out-alt"></i>
         </div>
       </div>
@@ -70,7 +81,9 @@
 
 <script>
 import Vue from 'vue'
+
 Vue.component('modal', require('@/components/ui/Modal.vue').default)
+
 export default {
   props: ['hide'],
   data() {
@@ -91,6 +104,9 @@ export default {
       } else {
         this.holder = '科別代號'
       }
+      this.$nextTick(() => {
+        this.$refs.searchInput.focus()
+      })
     }
   },
   methods: {
@@ -113,8 +129,8 @@ export default {
           this.$wf.note
             .sess({ no: this.no })
             .then($raw => {
-              console.log($raw)
               let $sess = $raw.data
+              console.log($sess)
               if ($sess.adm.id) {
                 this.$router.push({
                   name: 'edit',
