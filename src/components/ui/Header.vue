@@ -34,7 +34,7 @@
             </button>
           </form>
         </div>
-        <div class="header_user">Hi, {{ user.name }}</div>
+        <div class="header_user">Hi, {{ user }}</div>
         <!-- Badge and reminder -->
         <div class="header_badge-box d-flex align-items-center">
           <div
@@ -90,9 +90,9 @@ export default {
     return {
       showReminder: false,
       no: '',
+      user: '',
       holder: '病歷號/ 床號/ 身分證',
       searchKey: 'pt',
-      user: {},
       modalShow: false,
       modalMessage: ''
     }
@@ -119,6 +119,9 @@ export default {
     singOut() {
       let signOut = confirm('Sure you want to sign out?')
       if (signOut) {
+        $wf.auth.logout({ id: '99356' }).then($raw => {
+          // console.log($raw)
+        })
         this.$store.dispatch('Sign_Out')
         this.$router.replace({ name: 'signIn' })
       }
@@ -130,7 +133,7 @@ export default {
             .sess({ no: this.no })
             .then($raw => {
               let $sess = $raw.data
-              console.log($sess)
+              // console.log($sess)
               if ($sess.adm.id) {
                 this.$router.push({
                   name: 'edit',
@@ -165,7 +168,7 @@ export default {
     }
   },
   mounted() {
-    this.user = JSON.parse(window.sessionStorage.getItem('user'))
+    this.user = JSON.parse(window.sessionStorage.getItem('user'))['name']
   }
 }
 </script>
