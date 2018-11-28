@@ -16,6 +16,7 @@
   "dependencies": {
     "bootstrap": "^4.1.3",
     "date-fns": "^1.29.0",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.11",
     "lscache": "^1.2.0",
     "moleculer-openapi-client": "git+http://10.65.1.66:3000/OneRecord/moleculer-openapi-client.git",

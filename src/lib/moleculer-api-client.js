@@ -1,8 +1,9 @@
 import axios from 'axios';
+//axios.defaults.withCredentials = true;
 const APIClient = class{
 	constructor($cfg){
 		Object.assign(this,$cfg);
-		
+		this.axios=axios;
 		this.loader=axios.get(this.spec_url).then($res=>{
             if (this.api_mode==='openapi'){
                 this._build_openapi($res.data);
@@ -53,7 +54,7 @@ const APIClient = class{
 					this[$service][$action]=function($params){
 						let $opt={
 							method:$method,
-							url:self.server_url+'/'+$res[$method].operationId
+                            url:self.server_url+'/'+$res[$method].operationId
 						};
 						if($params){
 							if (['get','delete'].includes($method)){
