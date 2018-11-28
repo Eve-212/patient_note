@@ -9,52 +9,42 @@
       <h3 class="card_title">
         <emp-span class="mr-1" :id="title" :hide_id="true"></emp-span>
         <small class="text-muted">醫師</small>
-      </h3> 
+      </h3>
     </div>
     <div v-else="sortType === 'bed_no'">
-      <h3 class="card_title"><span>{{title}}</span> 
+      <h3 class="card_title"><span>{{title}}</span>
         <small class="text-muted">樓</small>
       </h3>
     </div>
     <!-- Card Content -->
     <div class="card_wrap mb-4">
-      <div class="card mt-3 mr-sm-3 mr-0" v-for="(pt, ptIndex) in lists" :key="ptIndex">      
+      <div class="card mt-3 mr-sm-3 mr-0" v-for="(pt, ptIndex) in lists" :key="ptIndex">
         <div class="card-header">
-          <div 
-            class="card-delete"  
-            @click="$emit('deletePt', [title, ptIndex, pt.fee_no])">&times;
+          <div class="card-delete" @click="$emit('deletePt', [title, ptIndex, pt.fee_no])">&times;
           </div>
           <span class="bed_no px-1 py-1" :class="{ female: pt.ipd.sex == '0' }">{{pt.ipd.bed_no}}</span>｜
-          <router-link 
-            class="font-weight-bold" 
-            :to="{ name: 'edit', params: { fee_no: pt.fee_no }}"
-          >{{pt.ipd.name}}</router-link>
-          <small class="text-muted ml-auto" >{{pt.ipd.chr_no}}</small>
+          <router-link class="font-weight-bold" :to="{ name: 'edit', params: { fee_no: pt.fee_no }}">{{pt.ipd.name}}</router-link>
+          <small class="text-muted ml-auto">{{pt.ipd.chr_no}}</small>
         </div>
         <div class="card-body">
           <p class="mb-0">{{ age(pt.ipd.birthdate) }} y/o, {{sex(pt.ipd.sex)}}</p>
-          <div v-if="pt.ipd.icd10_in[0]"><ICDSpan :icd="pt.ipd.icd10_in[0]"></ICDSpan></div>
-          <p>主責醫師：<EmpSpan class="mr-1" :id="pt.ipd.doc_id" :hide_id="true"></EmpSpan></p>
-          <div class="d-flex">
-            <router-link 
-              v-if="pt.adm"
-              :to="{ name: 'edit', params: { id: pt.adm.id }}"
-              :class="{disabled:pt.admission.status != 'init'}">住院
-            </router-link>
-            <!-- <button 
+          <div v-if="pt.ipd.icd10_in[0]">
+            <ICDSpan :icd="pt.ipd.icd10_in[0]"></ICDSpan>
+          </div>
+          <p>主責醫師：<EmpSpan class="mr-1" :id="pt.ipd.doc_id" :hide_id="true"></EmpSpan>
+          </p>
+        </div>
+        <div class="d-flex card-bottom">
+          <router-link v-if="pt.adm" :to="{ name: 'edit', params: { id: pt.adm.id }}" class="btn btn-sm" :class="{disabled:pt.admission.status != 'init'}">住院
+          </router-link>
+          <!-- <button 
               class="btn btn-sm" value="[1,2]"
               :class="{hint:list.progress.length != 0, disabled:list.progress.length == 0}">
               Prog.</button> -->
-            <router-link
-              :to="{ name: 'edit', params: { fee_no: pt.fee_no }}" 
-              class="btn btn-sm hint" 
-              value="[1,2]">Prog.
-            </router-link>
-            <router-link
-              :to="{ name: 'edit', params: { fee_no: pt.fee_no }}"
-              :class="{disabled:pt.discharge.status != 'init'}">出院
-            </router-link>
-          </div>
+          <router-link :to="{ name: 'edit', params: { fee_no: pt.fee_no }}" class="btn btn-sm hint" value="[1,2]">Prog.
+          </router-link>
+          <router-link :to="{ name: 'edit', params: { fee_no: pt.fee_no }}" class="btn btn-sm" :class="{disabled:pt.discharge.status != 'init'}">出院
+          </router-link>
         </div>
       </div>
     </div>
@@ -163,6 +153,15 @@ export default {
       @media screen and (max-width: $break-small) {
         padding: px-to-vw(18, 450);
       }
+    }
+    &-bottom {
+      padding: 0.5rem 1rem;
+      @media screen and (max-width: $break-medium) {
+        padding: 10px;
+      }
+      @media screen and (max-width: $break-small) {
+        padding: px-to-vw(18, 450);
+      }
       a {
         font-size: 12px;
         background-color: #e1e1e1;
@@ -221,6 +220,10 @@ export default {
         }
       }
     }
+    // .btn-light {
+    //   border: 1px solid rgba(0, 0, 0, 0.125);
+    //   margin-bottom: 0.3rem;
+    // }
   }
 }
 </style>
