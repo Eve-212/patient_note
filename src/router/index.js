@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import MainLayout from '@/views/Main'
 import SignIn from '@/views/SignIn'
 import EditNote from '@/components/utility/EditNote'
+import EditNote2 from '@/components/utility/EditNote2'
 import DashBoard from '@/components/utility/DashBoard'
 import SearchResult from '@/components/utility/SearchResult'
 
@@ -29,7 +30,7 @@ export default new Router({
           path: '/edit/:id?',
           name: 'edit',
           props: true,
-          component: EditNote
+          component: EditNote2
         },
         {
           path: '/search/:dept_id?',
