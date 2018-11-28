@@ -23,7 +23,7 @@
     
       <label 
         class="col-md-2 col-form-label"
-        :for="currentKey">
+        :for="getId()">
         {{ schema.title }}
       </label>
       <div class="col-md-10">

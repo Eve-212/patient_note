@@ -1,19 +1,20 @@
 <template>
   <div :class="getBsColSize">    
-    <div 
-    :id="anchorIdFormat(schema)" 
-    :class="[getStyleClass]">
+    <div class="form-group"
+        :id="anchorIdFormat(schema)" 
+        :class="[getStyleClass]">
       <label           
-        :for="currentKey">{{ schema.title }}
+        :for="getId()">{{ schema.title }}
       </label>     
-            
+
       <textarea :id="getId()" 
                 :name="currentKey" 
                 v-model="val" 
-                :placeholder="placeholder"
-                :aria-describedby="helpText(schema)">
-        It was a dark and stormy night...
+                :placeholder="msg"
+                :aria-describedby="helpText(schema)"
+                rows="10">        
       </textarea>      
+     
     </div>     
   </div>
 </template>
@@ -26,7 +27,7 @@ export default {
   mixins: [Proto], 
   data() {
     return {
-      placeholder: "Insert text here ..."
+      msg: "Insert text here ..."
     }
   }, 
   created() {
