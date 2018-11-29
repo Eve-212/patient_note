@@ -21,12 +21,10 @@
     <div class="card_wrap mb-4">
       <div class="card mt-3 mr-sm-3 mr-0" v-for="(pt, ptIndex) in lists" :key="ptIndex">
         <div class="card-header">
-          <div class="card-delete" @click="$emit('deletePt', [title, ptIndex, pt.fee_no])">&times;</div>
-          <span class="bed_no px-1 py-1" :class="{ female: pt.ipd.sex == '0' }">{{pt.ipd.bed_no}}</span>｜
-          <router-link
-            class="font-weight-bold"
-            :to="{ name: 'edit', params: { fee_no: pt.fee_no }}"
-          >{{pt.ipd.name}}</router-link>
+          <div class="card-delete" @click="$emit('deletePt', [title, ptIndex, pt.ipd.name])">&times;</div>
+          <span class="bed_no px-1 py-1" :class="{ female: pt.ipd.sex == '0' }">{{pt.ipd.bed_no}}</span>
+          ｜
+          <div class="font-weight-bold">{{pt.ipd.name}}</div>
           <small class="text-muted ml-auto">{{pt.ipd.chr_no}}</small>
         </div>
         <div class="card-body">
@@ -197,7 +195,7 @@ export default {
           position: absolute;
           left: 0;
           background: 0 0;
-          z-index: 1000001;
+          z-index: 1;
           pointer-events: none;
           transition: all 0.2s ease;
           opacity: 0;

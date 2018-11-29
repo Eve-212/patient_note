@@ -1,40 +1,35 @@
 <template>
   <div :class="{isExpanded: $store.state.sideExpanded}">
-    <div v-if="status" class="loading"><p>{{status}}</p></div>
-    <div v-if="Object.keys(sortedData).length > 0" class="my-md-4 mt-5 mb-3 d-flex align-items-center justify-content-xl-end">
-      <span class="h5 my-0" >Group By：</span>
+    <div v-if="status" class="loading">
+      <p>{{status}}</p>
+    </div>
+    <div
+      v-if="Object.keys(sortedData).length > 0"
+      class="my-md-4 mt-5 mb-3 d-flex align-items-center justify-content-xl-end"
+    >
+      <span class="h5 my-0">Group By：</span>
       <div>
         <button
           v-for="(value, index) in sortTypes"
           :key="index"
-          type="button" 
+          type="button"
           class="btn mr-1"
-          :class="{clicked: sortType == value}" 
-          @click="switchType(value)">
+          :class="{clicked: sortType == value}"
+          @click="switchType(value)"
+        >
           <span v-if="value == 'doc_id'">Doctor</span>
           <span v-else-if="value == 'bed_no'">Floor</span>
         </button>
       </div>
     </div>
-    <card-component 
+    <card-component
       :sortType="sortType"
       v-for="(lists, title, index) in sortedData"
       :lists="lists"
       :title="title"
       :key="index"
-      @deletePt="deletePt">
-    </card-component>
-    <modal v-if="modalShow" @close="modalShow = false">
-      <div class="modal-custom" slot="body">
-        <p>Delete patient with Id <u class="font-weight-bold mx-1">{{modalMessage}}</u> from your lists?</p> 
-        <div class="mt-4 d-flex justify-content-end">
-          <input id="yes" @click="confirmDelete" type="radio" name="yes_no"></input>
-          <label class="btn btn-outline-danger" for="yes">Yes</label>
-          <input id="no" @click="cancelDelete" type="radio" name="yes_no"></input>
-          <label class="btn btn-outline-info" for="no">No</label>
-        </div>
-      </div>
-    </modal>
+      @deletePt="deletePt"
+    ></card-component>
   </div>
 </template>
 
@@ -45,7 +40,6 @@ Vue.component(
   'card-component',
   require('@/components/ui/CardComponent.vue').default
 )
-Vue.component('modal', require('@/components/ui/Modal.vue').default)
 export default {
   data() {
     return {
@@ -54,8 +48,6 @@ export default {
       status: null,
       rowData: {},
       sortedData: {},
-      modalShow: false,
-      modalMessage: null,
       selectedPt: null
     }
   },
@@ -107,33 +99,35 @@ export default {
       this.sortedData = sortedData
     },
     deletePt(ptInfo) {
-      this.modalShow = true
-      this.modalMessage = ptInfo[2]
+      this.$awn.confirm(
+        `
+        <p>Delete patient with Id 
+          <u class="font-weight-bold mx-1">${ptInfo[2]}</u> 
+          from your lists?
+        </p> `,
+        this.confirmDelete
+      )
       let listsIndex = ptInfo[0]
       let ptIndex = ptInfo[1]
       this.selectedPt = [this.sortedData[listsIndex], ptIndex]
     },
     confirmDelete() {
-      this.modalShow = false
-      this.modalMessage = ''
       Vue.delete(this.selectedPt[0], this.selectedPt[1])
-      this.$wf.ready().then($api => {
-         $api.note.update({ 
-          id: 'I0724474', 
-          content: {}, 
-          type: 'admission',
-          sch_ver: '0' 
-          }).then($api => {
-          console.log($api)
-        }).catch(err => {
-          console.log(err)
-        })
-        
-      })
-    },
-    cancelDelete() {
-      this.modalShow = false
-      this.modalMessage = ''
+      // this.$wf.ready().then($api => {
+      //   $api.note
+      //     .update({
+      //       id: 'I0724474',
+      //       content: {},
+      //       type: 'admission',
+      //       sch_ver: '0'
+      //     })
+      //     .then($api => {
+      //       console.log($api)
+      //     })
+      //     .catch(err => {
+      //       console.log(err)
+      //     })
+      // })
     }
   },
   mounted() {
@@ -151,16 +145,6 @@ button {
   &.clicked {
     color: #fff;
     background: #17a2b8;
-  }
-}
-
-.modal-custom {
-  input {
-    position: absolute;
-    top: -999px;
-  }
-  label {
-    margin: 0 5px;
   }
 }
 </style>

@@ -104,7 +104,7 @@ import Toolbar from './Toolbar.vue'
 
 export default {
   name: 'EditNote',
-  props: ['id', 'fee_no','note','type'],
+  props: ['id', 'fee_no', 'note', 'type'],
   components: {
     SectionNav,
     JSchemaObject,
@@ -127,19 +127,18 @@ export default {
   },
   methods: {
     updateData() {
-      console.log(this.$wf)
       this.$wf.ready().then($api => {
-        console.log(this.data)
+        // console.log(this.data)
         $api.note
           .update({
             id: this.id,
             content: this.data
           })
           .then($api => {
-            console.log($api)
+            this.$awn.success('Data saved successfully')
           })
           .catch(err => {
-            console.log(err)
+            this.$awn.alert('Failed to save data.')
           })
       })
     },
@@ -178,76 +177,73 @@ export default {
         }
       }
     },
-    
+
     async load() {
-      
-      let note;
-      let $rd;
-      if(this.id){
-        
-        if (!this.note || this.note.id!==this.id){
+      let note
+      let $rd
+      if (this.id) {
+        if (!this.note || this.note.id !== this.id) {
           //if note is passed by prop, load note with id
-          $rd=await this.$wf.note.get({id:this.id});
-          if ($rd.data){
-            note=$rd.data;
+          $rd = await this.$wf.note.get({ id: this.id })
+          if ($rd.data) {
+            note = $rd.data
           }
-        }else{
+        } else {
           //note is passed by prop
-          note=this.note;
+          note = this.note
         }
-      }else{
+      } else {
         //must has type & fee_no
-        $rd=await this.$wf.note.get({fee_no:this.fee_no,type:this.type});
-        
-        if ($rd.data){
-          note=$rd.data;
+        $rd = await this.$wf.note.get({ fee_no: this.fee_no, type: this.type })
+
+        if ($rd.data) {
+          note = $rd.data
         }
       }
-      
 
-      this.prepare_data(this.currentSchema.properties.content, note.content);
+      this.prepare_data(this.currentSchema.properties.content, note.content)
 
       //this.data =note.content;
-     
-      if (note.status=='init'){
-        await this.preFill(note,note.content).catch( $e => console.log($e) );
+
+      if (note.status == 'init') {
+        await this.preFill(note, note.content).catch($e => console.log($e))
       }
       //console.log(note);
-      this.meta = note;
+      this.meta = note
       this.$set(this.$data, 'data', note.content)
       //console.log(this,note);
-      
-      this.isLoaded = true;
+
+      this.isLoaded = true
     },
-    async preFill(meta=this.meta,data=this.data){
+    async preFill(meta = this.meta, data = this.data) {
       //prefill basic data
-      let $fee_no=meta.fee_no;
-      let $ipd;
-      if(this.sess){
-        $ipd=this.sess.ipd;
-      }else{
-        let $ipd_raw = await this.$wf.ipd.get({no:$fee_no});
-        $ipd=$ipd_raw.data;
+      let $fee_no = meta.fee_no
+      let $ipd
+      if (this.sess) {
+        $ipd = this.sess.ipd
+      } else {
+        let $ipd_raw = await this.$wf.ipd.get({ no: $fee_no })
+        $ipd = $ipd_raw.data
       }
-      console.log('ipd',$ipd);
+      console.log('ipd', $ipd)
       for (let $col of ['chr_no', 'name', 'fee_no', 'birthdate', 'sex']) {
-        data.profile[$col] = $ipd[$col];
+        data.profile[$col] = $ipd[$col]
       }
-      data.profile.admit_dept = $ipd.dept_id;
-      data.profile.admit_time = $ipd.start;
+      data.profile.admit_dept = $ipd.dept_id
+      data.profile.admit_time = $ipd.start
 
       //prefill vitals
-      let {data:$vitals}=await this.$wf.vitals.last({no:meta.chr_no});
-      if ($vitals){      
-        data.nutrition.weight=$vitals.w;
-        data.nutrition.height=$vitals.h;
+      let { data: $vitals } = await this.$wf.vitals.last({ no: meta.chr_no })
+      if ($vitals) {
+        data.nutrition.weight = $vitals.w
+        data.nutrition.height = $vitals.h
         //TODO: BMI
 
-        data.pe.vitals.bt=$vitals.bt;
-        data.pe.vitals.sbp=$vitals.sbp;
-        data.pe.vitals.dbp=$vitals.dbp;
-        data.pe.vitals.pr=$vitals.pr;
-        console.log($vitals);
+        data.pe.vitals.bt = $vitals.bt
+        data.pe.vitals.sbp = $vitals.sbp
+        data.pe.vitals.dbp = $vitals.dbp
+        data.pe.vitals.pr = $vitals.pr
+        console.log($vitals)
       }
     },
     closeAlert() {
@@ -256,14 +252,13 @@ export default {
   },
   async created() {
     this.status = 'loading'
-    let api=await this.$wf.ready()
-    let {data:$schema}=await api.note.schema()
-    $schema=require('../../../static/fake_data/sch.note.adm2.json')
-    this.noteSchema=$schema
+    let api = await this.$wf.ready()
+    let { data: $schema } = await api.note.schema()
+    $schema = require('../../../static/fake_data/sch.note.adm2.json')
+    this.noteSchema = $schema
     this.$set(this.$data, 'currentSchema', cloneDeep(this.noteSchema))
     this.load()
     this.status = ''
-    
   },
   watch: {
     id() {
@@ -357,31 +352,6 @@ export default {
     margin: 1rem auto 0rem;
   }
   float: none;
-  &-primary {
-    ul {
-      padding-left: 0;
-      list-style: none;
-      margin: auto 0;
-      li {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        padding: 3px 0;
-        span {
-          letter-spacing: 0.05rem;
-          cursor: pointer;
-          padding: 0 0.3rem;
-          border: 1px solid #004085;
-          border-radius: 3px;
-          margin-right: 0.3rem;
-          opacity: 0.7;
-          &:hover {
-            opacity: 1;
-          }
-        }
-      }
-    }
-  }
   &-danger {
     display: flex;
     justify-content: space-between;

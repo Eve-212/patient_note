@@ -1,21 +1,17 @@
 <template>
-  <div :class="getBsColSize">    
-    <div class="form-group"
-        :id="anchorIdFormat(schema)" 
-        :class="[getStyleClass]">
-      <label           
-        :for="getId()">{{ schema.title }}
-      </label>     
-
-      <textarea :id="getId()" 
-                :name="currentKey" 
-                v-model="val" 
-                :placeholder="msg"
-                :aria-describedby="helpText(schema)"
-                rows="10">        
-      </textarea>      
-     
-    </div>     
+  <div :class="getBsColSize">
+    <div class="form-group" :id="anchorIdFormat(schema)" :class="[getStyleClass]">
+      <label :for="getId()">{{ schema.title }}</label>
+      
+      <textarea
+        :id="getId()"
+        :name="currentKey"
+        v-model="val"
+        :placeholder="msg"
+        :aria-describedby="helpText(schema)"
+        rows="10"
+      ></textarea>
+    </div>
   </div>
 </template>
 
@@ -24,21 +20,16 @@ import Proto from '@/components/mixins/Proto.js'
 
 export default {
   name: 'TextArea',
-  mixins: [Proto], 
+  mixins: [Proto],
   data() {
     return {
-      msg: "Insert text here ..."
+      msg: 'Insert text here ...'
     }
-  }, 
-  created() {
-    console.log("TEXTAREA CREATED")
   }
-
 }
 </script>
 
 <style>
-
 </style>
 
 

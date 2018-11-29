@@ -9,9 +9,18 @@ import OneAPI from './lib/oneapi'
 import { store } from './store/store.js'
 // import 'vue-orgchart/dist/style.min.css'
 import { VueScrollTo, VueScrollWatch, RemoveListener } from './lib/scroll'
+import VueAWN from 'vue-awesome-notifications'
 
-
-
+//Modal/ notification/ alert plugin
+let options = {
+  duration: 2000,
+  replacements: {
+    warning: {
+      duration: 6000
+    }
+  }
+}
+Vue.use(VueAWN, options)
 
 Vue.directive('focus', {
   inserted: function(el) {
@@ -36,19 +45,19 @@ Vue.directive('scroll-watch', {
 })
 
 Vue.prototype.$http = axios
-let $wf=OneAPI({
-  spec_url:"http://10.65.1.228:3000/api/spec.get",
-  server_url:"http://10.65.1.228:3000/api"  
+let $wf = OneAPI({
+  spec_url: 'http://10.65.1.228:3000/api/spec.get',
+  server_url: 'http://10.65.1.228:3000/api'
 })
-Vue.prototype.$wf =  $wf
-window.$wf=$wf
+Vue.prototype.$wf = $wf
+window.$wf = $wf
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  // el: '#app',  
-  router,  
-  store,   
+  // el: '#app',
+  router,
+  store,
   // components: { App },
   // template: '<App/>'
   render: h => h(App)
