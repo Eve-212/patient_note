@@ -1,29 +1,29 @@
 <template>
-  <div v-if="isReady">   
-    <h5 :id="anchorIdFormat(schema)" >{{ schema.title }}</h5>
+  <div v-if="isReady">
+    <h5 :id="anchorIdFormat(schema)">{{ schema.title }}</h5>
     <div class="col-md-12">
-      <div class="row">      
+      <div class="row">
         <component
-          v-for="(field, key) in schema.properties"           
+          v-for="(field, key) in schema.properties"
           :rootObj="$rootObj"
           :key="key"
-          :currentKey="key" 
-          :is="getComponentName(field)" 
+          :currentKey="key"
+          :is="getComponentName(field)"
           :schema="field"
-          v-bind="field.attrs" 
-          :path="path.concat(key)"           
+          v-bind="field.attrs"
+          :path="path.concat(key)"
           v-model="val[key]"
           v-if="isVisible[key]"
-          class="object-width">          
+          class="object-width"
+        >
           <template slot="subTitle" slot-scope="{ description }">
-            <small 
-              v-if="description" 
-              :id="helpText(field)" 
-              class="text-muted reminder w-100">
-              {{ description }}              
-            </small>
+            <small
+              v-if="description"
+              :id="helpText(field)"
+              class="text-muted reminder w-100"
+            >{{ description }}</small>
           </template>
-        </component>      
+        </component>
       </div>
     </div>
   </div>
@@ -64,14 +64,14 @@ export default {
       isVisible: {},
       child_key: null // for clarity, use child_key in obj comp and currentKey in input components
     }
-  },    
+  },
   watch: {
     schema: {
       handler: function() {
         this.setVisible()
       },
       deep: true
-    }    
+    }
   },
   created() {
     this.child_key = this.currentKey
@@ -106,8 +106,6 @@ export default {
               // console.log('Change', $child_schema.attrs.dependsOn.name)
               let visibility = this.checkVisible($child_schema.attrs.dependsOn)
               $this.$set($this.isVisible, $child_key, visibility)
-
-              
 
               // if corrresponding isVisible value is false then clear data
               if (!visibility) {
@@ -227,10 +225,10 @@ export default {
               'value.' + $child_schema.attrs.dependsOn.name,
               function($oldVal, $newVal) {
                 // console.log('Change', $child_schema.attrs.dependsOn.name)
-                let visibility = this.checkVisible($child_schema.attrs.dependsOn)
+                let visibility = this.checkVisible(
+                  $child_schema.attrs.dependsOn
+                )
                 $this.$set($this.isVisible, $child_key, visibility)
-
-                
 
                 // if corrresponding isVisible value is false then clear data
                 if (!visibility) {
@@ -241,7 +239,7 @@ export default {
           }
         }
       }
-    },    
+    },
     getPathVal($path) {
       //get value with path like "personal_hx.cigarette.used"
       let segments = $path.split('.')

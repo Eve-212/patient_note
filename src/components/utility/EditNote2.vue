@@ -127,19 +127,18 @@ export default {
   },
   methods: {
     updateData() {
-      console.log(this.$wf)
       this.$wf.ready().then($api => {
-        console.log(this.data)
+        // console.log(this.data)
         $api.note
           .update({
             id: this.id,
             content: this.data
           })
           .then($api => {
-            console.log($api)
+            this.$awn.success('Data saved successfully')
           })
           .catch(err => {
-            console.log(err)
+            this.$awn.alert('Failed to save data.')
           })
       })
     },
@@ -183,18 +182,17 @@ export default {
       let $rd
       if (this.id) {
         if (!this.note || this.note.id !== this.id) {
-          console.log(this.note)
-          // if note is passed by prop, load note with id
+          //if note is passed by prop, load note with id
           $rd = await this.$wf.note.get({ id: this.id })
           if ($rd.data) {
             note = $rd.data
           }
         } else {
-          // note is passed by prop
+          //note is passed by prop
           note = this.note
         }
       } else {
-        // must has type & fee_no
+        //must has type & fee_no
         $rd = await this.$wf.note.get({ fee_no: this.fee_no, type: this.type })
 
         if ($rd.data) {
@@ -204,15 +202,15 @@ export default {
 
       this.prepare_data(this.currentSchema.properties.content, note.content)
 
-      // this.data = note.content;
+      //this.data =note.content;
 
       if (note.status == 'init') {
-        await this.preFill(note, note.content).catch(err => console.log(err))
+        await this.preFill(note, note.content).catch($e => console.log($e))
       }
-      console.log(note);
+      //console.log(note);
       this.meta = note
       this.$set(this.$data, 'data', note.content)
-      // console.log(this, note);
+      //console.log(this,note);
 
       this.isLoaded = true
     },
@@ -233,7 +231,7 @@ export default {
       data.profile.admit_dept = $ipd.dept_id
       data.profile.admit_time = $ipd.start
 
-      // prefill vitals
+      //prefill vitals
       let { data: $vitals } = await this.$wf.vitals.last({ no: meta.chr_no })
       if ($vitals) {
         data.nutrition.weight = $vitals.w
@@ -353,31 +351,6 @@ export default {
     margin: 1rem auto 0rem;
   }
   float: none;
-  &-primary {
-    ul {
-      padding-left: 0;
-      list-style: none;
-      margin: auto 0;
-      li {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        padding: 3px 0;
-        span {
-          letter-spacing: 0.05rem;
-          cursor: pointer;
-          padding: 0 0.3rem;
-          border: 1px solid #004085;
-          border-radius: 3px;
-          margin-right: 0.3rem;
-          opacity: 0.7;
-          &:hover {
-            opacity: 1;
-          }
-        }
-      }
-    }
-  }
   &-danger {
     display: flex;
     justify-content: space-between;

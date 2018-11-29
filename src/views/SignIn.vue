@@ -2,10 +2,10 @@
   <div class="signin">
     <h2 class="h2">Login Page</h2>
     <form>
-      <fieldset label="User id" label-for="id">
+      <fieldset>
         <input id="id" type="text" v-model="input.id" placeholder=" User id" v-focus ref="id">
       </fieldset>
-      <fieldset label="pw" label-for="pw">
+      <fieldset>
         <input id="pw" type="password" v-model="input.pw" placeholder=" Password" ref="pw">
       </fieldset>
       <div class="text-danger">{{message}}</div>
@@ -42,21 +42,18 @@ export default {
       if (this.input.id && this.input.pw) {
         $wf.auth
           .login({
-            //id:'99356',pw:'0000000'
+            //試用帳密id:'99356',pw:'0000000'
             id: this.input.id,
             pw: this.input.pw
           })
           .then($raw => {
-            let login_status = $raw.data.auth
-            if (login_status) {
+            let login_success = $raw.data.auth
+            if (login_success) {
               this.$router.replace({
                 name: 'dashBoard'
               })
-              let user_info = $raw.data
-              this.$store.dispatch('Sign_In', user_info)
             } else {
-              this.message =
-                'Either username or password is incorrect, please try again!'
+              this.message = 'Either user id or password is incorrect!'
             }
           })
       } else {
@@ -68,25 +65,6 @@ export default {
           this.setFocus('pw')
         }
       }
-
-      // if (this.input.username != '' && this.input.password != '') {
-      //   if (
-      //     this.input.username == this.mockAccount.username &&
-      //     this.input.password == this.mockAccount.password
-      //   ) {
-      //     let user = {
-      //       name: this.input.username
-      //     }
-      //     this.$store.dispatch('Sign_In', user)
-      //     this.$router.replace({
-      //       name: 'dashBoard'
-      //     })
-      //   } else {
-      //     this.message = 'The username and / or password is incorrect'
-      //   }
-      // } else {
-      //   this.message = 'A username and password must be present'
-      // }
     },
     setFocus(el) {
       this.$nextTick(() => {

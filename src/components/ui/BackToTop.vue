@@ -1,7 +1,14 @@
 <template>
   <transition name="fade">
-    <div class="btn-to-top" :style="`bottom:${this.bottom};right:${this.right};`" v-show="visible" @click="backToTop">
-      <slot><i class="fas fa-chevron-up"></i></slot>
+    <div
+      class="btn-to-top"
+      :style="`bottom:${this.bottom};right:${this.right};`"
+      v-show="visible"
+      @click="backToTop"
+    >
+      <slot>
+        <i class="fas fa-chevron-up"></i>
+      </slot>
     </div>
   </transition>
 </template>
@@ -71,7 +78,6 @@ export default {
 
 .btn-to-top {
   position: fixed;
-  z-index: 99;
   cursor: pointer;
   width: 3rem;
   height: 3rem;

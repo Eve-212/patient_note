@@ -79,17 +79,11 @@
         </div>
       </div>
     </header>
-    <modal v-if="modalShow" @close="modalShow = false">
-      <div slot="body">{{modalMessage}}</div>
-    </modal>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-
-Vue.component('modal', require('@/components/ui/Modal.vue').default)
-
 export default {
   props: ['hide'],
   data() {
@@ -98,10 +92,7 @@ export default {
       no: '',
       user: '',
       holder: '病歷號/ 床號/ 身分證',
-      searchKey: 'pt',
-      modalShow: false,
-      modalMessage: '',
-      searchBarList: false
+      searchKey: 'pt'
     }
   },
   watch: {
@@ -109,7 +100,7 @@ export default {
       if (this.searchKey === 'pt') {
         this.holder = '病歷號/ 床號/ 身分證'
       } else {
-        this.holder = '科別代號'
+        this.holder = '科別名稱/ 代號'
       }
       this.$nextTick(() => {
         this.$refs.searchInput.focus()
@@ -128,14 +119,11 @@ export default {
       this.showReminder = !this.showReminder
     },
     singOut() {
-      let signOut = confirm('Sure you want to sign out?')
-      if (signOut) {
-        $wf.auth.logout({ id: '99356' }).then($raw => {
-          // console.log($raw)
-        })
-        this.$store.dispatch('Sign_Out')
-        this.$router.replace({ name: 'signIn' })
-      }
+      this.$awn.confirm(`Sure you want to sign out?`, this.confirmSignOut)
+    },
+    confirmSignOut() {
+      $wf.auth.logout()
+      this.$router.replace({ name: 'signIn' })
     },
     load() {
       if (this.no) {
@@ -175,8 +163,7 @@ export default {
             .catch(error => {
               let error_code = error.response.status
               if (error_code == 412) {
-                this.modalShow = true
-                this.modalMessage = `Patient with Id ${this.no} does not exist`
+                this.$awn.warning('Patient does not exist')
               }
               this.resetSearch()
             })
@@ -188,8 +175,7 @@ export default {
           this.resetSearch()
         }
       } else {
-        this.modalShow = true
-        this.modalMessage = `Please enter keywords for searching..`
+        this.$awn.tip('Please enter keywords for searching...')
       }
     },
     resetSearch() {
@@ -198,7 +184,9 @@ export default {
     }
   },
   mounted() {
-    this.user = JSON.parse(window.sessionStorage.getItem('user'))['name']
+    this.$wf.ready().then($api => {
+      this.user = $wf.auth.data.name
+    })
   }
 }
 </script>
@@ -246,9 +234,9 @@ export default {
       position: absolute;
       left: 0;
       top: 3.5rem;
-      box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
       font-size: 12px;
-      border-top: 1px solid $color-grey-light;
+      border-top: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
       &.hideSearch {
         opacity: 0;
       }

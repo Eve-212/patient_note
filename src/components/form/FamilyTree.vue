@@ -1,9 +1,9 @@
 <template>
-<div :class="getBsColSize">   
-  <div class="tree-style">   
-    <tree-charter :json="treeData"></tree-charter>
-  </div> 
-</div> 
+  <div :class="getBsColSize">
+    <div class="tree-style">
+      <tree-charter :json="treeData"></tree-charter>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -67,10 +67,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.tree-style {
-  z-index: 0;
-  overflow-x: scroll;
-}
-</style>

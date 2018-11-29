@@ -362,8 +362,6 @@ export default {
   // background-color: red;
 
   // max-width: 78%;
-
-  z-index: 99;
   @media screen and (max-width: $break-medium) {
     margin-top: 30px;
     // max-width: 74%;
