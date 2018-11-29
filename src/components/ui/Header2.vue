@@ -19,8 +19,19 @@
         </router-link>
       </div>
       <!-- Search -->
-      <div class="d-flex align-items-center">
-        <div class="header_search-wrap d-flex align-items-center" :class="{hideSearch:hide}">
+
+      <div class="d-flex align-items-center " style="min-width: 40rem;">
+        <model-list-select 
+          id="search-bar"
+          style="flex: 6;"
+          :list="patients"
+          option-value="fee_no"
+          v-model="selectedPatient"
+          :custom-text="optionDisplayText"
+          placeholder="科別 / 姓名/ 病歷號 / 床號"
+          @searchchange="printSearchText">
+        </model-list-select>
+        <!-- <div class="header_search-wrap d-flex align-items-center" :class="{hideSearch:hide}">
           <span class="radio-box">
             <input id="pt" type="radio" value="pt" name="searchKey" v-model="searchKey" checked>
             <label for="pt" onmousedown="event.preventDefault()">by Patient</label>
@@ -39,8 +50,8 @@
               <i class="fa fa-search"></i>
             </button>
           </form>
-        </div>
-        <div class="header_user">Hi, {{ user }}</div>
+        </div> -->
+        <div class="header_user" >Hi, {{ user }}</div>
         <!-- Badge and reminder -->
         <div class="header_badge-box d-flex align-items-center">
           <div
@@ -87,11 +98,15 @@
 
 <script>
 import Vue from 'vue'
+import { ModelListSelect } from 'vue-search-select'
 
 Vue.component('modal', require('@/components/ui/Modal.vue').default)
 
 export default {
   props: ['hide'],
+  components: {
+    ModelListSelect
+  },
   data() {
     return {
       showReminder: false,
@@ -101,7 +116,10 @@ export default {
       searchKey: 'pt',
       modalShow: false,
       modalMessage: '',
-      searchBarList: false
+      departments: [],
+      patients: [],
+      selectedPatient: {},
+      searchText: '',
     }
   },
   watch: {
@@ -114,12 +132,25 @@ export default {
       this.$nextTick(() => {
         this.$refs.searchInput.focus()
       })
+    },
+    selectedPatient() {
+      this.no = this.selectedPatient.fee_no
+      this.load()
     }
   },
   methods: {
-    showPtList(){
-      this.searchBarList = true
-      console.log(this.searchBarList)
+    optionDisplayText (patient) {
+      let ipd = patient.ipd
+      return `${ this.matchDept(ipd.dept_id) }(${ipd.dept_id}) - ${ ipd.name } - ${ ipd.chr_no } - 床號${ ipd.bed_no }`
+    },
+    printSearchText(searchText) {
+      this.searchText = searchText
+    },
+    matchDept(dept) {
+      let deptTitle = this.departments.filter(department => {
+        return department.id === dept
+      })
+      return deptTitle[0].title
     },
     toggleSideMenu() {
       this.$store.dispatch('Toogle_Main_Sec')
@@ -138,6 +169,7 @@ export default {
       }
     },
     load() {
+      
       if (this.no) {
         if (this.searchKey == 'pt') {
           this.$wf.note
@@ -199,6 +231,22 @@ export default {
   },
   mounted() {
     this.user = JSON.parse(window.sessionStorage.getItem('user'))['name']
+  },
+  created() {
+    this.$wf.ready()
+      .then(api => {
+        api.dept.list()
+          .then(res => {
+            this.departments = res.data
+            console.log(this.departments)
+        api.note.list()
+          .then(res => {
+            console.log(res)
+            this.patients = res.data
+            console.log(this.patients)
+        })
+      })
+    })
   }
 }
 </script>
@@ -388,4 +436,7 @@ export default {
     }
   }
 }
+
+
+
 </style>

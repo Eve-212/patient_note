@@ -39,8 +39,6 @@ function register(name) {
 }
 for (let importField in fields) {
   register(importField)
-  console.log("--------------")
-  console.log(importField)
 }
 
 export default {

@@ -3,11 +3,11 @@
     <div v-if="status" class="loading">
       <p>{{status}}</p>
     </div>
-    <div
-      class="row my-md-4 mt-5 mb-3"
-      :class="{isExpanded: $store.state.sideExpanded}"
+    <div 
+      class="row my-md-4 mt-5 mb-3" 
+      :class="{isExpanded: $store.state.sideExpanded}" 
       v-if="isLoaded"
-    >
+      >
       <div class="editor-toolbar col-md-9 col-lg-10 position-fixed">
         <div class="row">
           <div class="col-md-12">
@@ -57,33 +57,33 @@
             <div v-if="showAlert" class="alert alert-danger">
               <strong>是否加入您的病人清單?</strong>
               <div>
-                <button
-                  @click="closeAlert"
-                  class="btn btn-sm btn-danger"
-                  type="button"
+                <button 
+                  @click="closeAlert" 
+                  class="btn btn-sm btn-danger" 
+                  type="button" 
                   value="yes"
-                >Yes</button>
-                <button
-                  @click="closeAlert"
-                  class="btn btn-sm btn-danger"
-                  type="button"
+                  >Yes</button>
+                <button 
+                  @click="closeAlert" 
+                  class="btn btn-sm btn-danger" 
+                  type="button" 
                   value="no"
-                >No</button>
-                <button
-                  @click="closeAlert"
-                  class="btn btn-sm btn-danger"
-                  type="button"
+                  >No</button>
+                <button 
+                  @click="closeAlert" 
+                  class="btn btn-sm btn-danger" 
+                  type="button" 
                   value="showLater"
-                >Ask me later</button>
+                  >Ask me later</button>
               </div>
             </div>
           </div>
 
-          <JSchemaObject
-            class="col-md-12"
-            v-model="data"
+          <JSchemaObject 
+            class="col-md-12" 
+            v-model="data" 
             :schema="currentSchema.properties.content"
-          ></JSchemaObject>
+            ></JSchemaObject>
         </div>
       </div>
 
@@ -104,7 +104,7 @@ import Toolbar from './Toolbar.vue'
 
 export default {
   name: 'EditNote',
-  props: ['id', 'fee_no','note','type'],
+  props: ['id', 'fee_no', 'note', 'type'],
   components: {
     SectionNav,
     JSchemaObject,
@@ -178,76 +178,73 @@ export default {
         }
       }
     },
-    
     async load() {
-      
-      let note;
-      let $rd;
-      if(this.id){
-        
-        if (!this.note || this.note.id!==this.id){
-          //if note is passed by prop, load note with id
-          $rd=await this.$wf.note.get({id:this.id});
-          if ($rd.data){
-            note=$rd.data;
+      let note
+      let $rd
+      if (this.id) {
+        if (!this.note || this.note.id !== this.id) {
+          console.log(this.note)
+          // if note is passed by prop, load note with id
+          $rd = await this.$wf.note.get({ id: this.id })
+          if ($rd.data) {
+            note = $rd.data
           }
-        }else{
-          //note is passed by prop
-          note=this.note;
+        } else {
+          // note is passed by prop
+          note = this.note
         }
-      }else{
-        //must has type & fee_no
-        $rd=await this.$wf.note.get({fee_no:this.fee_no,type:this.type});
-        
-        if ($rd.data){
-          note=$rd.data;
+      } else {
+        // must has type & fee_no
+        $rd = await this.$wf.note.get({ fee_no: this.fee_no, type: this.type })
+
+        if ($rd.data) {
+          note = $rd.data
         }
       }
-      
 
-      this.prepare_data(this.currentSchema.properties.content, note.content);
+      this.prepare_data(this.currentSchema.properties.content, note.content)
 
-      //this.data =note.content;
-     
-      if (note.status=='init'){
-        await this.preFill(note,note.content).catch( $e => console.log($e) );
+      // this.data = note.content;
+
+      if (note.status == 'init') {
+        await this.preFill(note, note.content).catch(err => console.log(err))
       }
-      //console.log(note);
-      this.meta = note;
+      console.log(note);
+      this.meta = note
       this.$set(this.$data, 'data', note.content)
-      //console.log(this,note);
-      
-      this.isLoaded = true;
+      // console.log(this, note);
+
+      this.isLoaded = true
     },
-    async preFill(meta=this.meta,data=this.data){
+    async preFill(meta = this.meta, data = this.data) {
       //prefill basic data
-      let $fee_no=meta.fee_no;
-      let $ipd;
-      if(this.sess){
-        $ipd=this.sess.ipd;
-      }else{
-        let $ipd_raw = await this.$wf.ipd.get({no:$fee_no});
-        $ipd=$ipd_raw.data;
+      let $fee_no = meta.fee_no
+      let $ipd
+      if (this.sess) {
+        $ipd = this.sess.ipd
+      } else {
+        let $ipd_raw = await this.$wf.ipd.get({ no: $fee_no })
+        $ipd = $ipd_raw.data
       }
-      console.log('ipd',$ipd);
+      console.log('ipd', $ipd)
       for (let $col of ['chr_no', 'name', 'fee_no', 'birthdate', 'sex']) {
-        data.profile[$col] = $ipd[$col];
+        data.profile[$col] = $ipd[$col]
       }
-      data.profile.admit_dept = $ipd.dept_id;
-      data.profile.admit_time = $ipd.start;
+      data.profile.admit_dept = $ipd.dept_id
+      data.profile.admit_time = $ipd.start
 
-      //prefill vitals
-      let {data:$vitals}=await this.$wf.vitals.last({no:meta.chr_no});
-      if ($vitals){      
-        data.nutrition.weight=$vitals.w;
-        data.nutrition.height=$vitals.h;
-        //TODO: BMI
+      // prefill vitals
+      let { data: $vitals } = await this.$wf.vitals.last({ no: meta.chr_no })
+      if ($vitals) {
+        data.nutrition.weight = $vitals.w
+        data.nutrition.height = $vitals.h
+        // TODO: BMI
 
-        data.pe.vitals.bt=$vitals.bt;
-        data.pe.vitals.sbp=$vitals.sbp;
-        data.pe.vitals.dbp=$vitals.dbp;
-        data.pe.vitals.pr=$vitals.pr;
-        console.log($vitals);
+        data.pe.vitals.bt = $vitals.bt
+        data.pe.vitals.sbp = $vitals.sbp
+        data.pe.vitals.dbp = $vitals.dbp
+        data.pe.vitals.pr = $vitals.pr
+        console.log($vitals)
       }
     },
     closeAlert() {
@@ -256,14 +253,13 @@ export default {
   },
   async created() {
     this.status = 'loading'
-    let api=await this.$wf.ready()
-    let {data:$schema}=await api.note.schema()
-    $schema=require('../../../static/fake_data/sch.note.adm2.json')
-    this.noteSchema=$schema
+    let api = await this.$wf.ready()
+    let { data: $schema } = await api.note.schema()
+    $schema = require('../../../static/fake_data/sch.note.adm2.json')
+    this.noteSchema = $schema
     this.$set(this.$data, 'currentSchema', cloneDeep(this.noteSchema))
     this.load()
     this.status = ''
-    
   },
   watch: {
     id() {
