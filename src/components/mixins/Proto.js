@@ -77,7 +77,7 @@ export default {
     },
     getBsColSize() {
       if (this.bsColSize) {
-        return `col-lg-${this.bsColSize} col-md-6 col-12`
+        return `col-xl-${this.bsColSize} col-lg-6 col-12`
       }
       return 'col-md-12'
     },

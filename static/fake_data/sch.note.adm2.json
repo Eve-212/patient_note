@@ -91,7 +91,7 @@
               "title": "Patient Source",
               "type": "string",
               "attrs": {
-                "fieldType": "selectList",
+                "fieldType": "selectlist",
                 "inputGroup": true,
                 "bsColSize": 6,
                 "values": ["門診", "急診", "本院出生"]
@@ -101,7 +101,7 @@
               "title": "Information Source",
               "type": "string",
               "attrs": {
-                "fieldType": "selectList",
+                "fieldType": "selectlist",
                 "inputGroup": true,
                 "bsColSize": 6,
                 "values": ["ff", "gg"]
