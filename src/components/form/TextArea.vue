@@ -24,7 +24,7 @@ import Proto from '@/components/mixins/Proto.js'
 
 export default {
   name: 'TextArea',
-  mixins: [Proto], 
+  mixins: [Proto],
   data() {
     return {
       hint: "Insert text here ..."

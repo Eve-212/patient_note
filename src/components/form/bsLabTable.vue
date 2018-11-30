@@ -1,26 +1,26 @@
 <template>
-<div :class="getBsColSize">
-	<div id="labwrap">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th class="sticky-col"></th>
-          <th class="px-2 py-2" v-for ="(v, k, index) in lab.blood">{{ v.id }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(v, k, index) in lists">
-          <th class="px-2 py-2 sticky-col">{{ k }}</th>
-          <td
-            v-for="(v1, k1, index1) in v"
-            class="text-center px-2 py-2"
-            :class="{low : v1.mark == 'L', high: v1.mark == 'H'}" 
+  <div :class="getBsColSize">
+    <div id="labwrap">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="sticky-col"></th>
+            <th class="px-2 py-2" v-for="(v, k, index) in lab.blood">{{ v.id }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(v, k, index) in lists">
+            <th class="px-2 py-2 sticky-col">{{ k }}</th>
+            <td
+              v-for="(v1, k1, index1) in v"
+              class="text-center px-2 py-2"
+              :class="{low : v1.mark == 'L', high: v1.mark == 'H'}"
             >{{ v1.value }}</td>
-        </tr>
-      </tbody>
-    </table>
-	</div>
-</div>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -219,6 +219,7 @@ export default {
   methods: {
     load() {
       this.$wf.ready().then($api => {
+        console.log($api)
         // return $api.lab.then($raw => {
         //   console.log($raw.data)
         // })

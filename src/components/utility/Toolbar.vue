@@ -1,63 +1,80 @@
 <template>
-  <div class="note-toolbar">    
-
+  <div class="note-toolbar">
     <div class="toolbar-left">
-      <div class="toolbar-group">              
-        <div :title="save" class="toolbar-item" @click="saveData"><i class="far fa-save"></i> Save</div>
-        <div :title="undo" class="toolbar-item"><i class="fas fa-undo"></i> Undo</div>           
-      </div>        
+      <div class="toolbar-group">
+        <div :title="save" class="toolbar-item" @click="saveData">
+          <i class="far fa-save"></i> Save
+        </div>
+        <div :title="undo" class="toolbar-item">
+          <i class="fas fa-undo"></i> Undo
+        </div>
+      </div>
 
-      <div class="toolbar-group ">
-          <div :title="view" class="toolbar-item"><i class="far fa-eye"></i> View</div>
-          <div :title="edit" class="toolbar-item"><i class="far fa-edit"></i> Edit</div>      
-      </div> 
+      <div class="toolbar-group">
+        <div :title="view" class="toolbar-item">
+          <i class="far fa-eye"></i> View
+        </div>
+        <div :title="edit" class="toolbar-item">
+          <i class="far fa-edit"></i> Edit
+        </div>
+      </div>
 
       <div class="toolbar-group">
         <div class="set-schema">
-          <div :title="setSchema" class="toolbar-item" @click.prevent="toggleSchemaSelect"><i class="far fa-plus-square"></i> Add Schemas</div> 
-          
+          <div :title="setSchema" class="toolbar-item" @click.prevent="toggleSchemaSelect">
+            <i class="far fa-plus-square"></i> Add Schemas
+          </div>
+
           <modal v-if="modalShow" @close="modalShow = false">
             <div class="modal-custom" slot="body">
               <div>
                 <div class="alert alert-primary">
                   <ul>
                     <li>
-                      <strong>Applied schemas：</strong>                    
-                      <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != base.tag" @click="removeSchema($event, tag)">
+                      <strong>Applied schemas：</strong>
+                      <span
+                        v-for="tag in appliedSchemas"
+                        :key="tag"
+                        v-if="tag != base.tag"
+                        @click="removeSchema($event, tag)"
+                      >
                         <div>&#35;{{ tag }}</div>
-                      </span>              
+                      </span>
                     </li>
                     <li>
                       <strong>Available schemas：</strong>
-                      <span v-for="schema in availableSchemas" :key="schema.tag" v-if="schema.tag != base.tag" @click="addSchema($event, schema.tag)">
+                      <span
+                        v-for="schema in availableSchemas"
+                        :key="schema.tag"
+                        v-if="schema.tag != base.tag"
+                        @click="addSchema($event, schema.tag)"
+                      >
                         <div>&#35;{{ schema.tag }}</div>
-                      </span>                
+                      </span>
                     </li>
                   </ul>
-                </div>                             
-              </div>              
+                </div>
+              </div>
             </div>
           </modal>
         </div>
 
-        <div :title="reset" class="toolbar-item" @click.prevent="resetSchema"><i class="far fa-file"></i> Reset Schema</div> 
-
-        
-      </div>                                                              
-    </div>   
+        <div :title="reset" class="toolbar-item" @click.prevent="resetSchema">
+          <i class="far fa-file"></i> Reset Schema
+        </div>
+      </div>
+    </div>
 
     <div class="toolbar-right">
-      <div class="toolbar-group">      
-        <div :title="bookmarkAdd" class="toolbar-item toolbar-item__bookmark"><i class="far fa-bookmark"></i> Bookmark</div>   
-        <div :title="submit" class="toolbar-item"><i class="fas fa-check"></i> Submit</div>      
-      </div>        
-
-    </div>    
-
-    
-
-   
- 
+      <div class="toolbar-group">
+        <div :title="bookmarkAdd" class="toolbar-item toolbar-item__bookmark">
+          <i class="far fa-bookmark"></i> Bookmark
+        </div>
+        <div :title="submit" class="toolbar-item">
+          <i class="fas fa-check"></i> Submit
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -68,28 +85,28 @@ import isArray from 'lodash/isArray'
 import Modal from '../ui/Modal'
 
 export default {
-  name: "Toolbar",
+  name: 'Toolbar',
   components: {
     Modal
   },
-  props: [ 'value', 'base' ],
+  props: ['value', 'base'],
   data() {
     return {
       modalShow: false,
-      save: "Save",
-      bookmarkAdd: "加入病人清單",
-      bookmarkRemove: "Remove patient from dashboard",
+      save: 'Save',
+      bookmarkAdd: '加入病人清單',
+      bookmarkRemove: 'Remove patient from dashboard',
       // admission: "Go to Admission Note",
       // progress: "Go to Progress Note",
       // discharge: "Go to Discharge Note",
-      setSchema: "Select form schemas",
-      edit: "Edit",
-      view: "View",
-      submit: "Submit", 
-      undo: "Undo",
-      reset: "Reset to base schema",
+      setSchema: 'Select form schemas',
+      edit: 'Edit',
+      view: 'View',
+      submit: 'Submit',
+      undo: 'Undo',
+      reset: 'Reset to base schema',
       appliedSchemas: [],
-      availableSchemas: [],
+      availableSchemas: []
     }
   },
   methods: {
@@ -117,19 +134,20 @@ export default {
       if (this.appliedSchemas.includes(tag)) {
         this.appliedSchemas = this.appliedSchemas.filter(item => item != tag)
       }
-    },
+    }
   },
   watch: {
     appliedSchemas: {
       handler: function() {
         function customizer(objValue, srcValue) {
           if (isArray(objValue)) {
-            // use Set to ensure uniqueness            
+            // use Set to ensure uniqueness
             return [...new Set(objValue.concat(srcValue))]
           }
-        }         
-        
-        this.$emit('input', 
+        }
+
+        this.$emit(
+          'input',
           mergeWith(
             {},
             ...this.availableSchemas.filter(sch =>
@@ -137,7 +155,7 @@ export default {
             ),
             customizer
           )
-        )      
+        )
       },
       deep: true
     }
@@ -152,7 +170,7 @@ export default {
     this.availableSchemas.push(
       require('../../../static/fake_data/er_schema.json')
     )
-    
+
     // add base schema to availableSchemas
     this.appliedSchemas.push(this.base.tag)
   }
@@ -167,14 +185,13 @@ export default {
 }
 
 .note-toolbar {
-  margin: -1.55rem 0 0 -2.4rem;
+  margin: -1.5rem 0 0 -2.4rem;
   width: 100%;
   position: fixed;
   display: flex;
   justify-content: space-between;
-  background-color: white;
-  // background-color: #f4f6f7;
-  box-shadow: 0px 0px 15px -3px rgba(0, 0, 0, 0.2);
+  background-color: $color-white;
+  box-shadow: 0px 2px 7px -3px rgba(0, 0, 0, 0.3);
 }
 
 .toolbar-left {
@@ -187,14 +204,14 @@ export default {
 }
 
 .toolbar-group {
-  display: flex;    
-  margin: 5px 0;   
+  display: flex;
+  margin: 5px 0;
   align-items: center;
   z-index: 999;  
   color: #666666;      
 }
 
-.toolbar-item {      
+.toolbar-item {
   padding: 0.3rem 0.4rem 0.3rem 0.4rem;
   font-size: 0.9rem; 
   margin: 0 3px 0 3px; 
@@ -206,44 +223,38 @@ export default {
 
 .set-schema {
   position: relative;
-  user-select: none;  
- 
+  user-select: none;
 }
 
-.set-schema__popover {    
-    position: absolute;
-    top: 42px;    
-    background-color: darken($color-grey-light, 5%);
-    padding: 0.7rem 0.5rem 0;   
-    color: #aaacac;    
-    min-width: 300px;
-    /* box-shadow: 7px 8px 5px -3px rgba(0, 0, 0, 0.1); */
-    box-shadow: 0px 0px 15px -3px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: space-between
+.set-schema__popover {
+  position: absolute;
+  top: 42px;
+  background-color: darken($color-grey-light, 5%);
+  padding: 0.7rem 0.5rem 0;
+  color: #aaacac;
+  min-width: 300px;
+  /* box-shadow: 7px 8px 5px -3px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0px 0px 15px -3px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
 }
 
 .set-schema__popover:before {
-    position: absolute;    
-    content: '';
-    left: 3%;
-    top: -11px;    
-    border-style: solid;
-    border-width: 0 12px 15px 5px;
-    border-color: transparent transparent darken($color-grey-light, 5%) transparent;    
+  position: absolute;
+  content: '';
+  left: 3%;
+  top: -11px;
+  border-style: solid;
+  border-width: 0 12px 15px 5px;
+  border-color: transparent transparent darken($color-grey-light, 5%)
+    transparent;
 }
 
 .reset-btn {
   margin-right: 5px;
   padding: 0 3px;
-  background-color:white;
-  color:black;
-}
-
-.alert-container {
-  width: 100%;
-  margin-right: 0.95rem !important;
-  padding-right: 5px;
+  background-color: white;
+  color: black;
 }
 
 .alert {
@@ -253,7 +264,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
   padding: 8px 15px;
   margin: 0 auto 0.5rem;
   color: black;
@@ -286,19 +296,6 @@ export default {
       }
     }
   }
-  &-danger {
-    display: flex;
-    justify-content: space-between;
-    @media screen and (max-width: $break-small) {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-    button {
-      @media screen and (max-width: $break-small) {
-        margin-top: 0.5rem;
-      }
-    }
-  }
 }
 
 .modal-custom {
@@ -310,11 +307,6 @@ export default {
     margin: 0 5px;
   }
 }
-
-
-
-
-
 </style>
 
 

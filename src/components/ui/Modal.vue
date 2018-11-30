@@ -24,12 +24,11 @@ export default {}
 <style lang="scss">
 .modal {
   position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
+  left: 0px;
+  top: 0px;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   display: table;
   transition: opacity 0.3s ease;
   &-wrapper {
@@ -41,11 +40,9 @@ export default {}
     margin: 0 auto;
     padding: 15px;
     background-color: #fff;
-    border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
     position: relative;
-    border-radius: 5px;
   }
   &-close {
     position: absolute;

@@ -1,17 +1,11 @@
 
 <template>
-    
-    <div class="container-fluid">
-        <!--
-            <button v-on:click="load">Load</button>
-        -->
-        <div class="box_wrap" v-for="sess in list" :key="sess.fee_no">
-            <span>{{status}}</span>
-            <sess-card :sess="sess"></sess-card>
-
-        </div>
-        
+  <div class="container-fluid">
+    <div class="box_wrap" v-for="sess in list" :key="sess.fee_no">
+      <span>{{status}}</span>
+      <sess-card :sess="sess"></sess-card>
     </div>
+  </div>
 </template>
 <script>
 import SessCard from './sys/SessCard'

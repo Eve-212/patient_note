@@ -19,8 +19,18 @@
         </router-link>
       </div>
       <!-- Search -->
-      <div class="d-flex align-items-center">
-        <div class="header_search-wrap d-flex align-items-center" :class="{hideSearch:hide}">
+      <div class="d-flex align-items-center " style="min-width: 40rem;">
+        <model-list-select 
+          style="flex: 6;"
+          :list="patients"
+          option-value="fee_no"
+          v-model="selectedPatient"
+          :custom-text="optionDisplayText"
+          placeholder="科別 / 姓名/ 病歷號 / 床號"
+          @searchchange="printSearchText"
+          ref="mselect">
+        </model-list-select>
+        <!-- <div class="header_search-wrap d-flex align-items-center" :class="{hideSearch:hide}">
           <span class="radio-box">
             <input id="pt" type="radio" value="pt" name="searchKey" v-model="searchKey" checked>
             <label for="pt" onmousedown="event.preventDefault()">by Patient</label>
@@ -28,12 +38,18 @@
             <label for="dept" onmousedown="event.preventDefault()">by Dept.</label>
           </span>
           <form class="search-box">
-            <input type="text" v-model="no" :placeholder="holder" v-focus ref="searchInput">
+            <input 
+              v-focus 
+              type="text" 
+              v-model="no" 
+              :placeholder="holder" 
+              ref="searchInput"
+              @keyup="showPtList">
             <button type="submit" @keyup.enter.prevent="load" @click.prevent="load">
               <i class="fa fa-search"></i>
             </button>
           </form>
-        </div>
+        </div> -->
         <div class="header_user">Hi, {{ user }}</div>
         <!-- Badge and reminder -->
         <div class="header_badge-box d-flex align-items-center">
@@ -73,18 +89,17 @@
         </div>
       </div>
     </header>
-    <modal v-if="modalShow" @close="modalShow = false">
-      <div slot="body">{{modalMessage}}</div>
-    </modal>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-
-Vue.component('modal', require('@/components/ui/Modal.vue').default)
+import { ModelListSelect } from 'vue-search-select'
 
 export default {
+  components: {
+    ModelListSelect
+  },
   props: ['hide'],
   data() {
     return {
@@ -94,22 +109,62 @@ export default {
       holder: '病歷號/ 床號/ 身分證',
       searchKey: 'pt',
       modalShow: false,
-      modalMessage: ''
+      modalMessage: '',
+      departments: [],
+      patients: [],
+      selectedPatient: {},
+      searchText: '',
     }
+  },
+  created() {
+  this.$wf.ready()
+    .then(api => {
+      api.dept.list()
+        .then(res => {
+          this.departments = res.data
+      api.note.list()
+        .then(res => {
+          this.patients = res.data
+          this.$nextTick(() => {
+            const el = this.$refs.mselect.$children.find(el => {
+              return el.$refs.input._prevClass === 'search'
+            }).$refs.input
+            el.focus()
+          })
+        })
+      })
+    })
   },
   watch: {
     searchKey() {
       if (this.searchKey === 'pt') {
         this.holder = '病歷號/ 床號/ 身分證'
       } else {
-        this.holder = '科別代號'
+        this.holder = '科別名稱/ 代號'
       }
       this.$nextTick(() => {
         this.$refs.searchInput.focus()
       })
+    },
+    selectedPatient() {
+      this.no = this.selectedPatient.fee_no
+      this.load()
     }
   },
   methods: {
+    optionDisplayText (patient) {
+      let ipd = patient.ipd
+      return `${ this.matchDept(ipd.dept_id) }(${ipd.dept_id}) - ${ ipd.name } - ${ ipd.chr_no } - 床號${ ipd.bed_no }`
+    },
+    printSearchText(searchText) {
+      this.searchText = searchText
+    },
+    matchDept(dept) {
+      let deptTitle = this.departments.filter(department => {
+        return department.id === dept
+      })
+      return deptTitle[0].title
+    },
     toggleSideMenu() {
       this.$store.dispatch('Toogle_Main_Sec')
     },
@@ -117,14 +172,11 @@ export default {
       this.showReminder = !this.showReminder
     },
     singOut() {
-      let signOut = confirm('Sure you want to sign out?')
-      if (signOut) {
-        $wf.auth.logout({ id: '99356' }).then($raw => {
-          // console.log($raw)
-        })
-        this.$store.dispatch('Sign_Out')
-        this.$router.replace({ name: 'signIn' })
-      }
+      this.$awn.confirm(`Sure you want to sign out?`, this.confirmSignOut)
+    },
+    confirmSignOut() {
+      $wf.auth.logout()
+      this.$router.replace({ name: 'signIn' })
     },
     load() {
 
@@ -135,13 +187,16 @@ export default {
             .sess({ no: this.no })
             .then(res => {
               let $sess = res.data
+              // have note
               if ($sess.adm) {
                 this.$router.push({
                   name: 'edit',
                   params: { id: $sess.adm.id, sess: $sess }
                 })
                 this.resetSearch()
+                // no note
               } else {
+                this.no = $sess.fee_no
                 this.$wf.note
                   .get({ fee_no: this.no, type: 'adm' })
                   .then(res => {
@@ -159,8 +214,7 @@ export default {
             .catch(error => {
               let error_code = error.response.status
               if (error_code == 412) {
-                this.modalShow = true
-                this.modalMessage = `Patient with Id ${this.no} does not exist`
+                this.$awn.warning('Patient does not exist')
               }
               this.resetSearch()
             })
@@ -172,8 +226,7 @@ export default {
           this.resetSearch()
         }
       } else {
-        this.modalShow = true
-        this.modalMessage = `Please enter keywords for searching..`
+        this.$awn.tip('Please enter keywords for searching...')
       }
     },
     resetSearch() {
@@ -182,7 +235,9 @@ export default {
     }
   },
   mounted() {
-    this.user = JSON.parse(window.sessionStorage.getItem('user'))['name']
+    this.$wf.ready().then($api => {
+      this.user = $wf.auth.data.name
+    })
   }
 }
 </script>
@@ -230,9 +285,9 @@ export default {
       position: absolute;
       left: 0;
       top: 3.5rem;
-      box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
       font-size: 12px;
-      border-top: 1px solid $color-grey-light;
+      border-top: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
       &.hideSearch {
         opacity: 0;
       }
