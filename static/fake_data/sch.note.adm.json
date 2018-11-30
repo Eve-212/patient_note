@@ -134,22 +134,21 @@
           "attrs": {
             "rowGroup": true
           }
-        },                 
-        
+        },
 
         "cc": {
           "title": "Chief Complaint",
-          "type": "object",          
+          "type": "object",
           "properties": {
             "cc_description": {
               "title": "CC Text",
               "type": "string",
               "attrs": {
                 "fieldType": "textarea"
-              }                    
-            } 
-          }              
-        },               
+              }
+            }
+          }
+        },
         "pi": {
           "title": "Present Illness",
           "type": "string",
@@ -969,9 +968,7 @@
         "image": {
           "title": "Image finding",
           "type": "string",
-          "attrs": {
-            
-          }
+          "attrs": {}
         },
         "ecg": {
           "title": "ECG finding",

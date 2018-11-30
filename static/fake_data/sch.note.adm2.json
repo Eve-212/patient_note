@@ -139,10 +139,27 @@
           }
         },
         "travel_contact": {
-          "title": "Travel History",
-          "type": "string",
-          "attrs": {
-            "fieldType": "textarea"
+          "title": "Travel and Contact History",
+          "type": "object",
+          "properties": {
+            "recent_travel": {
+              "title": "Travel history",
+              "description": "History of overseas travel in recent 3 months",
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 12
+              }
+            },
+            "recent_contact": {
+              "title": "Contact history",
+              "description": "History of contact with animals or sick people",
+              "type": "string",
+              "attrs": {
+                "inputGroup": true,
+                "bsColSize": 12
+              }
+            }
           }
         },
         "personal_hx": {
