@@ -113,9 +113,7 @@ export default {
     saveData() {
       this.$emit('saveData')
     },
-    toggleToolbar() {
-
-    },
+    toggleToolbar() {},
     toggleSchemaSelect() {
       // this.$emit('input', !this.value)
       this.modalShow = !this.modalShow
@@ -185,9 +183,9 @@ export default {
 }
 
 .note-toolbar {
-  margin: -1.5rem 0 0 -2.4rem;
-  width: 100%;
+  // margin: -1.5rem 0 0 -2.4rem;
   position: fixed;
+  z-index: 99;
   display: flex;
   justify-content: space-between;
   background-color: $color-white;
@@ -200,21 +198,20 @@ export default {
 
 .toolbar-right {
   display: flex;
-  padding-right: 3.7rem;
 }
 
 .toolbar-group {
   display: flex;
   margin: 5px 0;
   align-items: center;
-  z-index: 999;  
-  color: #666666;      
+  z-index: 999;
+  color: #666666;
 }
 
 .toolbar-item {
   padding: 0.3rem 0.4rem 0.3rem 0.4rem;
-  font-size: 0.9rem; 
-  margin: 0 3px 0 3px; 
+  font-size: 0.9rem;
+  margin: 0 3px 0 3px;
   cursor: pointer;
   &__bookmark {
     justify-self: flex-end;
@@ -308,24 +305,3 @@ export default {
   }
 }
 </style>
-
-
-
-
-<!-- <div v-if="show" class="alert alert-primary">
-        <ul>
-          <li>
-            <strong>Applied form schemas：</strong>
-            <button class="btn btn-sm btn-secondary reset" @click="resetSchema">reset</button>
-            <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != base.tag" @click="removeSchema($event, tag)">
-              <div>&#35;{{ tag }}</div>
-            </span>              
-          </li>
-          <li>
-            <strong>Available form schemas：</strong>
-            <span v-for="schema in availableSchemas" :key="schema.tag" v-if="schema.tag != base.tag" @click="addSchema($event, schema.tag)">
-              <div>&#35;{{ schema.tag }}</div>
-            </span>                
-          </li>
-        </ul>
-      </div>                        -->      

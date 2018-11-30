@@ -14,6 +14,7 @@
       <!-- Search -->
       <div class="header-right">
         <model-list-select
+          :class="{hideSearch:hide}"
           class="header-right__search-box"
           :list="patients"
           option-value="fee_no"
@@ -24,7 +25,6 @@
           ref="mselect"
         ></model-list-select>
         <div class="header-right__user-box">Hi, {{ user }}</div>
-        <!-- Badge and reminder -->
         <div class="header-right__badge-box">
           <div class="header-right__badge-box-badge" @click="toggleReminder">
             <i class="fa fa-bell"></i>
@@ -50,7 +50,6 @@
             </router-link>
           </div>
         </div>
-        <!-- Sign Out -->
         <div class="header-right__logout-box" v-on:click="singOut()">
           <i class="fa fa-sign-out-alt"></i>
         </div>
@@ -175,20 +174,20 @@ export default {
   align-items: center;
   background-color: $color-white;
   color: $color-black;
-  font-size: $default-font-size;
   border-bottom: 1px solid #e0e0e0;
   &.hideSearch {
-    box-shadow: 0 5px 5px -1px rgba(0, 0, 0, 0.1);
+    // box-shadow: 0 5px 5px -1px rgba(0, 0, 0, 0.1);
   }
   @media screen and (max-width: $break-medium) {
     z-index: 100;
   }
   &-left {
     display: flex;
+    align-items: center;
     &__handler-box {
       width: 3.5rem;
       height: 3.5rem;
-      line-height: 3.5rem;
+      line-height: 3.7rem;
       cursor: pointer;
       text-align: center;
       font-size: 1.2rem;
@@ -212,9 +211,11 @@ export default {
   &-right {
     display: flex;
     align-items: center;
-    min-width: 40rem;
+    justify-content: space-between;
+    font-size: 12px;
     &__search-box {
-      flex: 6;
+      flex: 1;
+      width: 25rem !important;
     }
     &__user-box {
       margin: 0 0.8rem 0 1.5rem;
@@ -253,6 +254,7 @@ export default {
         padding: 0;
         box-shadow: 0 0.2rem 0.5rem rgba($color-black, 0.1);
         border-top: 1px solid $color-black;
+        font-size: $default-font-size;
         &:hover {
           display: block;
         }
@@ -294,6 +296,7 @@ export default {
       }
     }
   }
+
   // &_search-wrap {
   //   background: $color-white;
   //   padding: 5px;
@@ -380,5 +383,9 @@ export default {
   //     }
   //   }
   // }
+}
+
+.header .item {
+  font-size: 12px !important;
 }
 </style>
