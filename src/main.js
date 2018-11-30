@@ -30,7 +30,7 @@ Vue.directive('focus', {
 
 Vue.directive('scroll-to', {
   inserted: function(el) {
-    VueScrollTo(el, 500, 110)
+    VueScrollTo(el, 500, 120)
     //el, duration, offset
   }
 })

@@ -126,10 +126,9 @@ export default {
     }
   },
   methods: {
-    updateData() {
-      console.log(this.$wf)
+    updateData() {      
       this.$wf.ready().then($api => {
-        console.log(this.data)
+        
         $api.note
           .update({
             id: this.id,

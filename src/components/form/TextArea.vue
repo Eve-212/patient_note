@@ -1,12 +1,11 @@
 <template>
-  <div :class="getBsColSize">    
+  <div :class="getBsColSize">  
+    <slot name="section-title" :childIsSection="isSection"></slot>      
     <div class="form-group"
         :id="anchorIdFormat(schema)" 
-        :class="[getStyleClass]">      
+        :class="[getStyleClass]">           
 
-      <label           
-        :for="getId()">{{ schema.title }}
-      </label>           
+      <slot name="label" :getId="getId" :childIsSection="isSection" :classes="[]"></slot>      
       <textarea :id="getId()" 
                 :name="currentKey" 
                 v-model="val" 

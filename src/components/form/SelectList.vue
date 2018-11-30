@@ -1,22 +1,59 @@
 
 <template>
   <div :class="getBsColSize">
-    <div 
-      :id="anchorIdFormat(schema)" 
-      :class="[getStyleClass]">
-      <select  v-model="val">
-        <template v-if="placeholder">
-          <option value="">{{ placeholder }}</option>
-        </template>
-        <option 
-          v-for="(item, index) in schema.attrs.values" 
-          :key="index" 
-          :value="item">
-          {{ item }}
-        </option>
-      </select>
+    <div
+      :id="anchorIdFormat(schema)"
+      :class="[getStyleClass]"
+    >
+      <template v-if="inputGroup">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label
+              class="input-group-text"
+              :for="getId()"
+            >{{ schema.title }}</label>
+          </div>
+          <select
+            :id="getId()"
+            class="custom-select"
+            v-model="val"
+          >
+            <template v-if="placeholder">
+              <option value="">{{ placeholder }}</option>
+            </template>
+            <option
+              v-for="(item, index) in schema.attrs.values"
+              :key="index"
+              :value="item"
+            >
+              {{ item }}
+            </option>
+          </select>
+        </div>
+      </template>
+      <div
+        class="form-group row"
+        v-if="!inputGroup"
+      >
+        <label :for="getId()">{{ schema.title }}</label>
+        <select
+          :id="getId()"
+          v-model="val"
+        >
+          <template v-if="placeholder">
+            <option value="">{{ placeholder }}</option>
+          </template>
+          <option
+            v-for="(item, index) in schema.attrs.values"
+            :key="index"
+            :value="item"
+          >
+            {{ item }}
+          </option>
+        </select>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
@@ -26,9 +63,7 @@ export default {
   name: 'SelectList',
   mixins: [Proto],
   data() {
-    return {
-      placeholder: this.getPlaceholder()
-    }
+    return {}
   },
   created: function() {
     // if (!(this.currentKey in this.value)) {

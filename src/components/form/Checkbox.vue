@@ -1,18 +1,23 @@
 <template>
 <div :class="getBsColSize">
+  <slot name="section-title" :childIsSection="isSection"></slot>
+  <slot name="title" :childIsSection="isSection"></slot>    
   <div 
     :id="anchorIdFormat(schema)" 
     :class="[getStyleClass]"> 
     
-    <label
+    <!-- <label
       :for="currentKey">
       {{ schema.attrs.label }}
-      <input
-        :id="currentKey"
-        type="checkbox"
-        :name="currentKey"
-         v-model="val">
-    </label>
+    </label> -->
+
+    <slot name="label" :childIsSection="isSection" :getId="getId" :classes="[]"></slot>      
+
+    <input 
+      :id="getId()"
+      type="checkbox"
+      :name="currentKey"
+      v-model="val">    
   </div>
 </div>
 </template>

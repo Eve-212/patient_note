@@ -8,34 +8,33 @@
         <Toolbar v-model="currentSchema" :base="noteSchema" @saveData="updateData"></Toolbar>
       </div>
 
-      <div class="col-lg-10 col-md-9">
-        <div>
-          <div v-if="showAlert" class="alert alert-danger">
-            <strong>是否加入您的病人清單?</strong>
-            <div>
-              <button
-                @click="closeAlert"
-                class="btn btn-sm btn-danger"
-                type="button"
-                value="yes"
-              >Yes</button>
-              <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
-              <button
-                @click="closeAlert"
-                class="btn btn-sm btn-danger"
-                type="button"
-                value="showLater"
-              >Ask me later</button>
-            </div>
+      <div class="col-lg-10 col-md-9 mt-5">
+        <div v-if="showAlert" class="alert alert-danger">
+          <strong>是否加入您的病人清單?</strong>
+          <div>
+            <button
+              @click="closeAlert"
+              class="btn btn-sm btn-danger"
+              type="button"
+              value="yes"
+            >Yes</button>
+            <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
+            <button
+              @click="closeAlert"
+              class="btn btn-sm btn-danger"
+              type="button"
+              value="showLater"
+            >Ask me later</button>
           </div>
-          <JSchemaObject
-            v-model="data"
-            :schema="currentSchema.properties.content"
-            :sectionKeys="sectionKeys"
-          ></JSchemaObject>
         </div>
+        <JSchemaObject
+          v-model="data"
+          :schema="currentSchema.properties.content"
+          :sectionKeys="sectionKeys"
+        ></JSchemaObject>
       </div>
-      <SectionNav class="col-lg-2 col-md-3 d-none d-md-block" :schema="currentSchema"></SectionNav>
+
+      <SectionNav class="col-md-3 col-lg-2 d-none d-md-block mb-5" :sectionKeys="sectionKeys" :schema="currentSchema"></SectionNav>
     </div>
   </div>
 </template>
@@ -73,7 +72,7 @@ export default {
   methods: {
     updateData() {
       this.$wf.ready().then($api => {
-        // console.log(this.data)
+        
         $api.note
           .update({
             id: this.id,
@@ -100,9 +99,9 @@ export default {
         let { sch: $sch, d: $d } = $queue.shift()
         if ($sch.properties) {
           for (let $child_name in $sch.properties) {
-            console.log($child_name)
+            
             if ($d[$child_name] === undefined) {
-              console.log('7778')
+              
               switch ($sch.properties[$child_name].type) {
                 case 'object':
                   $d[$child_name] = {}
@@ -179,7 +178,7 @@ export default {
         let $ipd_raw = await this.$wf.ipd.get({ no: $fee_no })
         $ipd = $ipd_raw.data
       }
-      console.log('ipd', $ipd)
+      
       for (let $col of ['chr_no', 'name', 'fee_no', 'birthdate', 'sex']) {
         data.profile[$col] = $ipd[$col]
       }
@@ -211,15 +210,11 @@ export default {
     $schema = require('../../../static/fake_data/sch.note.adm2.json')
     this.noteSchema = $schema
     this.$set(this.$data, 'currentSchema', cloneDeep(this.noteSchema))
-
-    // save all first level keys so that we can determine
-    // which input instances are the outermost input of a section
-    this.$set(
-      this.$data,
-      'sectionKeys',
-      Object.keys(this.currentSchema.properties.content)
-    )
-
+    
+    
+    // this.$set(this.$data, 'sectionKeys', Object.keys(this.currentSchema.properties.content.properties))
+    
+    
     this.load()
     this.status = ''
   },
@@ -229,11 +224,9 @@ export default {
     },
     currentSchema: {
       handler: function() {
-        this.$set(
-          this.$data,
-          'sectionKeys',
-          Object.keys(this.currentSchema.properties.content)
-        )
+        // save all first level keys so that we can determine 
+        // which input instances are the outermost input of a section
+        this.$set(this.$data, 'sectionKeys', Object.keys(this.currentSchema.properties.content.properties))
       },
       deep: true
     }

@@ -2,10 +2,11 @@
 <template>
   <div :class="getBsColSize">
     <div :id="anchorIdFormat(schema)" :class="[getStyleClass]">
+    <slot name="section-title" :childIsSection="isSection"></slot>
       <div v-if="inputGroup">
         <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <div class="input-group-text text-label">{{ schema.title }}</div>
+          <div class="input-group-prepend">            
+            <slot name="label" :getId="getId" :childIsSection="isSection" :classes="['input-group-text', 'text-label']"></slot>
           </div>
           <input 
             :id="getId()" 
@@ -18,11 +19,14 @@
         </div>
       </div>
       <div class="form-group row" v-if="!inputGroup">
-        <label 
+        <!-- <label 
           class="col-md-4 col-form-label"
           :for="getId()">
           {{ schema.title }}
-        </label>
+        </label> -->
+
+        <slot name="label" :childIsSection="isSection" :getId="getId" :classes="['col-form-label', 'col-md-4']"></slot>      
+
         <input 
           :id="getId()" 
           type="date" 
