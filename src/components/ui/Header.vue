@@ -165,7 +165,6 @@ export default {
           this.$wf.note
             .sess({ no: this.no })
             .then(res => {
-              console.log(res)
               let $sess = res.data
               // have note
               if ($sess.adm) {
@@ -180,10 +179,7 @@ export default {
                 this.$wf.note
                   .get({ fee_no: this.no, type: 'adm' })
                   .then(res => {
-                    console.log($sess)
-                    console.log(res)
                     $sess = res.data
-                    console.log($sess)
                     this.$router.push({
                       name: 'edit',
                       params: { id: $sess.id, fee_no: this.no }
@@ -228,15 +224,13 @@ export default {
         api.dept.list()
           .then(res => {
             this.departments = res.data
-            console.log(this.departments)
         api.note.list()
           .then(res => {
-            console.log(res)
             this.patients = res.data
-            console.log(this.patients)
             this.$nextTick(() => {
-              console.log(this.$refs.mselect)
-              const el = this.$refs.mselect.$children[0].$refs.input
+              const el = this.$refs.mselect.$children.find(el => {
+                return el.$refs.input._prevClass === 'search'
+              }).$refs.input
               el.focus()
             })
         })
