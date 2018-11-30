@@ -14,6 +14,7 @@
       <!-- Search -->
       <div class="header-right">
         <model-list-select
+          id="test"
           class="header-right__search-box"
           :list="patients"
           option-value="fee_no"
@@ -212,8 +213,24 @@ export default {
     display: flex;
     align-items: center;
     min-width: 40rem;
-    &__search-box {
+    &__search-box#test{
       flex: 6;
+      .ui.dropdown {
+        min-height: 14px !important;
+      }
+
+      .ui.dropdown .text {
+        font-size: 14px !important;
+      }
+
+      .ui.search.selection.dropdown div.menu > div.item[data-vss-custom-attr] {
+        font-size: 14px !important;
+      }
+
+      .ui.search.selection.dropdown > input.search {
+        font-size: 14px !important;
+        line-height: 14px !important;
+      }
     }
     &__user-box {
       margin: 0 0.8rem 0 1.5rem;

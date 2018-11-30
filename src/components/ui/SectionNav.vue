@@ -1,5 +1,5 @@
 <template>
-  <nav class="section-nav" v-scroll-watch>
+  <nav class="section-nav mt-5" v-scroll-watch>
     <ul class="list-group">
       <li 
         v-for="(item, key) in schema.properties.content.properties"

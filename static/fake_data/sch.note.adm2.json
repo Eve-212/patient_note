@@ -182,30 +182,19 @@
               "title": "Smoking",
               "type": "object",
               "attrs": {
-                "styleClass": ["subsection-title"]
               },
               "properties": {
                 "used": {
-                  "title": "Used",
+                  "title": "Used：",
                   "type": "boolean"
                 },
                 "type": {
-                  "title": "Type",
+                  "title": "Type：",
                   "type": "array",
                   "items": {
                     "type": "string",
                     "enum": ["Cigarettes", "Electronic cigarettes"]
                   },
-                  "attrs": {
-                    "dependsOn": {
-                      "name": "personal_hx.cigarette.used",
-                      "values": ["Yes"]
-                    }
-                  }
-                },
-                "quitted": {
-                  "title": "Quitted",
-                  "type": "boolean",
                   "attrs": {
                     "dependsOn": {
                       "name": "personal_hx.cigarette.used",
@@ -226,8 +215,30 @@
                     }
                   }
                 },
-                "years_smoked": {
-                  "title": "for years",
+                "years_used": {
+                  "title": "For years",
+                  "type": "number",
+                  "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 3,
+                    "dependsOn": {
+                      "name": "personal_hx.cigarette.used",
+                      "values": ["Yes"]
+                    }
+                  }
+                },
+                "quitted": {
+                  "title": "Quitted：",
+                  "type": "boolean",
+                  "attrs": {
+                    "dependsOn": {
+                      "name": "personal_hx.cigarette.used",
+                      "values": ["Yes"]
+                    }
+                  }
+                },
+                "years_quitted": {
+                  "title": "For years",
                   "type": "number",
                   "attrs": {
                     "inputGroup": true,
@@ -243,7 +254,7 @@
                   "type": "boolean"
                 },
                 "years_exposed": {
-                  "title": "for years",
+                  "title": "For years",
                   "type": "number",
                   "attrs": {
                     "inputGroup": true,
@@ -260,8 +271,6 @@
               "title": "Alcohol drinking",
               "type": "object",
               "attrs": {
-                "styleClass": ["subsection-title"],
-                "rowGroup": true
               },
               "properties": {
                 "used": {
@@ -271,19 +280,16 @@
                     "bsColSize": 12
                   }
                 },
-                "quitted": {
-                  "title": "Quit use：",
-                  "type": "boolean",
-                  "attrs": {
-                    "bsColSize": 12
-                  }
-                },
-                "vol_per_day": {
-                  "title": "Volumn(ml) per day",
+                "bottle_per_week": {
+                  "title": "Bottle per week",
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 6
+                    "bsColSize": 6,
+                    "dependsOn": {
+                      "name": "personal_hx.alcohol.used",
+                      "values": ["Yes"]
+                    }
                   }
                 },
                 "duration": {
@@ -291,7 +297,18 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 6
+                    "bsColSize": 6,
+                    "dependsOn": {
+                      "name": "personal_hx.alcohol.used",
+                      "values": ["Yes"]
+                    }
+                  }
+                },
+                "quitted": {
+                  "title": "Quit use：",
+                  "type": "boolean",
+                  "attrs": {
+                    "bsColSize": 12
                   }
                 }
               }
@@ -300,7 +317,6 @@
               "type": "object",
               "title": "Betel Nuts",
               "attrs": {
-                "styleClass": ["subsection-title"],
                 "rowGroup": true
               },
               "properties": {
