@@ -113,20 +113,9 @@ export default {
     saveData() {
       this.$emit('saveData')
     },
-    // makeCall() {              
-    //   this.$wf.ready().then($api => {
-    //     console.log(this.data)
-    //      $api.note.update({
-    //       id: 'razvCeG',
-    //       content: this.data,
-    //       }).then($api => {
-    //       console.log($api)
-    //     }).catch(err => {
-    //       console.log(err)
-    //     })
-    //   })
-    // },
-    toggleToolbar() {},
+    toggleToolbar() {
+
+    },
     toggleSchemaSelect() {
       // this.$emit('input', !this.value)
       this.modalShow = !this.modalShow

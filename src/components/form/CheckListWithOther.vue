@@ -1,5 +1,5 @@
 <template>
-<div :class="getBsColSize">
+<div :class="getBsColSize" class="mb-3">
   <div 
     :id="anchorIdFormat(schema)" 
     :class="[getStyleClass]">    
@@ -22,10 +22,7 @@
     <input type="text" placeholder="Other..." @keyup.enter="add_item" v-model="other_val">
     <button v-if="other_val" @click="add_item">+</button>
     
-  </div>
-  {{ currentKey }}
-  <br>
-  {{ value }}
+  </div>  
 </div>
 </template>
 
@@ -101,7 +98,5 @@ export default {
 .checklist-label {
   font-size: 1.1rem;
 }
-/* .margin-bot-small {
-  margin-bottom: 10px;
-} */
+
 </style>

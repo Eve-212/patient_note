@@ -1,17 +1,21 @@
 <template>
-  <div :class="getBsColSize">
-    <div class="form-group" :id="anchorIdFormat(schema)" :class="[getStyleClass]">
-      <label :for="getId()">{{ schema.title }}</label>
-      
-      <textarea
-        :id="getId()"
-        :name="currentKey"
-        v-model="val"
-        :placeholder="msg"
-        :aria-describedby="helpText(schema)"
-        rows="10"
-      ></textarea>
-    </div>
+  <div :class="getBsColSize">    
+    <div class="form-group"
+        :id="anchorIdFormat(schema)" 
+        :class="[getStyleClass]">      
+
+      <label           
+        :for="getId()">{{ schema.title }}
+      </label>           
+      <textarea :id="getId()" 
+                :name="currentKey" 
+                v-model="val" 
+                :placeholder="hint"
+                :aria-describedby="helpText(schema)"
+                rows="10">        
+      </textarea>      
+     
+    </div>     
   </div>
 </template>
 
@@ -23,13 +27,18 @@ export default {
   mixins: [Proto],
   data() {
     return {
-      msg: 'Insert text here ...'
+      hint: "Insert text here ..."
     }
-  }
+  }  
 }
 </script>
 
 <style>
+textarea {
+  width: 100%;
+  height: 17rem;
+}
+
 </style>
 
 

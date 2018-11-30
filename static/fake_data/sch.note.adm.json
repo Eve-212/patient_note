@@ -1,6 +1,7 @@
 {
   "title": "Admission Note",
   "description": "admission note",
+  "tag": "base",
   "ver": 1,
   "type": "object",
   "properties": {
@@ -48,7 +49,6 @@
             "name": {
               "title": "Name",
               "type": "string",
-              "description": "Patient Name",
               "attrs": {
                 "inputGroup": true,
                 "bsColSize": 4,
@@ -70,7 +70,11 @@
               "type": "integer",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 4                
+                "bsColSize": 4,
+                "dependsOn": {
+                  "name": "profile.name",
+                  "values": ["david"]
+                }
               }
             },
             "id_no": {
@@ -96,15 +100,17 @@
               "type": "string",
               "attrs": {
                 "fieldType": "date",
+                "inputGroup": true,
                 "bsColSize": 6
               }
             },
             "evaluate_time": {
-              "title": "Time of History-taking",
+              "title": "Time of Evaluation",
               "format": "date-time",
               "type": "string",
               "attrs": {
                 "fieldType": "date",
+                "inputGroup": true,
                 "bsColSize": 6
               }
             },
@@ -124,31 +130,38 @@
                 "bsColSize": 6
               }
             }
+          },
+          "attrs": {
+            "rowGroup": true
           }
-        },
+        },                 
+        
+
         "cc": {
           "title": "Chief Complaint",
-          "type": "string",
-          "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12,
-            "placeholder": "test"
-          }
-        },
+          "type": "object",          
+          "properties": {
+            "cc_description": {
+              "title": "CC Text",
+              "type": "string",
+              "attrs": {
+                "fieldType": "textarea"
+              }                    
+            } 
+          }              
+        },               
         "pi": {
           "title": "Present Illness",
           "type": "string",
           "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12
+            "inputGroup": true
           }
         },
         "travel_contact": {
           "title": "Travel History",
           "type": "string",
           "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12
+            "inputGroup": true
           }
         },
         "personal_hx": {
@@ -163,7 +176,7 @@
               },
               "properties": {
                 "used": {
-                  "title": "Used：",
+                  "title": "Used",
                   "type": "boolean"
                 },
                 "type": {
@@ -175,7 +188,7 @@
                   },
                   "attrs": {
                     "dependsOn": {
-                      "name": "used",
+                      "name": "personal_hx.cigarette.used",
                       "values": ["Yes"]
                     }
                   }
@@ -185,7 +198,7 @@
                   "type": "boolean",
                   "attrs": {
                     "dependsOn": {
-                      "name": "used",
+                      "name": "personal_hx.cigarette.used",
                       "values": ["Yes"]
                     }
                   }
@@ -198,19 +211,19 @@
                     "bsColSize": 3,
                     "placeholder": "Frequency",
                     "dependsOn": {
-                      "name": "used",
+                      "name": "personal_hx.cigarette.used",
                       "values": ["Yes"]
                     }
                   }
                 },
-                "duration": {
+                "years_smoked": {
                   "title": "for years",
                   "type": "number",
                   "attrs": {
                     "inputGroup": true,
                     "bsColSize": 3,
                     "dependsOn": {
-                      "name": "used",
+                      "name": "personal_hx.cigarette.used",
                       "values": ["Yes"]
                     }
                   }
@@ -218,6 +231,18 @@
                 "passive_expose": {
                   "title": "Passive smoking：",
                   "type": "boolean"
+                },
+                "years_exposed": {
+                  "title": "for years",
+                  "type": "number",
+                  "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 3,
+                    "dependsOn": {
+                      "name": "personal_hx.cigarette.passive_expose",
+                      "values": ["Yes"]
+                    }
+                  }
                 }
               }
             },
@@ -225,23 +250,30 @@
               "title": "Alcohol drinking",
               "type": "object",
               "attrs": {
-                "styleClass": ["subsection-title"]
+                "styleClass": ["subsection-title"],
+                "rowGroup": true
               },
               "properties": {
                 "used": {
                   "title": "Used：",
-                  "type": "boolean"
+                  "type": "boolean",
+                  "attrs": {
+                    "bsColSize": 12
+                  }
                 },
                 "quitted": {
                   "title": "Quit use：",
-                  "type": "boolean"
+                  "type": "boolean",
+                  "attrs": {
+                    "bsColSize": 12
+                  }
                 },
                 "vol_per_day": {
                   "title": "Volumn(ml) per day",
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 5
+                    "bsColSize": 6
                   }
                 },
                 "duration": {
@@ -249,7 +281,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 5
+                    "bsColSize": 6
                   }
                 }
               }
@@ -258,16 +290,35 @@
               "type": "object",
               "title": "Betel Nuts",
               "attrs": {
-                "styleClass": ["subsection-title"]
+                "styleClass": ["subsection-title"],
+                "rowGroup": true
               },
               "properties": {
                 "used": {
                   "title": "Used：",
-                  "type": "boolean"
+                  "type": "boolean",
+                  "attrs": {
+                    "bsColSize": 12
+                  }
                 },
                 "quitted": {
-                  "title": "Quit use：",
-                  "type": "boolean"
+                  "title": "Quit use",
+                  "type": "boolean",
+                  "attrs": {
+                    "bsColSize": 12
+                  }
+                },
+                "last_used": {
+                  "title": "Last used (years ago)",
+                  "type": "number",
+                  "attrs": {
+                    "inputGroup": true,
+                    "bsColSize": 3,
+                    "dependsOn": {
+                      "name": "personal_hx.betel_nut.quitted",
+                      "values": ["Yes"]
+                    }
+                  }
                 },
                 "num_per_day": {
                   "title": "Number per day",
@@ -320,18 +371,6 @@
           }
         },
 
-        "family_hx": {
-          "title": "Family History",
-          "type": "object",
-          "properties": {
-            "familytree": {
-              "type": "string",
-              "attrs": {
-                "fieldType": "familytree"
-              }
-            }
-          }
-        },
         "past_hx": {
           "title": "Past History",
           "type": "object",
@@ -340,8 +379,7 @@
               "title": "Note",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
-                "bsColSize": 12
+                "inputGroup": true
               }
             }
           }
@@ -510,16 +548,14 @@
               "title": "Inside hospital",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
-                "bsColSize": 12
+                "inputGroup": true
               }
             },
             "out_institute": {
               "title": "Other hispital/Clinic",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
-                "bsColSize": 12
+                "inputGroup": true
               }
             }
           }
@@ -555,7 +591,7 @@
                 "values": ["Couple", "Children", "Other"]
               }
             },
-            "finatial": {
+            "financial": {
               "title": "Financial support：",
               "type": "string",
               "attrs": {
@@ -585,6 +621,9 @@
         "nutrition": {
           "title": "Nutritional Evaluation",
           "type": "object",
+          "attrs": {
+            "rowGroup": true
+          },
           "properties": {
             "higth": {
               "title": "Height(cm)",
@@ -615,7 +654,8 @@
               "description": "Malnutrition Universal Screening Tool",
               "type": "object",
               "attrs": {
-                "styleClass": ["subsection-title"]
+                "styleClass": ["subsection-title"],
+                "rowGroup": true
               },
               "properties": {
                 "bmi": {
@@ -656,7 +696,7 @@
                   "type": "boolean",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 6
+                    "bsColSize": 12
                   }
                 },
                 "acute_effect_score": {
@@ -725,15 +765,15 @@
               "title": "General looking",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
-                "bsColSize": 12
+                "inputGroup": true
               }
             },
             "vitals": {
               "title": "Vital signs",
               "type": "object",
               "attrs": {
-                "styleClass": ["subsection-title"]
+                "styleClass": ["subsection-title"],
+                "rowGroup": true
               },
               "properties": {
                 "bt": {
@@ -741,7 +781,7 @@
                   "type": "number",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "sbp": {
@@ -749,7 +789,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "dbp": {
@@ -757,7 +797,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "pr": {
@@ -765,7 +805,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "rr": {
@@ -773,7 +813,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 },
                 "pain": {
@@ -781,25 +821,24 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 3
+                    "bsColSize": 4
                   }
                 }
               }
             },
-
             "conscious": {
               "title": "Consciousness",
               "type": "string",
               "attrs": {
-                "inputGroup": true,
-                "bsColSize": 12
+                "inputGroup": true
               }
             },
             "GCS": {
               "title": "Glasgow Coma Scale",
               "type": "object",
               "attrs": {
-                "styleClass": ["subsection-title"]
+                "styleClass": ["subsection-title"],
+                "rowGroup": true
               },
               "properties": {
                 "e": {
@@ -876,24 +915,21 @@
                   "title": "Conjunctivae",
                   "type": "string",
                   "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 12
+                    "inputGroup": true
                   }
                 },
                 "sclera": {
                   "title": "Sclera",
                   "type": "string",
                   "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 12
+                    "inputGroup": true
                   }
                 },
                 "throat": {
                   "title": "Throat",
                   "type": "string",
                   "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 12
+                    "inputGroup": true
                   }
                 }
               }
@@ -934,32 +970,28 @@
           "title": "Image finding",
           "type": "string",
           "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12
+            
           }
         },
         "ecg": {
           "title": "ECG finding",
           "type": "string",
           "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12
+            "inputGroup": true
           }
         },
         "impression": {
           "title": "Impressions",
           "type": "string",
           "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12
+            "inputGroup": true
           }
         },
         "plan": {
           "title": "Plan (Management)",
           "type": "string",
           "attrs": {
-            "inputGroup": true,
-            "bsColSize": 12
+            "inputGroup": true
           }
         }
       }

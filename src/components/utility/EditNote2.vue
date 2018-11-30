@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <div v-if="status" class="loading">
       <p>{{status}}</p>
     </div>
@@ -13,47 +14,13 @@
           <div class="col-md-12">
             <Toolbar v-model="currentSchema" :base="noteSchema" @saveData="updateData"></Toolbar>
           </div>
-        </div>
-
-        <!-- <div v-if="showSchemaSelect" class="alert alert-primary col-md-2">
-                <ul>
-                  <li>
-                    <strong>Applied form schemas：</strong>
-                    <button class="btn btn-sm btn-secondary reset-btn" @click="resetSchema">reset</button>
-                    <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != noteSchema.tag" @click="removeSchema($event, tag)">
-                      <div>&#35;{{ tag }}</div>
-                    </span>              
-                  </li>
-                  <li>
-                    <strong>Available form schemas：</strong>
-                    <span v-for="schema in availableSchemas" :key="schema.tag" v-if="schema.tag != noteSchema.tag" @click="addSchema($event, schema.tag)">
-                      <div>&#35;{{ schema.tag }}</div>
-                    </span>                
-                  </li>
-                </ul>
-        </div>-->
+        </div>        
       </div>
 
       <div class="col-md-9 col-lg-10 my-sm-3 mt-4 editor-main">
         <div class="row">
           <div class="col-md-12">
-            <!-- <div v-if="showSchemaSelect" class="alert alert-primary">
-                <ul>
-                  <li>
-                    <strong>Applied form schemas：</strong>
-                    <button class="btn btn-sm btn-secondary reset-btn" @click="resetSchema">reset</button>
-                    <span v-for="tag in appliedSchemas" :key="tag" v-if="tag != noteSchema.tag" @click="removeSchema($event, tag)">
-                      <div>&#35;{{ tag }}</div>
-                    </span>              
-                  </li>
-                  <li>
-                    <strong>Available form schemas：</strong>
-                    <span v-for="schema in availableSchemas" :key="schema.tag" v-if="schema.tag != noteSchema.tag" @click="addSchema($event, schema.tag)">
-                      <div>&#35;{{ schema.tag }}</div>
-                    </span>                
-                  </li>
-                </ul>
-            </div>-->
+            
             <div v-if="showAlert" class="alert alert-danger">
               <strong>是否加入您的病人清單?</strong>
               <div>
@@ -83,7 +50,8 @@
             class="col-md-12" 
             v-model="data" 
             :schema="currentSchema.properties.content"
-            ></JSchemaObject>
+            :sectionKeys="sectionKeys"
+          ></JSchemaObject>
         </div>
       </div>
 
@@ -97,14 +65,12 @@ import Vue from 'vue'
 
 import SectionNav from '@/components/ui/SectionNav.vue'
 import JSchemaObject from '@/components/form/JSchemaObject'
-// import mergeWith from 'lodash/mergeWith'
-// import isArray from 'lodash/isArray'
 import cloneDeep from 'lodash/cloneDeep'
 import Toolbar from './Toolbar.vue'
 
 export default {
   name: 'EditNote',
-  props: ['id', 'fee_no', 'note', 'type'],
+  props: ['id', 'fee_no','note','type', 'sess'],
   components: {
     SectionNav,
     JSchemaObject,
@@ -116,13 +82,13 @@ export default {
       noteSchema: {},
       data: {},
       meta: {},
-      sess: null,
-      isLoaded: false,
-      // appliedSchemas: [],
-      // availableSchemas: [],
+      // sess: null,
+      isLoaded: false,      
       currentSchema: null,
       showSchemaSelect: false,
-      status: null
+      status: null,
+      sectionKeys: null
+
     }
   },
   methods: {
@@ -155,7 +121,9 @@ export default {
         let { sch: $sch, d: $d } = $queue.shift()
         if ($sch.properties) {
           for (let $child_name in $sch.properties) {
+            console.log($child_name)
             if ($d[$child_name] === undefined) {
+              console.log("7778")
               switch ($sch.properties[$child_name].type) {
                 case 'object':
                   $d[$child_name] = {}
@@ -167,8 +135,10 @@ export default {
                   $d[$child_name] = ''
               }
             }
+
+
             if ($sch.properties[$child_name]) {
-              $queue.push({
+              $queue.push({                
                 sch: $sch.properties[$child_name],
                 d: $d[$child_name]
               })
@@ -187,16 +157,20 @@ export default {
           if ($rd.data) {
             note = $rd.data
           }
-        } else {
-          //note is passed by prop
-          note = this.note
+        }else{
+          //note is passed by prop          
+          note=this.note;
         }
-      } else {
-        //must has type & fee_no
-        $rd = await this.$wf.note.get({ fee_no: this.fee_no, type: this.type })
+      }else{
+        // must has type & fee_no
+        // $rd=await this.$wf.note.get({fee_no:this.fee_no,type:this.type});
+        
+        // if ($rd.data){
+        //   note=$rd.data;
+        // }
 
-        if ($rd.data) {
-          note = $rd.data
+        if (this.note) { // note is received as prop from header
+          note = this.note
         }
       }
 
@@ -216,13 +190,15 @@ export default {
     },
     async preFill(meta = this.meta, data = this.data) {
       //prefill basic data
-      let $fee_no = meta.fee_no
-      let $ipd
-      if (this.sess) {
-        $ipd = this.sess.ipd
-      } else {
-        let $ipd_raw = await this.$wf.ipd.get({ no: $fee_no })
-        $ipd = $ipd_raw.data
+      let $fee_no=meta.fee_no;
+      let $ipd;
+      if(this.sess){        
+        $ipd=this.sess.ipd;
+      }else{
+        // TODO: need to verify that ipd retrieved using below request is equal to ipd
+        // retrieved in header via note.sess
+        let $ipd_raw = await this.$wf.ipd.get({no:$fee_no});
+        $ipd=$ipd_raw.data;
       }
       console.log('ipd', $ipd)
       for (let $col of ['chr_no', 'name', 'fee_no', 'birthdate', 'sex']) {
@@ -256,40 +232,24 @@ export default {
     $schema = require('../../../static/fake_data/sch.note.adm2.json')
     this.noteSchema = $schema
     this.$set(this.$data, 'currentSchema', cloneDeep(this.noteSchema))
+
+    // save all first level keys so that we can determine 
+    // which input instances are the outermost input of a section
+    this.$set(this.$data, 'sectionKeys', Object.keys(this.currentSchema.properties.content))
+
     this.load()
-    this.status = ''
+    this.status = ''    
   },
   watch: {
     id() {
       this.load()
     },
     currentSchema: {
-      handler: function() {},
+      handler: function() {
+        this.$set(this.$data, 'sectionKeys', Object.keys(this.currentSchema.properties.content))
+      },
       deep: true
-    }
-    // appliedSchemas: {
-    //   handler: function() {
-    //     function customizer(objValue, srcValue) {
-    //       if (isArray(objValue)) {
-    //         // use Set to ensure uniqueness
-    //         return [...new Set(objValue.concat(srcValue))]
-    //       }
-    //     }
-
-    //     this.$set(
-    //       this.$data,
-    //       'currentSchema',
-    //       mergeWith(
-    //         {},
-    //         ...this.availableSchemas.filter(sch =>
-    //           this.appliedSchemas.includes(sch.tag)
-    //         ),
-    //         customizer
-    //       )
-    //     )
-    //   },
-    //   deep: true
-    // }
+    }    
   }
 }
 </script>
@@ -297,13 +257,7 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/sass/main.scss';
 .editor-toolbar {
-  margin-top: -8px;
-  // margin-top: 0px;
-
-  // background-color: $color-grey-light;
-  // background-color: red;
-
-  // max-width: 78%;
+  margin-top: -8px;  
 
   z-index: 99;
   @media screen and (max-width: $break-medium) {
