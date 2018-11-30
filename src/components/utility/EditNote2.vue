@@ -8,32 +8,30 @@
         <Toolbar v-model="currentSchema" :base="noteSchema" @saveData="updateData"></Toolbar>
       </div>
 
-      <div class="col-lg-10 col-md-9">
-        <div>
-          <div v-if="showAlert" class="alert alert-danger">
-            <strong>是否加入您的病人清單?</strong>
-            <div>
-              <button
-                @click="closeAlert"
-                class="btn btn-sm btn-danger"
-                type="button"
-                value="yes"
-              >Yes</button>
-              <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
-              <button
-                @click="closeAlert"
-                class="btn btn-sm btn-danger"
-                type="button"
-                value="showLater"
-              >Ask me later</button>
-            </div>
+      <div class="col-lg-10 col-md-9 mt-5">
+        <div v-if="showAlert" class="alert alert-danger">
+          <strong>是否加入您的病人清單?</strong>
+          <div>
+            <button
+              @click="closeAlert"
+              class="btn btn-sm btn-danger"
+              type="button"
+              value="yes"
+            >Yes</button>
+            <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
+            <button
+              @click="closeAlert"
+              class="btn btn-sm btn-danger"
+              type="button"
+              value="showLater"
+            >Ask me later</button>
           </div>
-          <JSchemaObject
-            v-model="data"
-            :schema="currentSchema.properties.content"
-            :sectionKeys="sectionKeys"
-          ></JSchemaObject>
         </div>
+        <JSchemaObject
+          v-model="data"
+          :schema="currentSchema.properties.content"
+          :sectionKeys="sectionKeys"
+        ></JSchemaObject>
       </div>
       <SectionNav class="col-lg-2 col-md-3 d-none d-md-block" :schema="currentSchema"></SectionNav>
     </div>

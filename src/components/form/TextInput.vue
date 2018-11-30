@@ -42,14 +42,7 @@
 import Proto from '@/components/mixins/Proto.js'
 export default {
   name: 'TextInput',
-  mixins: [Proto],
-  props: {
-    inputGroup: {
-      default() {
-        return false
-      }
-    }
-  }    
+  mixins: [Proto]    
 }
 </script>
 
