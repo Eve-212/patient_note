@@ -22,6 +22,7 @@
           :custom-text="optionDisplayText"
           placeholder="科別 / 姓名/ 病歷號 / 床號"
           @searchchange="printSearchText"
+          @input="handleOnInput"
           ref="mselect"
         ></model-list-select>
         <div class="header-right__user-box">Hi, {{ user }}</div>
@@ -94,12 +95,6 @@ export default {
       })
     })
   },
-  watch: {
-    selectedPatient() {
-      this.no = this.selectedPatient.fee_no
-      this.load()
-    }
-  },
   methods: {
     optionDisplayText(patient) {
       let ipd = patient.ipd
@@ -115,6 +110,10 @@ export default {
         return department.id === dept
       })
       return deptTitle[0].title
+    },
+    handleOnInput ($event) {
+      this.no = $event.ipd.fee_no
+      this.load()
     },
     toggleSideMenu() {
       this.$store.dispatch('Toogle_Main_Sec')
