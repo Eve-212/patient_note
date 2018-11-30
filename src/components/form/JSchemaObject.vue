@@ -170,7 +170,7 @@ export default {
         radio: 'bsRadioInput',
         checkbox: 'Checkbox',
         checklist: 'CheckList',
-        selectList: 'SelectList',
+        selectlist: 'SelectList',
         object: 'JSchemaObject',
         number: 'NumberInput',
         date: 'SelectDate',
