@@ -116,6 +116,25 @@ export default {
       searchText: '',
     }
   },
+  created() {
+  this.$wf.ready()
+    .then(api => {
+      api.dept.list()
+        .then(res => {
+          this.departments = res.data
+      api.note.list()
+        .then(res => {
+          this.patients = res.data
+          this.$nextTick(() => {
+            const el = this.$refs.mselect.$children.find(el => {
+              return el.$refs.input._prevClass === 'search'
+            }).$refs.input
+            el.focus()
+          })
+        })
+      })
+    })
+  },
   watch: {
     searchKey() {
       if (this.searchKey === 'pt') {
@@ -216,25 +235,6 @@ export default {
   mounted() {
     this.$wf.ready().then($api => {
       this.user = $wf.auth.data.name
-    })
-  },
-  created() {
-    this.$wf.ready()
-      .then(api => {
-        api.dept.list()
-          .then(res => {
-            this.departments = res.data
-        api.note.list()
-          .then(res => {
-            this.patients = res.data
-            this.$nextTick(() => {
-              const el = this.$refs.mselect.$children.find(el => {
-                return el.$refs.input._prevClass === 'search'
-              }).$refs.input
-              el.focus()
-            })
-        })
-      })
     })
   }
 }
