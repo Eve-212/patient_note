@@ -214,7 +214,7 @@ export default {
     font-size: 12px;
     &__search-box {
       flex: 1;
-      width: 25rem !important;
+      width: 30rem !important;
     }
     &__user-box {
       margin: 0 0.8rem 0 1.5rem;
