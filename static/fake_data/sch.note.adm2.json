@@ -87,6 +87,16 @@
                 "bsColSize": 4
               }
             },
+            "patient_source": {
+              "title": "Patient Source",
+              "type": "string",
+              "attrs": {
+                "fieldType": "selectList",
+                "inputGroup": true,
+                "bsColSize": 6,
+                "values": ["門診", "急診", "本院出生"]
+              }
+            },
             "information_source": {
               "title": "Information Source",
               "type": "string",
@@ -114,55 +124,25 @@
                 "inputGroup": true,
                 "bsColSize": 6
               }
-            },
-            "patient_source": {
-              "title": "Patient Source",
-              "type": "string",
-              "attrs": {
-                "fieldType": "selectList",
-                "inputGroup": true,
-                "bsColSize": 6,
-                "values": ["門診", "急診", "本院出生"]
-              }
             }
           }
         },
         "cc": {
           "title": "Chief Complaint",
-          "type": "object",
-          "properties": {
-            "cc_description": {
-              "type": "string",
-              "attrs": {
-                "fieldType": "textarea"
-              }
-            }
-          }
+          "type": "string"
         },
         "pi": {
           "title": "Present Illness",
-          "type": "object",
-          "properties": {
-            "pi_description": {
-              "title": "",
-              "type": "string",
-              "attrs": {
-                "fieldType": "textarea"
-              }
-            }
+          "type": "string",
+          "attrs": {
+            "fieldType": "textarea"
           }
         },
         "travel_contact": {
           "title": "Travel History",
-          "type": "object",
-          "properties": {
-            "travel_history": {
-              "title": "Description",
-              "type": "string",
-              "attrs": {
-                "fieldType": "textarea"
-              }
-            }
+          "type": "string",
+          "attrs": {
+            "fieldType": "textarea"
           }
         },
         "personal_hx": {
@@ -371,7 +351,6 @@
             "type": "string"
           }
         },
-
         "past_hx": {
           "title": "Past History",
           "type": "object",
