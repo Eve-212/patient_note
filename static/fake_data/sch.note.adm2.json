@@ -54,7 +54,7 @@
                 "bsColSize": 4,
                 "placeholder": "Patient Name"
               }
-            },
+            },            
             "birthdate": {
               "title": "Birth Date",
               "format": "date",
@@ -129,51 +129,46 @@
                 "inputGroup": true,
                 "bsColSize": 6
               }
-            }
+            },
+            "test": {
+              "title": "TESTERRRRRRRRRRRR",
+              "type": "string",
+              "attrs": {
+                
+                "bsColSize": 6
+              }
+            },
+            "test3": {
+              "title": "TESTE",
+              "type": "string",
+              "attrs": {
+                
+                "bsColSize": 6
+              }
+            }                      
           },
           "attrs": {
             "rowGroup": true
           }
-        },                       
+        },       
         "cc": {
           "title": "Chief Complaint",
-          "type": "object",          
-          "properties": {
-            "cc_description": {
-              "title": "Description",
-              "type": "string",
-              "attrs": {
-                "fieldType": "textarea"
-              }                    
-            } 
-          }              
-        },                  
+          "type": "string"           
+        },     
         "pi": {
           "title": "Present Illness",
-          "type": "object",          
-          "properties": {
-            "pi_description": {
-              "title": "Description",
-              "type": "string",
-              "attrs": {
-                "fieldType": "textarea"
-              }                    
-            } 
-          }              
-        },                     
+          "type": "string",  
+          "attrs": {
+            "fieldType": "textarea"
+          }    
+        },      
         "travel_contact": {
           "title": "Travel History",
-          "type": "object",          
-          "properties": {
-            "travel_history": {
-              "title": "Description",
-              "type": "string",
-              "attrs": {
-                "fieldType": "textarea"
-              }                    
-            } 
-          }              
-        }, 
+          "type": "string",  
+          "attrs": {
+            "fieldType": "textarea"
+          }    
+        },                                                   
         "personal_hx": {
           "title": "Personal History",
           "type": "object",
@@ -628,25 +623,19 @@
         },
         "psyco": {
           "title": "Psychological Evaluation",
-          "type": "object",
-          "properties": {
-            "psyco_status": {
-              "title": "Psychological Evaluation",
-              "type": "string",
-              "attrs": {
-                "fieldType": "radio",
-                "values": [
-                  "Stable",
-                  "Psychotic Symptom or Dementia",
-                  "Severely Depressed",
-                  "Moderately Depressed",
-                  "Mildly Depressed",
-                  "Undetectable",
-                  "Other"
-                ]
-              }
-            }
-          }
+          "type": "string",
+          "attrs": {
+            "fieldType": "radio",
+            "values": [
+              "Stable",
+              "Psychotic Symptom or Dementia",
+              "Severely Depressed",
+              "Moderately Depressed",
+              "Mildly Depressed",
+              "Undetectable",
+              "Other"
+            ]
+          }          
         },       
         "nutrition": {
           "title": "Nutritional Evaluation",

@@ -1,6 +1,8 @@
 <template>
 <div :class="bsColSize">
-  <h5 :id="anchorIdFormat(schema)">{{ schema.title }}</h5>
+  <div :id="anchorIdFormat(schema)"></div>
+  <slot name="section-title" :childIsSection="isSection"></slot>
+  <slot name="title" :childIsSection="isSection"></slot> 
   <table class="table table-striped">
     <thead>
       <tr>

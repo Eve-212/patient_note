@@ -1,5 +1,7 @@
 <template>
   <div :class="getBsColSize">
+    <slot name="section-title" :childIsSection="isSection"></slot>
+    <slot name="title" :childIsSection="isSection"></slot> 
     <div id="labwrap">
       <table class="table table-bordered">
         <thead>
@@ -218,8 +220,7 @@ export default {
   },
   methods: {
     load() {
-      this.$wf.ready().then($api => {
-        console.log($api)
+      this.$wf.ready().then($api => {        
         // return $api.lab.then($raw => {
         //   console.log($raw.data)
         // })

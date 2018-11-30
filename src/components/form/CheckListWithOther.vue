@@ -1,9 +1,12 @@
 <template>
 <div :class="getBsColSize" class="mb-3">
+  
   <div 
     :id="anchorIdFormat(schema)" 
     :class="[getStyleClass]">    
-    <div class="checklist-label" :for="currentKey">{{ schema.title }}</div>
+    <!-- <div class="checklist-label" :for="currentKey">{{ schema.title }}</div> -->
+    <slot name="section-title" :childIsSection="isSection"></slot>
+    <slot name="title" :childIsSection="isSection"></slot>     
     <div 
       :id="currentKey"			
       class="form-check form-check-inline" 
@@ -15,7 +18,7 @@
         :id="getId(index)" 
         :value="item"
          v-model="val">
-      <label  class="form-check-label" :for="getId(index)">{{ item }}</label>
+      <label class="form-check-label" :for="getId(index)">{{ item }}</label>
     </div>
 
     <!-- add Other input box -->

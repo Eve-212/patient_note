@@ -1,11 +1,15 @@
 <template>
 <div :class="getBsColSize">
+  <slot name="section-title" :childIsSection="isSection"></slot>
+  
   <div 
     :id="anchorIdFormat(schema)" 
     :class="[getStyleClass]"
     class="form-group">
     <div class="row">
-      <label class="col-form-label col-lg-2 col-sm-4">{{ schema.title }}</label>
+      <!-- <label class="col-form-label col-lg-2 col-sm-4">{{ schema.title }}</label> -->
+      <slot name="label" :childIsSection="isSection" :getId="getId" :classes="['col-form-label', 'col-lg-2', 'col-sm-4' ]"></slot>      
+
       <div class="col-lg-10 col-sm-8">
         <div 
           v-for="(item, index) in schema.attrs.values" 

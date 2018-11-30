@@ -1,9 +1,13 @@
 <template>
 <div :class="getBsColSize">
+  <slot name="section-title" :childIsSection="isSection"></slot>
+  
   <div 
     :id="anchorIdFormat(schema)" 
     :class="[getStyleClass]">    
-    <label class="radio-label">{{ schema.title }}</label>
+    <!-- <label class="radio-label">{{ schema.title }}</label> -->
+    <slot name="label" :childIsSection="isSection" :getId="getId" :classes="['radio-label']"></slot>      
+
     <div 
       v-for="(item, index) in schema.attrs.values" 
       :key="index"

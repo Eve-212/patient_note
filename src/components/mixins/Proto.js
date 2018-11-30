@@ -42,7 +42,7 @@ export default {
       }
     }
   },
-  methods: {
+  methods: {    
     getId($index) {
       if ($index !== undefined) {
         return this.path.concat($index).join('.')
@@ -65,6 +65,9 @@ export default {
     val: {
       get() { return this.value },
       set(val) {this.$emit('input', val)}
+    },
+    isSection() {
+      return this.$isSection
     },
     getPlaceholder() {
       if (this.placeholder) {
