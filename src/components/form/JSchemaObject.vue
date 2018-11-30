@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isReady">   
+  <div v-if="isReady" class="mb-3">   
     <h5 :id="anchorIdFormat(schema)" >{{ schema.title }}</h5>
     <div class="col-md-12">
       <div class="row">      
@@ -64,7 +64,6 @@ export default {
       getRowGroup: this.rowGroup,
       isReady: false,
       isVisible: {},
-      child_key: null // for clarity, use child_key in obj comp and currentKey in input components
     }
   },    
   watch: {
@@ -75,8 +74,8 @@ export default {
       deep: true
     }    
   },
-  created() {
-    this.child_key = this.currentKey
+  created() {       
+    
     // set first object component instance as root object
     if (this.rootObj) {
       //assign local root object variable to avoid changing prop
@@ -85,7 +84,7 @@ export default {
       // if no value is received in rootObj prop, then assign current object component as root
       this.$rootObj = this
       this.isRoot = true
-      this.toWatch = []
+      this.toWatch = []      
     }
 
     for (let $child_key in this.schema.properties) {
@@ -107,9 +106,7 @@ export default {
             function($oldVal, $newVal) {
               // console.log('Change', $child_schema.attrs.dependsOn.name)
               let visibility = this.checkVisible($child_schema.attrs.dependsOn)
-              $this.$set($this.isVisible, $child_key, visibility)
-
-              
+              $this.$set($this.isVisible, $child_key, visibility)              
 
               // if corrresponding isVisible value is false then clear data
               if (!visibility) {
@@ -210,6 +207,7 @@ export default {
 
       this.$set(this.val, child_key, initValue)
     },
+
     setVisible() {
       for (let $child_key in this.schema.properties) {
         let $child_schema = this.schema.properties[$child_key]
@@ -230,9 +228,7 @@ export default {
               function($oldVal, $newVal) {
                 // console.log('Change', $child_schema.attrs.dependsOn.name)
                 let visibility = this.checkVisible($child_schema.attrs.dependsOn)
-                $this.$set($this.isVisible, $child_key, visibility)
-
-                
+                $this.$set($this.isVisible, $child_key, visibility)                
 
                 // if corrresponding isVisible value is false then clear data
                 if (!visibility) {

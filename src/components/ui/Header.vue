@@ -127,6 +127,8 @@ export default {
       }
     },
     load() {
+
+
       if (this.no) {
         if (this.searchKey == 'pt') {
           this.$wf.note
@@ -136,7 +138,7 @@ export default {
               if ($sess.adm) {
                 this.$router.push({
                   name: 'edit',
-                  params: { id: $sess.adm.id }
+                  params: { id: $sess.adm.id, sess: $sess }
                 })
                 this.resetSearch()
               } else {
@@ -146,7 +148,7 @@ export default {
                     $sess = res.data
                     this.$router.push({
                       name: 'edit',
-                      params: { id: $sess.id, fee_no: this.no }
+                      params: { id: $sess.id, fee_no: this.no, note: $sess }
                     })
                   })
                   .catch(error => {

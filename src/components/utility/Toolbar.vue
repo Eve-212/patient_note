@@ -3,7 +3,7 @@
 
     <div class="toolbar-left">
       <div class="toolbar-group">              
-        <div :title="save" class="toolbar-item"><i class="far fa-save"></i> Save</div>
+        <div :title="save" class="toolbar-item" @click="saveData"><i class="far fa-save"></i> Save</div>
         <div :title="undo" class="toolbar-item"><i class="fas fa-undo"></i> Undo</div>           
       </div>        
 
@@ -93,19 +93,9 @@ export default {
     }
   },
   methods: {
-    // makeCall() {              
-    //   this.$wf.ready().then($api => {
-    //     console.log(this.data)
-    //      $api.note.update({ 
-    //       id: 'razvCeG', 
-    //       content: this.data, 
-    //       }).then($api => {
-    //       console.log($api)
-    //     }).catch(err => {
-    //       console.log(err)
-    //     })        
-    //   })    
-    // },
+    saveData() {
+      this.$emit('saveData')
+    },
     toggleToolbar() {
 
     },
@@ -201,12 +191,12 @@ export default {
   margin: 5px 0;   
   align-items: center;
   z-index: 999;  
-  color: black;      
+  color: #666666;      
 }
 
 .toolbar-item {      
   padding: 0.3rem 0.4rem 0.3rem 0.4rem;
-  font-size: 0.8rem; 
+  font-size: 0.9rem; 
   margin: 0 3px 0 3px; 
   cursor: pointer;
   &__bookmark {

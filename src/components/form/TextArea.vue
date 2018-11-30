@@ -2,15 +2,15 @@
   <div :class="getBsColSize">    
     <div class="form-group"
         :id="anchorIdFormat(schema)" 
-        :class="[getStyleClass]">
+        :class="[getStyleClass]">      
+
       <label           
         :for="getId()">{{ schema.title }}
-      </label>     
-
+      </label>           
       <textarea :id="getId()" 
                 :name="currentKey" 
                 v-model="val" 
-                :placeholder="msg"
+                :placeholder="hint"
                 :aria-describedby="helpText(schema)"
                 rows="10">        
       </textarea>      
@@ -27,17 +27,17 @@ export default {
   mixins: [Proto], 
   data() {
     return {
-      msg: "Insert text here ..."
+      hint: "Insert text here ..."
     }
-  }, 
-  created() {
-    console.log("TEXTAREA CREATED")
-  }
-
+  }  
 }
 </script>
 
 <style>
+textarea {
+  width: 100%;
+  height: 17rem;
+}
 
 </style>
 

@@ -23,12 +23,9 @@ export default {
         return ''
       }
     },
-    // child_key: {
-    //   type: String,
-    //   default() {
-    //     return ''
-    //   }
-    // },
+    sectionKeys: {
+      type: Array      
+    },
     bsColSize: {
       type: Number
     },
@@ -87,5 +84,11 @@ export default {
       }
       return ''
     }
+  },
+  created() {
+    // add isSection property to first level components
+    if (!this.$isSection && this.sectionKeys.includes(this.currentKey)) {
+      this.$isSection = true
+    }          
   }
 }

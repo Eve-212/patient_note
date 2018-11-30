@@ -134,28 +134,46 @@
           "attrs": {
             "rowGroup": true
           }
-        },
+        },                       
         "cc": {
           "title": "Chief Complaint",
-          "type": "string",
-          "attrs": {
-            "fieldType": "textarea"
-          }
-        },
+          "type": "object",          
+          "properties": {
+            "cc_description": {
+              "title": "Description",
+              "type": "string",
+              "attrs": {
+                "fieldType": "textarea"
+              }                    
+            } 
+          }              
+        },                  
         "pi": {
           "title": "Present Illness",
-          "type": "string",
-          "attrs": {
-            "inputGroup": true
-          }
-        },
+          "type": "object",          
+          "properties": {
+            "pi_description": {
+              "title": "Description",
+              "type": "string",
+              "attrs": {
+                "fieldType": "textarea"
+              }                    
+            } 
+          }              
+        },                     
         "travel_contact": {
           "title": "Travel History",
-          "type": "string",
-          "attrs": {
-            "inputGroup": true
-          }
-        },
+          "type": "object",          
+          "properties": {
+            "travel_history": {
+              "title": "Description",
+              "type": "string",
+              "attrs": {
+                "fieldType": "textarea"
+              }                    
+            } 
+          }              
+        }, 
         "personal_hx": {
           "title": "Personal History",
           "type": "object",
@@ -396,14 +414,15 @@
                   "Weakness"
                 ],
                 "fieldType": "checklistwithother",
-                "styleClass": ["margin-bot-small"]
+                "styleClass": []
               }
             },
             "skin": {
               "title": "Skin",
               "type": "array",
               "attrs": {
-                "styleClass": ["margin-bot-small"]
+                "fieldType": "checklistwithother",
+                "styleClass": []
               },
               "items": {
                 "type": "string",
@@ -413,34 +432,52 @@
                   "Bruising/Bleeding",
                   "Nevi/Moles",
                   "Dryness/Sweating",
-                  "Prior",
-                  "Other"
+                  "Prior"                  
                 ]
               }
             },
             "heent": {
               "title": "HEENT",
-              "type": "array",
-              "attrs": {
-                "styleClass": ["margin-bot-small"]
-              },
-              "items": {
-                "type": "string",
-                "enum": [
-                  "Head trauma",
-                  "Headaches",
-                  "Swelling of face",
-                  "Sinus infections",
-                  "Enlarged thyroid",
-                  "Other"
-                ]
+              "type": "object",              
+              "properties": {
+                "status": {
+                  "title": "Status",
+                  "type": "string",
+                  "attrs": {
+                    "fieldType": "radio",
+                    "values": ["Normal", "Abnormal"]                
+                  }                 
+                },
+                "head": {
+                  "title": "Head",
+                  "type": "array",
+                  "attrs": {
+                    "fieldType": "checklistwithother",
+                    "dependsOn": {
+                      "name": "review_of_sys.heent.status",
+                      "values": ["Abnormal"]
+                    }                    
+                    
+                  },
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "Headaches",
+                      "Trauma",
+                      "Syncope"                           
+                    ]
+                  }
+                }
               }
-            },
+            },   
+            
+            
             "cardio_resp": {
               "title": "Cardio-Respiratory system",
               "type": "array",
               "attrs": {
-                "styleClass": ["margin-bot-small"]
+                "fieldType": "checklistwithother",
+                "styleClass": []
               },
               "items": {
                 "type": "string",
@@ -449,8 +486,7 @@
                   "Cough",
                   "Voice changes",
                   "Dizziness",
-                  "Nausea",
-                  "Other"
+                  "Nausea"                  
                 ]
               }
             },
@@ -458,7 +494,7 @@
               "title": "Gastrointestinal system",
               "type": "array",
               "attrs": {
-                "styleClass": ["margin-bot-small"]
+                "fieldType": "checklistwithother"
               },
               "items": {
                 "type": "string",
@@ -468,8 +504,7 @@
                   "Chills",
                   "Night sweating",
                   "Fatigue",
-                  "Weakness",
-                  "Other"
+                  "Weakness"                  
                 ]
               }
             },
@@ -477,7 +512,7 @@
               "title": "Genito-urinary system",
               "type": "array",
               "attrs": {
-                "styleClass": ["margin-bot-small"]
+                "fieldType": "checklistwithother"
               },
               "items": {
                 "type": "string",
@@ -487,8 +522,7 @@
                   "Chills",
                   "Night sweating",
                   "Fatigue",
-                  "Weakness",
-                  "Other"
+                  "Weakness"
                 ]
               }
             },
@@ -496,7 +530,7 @@
               "title": "Neuro-Psychiatric system",
               "type": "array",
               "attrs": {
-                "styleClass": ["margin-bot-small"]
+                "fieldType": "checklistwithother"
               },
               "items": {
                 "type": "string",
@@ -506,8 +540,7 @@
                   "Chills",
                   "Night sweating",
                   "Fatigue",
-                  "Weakness",
-                  "Other"
+                  "Weakness"
                 ]
               }
             },
@@ -515,7 +548,7 @@
               "title": "Musculoskeletal system",
               "type": "array",
               "attrs": {
-                "styleClass": ["margin-bot-small"]
+                "fieldType": "checklistwithother"
               },
               "items": {
                 "type": "string",
@@ -525,8 +558,7 @@
                   "Chills",
                   "Night sweating",
                   "Fatigue",
-                  "Weakness",
-                  "Other"
+                  "Weakness"
                 ]
               }
             }
@@ -596,20 +628,26 @@
         },
         "psyco": {
           "title": "Psychological Evaluation",
-          "type": "string",
-          "attrs": {
-            "fieldType": "radio",
-            "values": [
-              "Stable",
-              "Psychotic Symptom or Dementia",
-              "Severely Depressed",
-              "Moderately Depressed",
-              "Mildly Depressed",
-              "Undetectable",
-              "Other"
-            ]
+          "type": "object",
+          "properties": {
+            "psyco_status": {
+              "title": "Psychological Evaluation",
+              "type": "string",
+              "attrs": {
+                "fieldType": "radio",
+                "values": [
+                  "Stable",
+                  "Psychotic Symptom or Dementia",
+                  "Severely Depressed",
+                  "Moderately Depressed",
+                  "Mildly Depressed",
+                  "Undetectable",
+                  "Other"
+                ]
+              }
+            }
           }
-        },
+        },       
         "nutrition": {
           "title": "Nutritional Evaluation",
           "type": "object",
@@ -900,7 +938,7 @@
               "title": "HEENT",
               "type": "object",
               "attrs": {
-                "styleClass": ["subsection-title"]
+                
               },
               "properties": {
                 "conjuntivae": {
