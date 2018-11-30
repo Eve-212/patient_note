@@ -1,4 +1,84 @@
 
+  ,
+  "used": {
+    "title": "Used",
+    "type": "boolean"
+  },
+  "type": {
+    "title": "Type",
+    "type": "array",
+    "items": {
+      "type": "string",
+      "enum": ["Cigarettes", "Electronic cigarettes"]
+    },
+    "attrs": {
+      "dependsOn": {
+        "name": "personal_hx.cigarette.used",
+        "values": ["Yes"]
+      }
+    }
+  },
+  "pack_per_day": {
+    "title": "Packs per day",
+    "type": "number",
+    "attrs": {
+      "inputGroup": true,
+      "bsColSize": 3,
+      "placeholder": "Frequency",
+      "dependsOn": {
+        "name": "personal_hx.cigarette.used",
+        "values": ["Yes"]
+      }
+    }
+  },
+  "years_smoked": {
+    "title": "for years",
+    "type": "number",
+    "attrs": {
+      "inputGroup": true,
+      "bsColSize": 3,
+      "dependsOn": {
+        "name": "personal_hx.cigarette.used",
+        "values": ["Yes"]
+      }
+    }
+  },
+  "passive_expose": {
+    "title": "Passive smoking：",
+    "type": "boolean"
+  },
+  "years_exposed": {
+    "title": "for years",
+    "type": "number",
+    "attrs": {
+      "inputGroup": true,
+      "bsColSize": 3,
+      "dependsOn": {
+        "name": "personal_hx.cigarette.passive_expose",
+        "values": ["Yes"]
+      }
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   {
     "title": "Admission Note",
     "type": "object",

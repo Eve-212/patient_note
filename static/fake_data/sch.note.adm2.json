@@ -34,31 +34,29 @@
     "content": {
       "type": "object",
       "properties": {
-        "profile": {
+        "basic_profile": {
           "title": "Basic Profile",
           "type": "object",
           "properties": {
-            "chr_no": {
-              "title": "Chart No",
+            "name": {
+              "title": "Name",
               "type": "string",
               "attrs": {
                 "inputGroup": true,
                 "bsColSize": 4
               }
             },
-            "name": {
-              "title": "Name",
+            "gender": {
+              "title": "Gender",
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 4,
-                "placeholder": "Patient Name"
+                "bsColSize": 4
               }
             },
             "birthdate": {
-              "title": "Birth Date",
-              "format": "date",
-              "type": "string",
+              "title": "Date of Birth",
+              "type": "date",
               "attrs": {
                 "inputGroup": true,
                 "fieldType": "date",
@@ -70,110 +68,103 @@
               "type": "integer",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 4,
-                "dependsOn": {
-                  "name": "profile.name",
-                  "values": ["david"]
-                }
+                "bsColSize": 4
               }
             },
-            "id_no": {
-              "title": "ID",
+            "chr_no": {
+              "title": "Chart No.",
               "type": "string",
               "attrs": {
                 "inputGroup": true,
                 "bsColSize": 4
               }
             },
-            "sex": {
-              "title": "Gender",
-              "type": "string",
-              "attrs": {
-                "inputGroup": true,
-                "bsColSize": 4
-              }
-            },
-
-            "admit_time": {
-              "title": "Time of Admission",
-              "format": "date-time",
-              "type": "string",
-              "attrs": {
-                "fieldType": "date",
-                "inputGroup": true,
-                "bsColSize": 6
-              }
-            },
-            "evaluate_time": {
-              "title": "Time of Evaluation",
-              "format": "date-time",
-              "type": "string",
-              "attrs": {
-                "fieldType": "date",
-                "inputGroup": true,
-                "bsColSize": 6
-              }
-            },
-            "admit_dept": {
+            "department": {
               "title": "Department",
               "type": "string",
               "attrs": {
                 "inputGroup": true,
-                "bsColSize": 6
+                "bsColSize": 4
               }
             },
-            "source": {
+            "information_source": {
               "title": "Information Source",
               "type": "string",
               "attrs": {
+                "fieldType": "selectList",
+                "inputGroup": true,
+                "bsColSize": 6,
+                "values": ["ff", "gg"]
+              }
+            },
+            "admit_time": {
+              "title": "Time of Admission",
+              "type": "date",
+              "attrs": {
+                "fieldType": "date",
                 "inputGroup": true,
                 "bsColSize": 6
               }
+            },
+            "completion_time": {
+              "title": "Time of Completion",
+              "type": "date",
+              "attrs": {
+                "fieldType": "date",
+                "inputGroup": true,
+                "bsColSize": 6
+              }
+            },
+            "patient_source": {
+              "title": "Patient Source",
+              "type": "string",
+              "attrs": {
+                "fieldType": "selectList",
+                "inputGroup": true,
+                "bsColSize": 6,
+                "values": ["門診", "急診", "本院出生"]
+              }
             }
-          },
-          "attrs": {
-            "rowGroup": true
           }
-        },                       
+        },
         "cc": {
           "title": "Chief Complaint",
-          "type": "object",          
+          "type": "object",
           "properties": {
             "cc_description": {
-              "title": "Description",
               "type": "string",
               "attrs": {
                 "fieldType": "textarea"
-              }                    
-            } 
-          }              
-        },                  
+              }
+            }
+          }
+        },
         "pi": {
           "title": "Present Illness",
-          "type": "object",          
+          "type": "object",
           "properties": {
             "pi_description": {
-              "title": "Description",
+              "title": "",
               "type": "string",
               "attrs": {
                 "fieldType": "textarea"
-              }                    
-            } 
-          }              
-        },                     
+              }
+            }
+          }
+        },
         "travel_contact": {
           "title": "Travel History",
-          "type": "object",          
+          "type": "object",
           "properties": {
             "travel_history": {
               "title": "Description",
               "type": "string",
               "attrs": {
                 "fieldType": "textarea"
-              }                    
-            } 
-          }              
-        }, 
+              }
+            }
+          }
+        },
         "personal_hx": {
           "title": "Personal History",
           "type": "object",
@@ -182,19 +173,30 @@
               "title": "Smoking",
               "type": "object",
               "attrs": {
+                "styleClass": ["subsection-title"]
               },
               "properties": {
                 "used": {
-                  "title": "Used：",
+                  "title": "Used",
                   "type": "boolean"
                 },
                 "type": {
-                  "title": "Type：",
+                  "title": "Type",
                   "type": "array",
                   "items": {
                     "type": "string",
                     "enum": ["Cigarettes", "Electronic cigarettes"]
                   },
+                  "attrs": {
+                    "dependsOn": {
+                      "name": "personal_hx.cigarette.used",
+                      "values": ["Yes"]
+                    }
+                  }
+                },
+                "quitted": {
+                  "title": "Quitted",
+                  "type": "boolean",
                   "attrs": {
                     "dependsOn": {
                       "name": "personal_hx.cigarette.used",
@@ -215,30 +217,8 @@
                     }
                   }
                 },
-                "years_used": {
-                  "title": "For years",
-                  "type": "number",
-                  "attrs": {
-                    "inputGroup": true,
-                    "bsColSize": 3,
-                    "dependsOn": {
-                      "name": "personal_hx.cigarette.used",
-                      "values": ["Yes"]
-                    }
-                  }
-                },
-                "quitted": {
-                  "title": "Quitted：",
-                  "type": "boolean",
-                  "attrs": {
-                    "dependsOn": {
-                      "name": "personal_hx.cigarette.used",
-                      "values": ["Yes"]
-                    }
-                  }
-                },
-                "years_quitted": {
-                  "title": "For years",
+                "years_smoked": {
+                  "title": "for years",
                   "type": "number",
                   "attrs": {
                     "inputGroup": true,
@@ -254,7 +234,7 @@
                   "type": "boolean"
                 },
                 "years_exposed": {
-                  "title": "For years",
+                  "title": "for years",
                   "type": "number",
                   "attrs": {
                     "inputGroup": true,
@@ -271,6 +251,8 @@
               "title": "Alcohol drinking",
               "type": "object",
               "attrs": {
+                "styleClass": ["subsection-title"],
+                "rowGroup": true
               },
               "properties": {
                 "used": {
@@ -280,16 +262,19 @@
                     "bsColSize": 12
                   }
                 },
-                "bottle_per_week": {
-                  "title": "Bottle per week",
+                "quitted": {
+                  "title": "Quit use：",
+                  "type": "boolean",
+                  "attrs": {
+                    "bsColSize": 12
+                  }
+                },
+                "vol_per_day": {
+                  "title": "Volumn(ml) per day",
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 6,
-                    "dependsOn": {
-                      "name": "personal_hx.alcohol.used",
-                      "values": ["Yes"]
-                    }
+                    "bsColSize": 6
                   }
                 },
                 "duration": {
@@ -297,18 +282,7 @@
                   "type": "integer",
                   "attrs": {
                     "inputGroup": true,
-                    "bsColSize": 6,
-                    "dependsOn": {
-                      "name": "personal_hx.alcohol.used",
-                      "values": ["Yes"]
-                    }
-                  }
-                },
-                "quitted": {
-                  "title": "Quit use：",
-                  "type": "boolean",
-                  "attrs": {
-                    "bsColSize": 12
+                    "bsColSize": 6
                   }
                 }
               }
@@ -317,6 +291,7 @@
               "type": "object",
               "title": "Betel Nuts",
               "attrs": {
+                "styleClass": ["subsection-title"],
                 "rowGroup": true
               },
               "properties": {
@@ -448,21 +423,21 @@
                   "Bruising/Bleeding",
                   "Nevi/Moles",
                   "Dryness/Sweating",
-                  "Prior"                  
+                  "Prior"
                 ]
               }
             },
             "heent": {
               "title": "HEENT",
-              "type": "object",              
+              "type": "object",
               "properties": {
                 "status": {
                   "title": "Status",
                   "type": "string",
                   "attrs": {
                     "fieldType": "radio",
-                    "values": ["Normal", "Abnormal"]                
-                  }                 
+                    "values": ["Normal", "Abnormal"]
+                  }
                 },
                 "head": {
                   "title": "Head",
@@ -472,22 +447,16 @@
                     "dependsOn": {
                       "name": "review_of_sys.heent.status",
                       "values": ["Abnormal"]
-                    }                    
-                    
+                    }
                   },
                   "items": {
                     "type": "string",
-                    "enum": [
-                      "Headaches",
-                      "Trauma",
-                      "Syncope"                           
-                    ]
+                    "enum": ["Headaches", "Trauma", "Syncope"]
                   }
                 }
               }
-            },   
-            
-            
+            },
+
             "cardio_resp": {
               "title": "Cardio-Respiratory system",
               "type": "array",
@@ -502,7 +471,7 @@
                   "Cough",
                   "Voice changes",
                   "Dizziness",
-                  "Nausea"                  
+                  "Nausea"
                 ]
               }
             },
@@ -520,7 +489,7 @@
                   "Chills",
                   "Night sweating",
                   "Fatigue",
-                  "Weakness"                  
+                  "Weakness"
                 ]
               }
             },
@@ -663,7 +632,7 @@
               }
             }
           }
-        },       
+        },
         "nutrition": {
           "title": "Nutritional Evaluation",
           "type": "object",
@@ -953,9 +922,7 @@
             "heent": {
               "title": "HEENT",
               "type": "object",
-              "attrs": {
-                
-              },
+              "attrs": {},
               "properties": {
                 "conjuntivae": {
                   "title": "Conjunctivae",
@@ -1015,9 +982,7 @@
         "image": {
           "title": "Image finding",
           "type": "string",
-          "attrs": {
-            
-          }
+          "attrs": {}
         },
         "ecg": {
           "title": "ECG finding",
