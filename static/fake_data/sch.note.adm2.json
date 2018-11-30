@@ -129,23 +129,7 @@
                 "inputGroup": true,
                 "bsColSize": 6
               }
-            },
-            "test": {
-              "title": "TESTERRRRRRRRRRRR",
-              "type": "string",
-              "attrs": {
-                
-                "bsColSize": 6
-              }
-            },
-            "test3": {
-              "title": "TESTE",
-              "type": "string",
-              "attrs": {
-                
-                "bsColSize": 6
-              }
-            }                      
+            }                                        
           },
           "attrs": {
             "rowGroup": true
