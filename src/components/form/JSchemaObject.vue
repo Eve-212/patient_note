@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div v-if="isReady" class="mb-3">       
     <div class="col-md-12">      
       <div :id="anchorIdFormat(schema)"></div>         
@@ -6,6 +7,15 @@
       <slot name="title" :childIsSection="isSection"></slot>           
       
       <div class="row">        
+=======
+  <div
+    v-if="isReady"
+    class="mb-3"
+  >
+    <h5 :id="anchorIdFormat(schema)">{{ schema.title }}</h5>
+    <div class="col-md-12">
+      <div class="row">
+>>>>>>> be152fedb4d8997c7658cd475beb999d7d836a13
         <component
           v-for="(field, key) in schema.properties"
           :rootObj="$rootObj"
@@ -20,6 +30,7 @@
           class="object-width"
           :sectionKeys="sectionKeys"          
         >
+<<<<<<< HEAD
         
           <template v-if="!childIsSection" slot="title" slot-scope="{ childIsSection }"> 
             <h5 v-if="isObject">{{ field.title }}</h5>                                         
@@ -33,6 +44,12 @@
           </template>   
 
           <template slot="subTitle" slot-scope="{ description }">
+=======
+          <template
+            slot="subTitle"
+            slot-scope="{ description }"
+          >
+>>>>>>> be152fedb4d8997c7658cd475beb999d7d836a13
             <small
               v-if="description"
               :id="helpText(field)"
@@ -77,8 +94,12 @@ export default {
     return {
       getRowGroup: this.rowGroup,
       isReady: false,
+<<<<<<< HEAD
       isVisible: {},
       selfName: this.$options.name
+=======
+      isVisible: {}
+>>>>>>> be152fedb4d8997c7658cd475beb999d7d836a13
     }
   },
   watch: {
@@ -89,8 +110,12 @@ export default {
       deep: true
     }
   },
+<<<<<<< HEAD
   created() {                 
 
+=======
+  created() {
+>>>>>>> be152fedb4d8997c7658cd475beb999d7d836a13
     // set first object component instance as root object
     if (this.rootObj) {
       //assign local root object variable to avoid changing prop
@@ -99,7 +124,7 @@ export default {
       // if no value is received in rootObj prop, then assign current object component as root
       this.$rootObj = this
       this.isRoot = true
-      this.toWatch = []      
+      this.toWatch = []
     }
 
     for (let $child_key in this.schema.properties) {
@@ -121,7 +146,7 @@ export default {
             function($oldVal, $newVal) {
               // console.log('Change', $child_schema.attrs.dependsOn.name)
               let visibility = this.checkVisible($child_schema.attrs.dependsOn)
-              $this.$set($this.isVisible, $child_key, visibility)              
+              $this.$set($this.isVisible, $child_key, visibility)
 
               // if corrresponding isVisible value is false then clear data
               if (!visibility) {

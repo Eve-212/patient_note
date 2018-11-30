@@ -1,58 +1,37 @@
 <template>
   <div>
-    
     <div v-if="status" class="loading">
       <p>{{status}}</p>
     </div>
-    <div 
-      class="row my-md-4 mt-5 mb-3" 
-      :class="{isExpanded: $store.state.sideExpanded}" 
-      v-if="isLoaded"
-      >
-      <div class="editor-toolbar col-md-9 col-lg-10 position-fixed">
-        <div class="row">
-          <div class="col-md-12">
-            <Toolbar v-model="currentSchema" :base="noteSchema" @saveData="updateData"></Toolbar>
-          </div>
-        </div>        
+    <div class="row" :class="{isExpanded: $store.state.sideExpanded}" v-if="isLoaded">
+      <div class="col-12">
+        <Toolbar v-model="currentSchema" :base="noteSchema" @saveData="updateData"></Toolbar>
       </div>
 
-      <div class="col-md-9 col-lg-10 my-sm-3 mt-4 editor-main">
-        <div class="row">
-          <div class="col-md-12">
-            
-            <div v-if="showAlert" class="alert alert-danger">
-              <strong>是否加入您的病人清單?</strong>
-              <div>
-                <button 
-                  @click="closeAlert" 
-                  class="btn btn-sm btn-danger" 
-                  type="button" 
-                  value="yes"
-                  >Yes</button>
-                <button 
-                  @click="closeAlert" 
-                  class="btn btn-sm btn-danger" 
-                  type="button" 
-                  value="no"
-                  >No</button>
-                <button 
-                  @click="closeAlert" 
-                  class="btn btn-sm btn-danger" 
-                  type="button" 
-                  value="showLater"
-                  >Ask me later</button>
-              </div>
-            </div>
+      <div class="col-lg-10 col-md-9 mt-5">
+        <div v-if="showAlert" class="alert alert-danger">
+          <strong>是否加入您的病人清單?</strong>
+          <div>
+            <button
+              @click="closeAlert"
+              class="btn btn-sm btn-danger"
+              type="button"
+              value="yes"
+            >Yes</button>
+            <button @click="closeAlert" class="btn btn-sm btn-danger" type="button" value="no">No</button>
+            <button
+              @click="closeAlert"
+              class="btn btn-sm btn-danger"
+              type="button"
+              value="showLater"
+            >Ask me later</button>
           </div>
-
-          <JSchemaObject 
-            class="col-md-12" 
-            v-model="data" 
-            :schema="currentSchema.properties.content"
-            :sectionKeys="sectionKeys"
-          ></JSchemaObject>
         </div>
+        <JSchemaObject
+          v-model="data"
+          :schema="currentSchema.properties.content"
+          :sectionKeys="sectionKeys"
+        ></JSchemaObject>
       </div>
 
       <SectionNav class="col-md-3 col-lg-2 d-none d-md-block mb-5" :sectionKeys="sectionKeys" :schema="currentSchema"></SectionNav>
@@ -70,7 +49,7 @@ import Toolbar from './Toolbar.vue'
 
 export default {
   name: 'EditNote',
-  props: ['id', 'fee_no','note','type', 'sess'],
+  props: ['id', 'fee_no', 'note', 'type', 'sess'],
   components: {
     SectionNav,
     JSchemaObject,
@@ -83,12 +62,11 @@ export default {
       data: {},
       meta: {},
       // sess: null,
-      isLoaded: false,      
+      isLoaded: false,
       currentSchema: null,
       showSchemaSelect: false,
       status: null,
       sectionKeys: null
-
     }
   },
   methods: {
@@ -136,9 +114,8 @@ export default {
               }
             }
 
-
             if ($sch.properties[$child_name]) {
-              $queue.push({                
+              $queue.push({
                 sch: $sch.properties[$child_name],
                 d: $d[$child_name]
               })
@@ -157,19 +134,20 @@ export default {
           if ($rd.data) {
             note = $rd.data
           }
-        }else{
-          //note is passed by prop          
-          note=this.note;
+        } else {
+          //note is passed by prop
+          note = this.note
         }
-      }else{
+      } else {
         // must has type & fee_no
         // $rd=await this.$wf.note.get({fee_no:this.fee_no,type:this.type});
-        
+
         // if ($rd.data){
         //   note=$rd.data;
         // }
 
-        if (this.note) { // note is received as prop from header
+        if (this.note) {
+          // note is received as prop from header
           note = this.note
         }
       }
@@ -190,15 +168,15 @@ export default {
     },
     async preFill(meta = this.meta, data = this.data) {
       //prefill basic data
-      let $fee_no=meta.fee_no;
-      let $ipd;
-      if(this.sess){        
-        $ipd=this.sess.ipd;
-      }else{
+      let $fee_no = meta.fee_no
+      let $ipd
+      if (this.sess) {
+        $ipd = this.sess.ipd
+      } else {
         // TODO: need to verify that ipd retrieved using below request is equal to ipd
         // retrieved in header via note.sess
-        let $ipd_raw = await this.$wf.ipd.get({no:$fee_no});
-        $ipd=$ipd_raw.data;
+        let $ipd_raw = await this.$wf.ipd.get({ no: $fee_no })
+        $ipd = $ipd_raw.data
       }
       
       for (let $col of ['chr_no', 'name', 'fee_no', 'birthdate', 'sex']) {
@@ -233,14 +211,12 @@ export default {
     this.noteSchema = $schema
     this.$set(this.$data, 'currentSchema', cloneDeep(this.noteSchema))
     
-    // save all first level keys so that we can determine 
-    // which input instances are the outermost input of a section
+    
     // this.$set(this.$data, 'sectionKeys', Object.keys(this.currentSchema.properties.content.properties))
     
-    console.log("-------sectionkeys----")
-    console.log(this.sectionKeys)
+    
     this.load()
-    this.status = ''    
+    this.status = ''
   },
   watch: {
     id() {
@@ -248,52 +224,18 @@ export default {
     },
     currentSchema: {
       handler: function() {
+        // save all first level keys so that we can determine 
+        // which input instances are the outermost input of a section
         this.$set(this.$data, 'sectionKeys', Object.keys(this.currentSchema.properties.content.properties))
       },
       deep: true
-    }    
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/sass/main.scss';
-.editor-toolbar {
-  margin-top: -8px;  
-
-  z-index: 99;
-  @media screen and (max-width: $break-medium) {
-    margin-top: 30px;
-    // max-width: 74%;
-  }
-
-  @media screen and (max-width: $break-small) {
-    margin-top: 28px;
-  }
-}
-
-.editor-main {
-  padding-top: 2rem;
-  @media screen and (max-width: $break-medium) {
-    padding-top: 3rem;
-  }
-
-  @media screen and (max-width: $break-small) {
-  }
-}
-
-.reset-btn {
-  margin-right: 5px;
-  padding: 0 3px;
-  background-color: #cccccc !important;
-  color: teal !important;
-}
-
-.alert-container {
-  width: 100%;
-  margin-right: 0.95rem !important;
-  padding-right: 5px;
-}
 
 .alert {
   font-size: $default-font-size;

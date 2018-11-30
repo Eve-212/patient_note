@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     hideSearch(status) {
-      // this.hide = status
+      this.hide = status
     }
   }
 }
@@ -32,11 +32,12 @@ export default {
 
 <style lang="scss" scoped>
 main {
-  padding-top: 4rem;
+  padding-top: 3.5rem;
   .main_content {
-    padding-left: 5.9rem;
+    padding-left: 5.5rem;
+    // max-width: $break-large
     @media screen and (max-width: 1024px) {
-      padding-left: 16px;
+      padding-left: 15px;
     }
   }
 }
